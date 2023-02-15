@@ -27,13 +27,7 @@ public class MainController {
 		this.mainDisplay = md;
 		this.localVideo = lv;
 		
-		// setup subcontrollers
-		this.subcontrollers = new Subcontroller[] {
-				new CropController(this, this.mainDisplay, null),
-				new ScaleController(this, this.mainDisplay, null),
-				new GreyscaleController(this, this.mainDisplay, null),
-				new LabelController(this, this.mainDisplay, null)
-		};
+		// TODO other setup
 		
 		// start program
 		this.start();
