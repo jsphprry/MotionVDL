@@ -1,16 +1,16 @@
-# 1 MotionVDL
-# -----------
+1 MotionVDL
+-----------
 	
 	Application development for CI536 Integrated group project
 
-# 1.1 Introduction
-# ----------------
+1.1 Introduction
+----------------
 	
 	Motion Video Data Labeller is a tool for producing labelled
 	datasets from video data for use in supervised machine learning.
 
-# 1.2 Potentional applications of the labelled data
-# -------------------------------------------------
+1.2 Potentional applications of the labelled data
+-------------------------------------------------
 	
 	The functionality of MotionVDL could be extended with 
 	a helper vision system that could help identify poorly 
