@@ -3,7 +3,7 @@
 
 Application development for CI536 Integrated group project
 
-1.1 Introduction
+1.1 Description
 ----------------
 
 Motion Video Data Labeller is a tool for producing labelled
