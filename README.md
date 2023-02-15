@@ -3,8 +3,8 @@
 	
 	Application development for CI536 Integrated group project
 
-1.1 Introduction
-----------------
+1.1 Description
+---------------
 	
 	Motion Video Data Labeller is a tool for producing labelled
 	datasets from video data for use in supervised machine learning.
