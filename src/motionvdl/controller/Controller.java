@@ -3,6 +3,10 @@ package motionvdl.controller;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
+/**
+ * Abstract superclass defining default controller behaviour
+ * @author joseph
+ */
 public abstract class Controller {
 	
 	// components
