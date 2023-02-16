@@ -1,7 +1,6 @@
 package motionvdl.controller;
 
 import motionvdl.display.Display;
-import motionvdl.model.Label;
 import motionvdl.model.Video;
 
 /**
@@ -11,7 +10,7 @@ import motionvdl.model.Video;
 public class MainController extends Controller {
 	
 	// components
-	private Controller[] subcontrollers;
+	private Controller[] subControllers;
 	
 	/**
 	 * Constructor for main controller instance
@@ -60,7 +59,7 @@ public class MainController extends Controller {
 	 */
 	public void pass(Video video) {
 		
-		// Pass control to the next subcontroller
+		// TODO pass control to the next subcontroller
 		throw new UnsupportedOperationException("Main controller pass is not implemented");
 	}
 }

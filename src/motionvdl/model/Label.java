@@ -9,25 +9,25 @@ import java.awt.Point;
 public class Label {
 	
 	// label metadata
-	private int nodes;
-	private int frames;
+	private final int width;
+	private final int depth;
 	
-	// nodes buffer of 2D points
-	private Point[][] nodeBuffer;
+	// buffer of 2D points
+	private Point[][] pointBuffer;
 	
 	/**
 	 * Constructor for Label instance
-	 * @param width	 The number of nodes per frame
+	 * @param width	 The number of points per frame
 	 * @param height The number of frames
 	 */
-	public Label(int nodes, int frames) {
+	public Label(int numPoints, int numFrames) {
 		
 		// setup metadata
-		this.nodes = nodes;
-		this.frames = frames;
+		this.width = numPoints;
+		this.depth = numFrames;
 		
-		// setup node buffer
-		this.nodeBuffer = new Point[this.nodes][this.frames];
+		// setup point buffer
+		this.pointBuffer = new Point[this.depth][this.width];
 	}
 	
 	
@@ -35,8 +35,8 @@ public class Label {
 	 * Get label width
 	 * @return The label's width
 	 */
-	public int getNodeCount() {
-		return this.nodes;
+	public int getWidth() {
+		return this.width;
 	}
 	
 	
@@ -44,46 +44,55 @@ public class Label {
 	 * Get label height
 	 * @return The label's height
 	 */
-	public int getFrameCount() {
-		return this.frames;
+	public int getDepth() {
+		return this.depth;
 	}
 	
 	
 	/**
+	 * Get a specific row of points
+	 * @param index Index of the relevant frame
+	 * @return The associated row
+	 */
+	public Point[] getRow(int index) {
+		return this.pointBuffer[index];
+	}
+	
+	/**
 	 * Write a 2D Point to the label buffer at a specific index
-	 * @param nodeIndex The index of the node
+	 * @param pointIndex The index of the point
 	 * @param frameIndex The index of the frame
 	 * @param x The x axis of the point
 	 * @param y The y axis of the point
 	 */
-	public void write(int nodeIndex, int frameIndex, int x, int y) {
-		this.nodeBuffer[frameIndex][nodeIndex] = new Point(x,y);
+	public void write(int pointIndex, int frameIndex, int x, int y) {
+		this.pointBuffer[frameIndex][pointIndex] = new Point(x,y);
 	}
 	
 	
 	/**
 	 * Read a 2D Point from the label buffer
-	 * @param w The index of the node
+	 * @param w The index of the point
 	 * @param h The index of the frame
 	 * @return The point at the provided index
 	 */
-	public Point read(int nodeIndex, int frameIndex) {
+	public Point read(int pointIndex, int frameIndex) {
 		
 		// throw empty record case
-		if (this.nodeBuffer[frameIndex][nodeIndex] == null) throw new ArrayIndexOutOfBoundsException("No entry at index ["+frameIndex+"]["+nodeIndex+"]");
+		if (this.pointBuffer[frameIndex][pointIndex] == null) throw new ArrayIndexOutOfBoundsException("No entry at index ["+frameIndex+"]["+pointIndex+"]");
 		
 		// return point at index
-		return this.nodeBuffer[frameIndex][nodeIndex];
+		return this.pointBuffer[frameIndex][pointIndex];
 	}
 	
 	
 	/**
 	 * Delete an entry from the label buffer
-	 * @param w The index of the node
+	 * @param w The index of the point
 	 * @param h The index of the frame
 	 */
-	public void delete(int nodeIndex, int frameIndex) {
-		this.nodeBuffer[frameIndex][nodeIndex] = null;
+	public void delete(int pointIndex, int frameIndex) {
+		this.pointBuffer[frameIndex][pointIndex] = null;
 	}
 	
 	

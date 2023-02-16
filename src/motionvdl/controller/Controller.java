@@ -5,7 +5,7 @@ import motionvdl.model.Video;
 
 /**
  * Abstract superclass defining default controller behaviour
- * @author joseph
+ * @author Joseph
  */
 public abstract class Controller {
 	
@@ -62,7 +62,7 @@ public abstract class Controller {
 	public void frameUp() {
 		
 		// increment frameIndex
-		this.frameIndex = Math.max(0,Math.min(this.video.getDepth()-1, frameIndex + 1));
+		this.frameIndex = Math.min(this.video.getDepth() - 1, frameIndex + 1);
 		
 		// update display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
@@ -75,7 +75,7 @@ public abstract class Controller {
 	public void frameDown() {
 		
 		// decrement frameIndex
-		this.frameIndex = Math.max(0,Math.min(this.video.getDepth()-1, frameIndex - 1));
+		this.frameIndex = Math.max(0, frameIndex - 1);
 		
 		// update display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));

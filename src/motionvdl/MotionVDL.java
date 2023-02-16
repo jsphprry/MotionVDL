@@ -16,7 +16,7 @@ public class MotionVDL {
 	
 	public static void main(String[] args) {
 		
-		// TODO implement video file load and starter program
+		// TODO implement starter program
 		throw new UnsupportedOperationException("Starter program is not implemented");
 	}
 }
