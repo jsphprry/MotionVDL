@@ -27,10 +27,10 @@ public class MainController extends Controller {
 		
 		// setup subcontrollers
 		this.subcontrollers = new Controller[N_STAGES];
-		this.subcontrollers[0] = new CropController(this, md, null);
-		this.subcontrollers[1] = new ScaleController(this, md, null);
-		this.subcontrollers[2] = new GreyscaleController(this, md, null);
-		this.subcontrollers[3] = new LabelController(this, md, null);
+		this.subcontrollers[0] = new CropController(this, md);
+		this.subcontrollers[1] = new ScaleController(this, md);
+		this.subcontrollers[2] = new GreyscaleController(this, md);
+		this.subcontrollers[3] = new LabelController(this, md);
 		
 		// setup components
 		this.linkedController = null;
@@ -51,9 +51,9 @@ public class MainController extends Controller {
 	public void point(int x, int y) {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
 		
-		// call linked controller
+		// call subcontroller
 		this.linkedController.point(x, y);
 	}
 	
@@ -65,9 +65,9 @@ public class MainController extends Controller {
 	public void process() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
 		
-		// call linked controller
+		// call subcontroller
 		this.linkedController.process();
 	}
 	
@@ -79,9 +79,9 @@ public class MainController extends Controller {
 	public void complete() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
 		
-		// call linked controller
+		// call subcontroller
 		this.linkedController.complete();
 	}
 	
@@ -95,7 +95,7 @@ public class MainController extends Controller {
 		// increment stage counter
 		this.stage += 1;
 		
-		// set linked controller
+		// set subcontroller
 		this.linkedController = this.subcontrollers[this.stage];
 		
 		// pass control to subcontroller
@@ -110,9 +110,9 @@ public class MainController extends Controller {
 	public void frameUp() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
 		
-		// call linked controller
+		// call subcontroller
 		this.linkedController.frameUp();
 	}
 	
@@ -124,9 +124,9 @@ public class MainController extends Controller {
 	public void frameDown() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
 		
-		// call linked controller
+		// call subcontroller
 		this.linkedController.frameDown();
 	}
 }

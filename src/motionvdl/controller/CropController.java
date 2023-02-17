@@ -23,12 +23,12 @@ public class CropController extends Controller {
 	 * @param md The main display
 	 * @param v The subject video
 	 */
-	public CropController(MainController mc, Display md, Video v) {
+	public CropController(MainController mc, Display md) {
 		
 		// setup components
 		this.linkedController = mc;
 		this.display = md;
-		this.video = v;
+		this.video = null;
 		
 		// setup variables
 		this.frameIndex = 0;
