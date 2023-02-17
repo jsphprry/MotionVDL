@@ -97,8 +97,8 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Check if the label is complete then either pass control back to
-	 * the main controller or display a message describing the problem.
+	 * Check if the label is complete then either export the 
+	 * labelled video or display a message describing the problem.
 	 */
 	@Override
 	public void complete() {
@@ -109,13 +109,21 @@ public class LabelController extends Controller {
 			ready = (this.framePoints[i] == MAX_POINTS);
 		}
 		
-		// if the label is complete pass control back to the main controller
+		// if the label is complete export labelled video to file
 		if (ready) {
-			super.complete();
+			
+			// encode
+			boolean[] encodedVideo = this.video.export();
+			boolean[] encodedLabel = this.label.export();
+			
+			// write to file
+			// close the program
+			throw new UnsupportedOperationException("Export to file is not implemented");
+			
 		
-		// otherwise display warning message
+		// otherwise display a message
 		} else {
-			this.display.setMsg("Cannot complete the stage because the label is incomplete.");
+			this.display.setMsg("Cannot finish because the label is incomplete.");
 		}
 	}
 	

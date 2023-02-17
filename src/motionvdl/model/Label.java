@@ -3,7 +3,7 @@ package motionvdl.model;
 import java.awt.Point;
 
 /**
- * Video label consisting of height x width 2D integer-precision points
+ * Video label consisting of height x width 2D integer precision points
  * @author Joseph
  */
 public class Label {

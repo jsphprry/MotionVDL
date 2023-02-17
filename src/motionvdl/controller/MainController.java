@@ -4,13 +4,13 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 /**
- * The MotionVDL main controller
+ * MotionVDL main controller
  * @author Joseph
  */
 public class MainController extends Controller {
 	
 	// constants
-	private final static int MAX_STAGE = 4;
+	private final static int N_STAGES = 4;
 	
 	// components
 	private Controller[] subcontrollers;
@@ -26,7 +26,7 @@ public class MainController extends Controller {
 	public MainController(Display md) {
 		
 		// setup subcontrollers
-		this.subcontrollers = new Controller[MAX_STAGE];
+		this.subcontrollers = new Controller[N_STAGES];
 		this.subcontrollers[0] = new CropController(this, md, null);
 		this.subcontrollers[1] = new ScaleController(this, md, null);
 		this.subcontrollers[2] = new GreyscaleController(this, md, null);
@@ -34,7 +34,7 @@ public class MainController extends Controller {
 		
 		// setup components
 		this.linkedController = null;
-		this.display = md;
+		this.display = null;
 		this.video = null;
 		
 		// setup variables
@@ -51,7 +51,7 @@ public class MainController extends Controller {
 	public void point(int x, int y) {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new NullPointerException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
 		
 		// call linked controller
 		this.linkedController.point(x, y);
@@ -65,7 +65,7 @@ public class MainController extends Controller {
 	public void process() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new NullPointerException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
 		
 		// call linked controller
 		this.linkedController.process();
@@ -79,7 +79,7 @@ public class MainController extends Controller {
 	public void complete() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new NullPointerException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
 		
 		// call linked controller
 		this.linkedController.complete();
@@ -95,11 +95,11 @@ public class MainController extends Controller {
 		// increment stage counter
 		this.stage += 1;
 		
-		// set controller
+		// set linked controller
 		this.linkedController = this.subcontrollers[this.stage];
 		
-		// TODO pass control to the next subcontroller
-		throw new UnsupportedOperationException("Main controller pass is not implemented");
+		// pass control to subcontroller
+		this.linkedController.pass(video);
 	}
 	
 	
@@ -110,7 +110,7 @@ public class MainController extends Controller {
 	public void frameUp() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new NullPointerException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
 		
 		// call linked controller
 		this.linkedController.frameUp();
@@ -124,7 +124,7 @@ public class MainController extends Controller {
 	public void frameDown() {
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new NullPointerException("The main controller has not been passed control yet.");
+		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet.");
 		
 		// call linked controller
 		this.linkedController.frameDown();
