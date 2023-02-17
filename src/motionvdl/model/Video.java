@@ -3,7 +3,7 @@ package motionvdl.model;
 import java.awt.Color;
 
 /**
- * Wrapper class for a video represented as a 3D Color array
+ * Wrapper class for a video represented by a 3D Color array
  * @author Joseph
  */
 public class Video{

@@ -46,6 +46,7 @@ public class CropController extends Controller {
 	 * @param x The x axis of the coordinate
 	 * @param y The y axis of the coordinate
 	 */
+	@Override
 	public void point(int x, int y) {
 		
 		// first click
@@ -101,6 +102,7 @@ public class CropController extends Controller {
 	/*
 	 * Crop the video around the crop frame
 	 */
+	@Override
 	public void process() {
 		
 		// throw undefined crop frame

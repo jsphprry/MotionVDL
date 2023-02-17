@@ -3,6 +3,10 @@ package motionvdl.controller;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
+/**
+ * MotionVDL scaling subcontroller
+ * @author Joseph
+ */
 public class ScaleController extends Controller {
 	
 	/**

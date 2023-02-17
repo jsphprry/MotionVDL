@@ -45,6 +45,7 @@ public class LabelController extends Controller {
 	 * @param x The x axis of the click event
 	 * @param y The y axis of the click event
 	 */
+	@Override
 	public void point(int x, int y) {
 		
 		// get the next frame-wise point index
@@ -72,6 +73,7 @@ public class LabelController extends Controller {
 	/**
 	 * Undo the last frame click action
 	 */
+	@Override
 	public void process() {
 		
 		// get the previous frame-wise point index
@@ -100,6 +102,7 @@ public class LabelController extends Controller {
 	/**
 	 * Display next frame up from current frame
 	 */
+	@Override
 	public void frameUp() {
 		
 		// increment frameIndex
@@ -115,6 +118,7 @@ public class LabelController extends Controller {
 	/**
 	 * Display next frame down from current frame
 	 */
+	@Override
 	public void frameDown() {
 		
 		// decrement frameIndex
@@ -130,6 +134,7 @@ public class LabelController extends Controller {
 	/**
 	 * Export the video and label to file then exit program
 	 */
+	@Override
 	public void complete() {
 		
 		// TODO implement program exit

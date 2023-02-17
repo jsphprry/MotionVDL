@@ -39,6 +39,7 @@ public class GreyscaleController extends Controller {
 	/*
 	 * Toggle between greyscale and color video
 	 */
+	@Override
 	public void process() {
 		
 		// if greyscale video does not exist create it

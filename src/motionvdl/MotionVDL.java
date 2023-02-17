@@ -16,7 +16,11 @@ public class MotionVDL {
 	
 	public static void main(String[] args) {
 		
+		// load video
+		Video video = null;
+		
 		// TODO implement starter program
+		// assemble MVC and start
 		throw new UnsupportedOperationException("Starter program is not implemented");
 	}
 }
