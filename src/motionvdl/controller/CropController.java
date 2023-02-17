@@ -115,7 +115,7 @@ public class CropController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	public void pass(Video video) {
+	protected void pass(Video video) {
 		
 		// set the video
 		this.video = video;

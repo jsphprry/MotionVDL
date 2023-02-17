@@ -47,7 +47,7 @@ public class LabelController extends Controller {
 		try {
 
 			// record point
-			this.label.insert(this.frameIndex, x, y);
+			this.label.push(this.frameIndex, x, y);
 			
 			// update display
 			this.display.setPoint(x, y);
@@ -69,7 +69,7 @@ public class LabelController extends Controller {
 		try {
 
 			// remove point
-			this.label.delete(this.frameIndex);
+			this.label.pop(this.frameIndex);
 			
 			// update display
 			this.display.clearPoints();
@@ -111,7 +111,7 @@ public class LabelController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	public void pass(Video video) {
+	protected void pass(Video video) {
 		
 		// set the video
 		this.video = video;

@@ -17,11 +17,11 @@ public class MotionVDL {
 	public static void main(String[] args) {
 
 		// setup components
-		Display display = new Display();
-		MainController controller = new MainController(display);
 		Video video = new Video(args[0]);
+		Display display = new Display();
+		MainController mainController = new MainController(display);
 		
-		// start
-		controller.pass(video);
+		// start controller sequence
+		mainController.start(video);
 	}
 }

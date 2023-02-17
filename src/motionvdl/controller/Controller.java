@@ -49,7 +49,7 @@ public abstract class Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	abstract public void pass(Video video);
+	abstract protected void pass(Video video);
 	
 	
 	/**

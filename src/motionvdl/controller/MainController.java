@@ -43,6 +43,19 @@ public class MainController extends Controller {
 	
 	
 	/**
+	 * Start the controller sequence
+	 */
+	public void start(Video video) {
+		
+		// throw already-in-control case
+		if (this.stage != -1) throw new IllegalStateException("The main controller has already been started");
+		
+		// pass control to self
+		this.pass(video);
+	}
+	
+	
+	/**
 	 * Frame click action
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
@@ -90,7 +103,7 @@ public class MainController extends Controller {
 	 * Pass control to the next subcontroller
 	 */
 	@Override
-	public void pass(Video video) {
+	protected void pass(Video video) {
 		
 		// increment stage counter
 		this.stage += 1;

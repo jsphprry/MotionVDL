@@ -100,7 +100,7 @@ public class Label {
 	 * @param x The x axis of the point
 	 * @param y The y axis of the point
 	 */
-	public void insert(int frameIndex, int x, int y) {
+	public void push(int frameIndex, int x, int y) {
 		
 		// throw frame stack full
 		if (this.pointCounts[frameIndex] == this.width) throw new ArrayIndexOutOfBoundsException("Frame stack "+frameIndex+" is full");
