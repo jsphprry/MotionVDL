@@ -47,13 +47,9 @@ public abstract class Controller {
 	
 	
 	/**
-	 * Pass video to controller
+	 * Pass control to this controller
 	 */
-	public void pass(Video video) {
-		
-		// set the subject video to the passed Video instance
-		this.video = video;
-	}
+	abstract public void pass(Video video);
 	
 	
 	/**

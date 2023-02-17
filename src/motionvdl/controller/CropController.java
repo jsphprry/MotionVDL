@@ -34,10 +34,6 @@ public class CropController extends Controller {
 		this.frameIndex = 0;
 		this.originSet = false;
 		this.targetSet = false;
-		
-		// update display
-		this.display.setTitle("MotionVDL Cropping stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	
 	
@@ -112,6 +108,20 @@ public class CropController extends Controller {
 		this.video = this.video.crop(this.originX, this.originY, (this.targetX - this.originX), (this.targetY - this.originY));
 		
 		// update display
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+	}
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	public void pass(Video video) {
+		
+		// set the video
+		this.video = video;
+		
+		// update display
+		this.display.setTitle("MotionVDL Cropping stage");
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 }

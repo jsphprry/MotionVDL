@@ -10,17 +10,18 @@ import motionvdl.model.Video;
  */
 public class MotionVDL {
 	
-	// components
-	private MainController controller;
-	private Display display;
-	
+	/**
+	 * The starter program
+	 * @param args Location of the video on disk
+	 */
 	public static void main(String[] args) {
+
+		// setup components
+		Display display = new Display();
+		MainController controller = new MainController(display);
+		Video video = new Video(args[0]);
 		
-		// load video
-		Video video = null;
-		
-		// TODO implement starter program
-		// assemble MVC and start
-		throw new UnsupportedOperationException("Starter program is not implemented");
+		// start
+		controller.pass(video);
 	}
 }

@@ -10,9 +10,11 @@ import motionvdl.model.Video;
  */
 public class LabelController extends Controller {
 	
+	// constants
+	private final static int MAX_POINTS = 11;
+	
 	// variables
 	private int[] framePoints;
-	private final int maxPoints;
 	private Label label;
 	
 	/**
@@ -31,12 +33,7 @@ public class LabelController extends Controller {
 		// setup variables
 		this.frameIndex  = 0;
 		this.framePoints = new int[this.video.getDepth()]; // default int value is 0 so no need to populate array
-		this.maxPoints   = 11;
-		this.label       = new Label(this.maxPoints, this.video.getDepth());
-		
-		// update display
-		this.display.setTitle("MotionVDL Labelling stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		this.label       = new Label(MAX_POINTS, this.video.getDepth());
 	}
 	
 	
@@ -52,7 +49,7 @@ public class LabelController extends Controller {
 		int pointIndex = this.framePoints[this.frameIndex];
 		
 		// if the frame label is incomplete
-		if (pointIndex < this.maxPoints) {
+		if (pointIndex < MAX_POINTS) {
 
 			// write point to label
 			this.label.write(pointIndex, this.frameIndex, x, y);
@@ -100,6 +97,44 @@ public class LabelController extends Controller {
 	
 	
 	/**
+	 * Check if the label is complete then either pass control back to
+	 * the main controller or display a message describing the problem.
+	 */
+	@Override
+	public void complete() {
+		
+		// check that the label is complete
+		boolean ready = false;
+		for (int i=0; i < this.framePoints.length; i++) {
+			ready = (this.framePoints[i] == MAX_POINTS);
+		}
+		
+		// if the label is complete pass control back to the main controller
+		if (ready) {
+			super.complete();
+		
+		// otherwise display warning message
+		} else {
+			this.display.setMsg("Cannot complete the stage because the label is incomplete.");
+		}
+	}
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	public void pass(Video video) {
+		
+		// set the video
+		this.video = video;
+		
+		// update display
+		this.display.setTitle("MotionVDL Labelling stage");
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+	}
+	
+	
+	/**
 	 * Display next frame up from current frame
 	 */
 	@Override
@@ -128,16 +163,5 @@ public class LabelController extends Controller {
 		this.display.clearPoints();
 		this.display.setPoints(this.label.getRow(this.frameIndex));
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
-	}
-	
-	
-	/**
-	 * Export the video and label to file then exit program
-	 */
-	@Override
-	public void complete() {
-		
-		// TODO implement program exit
-		throw new UnsupportedOperationException("Program exit is not implemented");
 	}
 }

@@ -24,11 +24,21 @@ public class ScaleController extends Controller {
 		
 		// setup variables
 		this.frameIndex = 0;
-		
-		// update display
-		this.display.setTitle("MotionVDL Scale stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	
 	// TODO implement methods
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	public void pass(Video video) {
+		
+		// set the video
+		this.video = video;
+		
+		// update display
+		this.display.setTitle("MotionVDL Scaling stage");
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+	}
 }

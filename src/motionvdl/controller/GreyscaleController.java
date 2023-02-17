@@ -29,10 +29,6 @@ public class GreyscaleController extends Controller {
 		// setup variables
 		this.frameIndex = 0;
 		this.greyscaleSet = false;
-		
-		// update display
-		this.display.setTitle("MotionVDL Greyscale stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	
 	
@@ -59,12 +55,27 @@ public class GreyscaleController extends Controller {
 	/**
 	 * Pass the either the greyscale or color video back to the main controller
 	 */
+	@Override
 	public void complete() {
 		
 		// if greyscale flag is true then set video to greyscale video
 		if (this.greyscaleSet) this.video = this.greyscaleVideo;
 		
 		// pass video back to main controller
-		this.linkedController.pass(this.video);
+		super.complete();
+	}
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	public void pass(Video video) {
+		
+		// set the video
+		this.video = video;
+		
+		// update display
+		this.display.setTitle("MotionVDL Greyscaling stage");
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 }
