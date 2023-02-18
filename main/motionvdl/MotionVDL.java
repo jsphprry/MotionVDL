@@ -25,6 +25,6 @@ public class MotionVDL {
 		mainController.start(video);*/
 		
 		// start program with video file
-		new MainController(new Display()).start(new Video(args[0]));
+		new MainController(new Display()).start(Video.fromFile(args[0]));
 	}
 }

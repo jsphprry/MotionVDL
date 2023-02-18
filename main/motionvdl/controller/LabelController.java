@@ -31,27 +31,27 @@ public class LabelController extends Controller {
 		
 		// setup variables
 		this.frameIndex = 0;
-		this.label = new Label(MAX_POINTS, this.video.getDepth());
+		this.label = new Label(MAX_POINTS, this.video.getFrameCount());
 	}
 	
 	
 	/**
-	 * Record the coordinates of a click in the point label
+	 * Record a point
 	 * @param x The x axis of the click event
 	 * @param y The y axis of the click event
 	 */
 	@Override
 	public void point(int x, int y) {
-
+		
 		// if the frame label is incomplete
 		try {
-
+			
 			// record point
 			this.label.push(this.frameIndex, x, y);
 			
 			// update display
 			this.display.setPoint(x, y);
-
+			
 		// otherwise go to next frame
 		} catch(ArrayIndexOutOfBoundsException e) {
 			this.frameUp();
@@ -60,11 +60,11 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Delete the last point on frame label
+	 * Delete last point on frame
 	 */
 	@Override
 	public void process() {
-
+		
 		// if the frame label is not empty
 		try {
 			
@@ -74,7 +74,7 @@ public class LabelController extends Controller {
 			// update display
 			this.display.clearPoints();
 			this.display.setPoints(this.label.getPoints(this.frameIndex));
-
+			
 		// otherwise go to next frame
 		} catch(ArrayIndexOutOfBoundsException e) {
 			this.frameDown();
@@ -115,7 +115,7 @@ public class LabelController extends Controller {
 	public void frameUp() {
 		
 		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getDepth() - 1, frameIndex + 1);
+		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
 		
 		// update display
 		this.display.clearPoints();

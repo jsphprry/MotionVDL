@@ -6,12 +6,12 @@ import java.awt.Color;
  * Wrapper class for a video represented by a 3D Color array
  * @author Joseph
  */
-public class Video{
+public class Video {
 	
 	// video metadata
 	private int width;
 	private int height;
-	private int depth;
+	private int frames;
 	private boolean greyscale;
 	
 	// video buffer
@@ -24,14 +24,14 @@ public class Video{
 	public Video(Color[][][] videoBuffer, boolean greyscale) {
 		
 		// setup metadata
-		this.depth  = videoBuffer.length;
+		this.frames  = videoBuffer.length;
 		this.height = videoBuffer[0].length;
 		this.width  = videoBuffer[0][0].length;
 		this.greyscale = greyscale;
 		
 		// setup buffer
-		this.buffer = new Color[this.depth][this.height][this.width];
-		for (int d=0; d < this.depth; d++) {
+		this.buffer = new Color[this.frames][this.height][this.width];
+		for (int d=0; d < this.frames; d++) {
 			for (int h=0; h < this.height; h++) {
 				for (int w=0; w < this.width; w++) {
 					this.buffer[d][h][w] = videoBuffer[d][h][w];
@@ -42,11 +42,42 @@ public class Video{
 	
 	
 	/**
-	 * Constructor for Video instance from encoded video file on disk
-	 * @param file The location of the file to load
+	 * Create a Video instance of noise
+	 * @param width The resolution width
+	 * @param height The resolution height
+	 * @param frames The number of frames in the video
+	 * @return Video instance
 	 */
-	public Video(String file) {
-		throw new UnsupportedOperationException("Constructor for Video instance from file is unimplemented");
+	public static Video noise(int width, int height, int frames) {
+		
+		Color[][][] videoBuffer = new Color[frames][height][width];
+		
+		for (int i=0; i < frames; i++) {
+			for (int j=0; j < height; height++) {
+				for (int k=0; k < width; k++) {
+					
+					// randomise color channels
+					int r = (int) (255 * Math.random());
+					int g = (int) (255 * Math.random());
+					int b = (int) (255 * Math.random());
+					
+					// set color
+					videoBuffer[i][j][k] = new Color(r, g, b);
+				}
+			}
+		}
+		
+		return new Video(videoBuffer, false);
+	}
+	
+	
+	/**
+	 * Load a video file into Video instance
+	 * @param file The location of the file to load
+	 * @return Video instance
+	 */
+	public static Video fromFile(String file) {
+		throw new UnsupportedOperationException("fromFile is unimplemented");
 	}
 	
 	
@@ -69,11 +100,11 @@ public class Video{
 	
 	
 	/**
-	 * Get video depth (frame-count)
-	 * @return Video depth
+	 * Get video frame count
+	 * @return Video frames
 	 */
-	public int getDepth() {
-		return this.depth;
+	public int getFrameCount() {
+		return this.frames;
 	}
 	
 	
@@ -102,10 +133,10 @@ public class Video{
 		if (target_w <= 0 || target_h <= 0 || origin_x+target_w > this.width || origin_y+target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.depth][target_h][target_w];
+		Color[][][] workBuffer = new Color[this.frames][target_h][target_w];
 		
 		// write crop-frame to work-buffer
-		for (int d=0; d < this.depth; d++) {
+		for (int d=0; d < this.frames; d++) {
 			for (int h=0; h < target_h; h++) {
 				for (int w=0; w < target_w; w++) {
 					workBuffer[d][h][w] = this.buffer[d][origin_y+h][origin_x+w];
@@ -130,14 +161,14 @@ public class Video{
 		if (target_w < 0 || target_h < 0 || target_w > this.width || target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.depth][target_h][target_w];
+		Color[][][] workBuffer = new Color[this.frames][target_h][target_w];
 		
 		// setup pool size
 		int pool_h = this.height / target_h;
 		int pool_w = this.width  / target_w;
 		
 		// use average pooling to downscale buffer into work-buffer
-		for (int d=0; d < this.depth; d++) {
+		for (int d=0; d < this.frames; d++) {
 			for (int h=0; h < target_h; h++) {
 				for (int w=0; w < target_w; w++) {
 					 
@@ -182,10 +213,10 @@ public class Video{
 	public Video greyScale() {
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.depth][this.height][this.width];
+		Color[][][] workBuffer = new Color[this.frames][this.height][this.width];
 		
 		// write greyscale buffer values to work-buffer
-		for (int d=0; d < this.depth; d++) {
+		for (int d=0; d < this.frames; d++) {
 			for (int h=0; h < this.height; h++) {
 				for (int w=0; w < this.width; w++) {
 					

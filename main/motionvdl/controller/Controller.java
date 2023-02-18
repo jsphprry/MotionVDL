@@ -41,8 +41,12 @@ public abstract class Controller {
 	 */
 	public void complete() {
 		
-		// Pass the video back to the linked controller
-		this.linkedController.pass(this.video);
+		// move video to temporary variable and unset video
+		Video video = this.video;
+		this.video = null;
+		
+		// pass the video back to the linked controller
+		this.linkedController.pass(video);
 	}
 	
 	
@@ -52,7 +56,7 @@ public abstract class Controller {
 	public void frameUp() {
 		
 		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getDepth() - 1, frameIndex + 1);
+		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
 		
 		// update display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
@@ -75,5 +79,9 @@ public abstract class Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	abstract protected void pass(Video video);
+	protected void pass(Video video) {
+		
+		// by default set video
+		this.video = video;
+	}
 }

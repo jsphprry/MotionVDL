@@ -10,7 +10,7 @@ public class Label {
 	
 	// metadata
 	private final int capacity;
-	private final int depth;
+	private final int frames;
 	private int[] pointCounts;
 	
 	// point buffer
@@ -19,17 +19,17 @@ public class Label {
 	/**
 	 * Constructor for Label instance
 	 * @param capacity	The individual stack capacity
-	 * @param depth The stack count
+	 * @param frames The stack count
 	 */
-	public Label(int capacity, int depth) {
+	public Label(int capacity, int frames) {
 		
 		// setup metadata
 		this.capacity = capacity;
-		this.depth = depth;
-		this.pointCounts = new int[this.depth]; // default int value is 0 so no need to populate array
+		this.frames = frames;
+		this.pointCounts = new int[this.frames]; // default int value is 0 so no need to populate array
 		
 		// setup buffer
-		this.buffer = new Point[this.depth][this.capacity];
+		this.buffer = new Point[this.frames][this.capacity];
 	}
 	
 	
@@ -44,10 +44,10 @@ public class Label {
 	
 	/**
 	 * Get stack count
-	 * @return The label depth
+	 * @return The label frames
 	 */
-	public int getDepth() {
-		return this.depth;
+	public int getFrames() {
+		return this.frames;
 	}
 	
 	
@@ -137,7 +137,7 @@ public class Label {
 		
 		// check if every stack frame is full
 		boolean full = false;
-		for (int i=0; i < this.depth; i++) {
+		for (int i=0; i < this.frames; i++) {
 			
 			// is the stack frame full?
 			full = (this.pointCounts[i] == this.capacity);

@@ -55,6 +55,14 @@ public class MainController extends Controller {
 	}
 	
 	
+	/*
+	 * Get the main controller stage
+	 */
+	public int getStage() {
+		return this.stage;
+	}
+	
+	
 	/**
 	 * Frame click action
 	 * @param x The x axis of the click
