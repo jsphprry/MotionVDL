@@ -4,7 +4,7 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 /**
- * Abstract superclass defining default controller behaviour
+ * abstract superclass defining default controller behaviour
  * @author Joseph
  */
 public abstract class Controller {
@@ -47,12 +47,6 @@ public abstract class Controller {
 	
 	
 	/**
-	 * Pass control to this controller
-	 */
-	abstract protected void pass(Video video);
-	
-	
-	/**
 	 * Display next frame up from current frame
 	 */
 	public void frameUp() {
@@ -76,4 +70,10 @@ public abstract class Controller {
 		// update display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	abstract protected void pass(Video video);
 }

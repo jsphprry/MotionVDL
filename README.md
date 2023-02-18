@@ -38,15 +38,17 @@ Controller system
 
 All controllers inherit from the abstract superclass Controller. 
 Each controller points to one linked controller, a display and 
-a video. They are also defined with point, process and complete 
+a video. 
+
+They are defined with point, process and complete 
 methods, which define the application behaviour in the event of 
 a frame click, process-button press or complete-button press 
-action respectively.
+action respectively. 
 
-The frameUp and frameDown methods are responsible for displaying 
-either the next or previous frames on the display. Depending on 
-the display implementation, these actions are bound to either 
-scrolling or to button presses.
+They also have frameUp and frameDown methods,
+which are responsible for displaying either the next or previous 
+frames on the display and depending on the display implementation, 
+these actions are bound to either scrolling or to button-press.
 
 Controllers also have access to the protected method pass which 
 is used when passing control between the linked controllers.
@@ -72,8 +74,8 @@ integer precision 2D points, with methods for poping and pushing
 to indexed stacks storing frame-wise point labels.
 
 Video-data is represented as a 3D array of Color and wrapped by 
-Video to implement the resolution and colorscale manipulations 
-needed for the program.
+Video to implement the resolution and colorscale video manipulations 
+needed for the video preprocessing.
 
 
 
@@ -82,7 +84,7 @@ Starter program
 -
 
 The application is started by the main method of the motionvdl.MotionVDL
-class. This method sets up the MVC, loads the video file and starts 
-the program with the MainController start method, which passes control
-to the main-controller with the loaded video.
+class. This method creates the Display and MainController, then loads the 
+video file into Video which is passes to the MainController start method;
+responsible for passing initial control to the main-controller.
 

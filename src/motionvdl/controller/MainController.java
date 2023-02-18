@@ -100,23 +100,6 @@ public class MainController extends Controller {
 	
 	
 	/**
-	 * Pass control to the next subcontroller
-	 */
-	@Override
-	protected void pass(Video video) {
-		
-		// increment stage counter
-		this.stage += 1;
-		
-		// set subcontroller
-		this.linkedController = this.subcontrollers[this.stage];
-		
-		// pass control to subcontroller
-		this.linkedController.pass(video);
-	}
-	
-	
-	/**
 	 * Display next frame up from current frame
 	 */
 	@Override
@@ -141,5 +124,22 @@ public class MainController extends Controller {
 		
 		// call subcontroller
 		this.linkedController.frameDown();
+	}
+	
+	
+	/**
+	 * Pass control to the next subcontroller
+	 */
+	@Override
+	protected void pass(Video video) {
+		
+		// increment stage counter
+		this.stage += 1;
+		
+		// set subcontroller
+		this.linkedController = this.subcontrollers[this.stage];
+		
+		// pass control to subcontroller
+		this.linkedController.pass(video);
 	}
 }

@@ -3,14 +3,13 @@ package motionvdl.model;
 import java.awt.Point;
 
 /**
- * Video label consisting of height x width 2D integer points 
- * stored in an array of stacks, with one stack per video frame.
+ * Video label implemented as multistack of 2d integer precision points
  * @author Joseph
  */
 public class Label {
 	
-	// label metadata
-	private final int width;
+	// metadata
+	private final int capacity;
 	private final int depth;
 	private int[] pointCounts;
 	
@@ -19,33 +18,33 @@ public class Label {
 	
 	/**
 	 * Constructor for Label instance
-	 * @param numPoints	The number of points per frame
-	 * @param numFrames The number of frames
+	 * @param capacity	The individual stack capacity
+	 * @param depth The stack count
 	 */
-	public Label(int numPoints, int numFrames) {
+	public Label(int capacity, int depth) {
 		
 		// setup metadata
-		this.width = numPoints;
-		this.depth = numFrames;
+		this.capacity = capacity;
+		this.depth = depth;
 		this.pointCounts = new int[this.depth]; // default int value is 0 so no need to populate array
 		
 		// setup buffer
-		this.buffer = new Point[this.depth][this.width];
+		this.buffer = new Point[this.depth][this.capacity];
 	}
 	
 	
 	/**
-	 * Get label width
-	 * @return The label's width
+	 * Get individual stack capacity
+	 * @return The individual stack capacity
 	 */
-	public int getWidth() {
-		return this.width;
+	public int getCapacity() {
+		return this.capacity;
 	}
 	
 	
 	/**
-	 * Get label height
-	 * @return The label's height
+	 * Get stack count
+	 * @return The label depth
 	 */
 	public int getDepth() {
 		return this.depth;
@@ -53,21 +52,21 @@ public class Label {
 	
 	
 	/**
-	 * Get an array of the points on a frame
-	 * @param frameIndex The stack frame index
-	 * @return Array of Points on the frame
+	 * Get an array of the points on a stack
+	 * @param index The stack index
+	 * @return Array of points on the frame
 	 */
-	public Point[] getPoints(int frameIndex) {
+	public Point[] getPoints(int index) {
 		
-		// get frame point count
-		int pointCount = this.pointCounts[frameIndex];
+		// get stack size
+		int pointCount = this.pointCounts[index];
 		
 		// setup array
 		Point[] framePoints = new Point[pointCount];
 		
 		// populate array
 		for (int i=0; i < pointCount; i++) {
-			framePoints[i] = this.buffer[frameIndex][i];
+			framePoints[i] = this.buffer[index][i];
 		}
 		
 		return framePoints;
@@ -75,64 +74,64 @@ public class Label {
 	
 	
 	/**
-	 * Pop point from frame stack
-	 * @param frameIndex The stack frame index
-	 * @return The most recent point
+	 * Pop from a stack
+	 * @param index The stack index
+	 * @return 2d point
 	 */
-	public Point pop(int frameIndex) {
+	public Point pop(int index) {
 		
-		// throw frame stack empty
-		if (this.pointCounts[frameIndex] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+frameIndex+" is empty");
+		// throw empty stack
+		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
 		
-		// get index from frame point count
-		int currentIndex = this.pointCounts[frameIndex] - 1;
+		// get current index from stack size
+		int currentIndex = this.pointCounts[index] - 1;
 		
 		// decrement frame point count
-		this.pointCounts[frameIndex] -= 1;
+		this.pointCounts[index] -= 1;
 		
 		// return point at index
-		return this.buffer[frameIndex][currentIndex];
+		return this.buffer[index][currentIndex];
 	}
 	
 	/**
-	 * Put point on frame stack
-	 * @param frameIndex The stack frame index
+	 * Push to a stack
+	 * @param index The stack index
 	 * @param x The x axis of the point
 	 * @param y The y axis of the point
 	 */
-	public void push(int frameIndex, int x, int y) {
+	public void push(int index, int x, int y) {
 		
-		// throw frame stack full
-		if (this.pointCounts[frameIndex] == this.width) throw new ArrayIndexOutOfBoundsException("Frame stack "+frameIndex+" is full");
+		// throw full stack
+		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is full");
 		
-		// get next index from frame point count
-		int nextIndex = this.pointCounts[frameIndex];
+		// get next index from stack size
+		int nextIndex = this.pointCounts[index];
 		
-		// increment frame point count
-		this.pointCounts[frameIndex] += 1;
+		// increment stack size
+		this.pointCounts[index] += 1;
 		
-		// put point on frame stack
-		this.buffer[frameIndex][nextIndex] = new Point(x,y);
+		// push to stack
+		this.buffer[index][nextIndex] = new Point(x,y);
 	}
 	
 	
 	/**
-	 * Delete an entry from the label buffer
-	 * @param frameIndex The stack frame index
+	 * Delete from a stack
+	 * @param index The stack index
 	 */
-	public void delete(int frameIndex) {
+	public void delete(int index) {
 		
-		// throw frame stack empty
-		if (this.pointCounts[frameIndex] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+frameIndex+" is empty");
+		// throw empty stack
+		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
 		
-		// decrement frame point count
-		this.pointCounts[frameIndex] -= 1;
+		// decrement stack size
+		this.pointCounts[index] -= 1;
 	}
 	
 	
 	/**
 	 * Check if all stack frames are full
-	 * @return The isfull state
+	 * @return The result
 	 */
 	public boolean checkFull() {
 		
@@ -141,7 +140,7 @@ public class Label {
 		for (int i=0; i < this.depth; i++) {
 			
 			// is the stack frame full?
-			full = (this.pointCounts[i] == this.width);
+			full = (this.pointCounts[i] == this.capacity);
 			
 			// break if not
 			if (!full) break;

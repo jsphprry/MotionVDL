@@ -60,16 +60,16 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Undo the last frame click action
+	 * Delete the last point on frame label
 	 */
 	@Override
 	public void process() {
 
-		// if the frame label is incomplete
+		// if the frame label is not empty
 		try {
-
+			
 			// remove point
-			this.label.pop(this.frameIndex);
+			this.label.delete(this.frameIndex);
 			
 			// update display
 			this.display.clearPoints();
@@ -109,20 +109,6 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Pass control to this controller
-	 */
-	protected void pass(Video video) {
-		
-		// set the video
-		this.video = video;
-		
-		// update display
-		this.display.setTitle("MotionVDL Labelling stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
-	}
-	
-	
-	/**
 	 * Display next frame up from current frame
 	 */
 	@Override
@@ -150,6 +136,20 @@ public class LabelController extends Controller {
 		// update display
 		this.display.clearPoints();
 		this.display.setPoints(this.label.getPoints(this.frameIndex));
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+	}
+	
+	
+	/**
+	 * Pass control to this controller
+	 */
+	protected void pass(Video video) {
+		
+		// set the video
+		this.video = video;
+		
+		// update display
+		this.display.setTitle("MotionVDL Labelling stage");
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 }
