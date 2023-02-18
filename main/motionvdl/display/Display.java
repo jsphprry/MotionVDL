@@ -35,4 +35,9 @@ public class Display {
 		
 	}
 
+	public Point getTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

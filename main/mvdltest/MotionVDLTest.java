@@ -10,7 +10,7 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 class MotionVDLTest {
-
+	
 	@BeforeEach
 	void setUp() throws Exception {
 	}
@@ -27,19 +27,20 @@ class MotionVDLTest {
 	@Test
 	void fullProgram() {
 		
-		// setup video and controller
+		// setup components
 		Video noise = Video.noise(250,200,50);
-		MainController controller = new MainController(new Display());
+		Display display = new Display();
+		MainController controller = new MainController(display);
 		
-		// start the controller
+		// start the main controller
 		controller.start(noise);
 		
 		// crop stage
-		controller.point(rand(49,100), rand(49,100)); // place 5 clicks on frame
-		controller.point(rand(49,100), rand(49,100));
-		controller.point(rand(49,100), rand(49,100));
-		controller.point(rand(49,100), rand(49,100));
-		controller.point(rand(49,100), rand(49,100));
+		controller.point(biasRand(49,100), biasRand(49,100)); // place 5 clicks on frame
+		controller.point(biasRand(49,100), biasRand(49,100));
+		controller.point(biasRand(49,100), biasRand(49,100));
+		controller.point(biasRand(49,100), biasRand(49,100));
+		controller.point(biasRand(49,100), biasRand(49,100));
 		controller.process(); // commit crop
 		controller.complete(); // next stage
 		
@@ -48,18 +49,19 @@ class MotionVDLTest {
 		controller.complete(); // next stage
 		
 		
-		// greyscale stage
+		// color stage
 		controller.process(); // convert to greyscale
 		controller.complete(); // next stage
 		
 		// labelling stage
 		for (int i=0; i < 50; i++) { // on each frame
 			for (int j=0; j < 11; j++) { // place 11 points
-				controller.point(rand(49,100), rand(49,100)); 
+				controller.point(biasRand(49,100), biasRand(49,100)); 
 			}
 		}
 		controller.process(); // undo the last point
-		controller.point(rand(49,100), rand(49,100)); // place a point
+		controller.complete(); // try to export files, should be blocked by incomplete label
+		controller.point(biasRand(49,100), biasRand(49,100)); // place a point
 		controller.complete(); // export files
 	}
 	
@@ -70,7 +72,7 @@ class MotionVDLTest {
 	 * @param range The maximum value of the randon number
 	 * @return Biased random number
 	 */
-	private static int rand(int bias, int range) {
+	private static int biasRand(int bias, int range) {
 		return bias + (int) (Math.random() * range);
 	}
 

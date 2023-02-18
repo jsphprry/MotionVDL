@@ -1,5 +1,7 @@
 package motionvdl.controller;
 
+import java.awt.Point;
+
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
@@ -26,7 +28,21 @@ public class ScaleController extends Controller {
 		this.frameIndex = 0;
 	}
 	
-	// TODO implement methods
+	
+	/*
+	 * Scale the video
+	 */
+	public void process() {
+		
+		// get the target resolution
+		Point target = this.display.getTarget();
+		
+		// scale the video
+		this.video = this.video.downScale((int) target.getX(), (int) target.getY());
+		
+		// update the display
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+	}
 	
 	
 	/**
