@@ -48,7 +48,6 @@ class MotionVDLTest {
 		controller.process(); // scale to target resolution
 		controller.complete(); // next stage
 		
-		
 		// color stage
 		controller.process(); // convert to greyscale
 		controller.process(); // back to color

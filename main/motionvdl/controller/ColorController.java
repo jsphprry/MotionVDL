@@ -74,7 +74,7 @@ public class ColorController extends Controller {
 		this.video = video;
 		
 		// update display
-		this.display.setTitle("MotionVDL Greyscaling stage");
+		this.display.setTitle("MotionVDL color processing stage");
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 }

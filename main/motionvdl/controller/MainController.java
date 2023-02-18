@@ -32,7 +32,7 @@ public class MainController extends Controller {
 		this.subcontrollers[3] = new LabelController(this, display);
 		
 		// setup components
-		this.linkedController = null;
+		this.linkedController = null; // will hold subcontroller after pass
 		this.display = null; // should stay null
 		this.video = null; // should stay null
 		
