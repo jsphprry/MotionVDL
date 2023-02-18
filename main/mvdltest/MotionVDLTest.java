@@ -17,15 +17,16 @@ class MotionVDLTest {
 	
 	
 	/**
-	 * warning 
+	 * WARNING
 	 * This test currently causes the IDE to crash by creating
 	 * a loop somewhere that the environemnt is not able to stop
+	 * 
+	 * Example of start to finish controller instruction seqeunce 
+	 * for a fully integrated system
 	 */
 	@Test
-	void completeSequence() {
+	void fullProgram() {
 		
-		
-		// setup stage
 		// setup video and controller
 		Video noise = Video.noise(250,200,50);
 		MainController controller = new MainController(new Display());
@@ -33,54 +34,42 @@ class MotionVDLTest {
 		// start the controller
 		controller.start(noise);
 		
-		
-		
 		// crop stage
-		// place 5 clicks on crop stage
+		controller.point(rand(49,100), rand(49,100)); // place 5 clicks on frame
 		controller.point(rand(49,100), rand(49,100));
 		controller.point(rand(49,100), rand(49,100));
 		controller.point(rand(49,100), rand(49,100));
 		controller.point(rand(49,100), rand(49,100));
-		controller.point(rand(49,100), rand(49,100));
-		
-		// process and complete stage
-		controller.process();
-		controller.complete();
-		
-		
+		controller.process(); // commit crop
+		controller.complete(); // next stage
 		
 		// scale stage
-		// scale to target resolution
-		controller.process();
-		
-		// process and complete stage
-		controller.process();
-		controller.complete();
-		
+		controller.process(); // scale to target resolution
+		controller.complete(); // next stage
 		
 		
 		// greyscale stage
-		// process and complete stage
-		controller.process();
-		controller.complete();
-		
-		
+		controller.process(); // convert to greyscale
+		controller.complete(); // next stage
 		
 		// labelling stage
-		// complete the labelling
-		for (int i=0; i < 50; i++) {
-			for (int j=0; j < 11; j++) {
-				controller.point(rand(49,100), rand(49,100));
+		for (int i=0; i < 50; i++) { // on each frame
+			for (int j=0; j < 11; j++) { // place 11 points
+				controller.point(rand(49,100), rand(49,100)); 
 			}
 		}
-		
-		// process and complete stage
-		controller.process();
-		controller.complete();
+		controller.process(); // undo the last point
+		controller.point(rand(49,100), rand(49,100)); // place a point
+		controller.complete(); // export files
 	}
 	
 	
-	// function rand() = RNG * range + bias
+	/**
+	 * Biased random number 
+	 * @param bias The bias added to the random number
+	 * @param range The maximum value of the randon number
+	 * @return Biased random number
+	 */
 	private static int rand(int bias, int range) {
 		return bias + (int) (Math.random() * range);
 	}

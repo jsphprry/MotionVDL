@@ -4,7 +4,7 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 /**
- * abstract superclass defining default controller behaviour
+ * Superclass defining default controller behaviour
  * @author Joseph
  */
 public abstract class Controller {
@@ -42,11 +42,11 @@ public abstract class Controller {
 	public void complete() {
 		
 		// move video to temporary variable and unset video
-		Video video = this.video;
+		Video tempVideo = this.video;
 		this.video = null;
 		
 		// pass the video back to the linked controller
-		this.linkedController.pass(video);
+		this.linkedController.pass(tempVideo);
 	}
 	
 	
@@ -81,7 +81,7 @@ public abstract class Controller {
 	 */
 	protected void pass(Video video) {
 		
-		// by default set video
+		// by default just set video
 		this.video = video;
 	}
 }

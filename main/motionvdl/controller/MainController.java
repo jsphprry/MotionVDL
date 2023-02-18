@@ -29,13 +29,13 @@ public class MainController extends Controller {
 		this.subcontrollers = new Controller[N_STAGES];
 		this.subcontrollers[0] = new CropController(this, md);
 		this.subcontrollers[1] = new ScaleController(this, md);
-		this.subcontrollers[2] = new GreyscaleController(this, md);
+		this.subcontrollers[2] = new ColorController(this, md);
 		this.subcontrollers[3] = new LabelController(this, md);
 		
 		// setup components
 		this.linkedController = null;
-		this.display = null;
-		this.video = null;
+		this.display = null; // should stay null
+		this.video = null; // should stay null
 		
 		// setup variables
 		this.stage = -1;

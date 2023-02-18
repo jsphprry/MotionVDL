@@ -4,22 +4,22 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 /**
- * MotionVDL greyscale-conversion subcontroller
+ * MotionVDL color processing subcontroller
  * @author Joseph
  */
-public class GreyscaleController extends Controller {
+public class ColorController extends Controller {
 	
 	// variables
 	private Video greyscaleVideo;
 	private boolean greyscaleSet;
 	
 	/**
-	 * Constructor for GreyscaleController instance
+	 * Constructor for ColorController instance
 	 * @param mc The main controller
 	 * @param md The main display
 	 * @param v The subject video
 	 */
-	public GreyscaleController(MainController mc, Display md) {
+	public ColorController(MainController mc, Display md) {
 		
 		// setup components
 		this.linkedController = mc;
@@ -53,7 +53,7 @@ public class GreyscaleController extends Controller {
 	
 	
 	/**
-	 * Pass the either the greyscale or color video back to the main controller
+	 * Pass the currently displayed video back to the main controller
 	 */
 	@Override
 	public void complete() {
@@ -61,7 +61,7 @@ public class GreyscaleController extends Controller {
 		// if greyscale flag is true then set video to greyscale video
 		if (this.greyscaleSet) this.video = this.greyscaleVideo;
 		
-		// pass video back to main controller
+		// call default complete
 		super.complete();
 	}
 	
