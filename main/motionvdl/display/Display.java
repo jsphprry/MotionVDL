@@ -30,7 +30,7 @@ public class Display {
 		
 	}
 
-	public void setMsg(String string) {
+	public void setMessage(String string) {
 		// TODO Auto-generated method stub
 		
 	}

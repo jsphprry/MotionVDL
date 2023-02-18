@@ -19,15 +19,14 @@ public class CropController extends Controller {
 	
 	/**
 	 * Constructor for CropController instance
-	 * @param mc The main controller
-	 * @param md The main display
-	 * @param v The subject video
+	 * @param mainController The main controller
+	 * @param display The display
 	 */
-	public CropController(MainController mc, Display md) {
+	public CropController(MainController mainController, Display display) {
 		
 		// setup components
-		this.linkedController = mc;
-		this.display = md;
+		this.linkedController = mainController;
+		this.display = display;
 		this.video = null;
 		
 		// setup variables

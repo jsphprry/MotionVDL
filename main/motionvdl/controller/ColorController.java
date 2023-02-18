@@ -15,15 +15,14 @@ public class ColorController extends Controller {
 	
 	/**
 	 * Constructor for ColorController instance
-	 * @param mc The main controller
-	 * @param md The main display
-	 * @param v The subject video
+	 * @param mainController The main controller
+	 * @param display The display
 	 */
-	public ColorController(MainController mc, Display md) {
+	public ColorController(MainController mainController, Display display) {
 		
 		// setup components
-		this.linkedController = mc;
-		this.display = md;
+		this.linkedController = mainController;
+		this.display = display;
 		this.video = null;
 		
 		// setup variables

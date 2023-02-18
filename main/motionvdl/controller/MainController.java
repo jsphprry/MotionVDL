@@ -20,17 +20,16 @@ public class MainController extends Controller {
 	
 	/**
 	 * Constructor for main controller instance
-	 * @param md The main display
-	 * @param v The subject video
+	 * @param display The display
 	 */
-	public MainController(Display md) {
+	public MainController(Display display) {
 		
 		// setup subcontrollers
 		this.subcontrollers = new Controller[N_STAGES];
-		this.subcontrollers[0] = new CropController(this, md);
-		this.subcontrollers[1] = new ScaleController(this, md);
-		this.subcontrollers[2] = new ColorController(this, md);
-		this.subcontrollers[3] = new LabelController(this, md);
+		this.subcontrollers[0] = new CropController(this, display);
+		this.subcontrollers[1] = new ScaleController(this, display);
+		this.subcontrollers[2] = new ColorController(this, display);
+		this.subcontrollers[3] = new LabelController(this, display);
 		
 		// setup components
 		this.linkedController = null;

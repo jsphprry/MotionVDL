@@ -13,15 +13,14 @@ public class ScaleController extends Controller {
 	
 	/**
 	 * Constructor for ScaleController instance
-	 * @param mc The main controller
-	 * @param md The main display
-	 * @param v The subject video
+	 * @param mainController The main controller
+	 * @param display The display
 	 */
-	public ScaleController(MainController mc, Display md) {
+	public ScaleController(MainController mainController, Display display) {
 		
 		// setup components
-		this.linkedController = mc;
-		this.display = md;
+		this.linkedController = mainController;
+		this.display = display;
 		this.video = null;
 		
 		// setup variables
@@ -36,9 +35,16 @@ public class ScaleController extends Controller {
 		
 		// get the target resolution
 		Point target = this.display.getTarget();
+		int targetX = (int) target.getX();
+		int targetY = (int) target.getY();
+		
+		// if the target is invalid
+		if (targetX > this.video.getWidth() || targetY > this.video.getWidth()) {
+			this.display.setMessage("The target resolution must not be greater than the video resolution");
+		}
 		
 		// scale the video
-		this.video = this.video.downScale((int) target.getX(), (int) target.getY());
+		this.video = this.video.downScale(targetX, targetY);
 		
 		// update the display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));

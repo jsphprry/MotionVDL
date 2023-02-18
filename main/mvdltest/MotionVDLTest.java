@@ -21,8 +21,8 @@ class MotionVDLTest {
 	 * This test currently causes the IDE to crash by creating
 	 * a loop somewhere that the environemnt is not able to stop
 	 * 
-	 * Example of start to finish controller instruction seqeunce 
-	 * for a fully integrated system
+	 * Example of start to finish instruction seqeunce for the 
+	 * controller of a fully integrated system
 	 */
 	@Test
 	void fullProgram() {
@@ -36,11 +36,11 @@ class MotionVDLTest {
 		controller.start(noise);
 		
 		// crop stage
-		controller.point(biasRand(49,100), biasRand(49,100)); // place 5 clicks on frame
-		controller.point(biasRand(49,100), biasRand(49,100));
-		controller.point(biasRand(49,100), biasRand(49,100));
-		controller.point(biasRand(49,100), biasRand(49,100));
-		controller.point(biasRand(49,100), biasRand(49,100));
+		controller.point(biasRand(49,100), biasRand(49,100)); // place first point
+		controller.point(biasRand(49,100), biasRand(49,100)); // place second point
+		controller.point(biasRand(49,100), biasRand(49,100)); // clear points
+		controller.point(biasRand(49,100), biasRand(49,100)); // place first point
+		controller.point(biasRand(49,100), biasRand(49,100)); // place second point
 		controller.process(); // commit crop
 		controller.complete(); // next stage
 		
@@ -51,16 +51,18 @@ class MotionVDLTest {
 		
 		// color stage
 		controller.process(); // convert to greyscale
+		controller.process(); // back to color
+		controller.process(); // back to greyscale
 		controller.complete(); // next stage
 		
 		// labelling stage
-		for (int i=0; i < 50; i++) { // on each frame
-			for (int j=0; j < 11; j++) { // place 11 points
-				controller.point(biasRand(49,100), biasRand(49,100)); 
+		for (int i=0; i < 50; i++) {
+			for (int j=0; j < 11; j++) {
+				controller.point(biasRand(49,100), biasRand(49,100)); // on each frame place 11 points
 			}
 		}
 		controller.process(); // undo the last point
-		controller.complete(); // try to export files, should be blocked by incomplete label
+		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(biasRand(49,100), biasRand(49,100)); // place a point
 		controller.complete(); // export files
 	}

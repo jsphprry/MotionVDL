@@ -18,15 +18,14 @@ public class LabelController extends Controller {
 	
 	/**
 	 * Constructor for LabelController instance
-	 * @param mc The main controller
-	 * @param md The main display
-	 * @param v The subject video
+	 * @param mainController The main controller
+	 * @param display The main display
 	 */
-	public LabelController(MainController mc, Display md) {
+	public LabelController(MainController mainController, Display display) {
 		
 		// setup components
-		this.linkedController = mc;
-		this.display = md;
+		this.linkedController = mainController;
+		this.display = display;
 		this.video = null;
 		
 		// setup variables
@@ -103,7 +102,7 @@ public class LabelController extends Controller {
 		
 		// otherwise display a message
 		} else {
-			this.display.setMsg("The label must be full to export to file");
+			this.display.setMessage("The label must be full to export to file");
 		}
 	}
 	
