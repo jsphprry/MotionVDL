@@ -89,7 +89,7 @@ public class Label {
 		Debug.trace("Popped point from label stack "+index);
 		
 		// throw empty stack
-		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
+		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is empty");
 		
 		// get current index from stack size
 		int currentIndex = this.pointCounts[index] - 1;
@@ -113,7 +113,7 @@ public class Label {
 		Debug.trace("Pushed point ("+x+","+y+") to label stack "+index);
 		
 		// throw full stack
-		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is full");
+		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is full");
 		
 		// get next index from stack size
 		int nextIndex = this.pointCounts[index];
@@ -136,7 +136,7 @@ public class Label {
 		Debug.trace("Deleted point from label stack "+index);
 		
 		// throw empty stack
-		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
+		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is empty");
 		
 		// decrement stack size
 		this.pointCounts[index] -= 1;
@@ -148,7 +148,7 @@ public class Label {
 	 * @param index The stack index
 	 * @return The result
 	 */
-	public boolean stackFull(int index) {
+	public boolean frameFull(int index) {
 		
 		boolean full = (this.pointCounts[index] == this.capacity);
 		
@@ -164,7 +164,7 @@ public class Label {
 	 * @param index The stack index
 	 * @return The result
 	 */
-	public boolean stackEmpty(int index) {
+	public boolean frameEmpty(int index) {
 		
 		boolean empty = (this.pointCounts[index] == 0);
 		
@@ -188,7 +188,7 @@ public class Label {
 		for (int i=0; i < this.frames; i++) {
 			
 			// is the current stack full?
-			full = stackFull(i);
+			full = frameFull(i);
 			
 			// break if not
 			if (!full) break;
@@ -208,7 +208,6 @@ public class Label {
 		Debug.trace("Exported label");
 		
 		// TODO implement label export
-		//throw new UnsupportedOperationException("Label export is unimplemented");
-		return null;
+		throw new UnsupportedOperationException("Error: Label export is unimplemented");
 	}
 }

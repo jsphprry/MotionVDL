@@ -47,23 +47,25 @@ public class LabelController extends Controller {
 		
 		// debug trace
 		Debug.trace("Label controller recieved point instruction");
-		
-		// if the stack is not full
-		try {
+
+		// if the frame label is not full
+		if (!this.label.frameFull(this.frameIndex)) {
 			
 			// record point
 			this.label.push(this.frameIndex, x, y);
 			
 			// update display
 			this.display.setPoint(x, y);
+			
+			// if the frame label is now full display next frame
+			if (this.label.frameFull(this.frameIndex)) this.frameUp();
 		
-		// if the stack is full
-		} catch (ArrayIndexOutOfBoundsException e) {
-			// do nothing
+		// if the frame label is full
+		} else {
+			
+			// debug trace
+			Debug.trace("Label controller ignores point instruction");
 		}
-
-		// if the stack is full display next frame
-		if (this.label.stackFull(this.frameIndex)) this.frameUp();
 	}
 	
 	
@@ -75,14 +77,21 @@ public class LabelController extends Controller {
 		
 		// debug trace
 		Debug.trace("Label controller recieved process instruction");
+
+		// if the frame label is not empty
+		if (!this.label.frameEmpty(this.frameIndex)) {
+			
+			// remove point
+			this.label.delete(this.frameIndex);
+			
+			// update display
+			this.display.clearPoints();
+			this.display.setPoints(this.label.getPoints(this.frameIndex));
 		
-		// remove point
-		this.label.delete(this.frameIndex);
-		
-		// update display
-		this.display.clearPoints();
-		this.display.setPoints(this.label.getPoints(this.frameIndex));
-		if (this.label.stackEmpty(this.frameIndex)) this.frameDown();
+		// if the frame label is empty
+		} else {
+			this.frameDown();
+		}
 	}
 	
 	
@@ -108,9 +117,8 @@ public class LabelController extends Controller {
 			
 			// write to file
 			// close the program
-			throw new UnsupportedOperationException("LabelController complete method is unimplemented");
+			throw new UnsupportedOperationException("Error: LabelController complete method is unimplemented");
 			
-		
 		// otherwise display a message
 		} else {
 			
@@ -133,7 +141,7 @@ public class LabelController extends Controller {
 		Debug.trace("Label controller recieved frameUp instruction");
 		
 		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
+		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
 		
 		// update display
 		this.display.clearPoints();
@@ -171,7 +179,7 @@ public class LabelController extends Controller {
 		
 		// set the video and label
 		this.video = video;
-		this.label = new Label(MAX_POINTS, this.video.getFrameCount());
+		this.label = new Label(MAX_POINTS, this.video.getFrames());
 		
 		// update display
 		this.display.setTitle("MotionVDL Labelling stage");

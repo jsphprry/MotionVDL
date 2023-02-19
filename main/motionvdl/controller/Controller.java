@@ -71,7 +71,7 @@ public abstract class Controller {
 		Debug.trace("Called frameUp instruction");
 		
 		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
+		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
 		
 		// update display
 		this.display.setFrame(this.video.getFrame(this.frameIndex));

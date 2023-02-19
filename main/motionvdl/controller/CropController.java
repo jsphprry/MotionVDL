@@ -111,7 +111,7 @@ public class CropController extends Controller {
 		Debug.trace("Crop controller recieved process instruction");
 		
 		// throw undefined crop frame
-		if (this.originSet == false || this.targetSet == false) throw new IllegalStateException("Undefined crop frame");
+		if (this.originSet == false || this.targetSet == false) throw new IllegalStateException("Error: Undefined crop frame");
 		
 		// crop video
 		this.video = this.video.crop(this.originX, this.originY, (this.targetX - this.originX), (this.targetY - this.originY));

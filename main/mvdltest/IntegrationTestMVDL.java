@@ -52,6 +52,7 @@ public class IntegrationTestMVDL {
 		controller.complete(); // next stage
 		
 		// labelling stage
+		controller.process(); // try to undo a point on the first frame when it's empty
 		for (int i=0; i < 50; i++) {
 			for (int j=0; j < 11; j++) {
 				controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // on each frame place 11 points
@@ -60,12 +61,14 @@ public class IntegrationTestMVDL {
 		controller.process(); // undo the last point
 		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place a point
+		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // try place a 12th point on the last frame
 
 		// try to export files, expect unsupported exception until implemented
 		try {
 			controller.complete();
 			Assertions.assertTrue(false);
 		} catch (UnsupportedOperationException e) {
+			Debug.trace(e.getMessage());
 			Assertions.assertTrue(true);
 		}
 		

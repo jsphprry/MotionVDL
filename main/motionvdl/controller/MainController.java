@@ -54,7 +54,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved start instruction");
 		
 		// throw already-in-control case
-		if (this.stage != -1) throw new IllegalStateException("The main controller has already been started");
+		if (this.stage != -1) throw new IllegalStateException("Error: The main controller has already been started");
 		
 		// pass control to self
 		this.pass(video);
@@ -73,7 +73,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved point instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
+		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
 		
 		// call subcontroller
 		this.linkedController.point(x, y);
@@ -90,7 +90,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved process instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
+		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
 		
 		// call subcontroller
 		this.linkedController.process();
@@ -107,7 +107,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved complete instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
+		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
 		
 		// call subcontroller
 		this.linkedController.complete();
@@ -124,7 +124,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved frameUp instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
+		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
 		
 		// call subcontroller
 		this.linkedController.frameUp();
@@ -141,7 +141,7 @@ public class MainController extends Controller {
 		Debug.trace("Main controller recieved frameDown instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("The main controller has not been passed control yet");
+		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
 		
 		// call subcontroller
 		this.linkedController.frameDown();
