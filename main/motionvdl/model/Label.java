@@ -60,11 +60,11 @@ public class Label {
 	 */
 	public Point[] getPoints(int index) {
 		
-		// debug trace
-		Debug.trace("Got number of point on frame label "+index);
-		
 		// get stack size
 		int pointCount = this.pointCounts[index];
+		
+		// debug trace
+		Debug.trace("Found "+pointCount+" points on label stack "+index);
 		
 		// setup array
 		Point[] framePoints = new Point[pointCount];
@@ -86,7 +86,7 @@ public class Label {
 	public Point pop(int index) {
 		
 		// debug trace
-		Debug.trace("Popped point from frame label "+index);
+		Debug.trace("Popped point from label stack "+index);
 		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
@@ -110,7 +110,7 @@ public class Label {
 	public void push(int index, int x, int y) {
 		
 		// debug trace
-		Debug.trace("Pushed point ("+x+","+y+") to frame label "+index);
+		Debug.trace("Pushed point ("+x+","+y+") to label stack "+index);
 		
 		// throw full stack
 		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is full");
@@ -133,7 +133,7 @@ public class Label {
 	public void delete(int index) {
 		
 		// debug trace
-		Debug.trace("Deleted point from frame label "+index);
+		Debug.trace("Deleted point from label stack "+index);
 		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
@@ -144,20 +144,51 @@ public class Label {
 	
 	
 	/**
-	 * Check if all stack frames are full
+	 * Check if a stack is full
+	 * @param index The stack index
 	 * @return The result
 	 */
-	public boolean checkFull() {
+	public boolean stackFull(int index) {
+		
+		boolean full = (this.pointCounts[index] == this.capacity);
 		
 		// debug trace
-		Debug.trace("Checking if the label is completely full");
+		Debug.trace("Checking if label stack "+index+" is full ("+full+")");
+		
+		return full;
+	}
+	
+	
+	/**
+	 * Check if a stack is empty
+	 * @param index The stack index
+	 * @return The result
+	 */
+	public boolean stackEmpty(int index) {
+		
+		boolean empty = (this.pointCounts[index] == 0);
+		
+		// debug trace
+		Debug.trace("Checking if label stack "+index+" is empty ("+empty+")");
+		
+		return empty;
+	}
+	
+	/**
+	 * Check if all stacks are full
+	 * @return The result
+	 */
+	public boolean full() {
+		
+		// debug trace
+		Debug.trace("Checking if all label stacks are full");
 		
 		// check if every stack frame is full
 		boolean full = false;
 		for (int i=0; i < this.frames; i++) {
 			
-			// is the stack frame full?
-			full = (this.pointCounts[i] == this.capacity);
+			// is the current stack full?
+			full = stackFull(i);
 			
 			// break if not
 			if (!full) break;
@@ -177,6 +208,7 @@ public class Label {
 		Debug.trace("Exported label");
 		
 		// TODO implement label export
-		throw new UnsupportedOperationException("Label export is unimplemented");
+		//throw new UnsupportedOperationException("Label export is unimplemented");
+		return null;
 	}
 }

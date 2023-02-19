@@ -48,7 +48,7 @@ public class LabelController extends Controller {
 		// debug trace
 		Debug.trace("Label controller recieved point instruction");
 		
-		// if the frame label is incomplete
+		// if the stack is not full
 		try {
 			
 			// record point
@@ -56,11 +56,14 @@ public class LabelController extends Controller {
 			
 			// update display
 			this.display.setPoint(x, y);
-			
-		// otherwise go to next frame
-		} catch(ArrayIndexOutOfBoundsException e) {
-			this.frameUp();
+		
+		// if the stack is full
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// do nothing
 		}
+
+		// if the stack is full display next frame
+		if (this.label.stackFull(this.frameIndex)) this.frameUp();
 	}
 	
 	
@@ -73,20 +76,13 @@ public class LabelController extends Controller {
 		// debug trace
 		Debug.trace("Label controller recieved process instruction");
 		
-		// if the frame label is not empty
-		try {
-			
-			// remove point
-			this.label.delete(this.frameIndex);
-			
-			// update display
-			this.display.clearPoints();
-			this.display.setPoints(this.label.getPoints(this.frameIndex));
-			
-		// otherwise go to next frame
-		} catch(ArrayIndexOutOfBoundsException e) {
-			this.frameDown();
-		}
+		// remove point
+		this.label.delete(this.frameIndex);
+		
+		// update display
+		this.display.clearPoints();
+		this.display.setPoints(this.label.getPoints(this.frameIndex));
+		if (this.label.stackEmpty(this.frameIndex)) this.frameDown();
 	}
 	
 	
@@ -101,7 +97,10 @@ public class LabelController extends Controller {
 		Debug.trace("Label controller recieved complete instruction");
 		
 		// if the label is full export the labelled video
-		if (this.label.checkFull()) {
+		if (this.label.full()) {
+			
+			// debug trace
+			Debug.trace("Label is completely full");
 			
 			// encode
 			boolean[] encodedVideo = this.video.export();

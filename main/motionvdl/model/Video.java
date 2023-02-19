@@ -263,6 +263,7 @@ public class Video {
 		Debug.trace("Exported video");
 		
 		// TODO implement video export
-		throw new UnsupportedOperationException("Video export is unimplemented");
+		//throw new UnsupportedOperationException("Video export is unimplemented");
+		return null;
 	}
 }

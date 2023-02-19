@@ -1,5 +1,6 @@
-package mvdltest.integration;
+package mvdltest;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +60,14 @@ public class IntegrationTestMVDL {
 		controller.process(); // undo the last point
 		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place a point
-		controller.complete(); // export files
+
+		// try to export files, expect unsupported exception until implemented
+		try {
+			controller.complete();
+			Assertions.assertTrue(false);
+		} catch (UnsupportedOperationException e) {
+			Assertions.assertTrue(true);
+		}
 		
 	}
 }
