@@ -25,11 +25,12 @@ public final class Debug {
 		if (enabled) {
 			
 			// setup time stamp formatter
-			timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
 			
 			// setup file writer
 			try {
-				printWriter = new PrintWriter(new FileWriter("mvdl.log"));
+				printWriter = new PrintWriter(new FileWriter("MVDL.log"));
+				writeRecord("Created log file");
 			
 			// if there is an issue
 			} catch (IOException e) {
@@ -45,17 +46,25 @@ public final class Debug {
 	 */
 	public static void trace(String message) {
 		
-		// if the trace is enabled
-		if (enabled) {
-			
-			// format message with time stamp
-			message = timeStamp.format(LocalDateTime.now()) + message;
-			
-			// print message to terminal
-			System.out.println(message);
-			
-			// write to log file
-			printWriter.print(message);
-		}
+		// if the trace is enabled write record
+		if (enabled) writeRecord(message);
+	}
+	
+	
+	/**
+	 * Write message to terminal and log file
+	 * @param message
+	 */
+	private static void writeRecord(String message) {
+		
+		// format message with time stamp
+		message = timeStamp.format(LocalDateTime.now()) +" | " + message;
+		
+		// print message to terminal
+		System.out.println(message);
+		
+		// write to log file
+		printWriter.print(message + "\n");
+		printWriter.flush();
 	}
 }

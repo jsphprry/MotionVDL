@@ -50,7 +50,7 @@ which are responsible for displaying either the next or previous
 frames on the display and depending on the display implementation, 
 these actions are bound to either scrolling or to button-press.
 
-Controllers also have access to the protected method pass which 
+Controllers also have access to the pass method which 
 is used when passing control between the linked controllers.
 
 The program is controlled by the main-controller, which stores 

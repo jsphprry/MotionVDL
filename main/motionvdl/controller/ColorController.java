@@ -78,7 +78,7 @@ public class ColorController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Color controller recieved pass instruction");

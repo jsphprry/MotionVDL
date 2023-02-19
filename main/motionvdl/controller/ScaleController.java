@@ -42,8 +42,8 @@ public class ScaleController extends Controller {
 		
 		// get the target resolution
 		Point target = this.display.getTarget();
-		int targetX = (int) target.getX();
-		int targetY = (int) target.getY();
+		int targetX = 100;//(int) target.getX(); // placeholders until display merge
+		int targetY = 100;//(int) target.getY();
 		
 		// if the target is valid
 		try {
@@ -64,7 +64,7 @@ public class ScaleController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Scale controller recieved pass instruction");

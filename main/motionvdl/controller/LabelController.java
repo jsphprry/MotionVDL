@@ -34,7 +34,6 @@ public class LabelController extends Controller {
 		
 		// setup variables
 		this.frameIndex = 0;
-		this.label = new Label(MAX_POINTS, this.video.getFrameCount());
 	}
 	
 	
@@ -161,13 +160,14 @@ public class LabelController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Label controller recieved pass instruction");
 		
-		// set the video
+		// set the video and label
 		this.video = video;
+		this.label = new Label(MAX_POINTS, this.video.getFrameCount());
 		
 		// update display
 		this.display.setTitle("MotionVDL Labelling stage");

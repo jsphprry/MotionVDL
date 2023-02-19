@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import motionvdl.Debug;
+import motionvdl.controller.Controller;
+import motionvdl.controller.CropController;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
@@ -19,15 +21,11 @@ class MotionVDLTest {
 	
 	
 	/**
-	 * WARNING
-	 * This test currently causes the IDE to crash by creating
-	 * a loop somewhere that the environemnt is not able to stop
-	 * 
-	 * Example of start to finish instruction seqeunce for the 
-	 * controller of a fully integrated system
+	 * Example of start to finish instruction 
+	 * sequence for a fully integrated system
 	 */
 	@Test
-	void fullProgram() {
+	public void fullProgram() {
 		
 		// setup components
 		Video noise = Video.noise(250,200,50);
@@ -66,6 +64,7 @@ class MotionVDLTest {
 		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(biasRand(49,100), biasRand(49,100)); // place a point
 		controller.complete(); // export files
+		
 	}
 	
 	
@@ -77,6 +76,37 @@ class MotionVDLTest {
 	 */
 	private static int biasRand(int bias, int range) {
 		return bias + (int) (Math.random() * range);
+	}
+	
+	
+	/**
+	 * Test for Crop controller
+	 */
+	//@Test
+	public void testCrop() {
+		
+		// setup components
+		Video noise = Video.noise(250,200,50);
+		Display display = new Display();
+		Controller controller = new CropController(null, display);
+		
+		// start controller
+		controller.pass(noise);
+		
+		// place points
+		controller.point(100, 100);
+		controller.point(150, 150);
+		
+		// crop video
+		controller.process();
+		
+		// complete stage, expect null pointer from main controller pass
+		try {
+			controller.complete();
+		} catch (NullPointerException e) {
+			// do nothing
+		}
+		
 	}
 
 }

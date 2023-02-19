@@ -58,7 +58,7 @@ public class Video {
 		Color[][][] videoBuffer = new Color[frames][height][width];
 		
 		for (int i=0; i < frames; i++) {
-			for (int j=0; j < height; height++) {
+			for (int j=0; j < height; j++) {
 				for (int k=0; k < width; k++) {
 					
 					// randomise color channels
