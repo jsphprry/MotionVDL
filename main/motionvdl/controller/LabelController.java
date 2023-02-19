@@ -1,5 +1,6 @@
 package motionvdl.controller;
 
+import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Label;
 import motionvdl.model.Video;
@@ -23,6 +24,9 @@ public class LabelController extends Controller {
 	 */
 	public LabelController(MainController mainController, Display display) {
 		
+		// debug trace
+		Debug.trace("Created label controller");
+		
 		// setup components
 		this.linkedController = mainController;
 		this.display = display;
@@ -41,6 +45,9 @@ public class LabelController extends Controller {
 	 */
 	@Override
 	public void point(int x, int y) {
+		
+		// debug trace
+		Debug.trace("Label controller recieved point instruction");
 		
 		// if the frame label is incomplete
 		try {
@@ -63,6 +70,9 @@ public class LabelController extends Controller {
 	 */
 	@Override
 	public void process() {
+		
+		// debug trace
+		Debug.trace("Label controller recieved process instruction");
 		
 		// if the frame label is not empty
 		try {
@@ -87,6 +97,9 @@ public class LabelController extends Controller {
 	 */
 	@Override
 	public void complete() {
+		
+		// debug trace
+		Debug.trace("Label controller recieved complete instruction");
 		
 		// if the label is full export the labelled video
 		if (this.label.checkFull()) {
@@ -113,6 +126,9 @@ public class LabelController extends Controller {
 	@Override
 	public void frameUp() {
 		
+		// debug trace
+		Debug.trace("Label controller recieved frameUp instruction");
+		
 		// increment frameIndex
 		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
 		
@@ -129,6 +145,9 @@ public class LabelController extends Controller {
 	@Override
 	public void frameDown() {
 		
+		// debug trace
+		Debug.trace("Label controller recieved frameDown instruction");
+		
 		// decrement frameIndex
 		this.frameIndex = Math.max(0, frameIndex - 1);
 		
@@ -143,6 +162,9 @@ public class LabelController extends Controller {
 	 * Pass control to this controller
 	 */
 	protected void pass(Video video) {
+		
+		// debug trace
+		Debug.trace("Label controller recieved pass instruction");
 		
 		// set the video
 		this.video = video;

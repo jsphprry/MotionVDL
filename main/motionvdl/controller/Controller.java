@@ -1,5 +1,6 @@
 package motionvdl.controller;
 
+import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
@@ -24,6 +25,10 @@ public abstract class Controller {
 	 * @param y The y axis of the click
 	 */
 	public void point(int x, int y) {
+		
+		// debug trace
+		Debug.trace("Called controller.Controller.point()");
+		
 		// by default do nothing with the frame click action
 	}
 	
@@ -32,6 +37,10 @@ public abstract class Controller {
 	 * Process button action
 	 */
 	public void process() {
+		
+		// debug trace
+		Debug.trace("Called controller.Controller.process()");
+		
 		// by default do nothing with the process button action
 	}
 	
@@ -40,6 +49,9 @@ public abstract class Controller {
 	 * Complete button action
 	 */
 	public void complete() {
+		
+		// debug trace
+		Debug.trace("Called controller.Controller.complete()");
 		
 		// move video to temporary variable and unset video
 		Video tempVideo = this.video;
@@ -55,6 +67,9 @@ public abstract class Controller {
 	 */
 	public void frameUp() {
 		
+		// debug trace
+		Debug.trace("Called controller.Controller.frameUp()");
+		
 		// increment frameIndex
 		this.frameIndex = Math.min(this.video.getFrameCount() - 1, frameIndex + 1);
 		
@@ -68,6 +83,9 @@ public abstract class Controller {
 	 */
 	public void frameDown() {
 		
+		// debug trace
+		Debug.trace("Called controller.Controller.frameDown()");
+		
 		// decrement frameIndex
 		this.frameIndex = Math.max(0, frameIndex - 1);
 		
@@ -80,6 +98,9 @@ public abstract class Controller {
 	 * Pass control to this controller
 	 */
 	protected void pass(Video video) {
+		
+		// debug trace
+		Debug.trace("Called controller.Controller.pass()");
 		
 		// by default just set video
 		this.video = video;

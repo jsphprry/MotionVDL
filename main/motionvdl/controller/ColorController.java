@@ -1,5 +1,6 @@
 package motionvdl.controller;
 
+import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
@@ -20,6 +21,9 @@ public class ColorController extends Controller {
 	 */
 	public ColorController(MainController mainController, Display display) {
 		
+		// debug trace
+		Debug.trace("Created color controller");
+		
 		// setup components
 		this.linkedController = mainController;
 		this.display = display;
@@ -36,6 +40,9 @@ public class ColorController extends Controller {
 	 */
 	@Override
 	public void process() {
+		
+		// debug trace
+		Debug.trace("Color controller recieved process instruction");
 		
 		// if greyscale video does not exist create it
 		if (this.greyscaleVideo == null) this.greyscaleVideo = this.video.greyScale();
@@ -57,6 +64,9 @@ public class ColorController extends Controller {
 	@Override
 	public void complete() {
 		
+		// debug trace
+		Debug.trace("Color controller recieved complete instruction");
+		
 		// if greyscale flag is true then set video to greyscale video
 		if (this.greyscaleSet) this.video = this.greyscaleVideo;
 		
@@ -69,6 +79,9 @@ public class ColorController extends Controller {
 	 * Pass control to this controller
 	 */
 	protected void pass(Video video) {
+		
+		// debug trace
+		Debug.trace("Color controller recieved pass instruction");
 		
 		// set the video
 		this.video = video;

@@ -1,5 +1,6 @@
 package motionvdl.controller;
 
+import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
 
@@ -24,6 +25,9 @@ public class CropController extends Controller {
 	 */
 	public CropController(MainController mainController, Display display) {
 		
+		// debug trace
+		Debug.trace("Created crop controller");
+		
 		// setup components
 		this.linkedController = mainController;
 		this.display = display;
@@ -43,6 +47,9 @@ public class CropController extends Controller {
 	 */
 	@Override
 	public void point(int x, int y) {
+		
+		// debug trace
+		Debug.trace("Crop controller recieved point instruction");
 		
 		// first click
 		// if neither target or origin are set
@@ -100,6 +107,9 @@ public class CropController extends Controller {
 	@Override
 	public void process() {
 		
+		// debug trace
+		Debug.trace("Crop controller recieved process instruction");
+		
 		// throw undefined crop frame
 		if (this.originSet == false || this.targetSet == false) throw new IllegalStateException("Undefined crop frame");
 		
@@ -115,6 +125,9 @@ public class CropController extends Controller {
 	 * Pass control to this controller
 	 */
 	protected void pass(Video video) {
+		
+		// debug trace
+		Debug.trace("Crop controller recieved pass instruction");
 		
 		// set the video
 		this.video = video;

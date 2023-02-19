@@ -2,6 +2,8 @@ package motionvdl.model;
 
 import java.awt.Point;
 
+import motionvdl.Debug;
+
 /**
  * Video label implemented as multistack of 2d integer precision points
  * @author Joseph
@@ -58,6 +60,9 @@ public class Label {
 	 */
 	public Point[] getPoints(int index) {
 		
+		// debug trace
+		Debug.trace("Got label points from frame "+index);
+		
 		// get stack size
 		int pointCount = this.pointCounts[index];
 		
@@ -80,6 +85,9 @@ public class Label {
 	 */
 	public Point pop(int index) {
 		
+		// debug trace
+		Debug.trace("Popped label point from frame "+index);
+		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
 		
@@ -101,6 +109,9 @@ public class Label {
 	 */
 	public void push(int index, int x, int y) {
 		
+		// debug trace
+		Debug.trace("Pushed label point ("+x+","+y+") to frame "+index);
+		
 		// throw full stack
 		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is full");
 		
@@ -121,6 +132,9 @@ public class Label {
 	 */
 	public void delete(int index) {
 		
+		// debug trace
+		Debug.trace("Deleted label point from frame "+index);
+		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
 		
@@ -134,6 +148,9 @@ public class Label {
 	 * @return The result
 	 */
 	public boolean checkFull() {
+		
+		// debug trace
+		Debug.trace("Checking if label is full");
 		
 		// check if every stack frame is full
 		boolean full = false;
@@ -155,6 +172,9 @@ public class Label {
 	 * @return The exported label
 	 */
 	public boolean[] export() {
+		
+		// debug trace
+		Debug.trace("Exported label");
 		
 		// TODO implement label export
 		throw new UnsupportedOperationException("Label export is unimplemented");

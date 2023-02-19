@@ -2,6 +2,8 @@ package motionvdl.model;
 
 import java.awt.Color;
 
+import motionvdl.Debug;
+
 /**
  * Wrapper class for a video represented by a 3D Color array
  * @author Joseph
@@ -50,6 +52,9 @@ public class Video {
 	 */
 	public static Video noise(int width, int height, int frames) {
 		
+		// debug trace
+		Debug.trace("Created video of noise");
+		
 		Color[][][] videoBuffer = new Color[frames][height][width];
 		
 		for (int i=0; i < frames; i++) {
@@ -77,6 +82,10 @@ public class Video {
 	 * @return Video instance
 	 */
 	public static Video fromFile(String file) {
+		
+		// debug trace
+		Debug.trace("Loaded video from "+file);
+		
 		throw new UnsupportedOperationException("fromFile is unimplemented");
 	}
 	
@@ -128,6 +137,9 @@ public class Video {
 	 */
 	public Video crop(int origin_x, int origin_y, int target_w, int target_h) {
 		
+		// debug trace
+		Debug.trace("Cropped video resolution");
+		
 		// throw invalid parameters
 		if (origin_x < 0 || origin_y < 0 || origin_x >= this.width || origin_y >= this.height) throw new IllegalArgumentException("Invalid origin coordinate");
 		if (target_w <= 0 || target_h <= 0 || origin_x+target_w > this.width || origin_y+target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
@@ -156,6 +168,9 @@ public class Video {
 	 * @return The downscaled video
 	 */
 	public Video downScale(int target_w, int target_h) {
+		
+		// debug trace
+		Debug.trace("Down scaled video resolution");
 		
 		// throw invalid parameters
 		if (target_w < 0 || target_h < 0 || target_w > this.width || target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
@@ -212,6 +227,9 @@ public class Video {
 	 */
 	public Video greyScale() {
 		
+		// debug trace
+		Debug.trace("Converted video to greyscale");
+		
 		// initialise work-buffer
 		Color[][][] workBuffer = new Color[this.frames][this.height][this.width];
 		
@@ -240,6 +258,9 @@ public class Video {
 	 * @return The exported video
 	 */
 	public boolean[] export() {
+		
+		// debug trace
+		Debug.trace("Exported video");
 		
 		// TODO implement video export
 		throw new UnsupportedOperationException("Video export is unimplemented");

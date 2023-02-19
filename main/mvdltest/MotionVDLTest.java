@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import motionvdl.Debug;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
@@ -13,6 +14,7 @@ class MotionVDLTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		Debug.setup(true);
 	}
 	
 	
