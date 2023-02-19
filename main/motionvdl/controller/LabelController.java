@@ -114,7 +114,12 @@ public class LabelController extends Controller {
 		
 		// otherwise display a message
 		} else {
+			
+			// update display
 			this.display.setMessage("The label must be full to export to file");
+			
+			// debug trace
+			Debug.trace("Label is not completely full");
 		}
 	}
 	

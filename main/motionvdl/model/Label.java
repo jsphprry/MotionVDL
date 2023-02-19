@@ -61,7 +61,7 @@ public class Label {
 	public Point[] getPoints(int index) {
 		
 		// debug trace
-		Debug.trace("Got label points from frame "+index);
+		Debug.trace("Got number of point on frame label "+index);
 		
 		// get stack size
 		int pointCount = this.pointCounts[index];
@@ -86,7 +86,7 @@ public class Label {
 	public Point pop(int index) {
 		
 		// debug trace
-		Debug.trace("Popped label point from frame "+index);
+		Debug.trace("Popped point from frame label "+index);
 		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
@@ -110,7 +110,7 @@ public class Label {
 	public void push(int index, int x, int y) {
 		
 		// debug trace
-		Debug.trace("Pushed label point ("+x+","+y+") to frame "+index);
+		Debug.trace("Pushed point ("+x+","+y+") to frame label "+index);
 		
 		// throw full stack
 		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is full");
@@ -133,7 +133,7 @@ public class Label {
 	public void delete(int index) {
 		
 		// debug trace
-		Debug.trace("Deleted label point from frame "+index);
+		Debug.trace("Deleted point from frame label "+index);
 		
 		// throw empty stack
 		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Frame stack "+index+" is empty");
@@ -150,7 +150,7 @@ public class Label {
 	public boolean checkFull() {
 		
 		// debug trace
-		Debug.trace("Checking if label is full");
+		Debug.trace("Checking if the label is completely full");
 		
 		// check if every stack frame is full
 		boolean full = false;
