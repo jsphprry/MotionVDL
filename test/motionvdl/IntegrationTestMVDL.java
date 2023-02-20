@@ -1,14 +1,13 @@
-package mvdltest;
+package motionvdl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import motionvdl.Debug;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
-import mvdltest.util.Numbers;
+import motionvdl.util.Numbers;
 
 public class IntegrationTestMVDL {
 	

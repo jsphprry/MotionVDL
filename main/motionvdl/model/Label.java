@@ -101,6 +101,7 @@ public class Label {
 		return this.buffer[index][currentIndex];
 	}
 	
+	
 	/**
 	 * Push to a stack
 	 * @param index The stack index

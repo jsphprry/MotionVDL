@@ -1,9 +1,9 @@
-package mvdltest;
+package motionvdl;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import motionvdl.Debug;
 import motionvdl.controller.ColorController;
 import motionvdl.controller.Controller;
 import motionvdl.controller.CropController;
@@ -11,9 +11,9 @@ import motionvdl.controller.LabelController;
 import motionvdl.controller.ScaleController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
-import mvdltest.util.Numbers;
+import motionvdl.util.Numbers;
 
-class UnitTestMVDL {
+class UnitTestMVDL extends Controller {
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -45,6 +45,7 @@ class UnitTestMVDL {
 		// complete stage, expect null pointer from pass to main controller
 		try {
 			controller.complete();
+			Assertions.fail(); // fail if no null pointer
 		} catch (NullPointerException e) {
 			// do nothing
 		}
@@ -71,6 +72,7 @@ class UnitTestMVDL {
 		// complete stage, expect null pointer from pass to main controller
 		try {
 			controller.complete();
+			Assertions.fail(); // fail if no null pointer
 		} catch (NullPointerException e) {
 			// do nothing
 		}
@@ -97,6 +99,7 @@ class UnitTestMVDL {
 		// complete stage, expect null pointer from main controller pass
 		try {
 			controller.complete();
+			Assertions.fail(); // fail if no null pointer
 		} catch (NullPointerException e) {
 			// do nothing
 		}
@@ -127,6 +130,7 @@ class UnitTestMVDL {
 		// complete stage, expect exception from unimplemented export
 		try {
 			controller.complete();
+			Assertions.fail(); // fail if no null pointer
 		} catch (UnsupportedOperationException e) {
 			// do nothing
 		}

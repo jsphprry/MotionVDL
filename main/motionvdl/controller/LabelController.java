@@ -172,7 +172,7 @@ public class LabelController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	public void pass(Video video) {
+	protected void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Label controller recieved pass instruction");

@@ -1,4 +1,4 @@
-package mvdltest.util;
+package motionvdl.util;
 
 public final class Numbers {
 	
