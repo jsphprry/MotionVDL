@@ -20,7 +20,7 @@ public class Label {
 	
 	/**
 	 * Constructor for Label instance
-	 * @param capacity	The individual stack capacity
+	 * @param capacity The individual stack capacity
 	 * @param frames The stack count
 	 */
 	public Label(int capacity, int frames) {
@@ -183,7 +183,7 @@ public class Label {
 		// debug trace
 		Debug.trace("Checking if all label stacks are full");
 		
-		// check if every stack frame is full
+		// check if every frame stack is full
 		boolean full = false;
 		for (int i=0; i < this.frames; i++) {
 			

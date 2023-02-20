@@ -27,7 +27,7 @@ public abstract class Controller {
 	public void point(int x, int y) {
 		
 		// debug trace
-		Debug.trace("Called point instruction");
+		Debug.trace("Called Controller point instruction");
 		
 		// by default do nothing with the frame click action
 	}
@@ -39,7 +39,7 @@ public abstract class Controller {
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Called process instruction");
+		Debug.trace("Called Controller process instruction");
 		
 		// by default do nothing with the process button action
 	}
@@ -51,7 +51,7 @@ public abstract class Controller {
 	public void complete() {
 		
 		// debug trace
-		Debug.trace("Called complete instruction");
+		Debug.trace("Called Controller complete instruction");
 		
 		// move video to temporary variable and unset video
 		Video tempVideo = this.video;
@@ -68,7 +68,7 @@ public abstract class Controller {
 	public void frameUp() {
 		
 		// debug trace
-		Debug.trace("Called frameUp instruction");
+		Debug.trace("Called Controller frameUp instruction");
 		
 		// increment frameIndex
 		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
@@ -84,7 +84,7 @@ public abstract class Controller {
 	public void frameDown() {
 		
 		// debug trace
-		Debug.trace("Called frameDown instruction");
+		Debug.trace("Called Controller frameDown instruction");
 		
 		// decrement frameIndex
 		this.frameIndex = Math.max(0, frameIndex - 1);
@@ -100,7 +100,7 @@ public abstract class Controller {
 	public void pass(Video video) {
 		
 		// debug trace
-		Debug.trace("Called pass instruction");
+		Debug.trace("Called Controller pass instruction");
 		
 		// by default just set video
 		this.video = video;

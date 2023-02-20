@@ -17,6 +17,7 @@ public class IntegrationTestMVDL {
 		Debug.setup(true);
 	}
 	
+	
 	/**
 	 * Example of start to finish instruction 
 	 * sequence for a fully integrated system
@@ -61,16 +62,14 @@ public class IntegrationTestMVDL {
 		controller.process(); // undo the last point
 		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place a point
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // try place a 12th point on the last frame
-
+		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // try placing a 12th point on the last frame
+		
 		// try to export files, expect unsupported exception until implemented
 		try {
 			controller.complete();
-			Assertions.assertTrue(false);
+			Assertions.fail(); // fail if there is no exception from controller
 		} catch (UnsupportedOperationException e) {
 			Debug.trace(e.getMessage());
-			Assertions.assertTrue(true);
 		}
-		
 	}
 }

@@ -8,18 +8,19 @@ import java.time.format.DateTimeFormatter;
 
 public final class Debug {
 	
-	// utility
+	// variables and components
 	private static boolean enabled = false;
 	private static DateTimeFormatter timeStamp;
 	private static PrintWriter printWriter;
 	
 	
-	/*
-	 * Setup file access
+	/**
+	 * Setup the debug trace
+	 * @param verbose Enable or disable debug trace
 	 */
 	public static void setup(boolean verbose) {
 		
-		// set init flag
+		// set enabled flag
 		enabled = verbose;
 		
 		if (enabled) {
@@ -30,11 +31,11 @@ public final class Debug {
 			// setup file writer
 			try {
 				printWriter = new PrintWriter(new FileWriter("MVDL.log"));
-				writeRecord("Created log file");
+				trace("Created log file");
 			
 			// if there is an issue
 			} catch (IOException e) {
-				System.out.println("Problem setting up file writer. "+e.getMessage());
+				System.out.println("Error: Problem setting up file writer. "+e.getMessage());
 			}
 		}
 	}
@@ -46,25 +47,18 @@ public final class Debug {
 	 */
 	public static void trace(String message) {
 		
-		// if the trace is enabled write record
-		if (enabled) writeRecord(message);
-	}
-	
-	
-	/**
-	 * Write message to terminal and log file
-	 * @param message
-	 */
-	private static void writeRecord(String message) {
-		
-		// format message with time stamp
-		message = timeStamp.format(LocalDateTime.now()) +" | " + message;
-		
-		// print message to terminal
-		System.out.println(message);
-		
-		// write to log file
-		printWriter.print(message + "\n");
-		printWriter.flush();
+		// if the trace is enabled record message
+		if (enabled) {
+			
+			// format message with time stamp
+			message = timeStamp.format(LocalDateTime.now()) +" | " + message;
+			
+			// print message to terminal
+			System.out.println(message);
+			
+			// write to log file
+			printWriter.println(message);
+			printWriter.flush();
+		}
 	}
 }

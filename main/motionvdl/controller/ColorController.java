@@ -35,7 +35,7 @@ public class ColorController extends Controller {
 	}
 	
 	
-	/*
+	/**
 	 * Toggle between greyscale and color video
 	 */
 	@Override

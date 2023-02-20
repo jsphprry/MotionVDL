@@ -48,7 +48,6 @@ class UnitTestMVDL {
 		} catch (NullPointerException e) {
 			// do nothing
 		}
-		
 	}
 	
 	
@@ -75,7 +74,6 @@ class UnitTestMVDL {
 		} catch (NullPointerException e) {
 			// do nothing
 		}
-		
 	}
 	
 	
@@ -102,7 +100,6 @@ class UnitTestMVDL {
 		} catch (NullPointerException e) {
 			// do nothing
 		}
-		
 	}
 	
 	
@@ -133,6 +130,5 @@ class UnitTestMVDL {
 		} catch (UnsupportedOperationException e) {
 			// do nothing
 		}
-		
 	}
 }

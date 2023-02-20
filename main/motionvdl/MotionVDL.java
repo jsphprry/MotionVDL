@@ -16,14 +16,6 @@ public class MotionVDL {
 	 */
 	public static void main(String[] args) {
 		
-		/*// setup components
-		Display display = new Display();
-		MainController mainController = new MainController(display);
-		
-		// start controller sequence with video
-		Video video = new Video(args[0]);
-		mainController.start(video);*/
-		
 		// start program with video file
 		new MainController(new Display()).start(Video.fromFile(args[0]));
 	}
