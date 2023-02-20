@@ -64,7 +64,7 @@ public class ScaleController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Scale controller recieved pass instruction");

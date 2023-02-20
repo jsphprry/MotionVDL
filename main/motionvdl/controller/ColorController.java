@@ -11,7 +11,7 @@ import motionvdl.model.Video;
 public class ColorController extends Controller {
 	
 	// variables
-	private Video greyscaleVideo;
+	private Video tempVideo;
 	private boolean greyscaleSet;
 	
 	/**
@@ -45,15 +45,22 @@ public class ColorController extends Controller {
 		Debug.trace("Color controller recieved process instruction");
 		
 		// if greyscale video does not exist create it
-		if (this.greyscaleVideo == null) this.greyscaleVideo = this.video.greyScale();
+		if (this.tempVideo == null) this.tempVideo = this.video.greyScale();
 		
-		// toggle between greyscale and color video
-		if (!this.greyscaleSet) {
-			this.display.setFrame(this.greyscaleVideo.getFrame(this.frameIndex));
-			this.greyscaleSet = true;
+		// swap videos
+		Video temp = this.video;
+		this.video = this.tempVideo;
+		this.tempVideo = temp;
+		this.greyscaleSet = !this.greyscaleSet;
+		
+		// update display
+		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		
+		// debug trace
+		if (this.greyscaleSet) {
+			Debug.trace("Color controller set to greyscale video");
 		} else {
-			this.display.setFrame(this.video.getFrame(this.frameIndex));
-			this.greyscaleSet = false;
+			Debug.trace("Color controller set to color video");
 		}
 	}
 	
@@ -67,10 +74,10 @@ public class ColorController extends Controller {
 		// debug trace
 		Debug.trace("Color controller recieved complete instruction");
 		
-		// if greyscale flag is true then set video to greyscale video
-		if (this.greyscaleSet) this.video = this.greyscaleVideo;
+		// free tempVideo
+		this.tempVideo = null;
 		
-		// call default complete
+		// call Controller complete
 		super.complete();
 	}
 	
@@ -78,7 +85,7 @@ public class ColorController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Color controller recieved pass instruction");

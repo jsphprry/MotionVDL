@@ -152,7 +152,7 @@ public class MainController extends Controller {
 	 * Pass control to the next subcontroller
 	 */
 	@Override
-	protected void pass(Video video) {
+	public void pass(Video video) {
 		
 		// debug trace
 		Debug.trace("Main controller recieved pass instruction");
