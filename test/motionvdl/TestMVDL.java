@@ -35,7 +35,7 @@ public class TestMVDL {
 		MainController controller = new MainController(display);
 		
 		// start the main controller
-		controller.start(noise);
+		controller.pass(noise);
 		
 		// crop stage
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place first point

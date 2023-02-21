@@ -35,15 +35,17 @@ public class ScaleController extends Controller {
 	/*
 	 * Scale the video
 	 */
+	@Override
 	public void process() {
 		
 		// debug trace
 		Debug.trace("Scale controller recieved process instruction");
 		
 		// get the target resolution
-		Point target = this.display.getTarget();
-		int targetX = 100;//(int) target.getX(); // placeholders until display merge
-		int targetY = 100;//(int) target.getY();
+		// placeholder until display merge
+		Point target = new Point(100,100);//this.display.getTarget();
+		int targetX = (int) target.getX();
+		int targetY = (int) target.getY();
 		
 		// if the target is valid
 		try {
@@ -64,6 +66,7 @@ public class ScaleController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
+	@Override
 	public void pass(Video video) {
 		
 		// debug trace

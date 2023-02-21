@@ -85,6 +85,7 @@ public class ColorController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
+	@Override
 	public void pass(Video video) {
 		
 		// debug trace

@@ -13,8 +13,8 @@ public class MotionVDL {
 	/**
 	 * MotionVDL starter program
 	 * defines the program arguments
-	 * @param args[0] Video on filesystem
-	 * @param args[1] Setup-debug flag
+	 * @param args[0] Video location on filesystem
+	 * @param args[1] Debug setup flag
 	 */
 	public static void main(String[] args) {
 		
@@ -24,7 +24,7 @@ public class MotionVDL {
 		// setup debug
 		if (args.length >= 2) Debug.setup(Boolean.parseBoolean(args[1]));
 		
-		// start program with video file
-		new MainController(new Display()).start(Video.fromFile(args[0]));
+		// start main controller with video file
+		new MainController(new Display()).pass(Video.fromFile(args[0]));
 	}
 }

@@ -46,22 +46,6 @@ public class MainController extends Controller {
 	
 	
 	/**
-	 * Start the controller sequence
-	 */
-	public void start(Video video) {
-		
-		// debug trace
-		Debug.trace("Main controller recieved start instruction");
-		
-		// throw already-in-control case
-		if (this.stage != -1) throw new IllegalStateException("Error: The main controller has already been started");
-		
-		// pass control to self
-		this.pass(video);
-	}
-	
-	
-	/**
 	 * Frame click action
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click

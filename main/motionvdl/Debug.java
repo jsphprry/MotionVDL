@@ -47,7 +47,7 @@ public final class Debug {
 	 */
 	public static void trace(String message) {
 		
-		// if the trace is enabled record message
+		// record message if the trace is enabled
 		if (enabled) {
 			
 			// format message with time stamp
@@ -56,7 +56,7 @@ public final class Debug {
 			// print message to terminal
 			System.out.println(message);
 			
-			// write to log file
+			// write message to log file
 			printWriter.println(message);
 			printWriter.flush();
 		}

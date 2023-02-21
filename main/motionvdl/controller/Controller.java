@@ -57,7 +57,7 @@ public abstract class Controller {
 		Video tempVideo = this.video;
 		this.video = null;
 		
-		// pass the video back to the linked controller
+		// pass the temporary video to the linked controller
 		this.linkedController.pass(tempVideo);
 	}
 	
