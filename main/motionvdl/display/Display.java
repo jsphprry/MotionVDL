@@ -21,7 +21,7 @@ public class Display {
 	}
 	
 	public void setPoints(Point[] points) {
-		// TODO Draw multiple points on the display
+		// TODO Draw multiple points on the display - commit test
 		
 	}
 
