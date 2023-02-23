@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/JavaFXLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/JavaFXLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/SettingsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/SettingsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/WelcomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/WelcomeView.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2M9OUCVgLTUtPhTiUvqLh5eVi5Q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/henri/temp"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="" />
+      <created>1677176344853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677176344853</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+.label {
+    -fx-font: 15pt "Arial";
+}
+
+.text-field {
+    -fx-font: 12pt "Arial";
+}
+
+#paneID {
+    -fx-background-color: #ffe6ef;
+}
