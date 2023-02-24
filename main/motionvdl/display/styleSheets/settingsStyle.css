@@ -1,3 +1,7 @@
+.button {
+    -fx-cursor: hand;
+}
+
 .label {
     -fx-font: 15pt "Arial";
 }
