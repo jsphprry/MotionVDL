@@ -1,3 +1,7 @@
+.button {
+    -fx-cursor: hand;
+}
+
 .label {
     -fx-font: 15pt "Arial";
 }
@@ -8,4 +12,8 @@
 
 #pointID {
     -fx-fill: BLACK;
+}
+
+#connectorID {
+    -fx-stroke-width: 2.5pt;
 }

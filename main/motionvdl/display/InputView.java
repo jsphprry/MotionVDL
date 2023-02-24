@@ -7,7 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 /**
  * The Input View displays the Scene in which the user
@@ -23,10 +26,12 @@ public class InputView {
     private static final Button confirmBut = new Button();
     private static final ImageView imageView = new ImageView();
     private static Image imageToLabel = null;
-    private static final Circle[] points = new Circle[10];
+    private static final Circle[] points = new Circle[11];
     private static int pointCount = 0;
+    private static final Point[] pointLoc = new Point[11];
+    private static final Line[] connectors = new Line[10];
     private static final String[] nextLocation = {
-            "Head", "Chest", "L-Elbow", "L-Hand", "R-Elbow", "R-Hand", "L-Knee", "L-Foot", "R-Knee", "R-Foot", "Done"
+            "Head", "Chest", "L-Elbow", "L-Hand", "R-Elbow", "R-Hand", "Torso", "L-Knee", "L-Foot", "R-Knee", "R-Foot", "Done"
     };
 
     /**
@@ -66,7 +71,7 @@ public class InputView {
         imageView.setFitWidth(400);
         imageView.setPreserveRatio(false);
         imageView.setOnMouseClicked(
-                event -> setPoint((int) event.getX(), (int) event.getY()) );
+                event -> setPointAndLine((int) event.getX(), (int) event.getY()) );
         pane.getChildren().add(imageView);
 
         pane.setId("paneID");
@@ -80,7 +85,7 @@ public class InputView {
      * welcome screen if there are no frames remaining.
      */
     public static void setFrame() {
-        if (pointCount == 10) {
+        if (pointCount == 11) {
             removePoints();
             try {
                 // Get new frame
@@ -95,15 +100,37 @@ public class InputView {
     }
 
     /**
-     * Sets a point on the ImageView where the user clicked.
+     * Sets a point and a connection to the previous point
+     * on the ImageView where the user clicked.
      * @param x horizontal co-ordinate of the users click.
      * @param y vertical co-ordinate of the user's click.
      */
-    public static void setPoint(int x, int y) {
-        if (pointCount < 10) {
-            points[pointCount] = new Circle(imageView.getLayoutX() + x, imageView.getLayoutY() + y, 7);
+    public static void setPointAndLine(int x, int y) {
+        if (pointCount < 11) {
+            pointLoc[pointCount] = new Point((int) imageView.getLayoutX() + x, (int) imageView.getLayoutY() + y);
+            points[pointCount] = new Circle(pointLoc[pointCount].x, pointLoc[pointCount].y, 7);
             points[pointCount].setId("pointID");
             pane.getChildren().add(points[pointCount]);
+
+            int temp = pointCount - 1;
+            switch (pointCount) {
+                // Connect point to previous point
+                default -> connectors[temp] =
+                        new Line(pointLoc[temp].x, pointLoc[temp].y, pointLoc[temp+1].x, pointLoc[temp+1].y);
+
+                // Special cases for points not connected to previous point
+                case 0 -> {} // Do nothing
+                case 4 -> connectors[3] =
+                        new Line(pointLoc[1].x, pointLoc[1].y, pointLoc[4].x, pointLoc[4].y);
+                case 6 -> connectors[5] =
+                        new Line(pointLoc[1].x, pointLoc[1].y, pointLoc[6].x, pointLoc[6].y);
+                case 9 -> connectors[8] =
+                        new Line(pointLoc[6].x, pointLoc[6].y, pointLoc[9].x, pointLoc[9].y);
+            }
+            if (pointCount != 0 ) {
+                connectors[temp].setId("connectorID");
+                pane.getChildren().add(connectors[temp]);
+            }
 
             System.out.println(x +", " + y);
             System.out.println("Point added: " + nextLocation[pointCount]);
@@ -115,12 +142,16 @@ public class InputView {
     }
 
     /**
-     * Reset all points on the ImageView.
+     * Reset all points and connectors on the ImageView.
      */
     public static void removePoints() {
         for (int i = 0; i < points.length; i++) {
             pane.getChildren().remove(points[i]);
             points[i] = null;
+        }
+        for (int i = 0; i < connectors.length; i++) {
+            pane.getChildren().remove(connectors[i]);
+            connectors[i] = null;
         }
         pointCount = 0;
         nextInputLab.setText("Please place point on: " + nextLocation[pointCount]);
