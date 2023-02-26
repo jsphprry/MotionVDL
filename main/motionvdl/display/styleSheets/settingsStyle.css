@@ -1,5 +1,6 @@
 .button {
     -fx-cursor: hand;
+    -fx-background-radius: 15px;
 }
 
 .label {
@@ -10,6 +11,16 @@
     -fx-font: 12pt "Arial";
 }
 
+#cropLine {
+    -fx-stroke-width: 5pt;
+}
+
 #paneID {
     -fx-background-color: #ffe6ef;
+}
+
+#opaqueSquare {
+    -fx-fill: WHITE;
+    -fx-stroke: BLACK;
+    -fx-opacity: 0.2;
 }

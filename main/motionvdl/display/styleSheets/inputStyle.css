@@ -1,5 +1,6 @@
 .button {
     -fx-cursor: hand;
+    -fx-background-radius: 15px;
 }
 
 .label {
