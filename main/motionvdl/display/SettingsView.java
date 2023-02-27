@@ -84,8 +84,10 @@ public class SettingsView {
         inputSceneBut.setLayoutY(460);
         inputSceneBut.setMinSize(120, 60);
         inputSceneBut.setText("Confirm Settings");
-        inputSceneBut.setOnAction(
-                actionEvent -> InputView.changeScene() );
+        inputSceneBut.setOnAction(actionEvent -> {
+//            if (cropState.equals("Cropped")) {
+                InputView.changeScene();
+        });
         pane.getChildren().add(inputSceneBut);
 
         // TextField for specifying resolution width
@@ -265,6 +267,6 @@ public class SettingsView {
      * The method called to make this Scene active on the Stage.
      */
     public static void changeScene() {
-        primaryStage.setScene(settingsScene);
+            primaryStage.setScene(settingsScene);
     }
 }
