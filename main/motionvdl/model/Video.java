@@ -263,9 +263,9 @@ public class Video {
 		Debug.trace("Encoded video");
 		
 		// setup metadata
-		int z = this.frames;              // The z dimension of the video buffer
-		int y = this.height;              // The y dimension of the video buffer
-		int x = this.width;               // The x dimension of the video buffer
+		int z = this.frames;              // The depth of the video buffer
+		int y = this.height;              // The height of the video buffer
+		int x = this.width;               // The width of the video buffer
 		int c = (this.greyscale) ? 1 : 3; // The number of channels in each color
 		
 		// throw invalid size

@@ -12,6 +12,9 @@ import motionvdl.model.Video;
  */
 public class ScaleController extends Controller {
 	
+	// constants
+	private static final int MAX_CFS = 255; // the maximum target resolution, frame should be square by this point
+	
 	/**
 	 * Constructor for ScaleController instance
 	 * @param mainController The main controller
@@ -42,27 +45,21 @@ public class ScaleController extends Controller {
 		Debug.trace("Scale controller recieved process instruction");
 		
 		// get the target resolution
-		// placeholder until display merge
-		Point target = new Point(100,100);//this.display.getTarget();
-		int targetX = (int) target.getX();
-		int targetY = (int) target.getY();
+		// placeholder
+		int target = 100;//this.display.getTarget();
 		
 		// if the target is valid
-		try {
+		if (target < Math.min(this.video.getWidth(), MAX_CFS) && target > 0) {
 			
 			// scale the video
-			this.video = this.video.downScale(targetX, targetY);
+			this.video = this.video.downScale(target, target);
 			
 			// update the display
 			this.display.setFrame(this.video.getFrame(this.frameIndex));
-
-		// if the target is invalid report errors
-		} catch (IllegalArgumentException e) {
 			
-			// debug trace
-			Debug.trace("Error: Scale controller got invalid target resolution");
-			
-			// update display
+		// else report invalid target
+		} else {
+			Debug.trace("Error: Scale controller invalid target resolution");
 			this.display.setMessage("Error: Invalid target resolution");
 		}
 	}

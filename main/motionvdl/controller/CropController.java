@@ -14,12 +14,12 @@ public class CropController extends Controller {
 	private int ax;
 	private int ay;
 	
-	// frame limits
-	private int vx;
-	private int vy;
-	
 	// crop frame size
 	private int cfs;
+	
+	// frame limits
+	private int limx;
+	private int limy;
 	
 	// state flags
 	private boolean ready;
@@ -68,7 +68,7 @@ public class CropController extends Controller {
 			// define crop frame
 			ax = x;
 			ay = y;
-			cfs = (int) Math.min(Math.min(vx-ax, 0.2*vx), Math.min(vy-ay, 0.2*vy));
+			cfs = (int) Math.min(Math.min(0.2*limx, limx-ax), Math.min(0.2*limy, limy-ay));
 			
 			// set state flags
 			ready = true;
@@ -90,7 +90,7 @@ public class CropController extends Controller {
 			// define crop frame
 			// no handling for y coord because of the assumption that clicks cannot come from outside the frame
 			if (ay < y) {
-				cfs = Math.min(y-ay, vx-ax);
+				cfs = Math.min(y-ay, limx-ax);
 			} else if (ay > y) {
 				cfs = Math.min(ay-y, ax);
 				ax = ax-cfs;
@@ -134,8 +134,8 @@ public class CropController extends Controller {
 		
 		// debug trace
 		Debug.trace("Crop controller recieved process instruction");
-
-		// crop video
+		
+		// if the crop frame is defined
 		if (ready) {
 			
 			// crop video
@@ -145,7 +145,7 @@ public class CropController extends Controller {
 			display.clearGeometry();
 			display.setFrame(video.getFrame(frameIndex));
 		
-		// report undefined crop frame 
+		// else report undefined crop frame 
 		} else {
 			Debug.trace("Error: Crop controller crop frame is undefined");
 			display.setMessage("Error: Cannot crop when crop frame is undefined");
@@ -164,8 +164,8 @@ public class CropController extends Controller {
 		
 		// set the video
 		this.video = video;
-		vy = video.getHeight();
-		vx = video.getWidth();
+		limy = video.getHeight();
+		limx = video.getWidth();
 		
 		// update display
 		display.setTitle("MotionVDL Cropping stage");

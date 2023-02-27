@@ -208,7 +208,26 @@ public class Label {
 		// debug trace
 		Debug.trace("Encoded label");
 		
-		// TODO implement label export
-		throw new UnsupportedOperationException("Label encode is unimplemented");
+		// setup metadata
+		int z = this.frames;   // The depth of the label buffer
+		int x = this.capacity; // The width of the label buffer
+		
+		// throw invalid size
+		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The video buffer is too large to export");
+		
+		// encode metadata
+		byte[] encoding = new byte[2 + 2*z*x];
+		encoding[0] = (byte) z;
+		encoding[1] = (byte) x;
+		
+		// encode each point in 2 bytes
+		for (int i=0; i < z; i++) {
+			for (int j=0; j < x; j++) {
+				encoding[2 + i*x*2 + j*2 + 0] = (byte) this.buffer[i][j].getX();
+				encoding[2 + i*x*2 + j*2 + 1] = (byte) this.buffer[i][j].getY();
+			}
+		}
+		
+		return encoding;
 	}
 }

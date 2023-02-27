@@ -71,12 +71,7 @@ public class TestMVDL {
 		controller.complete(); // try to export files, should be blocked because of the incomplete label
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place a point
 		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // try placing a 12th point on the last frame
-		try {
-			controller.complete(); // try to export files, expect unsupported exception until implemented
-			Assertions.fail(); // fail if there is no exception from controller
-		} catch (UnsupportedOperationException e) {
-			Debug.trace(e.getMessage());
-		}
+		controller.complete(); // export the byte encodings of the video and label
 	}
 	
 	
