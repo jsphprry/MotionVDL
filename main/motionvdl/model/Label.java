@@ -200,15 +200,15 @@ public class Label {
 	
 	
 	/**
-	 * Export the label
-	 * @return The exported label
+	 * Encode the label as a byte array
+	 * @return The encoded label
 	 */
-	public boolean[] export() {
+	public byte[] encode() {
 		
 		// debug trace
-		Debug.trace("Exported label");
+		Debug.trace("Encoded label");
 		
 		// TODO implement label export
-		throw new UnsupportedOperationException("Error: Label export is unimplemented");
+		throw new UnsupportedOperationException("Label encode is unimplemented");
 	}
 }

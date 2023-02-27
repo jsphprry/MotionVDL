@@ -10,13 +10,20 @@ import motionvdl.model.Video;
  */
 public class CropController extends Controller {
 	
-	// variables
-	private int originX;
-	private int originY;
-	private int targetX;
-	private int targetY;
-	private boolean originSet;
-	private boolean targetSet;
+	// crop frame origin coordinate
+	private int ax;
+	private int ay;
+	
+	// frame limits
+	private int vx;
+	private int vy;
+	
+	// crop frame size
+	private int cfs;
+	
+	// state flags
+	private boolean ready;
+	private boolean adjusted;
 	
 	/**
 	 * Constructor for CropController instance
@@ -35,8 +42,8 @@ public class CropController extends Controller {
 		
 		// setup variables
 		this.frameIndex = 0;
-		this.originSet = false;
-		this.targetSet = false;
+		ready = false;
+		adjusted = false;
 	}
 	
 	
@@ -51,52 +58,70 @@ public class CropController extends Controller {
 		// debug trace
 		Debug.trace("Crop controller recieved point instruction");
 		
+		
 		// first click
-		// if neither target or origin are set
-		if (!this.originSet && !this.targetSet) {
+		if (!ready && !adjusted) {
 			
-			// set origin coordinate
-			this.originX = x;
-			this.originY = y;
-			this.originSet = true;
-
+			// debug trace
+			Debug.trace("Crop controller ready");
+			
+			// define crop frame
+			ax = x;
+			ay = y;
+			cfs = (int) Math.min(Math.min(vx-ax, 0.2*vx), Math.min(vy-ay, 0.2*vy));
+			
+			// set state flags
+			ready = true;
+			adjusted = false;
+			
 			// update display
-			this.display.setPoint(this.originX, this.originY);
+			display.clearGeometry();
+			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
+			display.drawDiagonal(ax, ay);
+			display.drawPoint(ax, ay);
+		
 		
 		// second click
-		// if the origin is set and the target is not
-		} else if (this.originSet && !this.targetSet) {
+		} else if (ready && !adjusted) {
 			
-			// set target coordinate
-			this.targetX = x;
-			this.targetY = y;
-			this.targetSet = true;
+			// debug trace
+			Debug.trace("Crop controller ready and adjusted");
 			
-			// handle target-not-in-fourth-quadrant-of-origin case
-			int tempOriginX = Math.min(this.originX, this.targetX);
-			int tempOriginY = Math.min(this.originY, this.targetY);
-			int tempTargetX = Math.max(this.originX, this.targetX);
-			int tempTargetY = Math.max(this.originY, this.targetY);
-			this.originX = tempOriginX;
-			this.originY = tempOriginY;
-			this.targetX = tempTargetX;
-			this.targetY = tempTargetY;
+			// define crop frame
+			// no handling for y coord because of the assumption that clicks cannot come from outside the frame
+			if (ay < y) {
+				cfs = Math.min(y-ay, vx-ax);
+			} else if (ay > y) {
+				cfs = Math.min(ay-y, ax);
+				ax = ax-cfs;
+				ay = ay-cfs;
+			} else {
+				display.setMessage("Crop frame cannot have zero size");
+			}
+			
+			// set state flags
+			ready = true;
+			adjusted = true;
 			
 			// update display
-			this.display.clearPoints();
-			this.display.setPoint(this.originX, this.originY);
-			this.display.setPoint(this.targetX, this.targetY);
-		
+			display.clearGeometry();
+			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
+			display.drawDiagonal(ax, ay);
+			display.drawPoint(ax, ay);
+			
+			
 		// third click
-		// if both are set then clear both coordinates
 		} else {
 			
-			// unset coordinates
-			this.originSet = false;
-			this.targetSet = false;
+			// debug trace
+			Debug.trace("Crop controller clear frame");
+			
+			// set state flags
+			ready = false;
+			adjusted = false;
 			
 			// update display
-			this.display.clearPoints();
+			display.clearGeometry();
 		}
 	}
 	
@@ -109,15 +134,22 @@ public class CropController extends Controller {
 		
 		// debug trace
 		Debug.trace("Crop controller recieved process instruction");
-		
-		// throw undefined crop frame
-		if (this.originSet == false || this.targetSet == false) throw new IllegalStateException("Error: Undefined crop frame");
-		
+
 		// crop video
-		this.video = this.video.crop(this.originX, this.originY, (this.targetX - this.originX), (this.targetY - this.originY));
+		if (ready) {
+			
+			// crop video
+			video = video.crop(ax, ay, cfs, cfs);
+			
+			// update display
+			display.clearGeometry();
+			display.setFrame(video.getFrame(frameIndex));
 		
-		// update display
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		// report undefined crop frame 
+		} else {
+			Debug.trace("Error: Crop controller crop frame is undefined");
+			display.setMessage("Error: Cannot crop when crop frame is undefined");
+		}
 	}
 	
 	
@@ -132,9 +164,11 @@ public class CropController extends Controller {
 		
 		// set the video
 		this.video = video;
+		vy = video.getHeight();
+		vx = video.getWidth();
 		
 		// update display
-		this.display.setTitle("MotionVDL Cropping stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		display.setTitle("MotionVDL Cropping stage");
+		display.setFrame(video.getFrame(frameIndex));
 	}
 }

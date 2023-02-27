@@ -1,5 +1,9 @@
 package motionvdl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +35,7 @@ public class TestMVDL {
 		
 		// setup components
 		Video noise = Video.noise(250,200,50);
-		Display display = new Display();
+		Display display = new Display(350,400);
 		MainController controller = new MainController(display);
 		
 		// start the main controller
@@ -84,7 +88,7 @@ public class TestMVDL {
 		
 		// setup components
 		Video noise = Video.noise(250,200,50);
-		Display display = new Display();
+		Display display = new Display(350, 400);
 		Controller controller = new CropController(null, display);
 		
 		// start controller
@@ -114,8 +118,8 @@ public class TestMVDL {
 	public void testScale() {
 		
 		// setup components
-		Video noise = Video.noise(250,200,50);
-		Display display = new Display();
+		Video noise = Video.noise(50,20,50);
+		Display display = new Display(350, 400);
 		Controller controller = new ScaleController(null, display);
 		
 		// start controller
@@ -142,7 +146,7 @@ public class TestMVDL {
 		
 		// setup components
 		Video noise = Video.noise(250,200,50);
-		Display display = new Display();
+		Display display = new Display(350, 400);
 		Controller controller = new ColorController(null, display);
 		
 		// start controller
@@ -169,7 +173,7 @@ public class TestMVDL {
 		
 		// setup components
 		Video noise = Video.noise(250,200,50);
-		Display display = new Display();
+		Display display = new Display(350, 400);
 		Controller controller = new LabelController(null, display);
 		
 		// start controller
@@ -188,6 +192,25 @@ public class TestMVDL {
 			Assertions.fail(); // fail if no null pointer
 		} catch (UnsupportedOperationException e) {
 			// do nothing
+		}
+	}
+	
+	
+	@Test
+	public void testExport() {
+		Video video = Video.noise(25, 25, 25);
+		video = video.greyScale();
+		byte[] encoding = video.encode();
+		
+		// write encoding to file
+		try (FileOutputStream stream = new FileOutputStream("video.mvdl")) {
+		    stream.write(encoding);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

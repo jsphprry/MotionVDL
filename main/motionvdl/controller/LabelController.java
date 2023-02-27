@@ -1,5 +1,9 @@
 package motionvdl.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Label;
@@ -55,7 +59,7 @@ public class LabelController extends Controller {
 			this.label.push(this.frameIndex, x, y);
 			
 			// update display
-			this.display.setPoint(x, y);
+			this.display.drawPoint(x, y);
 			
 			// if the frame label is now full display next frame
 			if (this.label.frameFull(this.frameIndex)) this.frameUp();
@@ -85,8 +89,8 @@ public class LabelController extends Controller {
 			this.label.delete(this.frameIndex);
 			
 			// update display
-			this.display.clearPoints();
-			this.display.setPoints(this.label.getPoints(this.frameIndex));
+			this.display.clearGeometry();
+			this.display.drawPoints(this.label.getPoints(this.frameIndex));
 		
 		// if the frame label is empty
 		} else {
@@ -98,6 +102,8 @@ public class LabelController extends Controller {
 	/**
 	 * Check if the label is complete then either export the 
 	 * labelled video or display a message describing the problem.
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
 	@Override
 	public void complete() {
@@ -111,22 +117,34 @@ public class LabelController extends Controller {
 			// debug trace
 			Debug.trace("Label is completely full");
 			
-			// encode
-			boolean[] encodedVideo = this.video.export();
-			boolean[] encodedLabel = this.label.export();
+			// encode video and label
+			byte[] encodedVideo = this.video.encode();
+			byte[] encodedLabel = this.label.encode();
 			
 			// write to file
-			// close the program
-			throw new UnsupportedOperationException("Error: LabelController complete method is unimplemented");
+			try {
+				
+				// debug trace
+				Debug.trace("Exported video.mvdl, label.mvdl");
+				
+				// write bytes to output streams
+				FileOutputStream videoStream = new FileOutputStream("video.mvdl");
+				FileOutputStream labelStream = new FileOutputStream("label.mvdl");
+				videoStream.write(encodedVideo);
+				labelStream.write(encodedLabel);
+				videoStream.close();
+				labelStream.close();
 			
-		// otherwise display a message
+			// report error
+			} catch (Exception e) {
+				Debug.trace("Error: "+e.getMessage());
+				this.display.setMessage("Error: Problem encountered when writing to file");
+			}
+			
+		// report error
 		} else {
-			
-			// update display
-			this.display.setMessage("The label must be full to export to file");
-			
-			// debug trace
-			Debug.trace("Label is not completely full");
+			Debug.trace("Error: Label is not completely full");
+			this.display.setMessage("Error: The label must be full to export to file");
 		}
 	}
 	
@@ -144,8 +162,8 @@ public class LabelController extends Controller {
 		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
 		
 		// update display
-		this.display.clearPoints();
-		this.display.setPoints(this.label.getPoints(this.frameIndex));
+		this.display.clearGeometry();
+		this.display.drawPoints(this.label.getPoints(this.frameIndex));
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	
@@ -163,8 +181,8 @@ public class LabelController extends Controller {
 		this.frameIndex = Math.max(0, frameIndex - 1);
 		
 		// update display
-		this.display.clearPoints();
-		this.display.setPoints(this.label.getPoints(this.frameIndex));
+		this.display.clearGeometry();
+		this.display.drawPoints(this.label.getPoints(this.frameIndex));
 		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	

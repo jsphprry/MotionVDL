@@ -66,7 +66,7 @@ public class ColorController extends Controller {
 	
 	
 	/**
-	 * Pass the currently displayed video back to the main controller
+	 * Pass the video back to the main controller
 	 */
 	@Override
 	public void complete() {

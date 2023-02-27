@@ -56,9 +56,14 @@ public class ScaleController extends Controller {
 			// update the display
 			this.display.setFrame(this.video.getFrame(this.frameIndex));
 
-		// if the target is invalid
+		// if the target is invalid report errors
 		} catch (IllegalArgumentException e) {
-			this.display.setMessage(e.getMessage());
+			
+			// debug trace
+			Debug.trace("Error: Scale controller got invalid target resolution");
+			
+			// update display
+			this.display.setMessage("Error: Invalid target resolution");
 		}
 	}
 	
