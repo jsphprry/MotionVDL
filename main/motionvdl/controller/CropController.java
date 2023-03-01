@@ -10,7 +10,7 @@ import motionvdl.model.Video;
  */
 public class CropController extends Controller {
 	
-	// variables
+	// crop frame variables
 	private int ax;   // top left point x axis
 	private int ay;   // top left point y axis
 	private int cfs;  // edge size
@@ -26,21 +26,21 @@ public class CropController extends Controller {
 	 */
 	public CropController(MainController mainController, Display mainDisplay) {
 		
-		// setup metadata
+		// setup labels
 		displayTitle = "Cropping stage";
-		debugTitle = "CropController";
+		debugTitle = "Crop controller";
 		exportLocation = "videoS1";
 		
 		// setup components
 		linkedController = mainController;
 		display = mainDisplay;
 		
-		// setup variables
+		// setup crop frame variables
 		ready = false;
 		adjusted = false;
 		
 		// debug trace
-		Debug.trace("Created "+debugTitle);
+		Debug.trace("Created CropController '"+debugTitle+"'");
 	}
 	
 	
@@ -58,7 +58,7 @@ public class CropController extends Controller {
 		// first click
 		if (!ready && !adjusted) {
 			
-			// ready crop frame
+			// suggest crop frame
 			ax = x;
 			ay = y;
 			cfs = (int) Math.min(Math.min(0.2*limx, limx-ax), Math.min(0.2*limy, limy-ay));
@@ -78,31 +78,37 @@ public class CropController extends Controller {
 		// second click
 		} else if (ready && !adjusted) {
 			
-			// adjust crop frame
-			// no handling for y coord because of the assumption that clicks cannot come from outside the frame
-			if (ay < y) {
-				cfs = Math.min(y-ay, limx-ax);
-			} else if (ay > y) {
-				cfs = Math.min(ay-y, ax);
-				ax = ax-cfs;
-				ay = ay-cfs;
-			} else {
+			// adjust crop frame 
+			// if the second click is valid
+			if (ay != y) {
 				
-				// update display
-				Debug.trace(debugTitle+" ignores click instruction, crop frame cannot have zero size");
+				// if the second click is below the first
+				if (ay < y) {
+					cfs = Math.min(y-ay, limx-ax);
+				
+				// if the second click is above the first
+				} else if (ay > y) {
+					cfs = Math.min(ay-y, ax);
+					ax = ax-cfs;
+					ay = ay-cfs;
+				}
+				
+				// set flags
+				Debug.trace(debugTitle+" set ready and adjusted");
+				ready = true;
+				adjusted = true;
+				
+				// draw crop frame
+				display.clearGeometry();
+				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
+				display.drawDiagonal(ax, ay);
+				display.drawPoint(ax, ay);
+			
+			// else warn
+			} else {
+				Debug.trace(debugTitle+" ignored click instruction, crop frame cannot have zero size");
 				display.setMessage("Warning! Crop frame cannot have zero size");
 			}
-			
-			// set flags
-			Debug.trace(debugTitle+" set ready and adjusted");
-			ready = true;
-			adjusted = true;
-			
-			// draw crop frame
-			display.clearGeometry();
-			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
-			display.drawDiagonal(ax, ay);
-			display.drawPoint(ax, ay);
 			
 			
 		// third click
@@ -134,13 +140,13 @@ public class CropController extends Controller {
 			// crop buffered video
 			buffer = buffer.crop(ax, ay, cfs, cfs);
 			
-			// clear crop frame and update frame
+			// update display
 			display.clearGeometry();
 			display.setFrame(buffer.getFrame(frameIndex));
 		
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" controller ignores process instruction");
+			Debug.trace(debugTitle+" controller ignored process instruction");
 			display.setMessage("Warning! Not ready to crop");
 		}
 	}

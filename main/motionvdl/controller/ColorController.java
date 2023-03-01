@@ -10,11 +10,11 @@ import motionvdl.model.Video;
  */
 public class ColorController extends Controller {
 	
-	// 
+	// video work buffer
 	private Video workBuffer;
 	
 	/**
-	 * Constructor for ColorController instance
+	 * Construct color controller
 	 * @param mainController The main controller
 	 * @param mainDisplay The display
 	 */
@@ -22,7 +22,7 @@ public class ColorController extends Controller {
 		
 		// setup metadata
 		displayTitle = "Color stage";
-		debugTitle = "ColorController";
+		debugTitle = "Color controller";
 		exportLocation = "videoS3";
 		
 		// setup components
@@ -30,7 +30,7 @@ public class ColorController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created "+debugTitle);
+		Debug.trace("Created ColorController '"+debugTitle+"'");
 	}
 	
 	
@@ -47,10 +47,10 @@ public class ColorController extends Controller {
 		if (workBuffer == null) workBuffer = buffer.greyscale();
 		
 		// swap video buffers
-		Debug.trace(debugTitle+" swapped video buffers");
 		Video temp = buffer;
 		buffer = workBuffer;
 		workBuffer = temp;
+		Debug.trace(debugTitle+" displaying "+((buffer.greyscale) ? "greyscale" : "color")+" video");
 		
 		// update display
 		display.setFrame(buffer.getFrame(frameIndex));

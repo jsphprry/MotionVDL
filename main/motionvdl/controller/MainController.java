@@ -25,8 +25,8 @@ public class MainController extends Controller {
 	 */
 	public MainController(Display mainDisplay) {
 		
-		// setup metadata
-		debugTitle = "MainController";
+		// setup labels
+		debugTitle = "Main controller";
 		
 		// setup components
 		subcontrollers = new Controller[N_STAGES];
@@ -39,7 +39,7 @@ public class MainController extends Controller {
 		stage = -1;
 		
 		// debug trace
-		Debug.trace("Created "+debugTitle);
+		Debug.trace("Created MainController '"+debugTitle+"'");
 	}
 	
 	

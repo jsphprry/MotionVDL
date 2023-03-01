@@ -10,10 +10,10 @@ import motionvdl.model.Video;
  */
 public abstract class Controller {
 	
-	// metadata
-	protected String displayTitle = "MotionVDL"; // controller title on display
-	protected String debugTitle = "[unnamed]";   // controller title in debug output
-	protected String exportLocation = "video";   // filesystem location for exported video
+	// labels
+	protected String displayTitle = "MotionVDL";  // controller title on display
+	protected String debugTitle = "[controller]"; // controller title in debug output
+	protected String exportLocation = "video";    // filesystem location for exported encodings
 	
 	// components
 	protected Controller linkedController;
@@ -25,6 +25,7 @@ public abstract class Controller {
 	
 	/**
 	 * Default controller click instruction
+	 * No axis limits because of the assumption that clicks cannot come from outside the frame
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
 	 */
@@ -32,7 +33,7 @@ public abstract class Controller {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved click instruction");
-		Debug.trace(debugTitle+" ignores click instruction");
+		Debug.trace(debugTitle+" ignored click instruction");
 	}
 	
 	
@@ -43,7 +44,7 @@ public abstract class Controller {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved process instruction");
-		Debug.trace(debugTitle+" ignores process instruction");
+		Debug.trace(debugTitle+" ignored process instruction");
 	}
 	
 	

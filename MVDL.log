@@ -1,645 +1,634 @@
-2023/03/01 | 20:47:02 | Created log file
-2023/03/01 | 20:47:02 | Created video of noise
-2023/03/01 | 20:47:02 | Created CropController
-2023/03/01 | 20:47:02 | Created ScaleController
-2023/03/01 | 20:47:02 | Created ColorController
-2023/03/01 | 20:47:02 | Created LabelController
-2023/03/01 | 20:47:02 | Created MainController
-2023/03/01 | 20:47:02 | MainController recieved pass instruction
-2023/03/01 | 20:47:02 | CropController recieved pass instruction
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | CropController recieved click instruction
-2023/03/01 | 20:47:02 | CropController set ready
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | CropController recieved click instruction
-2023/03/01 | 20:47:02 | CropController set ready and adjusted
-2023/03/01 | 20:47:02 | MainController recieved process instruction
-2023/03/01 | 20:47:02 | CropController recieved process instruction
-2023/03/01 | 20:47:02 | Cropped video resolution from 250x200 to 100x100
-2023/03/01 | 20:47:02 | MainController recieved complete instruction
-2023/03/01 | 20:47:02 | CropController recieved complete instruction
-2023/03/01 | 20:47:02 | Encoded video as byte sequence
-2023/03/01 | 20:47:02 | Exported byte sequence to videoS1.mvdl
-2023/03/01 | 20:47:02 | MainController recieved pass instruction
-2023/03/01 | 20:47:02 | ScaleController recieved pass instruction
-2023/03/01 | 20:47:02 | MainController recieved process instruction
-2023/03/01 | 20:47:02 | ScaleController recieved process instruction
-2023/03/01 | 20:47:02 | Downscaled video resolution from 100x100 to 50x50
-2023/03/01 | 20:47:02 | MainController recieved complete instruction
-2023/03/01 | 20:47:02 | ScaleController recieved complete instruction
-2023/03/01 | 20:47:02 | Encoded video as byte sequence
-2023/03/01 | 20:47:02 | Exported byte sequence to videoS2.mvdl
-2023/03/01 | 20:47:02 | MainController recieved pass instruction
-2023/03/01 | 20:47:02 | ColorController recieved pass instruction
-2023/03/01 | 20:47:02 | MainController recieved process instruction
-2023/03/01 | 20:47:02 | ColorController recieved process instruction
-2023/03/01 | 20:47:02 | Converted video to greyscale
-2023/03/01 | 20:47:02 | ColorController swapped video buffers
-2023/03/01 | 20:47:02 | MainController recieved process instruction
-2023/03/01 | 20:47:02 | ColorController recieved process instruction
-2023/03/01 | 20:47:02 | ColorController swapped video buffers
-2023/03/01 | 20:47:02 | MainController recieved process instruction
-2023/03/01 | 20:47:02 | ColorController recieved process instruction
-2023/03/01 | 20:47:02 | ColorController swapped video buffers
-2023/03/01 | 20:47:02 | MainController recieved complete instruction
-2023/03/01 | 20:47:02 | ColorController recieved complete instruction
-2023/03/01 | 20:47:02 | Encoded video as byte sequence
-2023/03/01 | 20:47:02 | Exported byte sequence to videoS3.mvdl
-2023/03/01 | 20:47:02 | MainController recieved pass instruction
-2023/03/01 | 20:47:02 | LabelController recieved pass instruction
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 0
-2023/03/01 | 20:47:02 | Checking if label stack 0 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 0
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 1
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 1
-2023/03/01 | 20:47:02 | Checking if label stack 1 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 1
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 2
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 2
-2023/03/01 | 20:47:02 | Checking if label stack 2 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 2
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 3
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 3
-2023/03/01 | 20:47:02 | Checking if label stack 3 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 3
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 4
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 4
-2023/03/01 | 20:47:02 | Checking if label stack 4 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 4
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 5
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 5
-2023/03/01 | 20:47:02 | Checking if label stack 5 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 5
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 6
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 6
-2023/03/01 | 20:47:02 | Checking if label stack 6 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 6
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 7
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 7
-2023/03/01 | 20:47:02 | Checking if label stack 7 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 7
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 8
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 8
-2023/03/01 | 20:47:02 | Checking if label stack 8 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 8
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 9
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (0,0) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (1,1) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (2,2) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (3,3) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (4,4) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (5,5) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (6,6) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (7,7) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (8,8) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (9,9) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | MainController recieved click instruction
-2023/03/01 | 20:47:02 | LabelController recieved click instruction
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (false)
-2023/03/01 | 20:47:02 | Pushed point (10,10) to label stack 9
-2023/03/01 | 20:47:02 | Checking if label stack 9 is full (true)
-2023/03/01 | 20:47:02 | Found 11 points on label stack 9
-2023/03/01 | 20:47:02 | LabelController recieved nextFrame instruction
-2023/03/01 | 20:47:02 | LabelController set to frame 9
-2023/03/01 | 20:47:02 | MainController recieved complete instruction
-2023/03/01 | 20:47:02 | LabelController recieved complete instruction
-2023/03/01 | 20:47:02 | Checking if the label is complete
-2023/03/01 | 20:47:02 | Checking if label stack 0 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 1 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 2 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 3 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 4 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 5 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 6 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 7 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 8 is empty (false)
-2023/03/01 | 20:47:02 | Checking if label stack 9 is empty (false)
-2023/03/01 | 20:47:02 | Label is complete
-2023/03/01 | 20:47:02 | Encoded label as byte sequence
-2023/03/01 | 20:47:02 | Exported byte sequence to labelS4.mvdl
+2023/03/01 | 23:49:44 | Created log file
+2023/03/01 | 23:49:44 | Created noise video
+2023/03/01 | 23:49:44 | Created CropController 'Crop controller'
+2023/03/01 | 23:49:44 | Created ScaleController 'Scale controller'
+2023/03/01 | 23:49:44 | Created ColorController 'Color controller'
+2023/03/01 | 23:49:44 | Created LabelController 'Label controller'
+2023/03/01 | 23:49:44 | Created MainController 'Main controller'
+2023/03/01 | 23:49:44 | Main controller recieved pass instruction
+2023/03/01 | 23:49:44 | Crop controller recieved pass instruction
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Crop controller recieved click instruction
+2023/03/01 | 23:49:44 | Crop controller set ready
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Crop controller recieved click instruction
+2023/03/01 | 23:49:44 | Crop controller set ready and adjusted
+2023/03/01 | 23:49:44 | Main controller recieved process instruction
+2023/03/01 | 23:49:44 | Crop controller recieved process instruction
+2023/03/01 | 23:49:44 | Video resolution cropped from 250x200 to 100x100
+2023/03/01 | 23:49:44 | Main controller recieved complete instruction
+2023/03/01 | 23:49:44 | Crop controller recieved complete instruction
+2023/03/01 | 23:49:44 | Video encoded as byte sequence
+2023/03/01 | 23:49:44 | Encoding exported to videoS1.mvdl
+2023/03/01 | 23:49:44 | Main controller recieved pass instruction
+2023/03/01 | 23:49:44 | Scale controller recieved pass instruction
+2023/03/01 | 23:49:44 | Main controller recieved process instruction
+2023/03/01 | 23:49:44 | Scale controller recieved process instruction
+2023/03/01 | 23:49:44 | Video resolution downscaled from 100x100 to 50x50
+2023/03/01 | 23:49:44 | Main controller recieved complete instruction
+2023/03/01 | 23:49:44 | Scale controller recieved complete instruction
+2023/03/01 | 23:49:44 | Video encoded as byte sequence
+2023/03/01 | 23:49:44 | Encoding exported to videoS2.mvdl
+2023/03/01 | 23:49:44 | Main controller recieved pass instruction
+2023/03/01 | 23:49:44 | Color controller recieved pass instruction
+2023/03/01 | 23:49:44 | Main controller recieved process instruction
+2023/03/01 | 23:49:44 | Color controller recieved process instruction
+2023/03/01 | 23:49:44 | Video converted to greyscale
+2023/03/01 | 23:49:44 | Color controller displaying greyscale video
+2023/03/01 | 23:49:44 | Main controller recieved process instruction
+2023/03/01 | 23:49:44 | Color controller recieved process instruction
+2023/03/01 | 23:49:44 | Color controller displaying color video
+2023/03/01 | 23:49:44 | Main controller recieved process instruction
+2023/03/01 | 23:49:44 | Color controller recieved process instruction
+2023/03/01 | 23:49:44 | Color controller displaying greyscale video
+2023/03/01 | 23:49:44 | Main controller recieved complete instruction
+2023/03/01 | 23:49:44 | Color controller recieved complete instruction
+2023/03/01 | 23:49:44 | Video encoded as byte sequence
+2023/03/01 | 23:49:44 | Encoding exported to videoS3.mvdl
+2023/03/01 | 23:49:44 | Main controller recieved pass instruction
+2023/03/01 | 23:49:44 | Label controller recieved pass instruction
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (0 points)
+2023/03/01 | 23:49:44 | Label pushed point (0,0) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (1 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (1 points)
+2023/03/01 | 23:49:44 | Label pushed point (1,1) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (2 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (2 points)
+2023/03/01 | 23:49:44 | Label pushed point (2,2) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (3 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (3 points)
+2023/03/01 | 23:49:44 | Label pushed point (3,3) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (4 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (4 points)
+2023/03/01 | 23:49:44 | Label pushed point (4,4) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (5 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (5 points)
+2023/03/01 | 23:49:44 | Label pushed point (5,5) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (6 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (6 points)
+2023/03/01 | 23:49:44 | Label pushed point (6,6) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (7 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (7 points)
+2023/03/01 | 23:49:44 | Label pushed point (7,7) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (8 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (8 points)
+2023/03/01 | 23:49:44 | Label pushed point (8,8) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (9 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (9 points)
+2023/03/01 | 23:49:44 | Label pushed point (9,9) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is not full (10 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 0 is not full (10 points)
+2023/03/01 | 23:49:44 | Label pushed point (10,10) to stack 0
+2023/03/01 | 23:49:44 | Label stack 0 is full (11 points)
+2023/03/01 | 23:49:44 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:44 | Label controller set to frame 1
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (0 points)
+2023/03/01 | 23:49:44 | Label pushed point (0,0) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (1 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (1 points)
+2023/03/01 | 23:49:44 | Label pushed point (1,1) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (2 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (2 points)
+2023/03/01 | 23:49:44 | Label pushed point (2,2) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (3 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (3 points)
+2023/03/01 | 23:49:44 | Label pushed point (3,3) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (4 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (4 points)
+2023/03/01 | 23:49:44 | Label pushed point (4,4) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (5 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (5 points)
+2023/03/01 | 23:49:44 | Label pushed point (5,5) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (6 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (6 points)
+2023/03/01 | 23:49:44 | Label pushed point (6,6) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (7 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (7 points)
+2023/03/01 | 23:49:44 | Label pushed point (7,7) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (8 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (8 points)
+2023/03/01 | 23:49:44 | Label pushed point (8,8) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (9 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (9 points)
+2023/03/01 | 23:49:44 | Label pushed point (9,9) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is not full (10 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 1 is not full (10 points)
+2023/03/01 | 23:49:44 | Label pushed point (10,10) to stack 1
+2023/03/01 | 23:49:44 | Label stack 1 is full (11 points)
+2023/03/01 | 23:49:44 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:44 | Label controller set to frame 2
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (0 points)
+2023/03/01 | 23:49:44 | Label pushed point (0,0) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (1 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (1 points)
+2023/03/01 | 23:49:44 | Label pushed point (1,1) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (2 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (2 points)
+2023/03/01 | 23:49:44 | Label pushed point (2,2) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (3 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (3 points)
+2023/03/01 | 23:49:44 | Label pushed point (3,3) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (4 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (4 points)
+2023/03/01 | 23:49:44 | Label pushed point (4,4) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (5 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (5 points)
+2023/03/01 | 23:49:44 | Label pushed point (5,5) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (6 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (6 points)
+2023/03/01 | 23:49:44 | Label pushed point (6,6) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (7 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (7 points)
+2023/03/01 | 23:49:44 | Label pushed point (7,7) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (8 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (8 points)
+2023/03/01 | 23:49:44 | Label pushed point (8,8) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (9 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (9 points)
+2023/03/01 | 23:49:44 | Label pushed point (9,9) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is not full (10 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 2 is not full (10 points)
+2023/03/01 | 23:49:44 | Label pushed point (10,10) to stack 2
+2023/03/01 | 23:49:44 | Label stack 2 is full (11 points)
+2023/03/01 | 23:49:44 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:44 | Label controller set to frame 3
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (0 points)
+2023/03/01 | 23:49:44 | Label pushed point (0,0) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (1 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (1 points)
+2023/03/01 | 23:49:44 | Label pushed point (1,1) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (2 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (2 points)
+2023/03/01 | 23:49:44 | Label pushed point (2,2) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (3 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (3 points)
+2023/03/01 | 23:49:44 | Label pushed point (3,3) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (4 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (4 points)
+2023/03/01 | 23:49:44 | Label pushed point (4,4) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (5 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (5 points)
+2023/03/01 | 23:49:44 | Label pushed point (5,5) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (6 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (6 points)
+2023/03/01 | 23:49:44 | Label pushed point (6,6) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (7 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (7 points)
+2023/03/01 | 23:49:44 | Label pushed point (7,7) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (8 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (8 points)
+2023/03/01 | 23:49:44 | Label pushed point (8,8) to stack 3
+2023/03/01 | 23:49:44 | Label stack 3 is not full (9 points)
+2023/03/01 | 23:49:44 | Main controller recieved click instruction
+2023/03/01 | 23:49:44 | Label controller recieved click instruction
+2023/03/01 | 23:49:44 | Label stack 3 is not full (9 points)
+2023/03/01 | 23:49:44 | Label pushed point (9,9) to stack 3
+2023/03/01 | 23:49:45 | Label stack 3 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 3 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 3
+2023/03/01 | 23:49:45 | Label stack 3 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 4
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 4 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 4
+2023/03/01 | 23:49:45 | Label stack 4 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 5
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 5 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 5
+2023/03/01 | 23:49:45 | Label stack 5 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 6
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 6 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 6
+2023/03/01 | 23:49:45 | Label stack 6 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 7
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 7 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 7
+2023/03/01 | 23:49:45 | Label stack 7 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 8
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 8 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 8
+2023/03/01 | 23:49:45 | Label stack 8 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 9
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (0 points)
+2023/03/01 | 23:49:45 | Label pushed point (0,0) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (1 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (1 points)
+2023/03/01 | 23:49:45 | Label pushed point (1,1) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (2 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (2 points)
+2023/03/01 | 23:49:45 | Label pushed point (2,2) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (3 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (3 points)
+2023/03/01 | 23:49:45 | Label pushed point (3,3) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (4 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (4 points)
+2023/03/01 | 23:49:45 | Label pushed point (4,4) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (5 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (5 points)
+2023/03/01 | 23:49:45 | Label pushed point (5,5) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (6 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (6 points)
+2023/03/01 | 23:49:45 | Label pushed point (6,6) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (7 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (7 points)
+2023/03/01 | 23:49:45 | Label pushed point (7,7) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (8 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (8 points)
+2023/03/01 | 23:49:45 | Label pushed point (8,8) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (9 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (9 points)
+2023/03/01 | 23:49:45 | Label pushed point (9,9) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is not full (10 points)
+2023/03/01 | 23:49:45 | Main controller recieved click instruction
+2023/03/01 | 23:49:45 | Label controller recieved click instruction
+2023/03/01 | 23:49:45 | Label stack 9 is not full (10 points)
+2023/03/01 | 23:49:45 | Label pushed point (10,10) to stack 9
+2023/03/01 | 23:49:45 | Label stack 9 is full (11 points)
+2023/03/01 | 23:49:45 | Label controller recieved nextFrame instruction
+2023/03/01 | 23:49:45 | Label controller set to frame 9
+2023/03/01 | 23:49:45 | Main controller recieved complete instruction
+2023/03/01 | 23:49:45 | Label controller recieved complete instruction
+2023/03/01 | 23:49:45 | Label stack 0 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 1 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 2 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 3 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 4 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 5 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 6 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 7 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 8 is full (11 points)
+2023/03/01 | 23:49:45 | Label stack 9 is full (11 points)
+2023/03/01 | 23:49:45 | Label is complete
+2023/03/01 | 23:49:45 | Label encoded as byte sequence
+2023/03/01 | 23:49:45 | Encoding exported to labelS4.mvdl

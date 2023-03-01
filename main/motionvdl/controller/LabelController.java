@@ -26,7 +26,7 @@ public class LabelController extends Controller {
 		
 		// setup metadata
 		displayTitle = "Labelling stage";
-		debugTitle = "LabelController";
+		debugTitle = "Label controller";
 		exportLocation = "labelS4";
 		
 		// setup components
@@ -34,7 +34,7 @@ public class LabelController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created "+debugTitle);
+		Debug.trace("Created LabelController '"+debugTitle+"'");
 	}
 	
 	
@@ -61,7 +61,7 @@ public class LabelController extends Controller {
 		
 		// else warn that the frame is complete
 		} else {
-			Debug.trace("Label controller ignores point instruction");
+			Debug.trace("Label controller ignored point instruction");
 			display.setMessage("Warning! Frame is full");
 		}
 	}
@@ -104,12 +104,11 @@ public class LabelController extends Controller {
 		
 		// export the label if complete
 		if (label.checkComplete()) {
-			Debug.trace("Label is complete");
 			label.export(exportLocation);
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" ignores complete instruction");
+			Debug.trace(debugTitle+" ignored complete instruction");
 			display.setMessage("Warning! The label must be complete to export");
 		}
 	}

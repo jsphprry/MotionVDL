@@ -12,8 +12,8 @@ import motionvdl.Debug;
 public class Label extends Encoding {
 	
 	// metadata
-	private final int capacity; // maximum stack capacity
-	private final int length;   // the number of stacks
+	public final int capacity; // maximum stack capacity
+	public final int length;   // the number of stacks
 	
 	// point buffer
 	private Point[][] buffer; // underlying array
@@ -38,21 +38,18 @@ public class Label extends Encoding {
 	
 	/**
 	 * Get an array of the points on a stack
-	 * @param index The stack index
+	 * @param stack The stack index
 	 * @return Array of points on the frame
 	 */
-	public Point[] getPoints(int index) {
+	public Point[] getPoints(int stack) {
 		
 		// get stack size
-		int pointCount = sizes[index];
-		
-		// debug trace
-		Debug.trace("Found "+pointCount+" points on label stack "+index);
+		int size = sizes[stack];
 		
 		// setup array of points
-		Point[] framePoints = new Point[pointCount];
-		for (int i=0; i < pointCount; i++) {
-			framePoints[i] = buffer[index][i];
+		Point[] framePoints = new Point[size];
+		for (int i=0; i < size; i++) {
+			framePoints[i] = buffer[stack][i];
 		}
 		
 		return framePoints;
@@ -67,10 +64,10 @@ public class Label extends Encoding {
 	public Point pop(int stack) {
 		
 		// debug trace
-		Debug.trace("Popped point from label stack "+stack);
+		Debug.trace("Label popped point from stack "+stack);
 		
 		// throw empty stack
-		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is empty");
+		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Label stack "+stack+" is empty");
 		
 		// decrement stack size
 		int index = sizes[stack] - 1;
@@ -90,10 +87,10 @@ public class Label extends Encoding {
 	public void push(int stack, int x, int y) {
 		
 		// debug trace
-		Debug.trace("Pushed point ("+x+","+y+") to label stack "+stack);
+		Debug.trace(String.format("Label pushed point (%d,%d) to stack %d", x, y, stack));
 		
 		// throw full stack
-		if (sizes[stack] == capacity) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is full");
+		if (sizes[stack] == capacity) throw new ArrayIndexOutOfBoundsException("Error: Label stack "+stack+" is full");
 		
 		// increment stack size
 		int index = sizes[stack];
@@ -111,7 +108,7 @@ public class Label extends Encoding {
 	public void delete(int stack) {
 		
 		// debug trace
-		Debug.trace("Deleted point from label stack "+stack);
+		Debug.trace("Label deleted point from stack "+stack);
 		
 		// throw empty stack
 		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is empty");
@@ -129,10 +126,11 @@ public class Label extends Encoding {
 	public boolean stackFull(int stack) {
 		
 		// determine result
-		boolean full = (sizes[stack] == capacity);
+		int size = sizes[stack];
+		boolean full = (size == capacity);
 		
 		// debug trace
-		Debug.trace("Checking if label stack "+stack+" is full ("+full+")");
+		Debug.trace(String.format("Label stack "+stack+" is %sfull (%d points)", ((full) ? "" : "not "), size));
 		
 		return full;
 	}
@@ -140,16 +138,17 @@ public class Label extends Encoding {
 	
 	/**
 	 * Check if a stack is empty
-	 * @param index The stack index
+	 * @param stack The stack index
 	 * @return The result
 	 */
-	public boolean stackEmpty(int index) {
+	public boolean stackEmpty(int stack) {
 
 		// determine result
-		boolean empty = (sizes[index] == 0);
+		int size = sizes[stack];
+		boolean empty = (size == 0);
 		
 		// debug trace
-		Debug.trace("Checking if label stack "+index+" is empty ("+empty+")");
+		Debug.trace(String.format("Label stack "+stack+" is %sempty (%d points)", ((empty) ? "" : "not "), size));
 		
 		return empty;
 	}
@@ -161,14 +160,15 @@ public class Label extends Encoding {
 	 */
 	public boolean checkComplete() {
 		
-		// debug trace
-		Debug.trace("Checking if the label is complete");
-		
-		// determine if every frame stack is full
+		// determine if every stack is full
 		for (int i=0; i < length; i++) {
-			if (stackEmpty(i)) return false;
+			if (!stackFull(i)) {
+				Debug.trace("Label is incomplete");
+				return false;
+			}
 		}
-		
+
+		Debug.trace("Label is complete");
 		return true;
 	}
 	
@@ -180,14 +180,14 @@ public class Label extends Encoding {
 	public byte[] encode() {
 		
 		// debug trace
-		Debug.trace("Encoded label as byte sequence");
+		Debug.trace("Label encoded as byte sequence");
 		
 		// setup metadata
 		int z = length;   // The depth of the label buffer
 		int x = capacity; // The width of the label buffer
 		
 		// throw invalid size
-		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The video buffer is too large to export");
+		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The label buffer is too large to export");
 		
 		// encode metadata
 		byte[] encoding = new byte[2 + 2*z*x];

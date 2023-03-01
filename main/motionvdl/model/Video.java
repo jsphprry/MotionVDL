@@ -53,7 +53,7 @@ public class Video extends Encoding {
 	public static Video noise(int width, int height, int frames) {
 		
 		// debug trace
-		Debug.trace("Created video of noise");
+		Debug.trace("Created noise video");
 		
 		Color[][][] videoBuffer = new Color[frames][height][width];
 		
@@ -111,7 +111,7 @@ public class Video extends Encoding {
 	public Video crop(int origin_x, int origin_y, int target_w, int target_h) {
 		
 		// debug trace
-		Debug.trace(String.format("Cropped video resolution from %sx%s to %sx%s", width, height, target_w, target_h));
+		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, target_w, target_h));
 		
 		// throw invalid parameters
 		if (origin_x < 0 || origin_y < 0 || origin_x >= width || origin_y >= height) throw new IllegalArgumentException("Invalid origin coordinate");
@@ -143,7 +143,7 @@ public class Video extends Encoding {
 	public Video reduce(int target_w, int target_h) {
 		
 		// debug trace
-		Debug.trace(String.format("Downscaled video resolution from %sx%s to %sx%s", width, height, target_w, target_h));
+		Debug.trace(String.format("Video resolution downscaled from %sx%s to %sx%s", width, height, target_w, target_h));
 		
 		// throw invalid parameters
 		if (target_w < 0 || target_h < 0 || target_w > width || target_h > height) throw new IllegalArgumentException("Invalid target resolution");
@@ -201,7 +201,7 @@ public class Video extends Encoding {
 	public Video greyscale() {
 		
 		// debug trace
-		Debug.trace("Converted video to greyscale");
+		Debug.trace("Video converted to greyscale");
 		
 		// initialise work-buffer
 		Color[][][] workBuffer = new Color[length][height][width];
@@ -233,7 +233,7 @@ public class Video extends Encoding {
 	public byte[] encode() {
 		
 		// debug trace
-		Debug.trace("Encoded video as byte sequence");
+		Debug.trace("Video encoded as byte sequence");
 		
 		// setup metadata
 		int z = length;              // The length of the video buffer

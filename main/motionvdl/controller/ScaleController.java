@@ -22,7 +22,7 @@ public class ScaleController extends Controller {
 		
 		// setup metadata
 		displayTitle = "Scaling stage";
-		debugTitle = "ScaleController";
+		debugTitle = "Scale controller";
 		exportLocation = "videoS2";
 		
 		// setup components
@@ -30,7 +30,7 @@ public class ScaleController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created "+debugTitle);
+		Debug.trace("Created ScaleController '"+debugTitle+"'");
 	}
 	
 	
@@ -58,7 +58,7 @@ public class ScaleController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" ignores process instruction, invalid target resolution");
+			Debug.trace(debugTitle+" ignored process instruction, invalid target resolution");
 			display.setMessage("Warning! Invalid target resolution");
 		}
 	}

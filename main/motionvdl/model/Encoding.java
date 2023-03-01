@@ -37,7 +37,7 @@ public abstract class Encoding {
 			stream.close();
 			
 			// debug trace
-			Debug.trace("Exported byte sequence to "+filename);
+			Debug.trace("Encoding exported to "+filename);
 		
 		// catch to report error
 		} catch (Exception e) {
