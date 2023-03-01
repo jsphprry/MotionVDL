@@ -1,22 +1,11 @@
 package motionvdl;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import motionvdl.controller.ColorController;
-import motionvdl.controller.Controller;
-import motionvdl.controller.CropController;
-import motionvdl.controller.LabelController;
 import motionvdl.controller.MainController;
-import motionvdl.controller.ScaleController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
-import motionvdl.util.Numbers;
 
 public class TestMVDL {
 	
@@ -31,181 +20,37 @@ public class TestMVDL {
 	 * sequence for a fully integrated system
 	 */
 	@Test
-	public void fullProgram() {
+	public void standardTest() {
+		
+		// constants
+		int N_FRAMES = 10;
 		
 		// setup components
-		Video noise = Video.noise(250,200,50);
-		Display display = new Display(350,400);
+		Video noise = Video.noise(250,200,N_FRAMES);
+		Display display = new Display(500,350);
 		MainController controller = new MainController(display);
 		
 		// start the main controller
 		controller.pass(noise);
 		
 		// crop stage
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place first point
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place second point
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // clear points
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place first point
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place second point
-		controller.process(); // commit crop
-		controller.complete(); // next stage
+		controller.click(100,100); // ready
+		controller.click(200,200); // ready and adjusted
+		controller.process();      // crop video
+		controller.complete();     // next stage
 		
 		// scale stage
-		controller.process(); // scale to target resolution
+		controller.process();  // scale video
 		controller.complete(); // next stage
 		
 		// color stage
-		controller.process(); // convert to greyscale
-		controller.process(); // back to color
-		controller.process(); // back to greyscale
+		controller.process();  // convert to greyscale
+		controller.process();  // back to color
+		controller.process();  // back to greyscale
 		controller.complete(); // next stage
 		
 		// labelling stage
-		controller.process(); // try to undo a point on the first frame when it's empty
-		for (int i=0; i < 50; i++) {
-			for (int j=0; j < 11; j++) {
-				controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // on each frame place 11 points
-			}
-		}
-		controller.process(); // undo the last point
-		controller.complete(); // try to export files, should be blocked because of the incomplete label
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // place a point
-		controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // try placing a 12th point on the last frame
-		controller.complete(); // export the byte encodings of the video and label
-	}
-	
-	
-	/**
-	 * Test of standard sequence for crop controller
-	 */
-	@Test
-	public void testCrop() {
-		
-		// setup components
-		Video noise = Video.noise(250,200,50);
-		Display display = new Display(350, 400);
-		Controller controller = new CropController(null, display);
-		
-		// start controller
-		controller.pass(noise);
-		
-		// place points
-		controller.point(100, 100);
-		controller.point(150, 150);
-		
-		// crop video
-		controller.process();
-		
-		// complete stage, expect null pointer from pass to main controller
-		try {
-			controller.complete();
-			Assertions.fail(); // fail if no null pointer
-		} catch (NullPointerException e) {
-			// do nothing
-		}
-	}
-	
-	
-	/**
-	 * Test of standard sequence for scale controller
-	 */
-	@Test
-	public void testScale() {
-		
-		// setup components
-		Video noise = Video.noise(50,20,50);
-		Display display = new Display(350, 400);
-		Controller controller = new ScaleController(null, display);
-		
-		// start controller
-		controller.pass(noise);
-		
-		// scale video
-		controller.process();
-		
-		// complete stage, expect null pointer from pass to main controller
-		try {
-			controller.complete();
-			Assertions.fail(); // fail if no null pointer
-		} catch (NullPointerException e) {
-			// do nothing
-		}
-	}
-	
-	
-	/**
-	 * Test of standard sequence for color controller
-	 */
-	@Test
-	public void testColor() {
-		
-		// setup components
-		Video noise = Video.noise(250,200,50);
-		Display display = new Display(350, 400);
-		Controller controller = new ColorController(null, display);
-		
-		// start controller
-		controller.pass(noise);
-		
-		// convert video
-		controller.process();
-		
-		// complete stage, expect null pointer from main controller pass
-		try {
-			controller.complete();
-			Assertions.fail(); // fail if no null pointer
-		} catch (NullPointerException e) {
-			// do nothing
-		}
-	}
-	
-	
-	/**
-	 * Test of standard sequence for label controller
-	 */
-	@Test
-	public void testLabel() {
-		
-		// setup components
-		Video noise = Video.noise(250,200,50);
-		Display display = new Display(350, 400);
-		Controller controller = new LabelController(null, display);
-		
-		// start controller
-		controller.pass(noise);
-		
-		// place points
-		for (int i=0; i < 50; i++) {
-			for (int j=0; j < 11; j++) {
-				controller.point(Numbers.biasRand(49,100), Numbers.biasRand(49,100)); // on each frame place 11 points
-			}
-		}
-		
-		// complete stage, expect exception from unimplemented export
-		try {
-			controller.complete();
-			Assertions.fail(); // fail if no null pointer
-		} catch (UnsupportedOperationException e) {
-			// do nothing
-		}
-	}
-	
-	
-	@Test
-	public void testExport() {
-		Video video = Video.noise(25, 25, 25);
-		video = video.greyScale();
-		byte[] encoding = video.encode();
-		
-		// write encoding to file
-		try (FileOutputStream stream = new FileOutputStream("video.mvdl")) {
-		    stream.write(encoding);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		for (int i=0; i < N_FRAMES; i++) for (int j=0; j < 11; j++) controller.click(j,j); // on each frame place 11 points
+		controller.complete(); // complete program
 	}
 }

@@ -1,10 +1,7 @@
 package motionvdl.controller;
 
-import java.awt.Point;
-
 import motionvdl.Debug;
 import motionvdl.display.Display;
-import motionvdl.model.Video;
 
 /**
  * MotionVDL scaling subcontroller
@@ -13,72 +10,56 @@ import motionvdl.model.Video;
 public class ScaleController extends Controller {
 	
 	// constants
-	private static final int MAX_CFS = 255; // the maximum target resolution, frame should be square by this point
+	// the maximum target resolution, one value for x and y axis because video should be square by this point
+	private static final int MAX_RES = 255;
 	
 	/**
-	 * Constructor for ScaleController instance
+	 * Construct scale controller
 	 * @param mainController The main controller
-	 * @param display The display
+	 * @param mainDisplay The display
 	 */
-	public ScaleController(MainController mainController, Display display) {
+	public ScaleController(MainController mainController, Display mainDisplay) {
 		
-		// debug trace
-		Debug.trace("Created scale controller");
+		// setup metadata
+		displayTitle = "Scaling stage";
+		debugTitle = "ScaleController";
+		exportLocation = "videoS2";
 		
 		// setup components
-		this.linkedController = mainController;
-		this.display = display;
-		this.video = null;
+		linkedController = mainController;
+		display = mainDisplay;
 		
-		// setup variables
-		this.frameIndex = 0;
+		// debug trace
+		Debug.trace("Created "+debugTitle);
 	}
 	
 	
-	/*
+	/**
 	 * Scale the video
 	 */
 	@Override
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Scale controller recieved process instruction");
+		Debug.trace(debugTitle+" recieved process instruction");
 		
 		// get the target resolution
 		// placeholder
-		int target = 100;//this.display.getTarget();
+		int target = 50;//display.getTarget();
 		
 		// if the target is valid
-		if (target < Math.min(this.video.getWidth(), MAX_CFS) && target > 0) {
+		if (target > 0 && target < buffer.width && target < MAX_RES) {
 			
 			// scale the video
-			this.video = this.video.downScale(target, target);
+			buffer = buffer.reduce(target, target);
 			
 			// update the display
-			this.display.setFrame(this.video.getFrame(this.frameIndex));
+			display.setFrame(buffer.getFrame(frameIndex));
 			
-		// else report invalid target
+		// else warn
 		} else {
-			Debug.trace("Error: Scale controller invalid target resolution");
-			this.display.setMessage("Error: Invalid target resolution");
+			Debug.trace(debugTitle+" ignores process instruction, invalid target resolution");
+			display.setMessage("Warning! Invalid target resolution");
 		}
-	}
-	
-	
-	/**
-	 * Pass control to this controller
-	 */
-	@Override
-	public void pass(Video video) {
-		
-		// debug trace
-		Debug.trace("Scale controller recieved pass instruction");
-		
-		// set the video
-		this.video = video;
-		
-		// update display
-		this.display.setTitle("MotionVDL Scaling stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 }

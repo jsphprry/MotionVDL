@@ -5,104 +5,115 @@ import motionvdl.display.Display;
 import motionvdl.model.Video;
 
 /**
- * Superclass defining default controller behaviour
+ * MotionVDL controller superclass
  * @author Joseph
  */
 public abstract class Controller {
 	
+	// metadata
+	protected String displayTitle = "MotionVDL"; // controller title on display
+	protected String debugTitle = "[unnamed]";   // controller title in debug output
+	protected String exportLocation = "video";   // filesystem location for exported video
+	
 	// components
 	protected Controller linkedController;
 	protected Display display;
-	protected Video video;
+	protected Video buffer;
 	
 	// variables
 	protected int frameIndex;
 	
-	
 	/**
-	 * Frame click action
+	 * Default controller click instruction
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
 	 */
-	public void point(int x, int y) {
+	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace("Controller recieved point instruction");
-		
-		// by default do nothing with the frame click action
+		Debug.trace(debugTitle+" recieved click instruction");
+		Debug.trace(debugTitle+" ignores click instruction");
 	}
 	
 	
 	/**
-	 * Process button action
+	 * Default controller process instruction
 	 */
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Controller recieved process instruction");
-		
-		// by default do nothing with the process button action
+		Debug.trace(debugTitle+" recieved process instruction");
+		Debug.trace(debugTitle+" ignores process instruction");
 	}
 	
 	
 	/**
-	 * Complete button action
+	 * Default controller complete instruction
+	 * For subcontrollers this should pass control to the main controller
+	 * For the main controller this should pass instruction to current subcontroller
 	 */
 	public void complete() {
-		
+
 		// debug trace
-		Debug.trace("Controller recieved complete instruction");
+		Debug.trace(debugTitle+" recieved complete instruction");
 		
-		// move video object to temporary variable and free video
-		Video tempVideo = this.video;
-		this.video = null;
+		// export and free video buffer
+		buffer.export(exportLocation);
+		Video temp = buffer;
+		buffer = null;
 		
-		// pass the temporary video to the linked controller
-		this.linkedController.pass(tempVideo);
+		// pass temporary video to the linked controller
+		linkedController.pass(temp);
 	}
 	
 	
 	/**
+	 * Default controller pass instruction
+	 * In the subcontrollers this should setup the controller with a video
+	 * In the main controller this should switch control to the next subcontroller
+	 */
+	public void pass(Video tempVideo) {
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved pass instruction");
+		
+		// setup video
+		buffer = tempVideo;
+		
+		// update display
+		display.setTitle(displayTitle);
+		display.setFrame(buffer.getFrame(frameIndex));
+	}
+	
+	
+	/**
+	 * Default controller nextFrame instruction
 	 * Display next frame up from current frame
 	 */
-	public void frameUp() {
+	public void nextFrame() {
 		
 		// debug trace
-		Debug.trace("Controller recieved frameUp instruction");
+		Debug.trace(debugTitle+" recieved nextFrame instruction");
 		
-		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
-		
-		// update display
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		// display next frame
+		frameIndex = Math.min(buffer.length - 1, frameIndex + 1);
+		display.setFrame(buffer.getFrame(frameIndex));
+		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 	
 	
 	/**
+	 * Default controller prevFrame instruction
 	 * Display next frame down from current frame
 	 */
-	public void frameDown() {
+	public void prevFrame() {
 		
 		// debug trace
-		Debug.trace("Controller recieved frameDown instruction");
+		Debug.trace(debugTitle+" recieved prevFrame instruction");
 		
-		// decrement frameIndex
-		this.frameIndex = Math.max(0, frameIndex - 1);
-		
-		// update display
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
-	}
-	
-	
-	/**
-	 * Pass control to this controller
-	 */
-	public void pass(Video video) {
-		
-		// debug trace
-		Debug.trace("Controller recieved pass instruction");
-		
-		// by default just set video
-		this.video = video;
+		// display previous frame
+		frameIndex = Math.max(0, frameIndex - 1);
+		display.setFrame(buffer.getFrame(frameIndex));
+		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 }

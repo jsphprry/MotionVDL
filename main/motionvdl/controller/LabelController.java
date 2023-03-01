@@ -1,9 +1,5 @@
 package motionvdl.controller;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.Label;
@@ -22,22 +18,23 @@ public class LabelController extends Controller {
 	private Label label;
 	
 	/**
-	 * Constructor for LabelController instance
+	 * Construct label controller
 	 * @param mainController The main controller
-	 * @param display The main display
+	 * @param mainDisplay The main display
 	 */
-	public LabelController(MainController mainController, Display display) {
+	public LabelController(MainController mainController, Display mainDisplay) {
 		
-		// debug trace
-		Debug.trace("Created label controller");
+		// setup metadata
+		displayTitle = "Labelling stage";
+		debugTitle = "LabelController";
+		exportLocation = "labelS4";
 		
 		// setup components
-		this.linkedController = mainController;
-		this.display = display;
-		this.video = null;
+		linkedController = mainController;
+		display = mainDisplay;
 		
-		// setup variables
-		this.frameIndex = 0;
+		// debug trace
+		Debug.trace("Created "+debugTitle);
 	}
 	
 	
@@ -47,143 +44,74 @@ public class LabelController extends Controller {
 	 * @param y The y axis of the click event
 	 */
 	@Override
-	public void point(int x, int y) {
+	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace("Label controller recieved point instruction");
+		Debug.trace(debugTitle+" recieved click instruction");
 
-		// if the frame label is not full
-		if (!this.label.frameFull(this.frameIndex)) {
+		// record point if the frame label is incomplete
+		if (!label.stackFull(frameIndex)) {
 			
 			// record point
-			this.label.push(this.frameIndex, x, y);
+			label.push(frameIndex, x, y);
+			display.drawPoint(x, y);
 			
-			// update display
-			this.display.drawPoint(x, y);
-			
-			// if the frame label is now full display next frame
-			if (this.label.frameFull(this.frameIndex)) this.frameUp();
+			// if point completes frame label, display next frame
+			if (label.stackFull(frameIndex)) nextFrame();
 		
-		// if the frame label is full
+		// else warn that the frame is complete
 		} else {
-			
-			// debug trace
 			Debug.trace("Label controller ignores point instruction");
+			display.setMessage("Warning! Frame is full");
 		}
 	}
 	
 	
 	/**
-	 * Delete last point on frame
+	 * Delete last point
 	 */
 	@Override
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Label controller recieved process instruction");
+		Debug.trace(debugTitle+" recieved process instruction");
 
 		// if the frame label is not empty
-		if (!this.label.frameEmpty(this.frameIndex)) {
+		if (!label.stackEmpty(frameIndex)) {
 			
 			// remove point
-			this.label.delete(this.frameIndex);
+			label.delete(frameIndex);
 			
 			// update display
-			this.display.clearGeometry();
-			this.display.drawPoints(this.label.getPoints(this.frameIndex));
+			display.clearGeometry();
+			display.drawPoints(label.getPoints(frameIndex));
 		
 		// if the frame label is empty
 		} else {
-			this.frameDown();
+			prevFrame();
 		}
 	}
 	
 	
 	/**
-	 * Check if the label is complete then either export the 
-	 * labelled video or display a message describing the problem.
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * Try to export the labelled video
 	 */
 	@Override
 	public void complete() {
 		
 		// debug trace
-		Debug.trace("Label controller recieved complete instruction");
+		Debug.trace(debugTitle+" recieved complete instruction");
 		
-		// if the label is full export the labelled video
-		if (this.label.full()) {
+		// export the label if complete
+		if (label.checkComplete()) {
+			Debug.trace("Label is complete");
+			label.export(exportLocation);
 			
-			// debug trace
-			Debug.trace("Label is completely full");
-			
-			// encode video and label
-			byte[] encodedVideo = this.video.encode();
-			byte[] encodedLabel = this.label.encode();
-			
-			// write to file
-			try {
-				
-				// debug trace
-				Debug.trace("Exported video.mvdl, label.mvdl");
-				
-				// write bytes to output streams
-				FileOutputStream videoStream = new FileOutputStream("video.mvdl");
-				FileOutputStream labelStream = new FileOutputStream("label.mvdl");
-				videoStream.write(encodedVideo);
-				labelStream.write(encodedLabel);
-				videoStream.close();
-				labelStream.close();
-			
-			// report error
-			} catch (Exception e) {
-				Debug.trace("Error: "+e.getMessage());
-				this.display.setMessage("Error: Problem encountered when writing to file");
-			}
-			
-		// report error
+		// else warn
 		} else {
-			Debug.trace("Error: Label is not completely full");
-			this.display.setMessage("Error: The label must be full to export to file");
+			Debug.trace(debugTitle+" ignores complete instruction");
+			display.setMessage("Warning! The label must be complete to export");
 		}
-	}
-	
-	
-	/**
-	 * Display next frame up from current frame
-	 */
-	@Override
-	public void frameUp() {
-		
-		// debug trace
-		Debug.trace("Label controller recieved frameUp instruction");
-		
-		// increment frameIndex
-		this.frameIndex = Math.min(this.video.getFrames() - 1, frameIndex + 1);
-		
-		// update display
-		this.display.clearGeometry();
-		this.display.drawPoints(this.label.getPoints(this.frameIndex));
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
-	}
-	
-	
-	/**
-	 * Display next frame down from current frame
-	 */
-	@Override
-	public void frameDown() {
-		
-		// debug trace
-		Debug.trace("Label controller recieved frameDown instruction");
-		
-		// decrement frameIndex
-		this.frameIndex = Math.max(0, frameIndex - 1);
-		
-		// update display
-		this.display.clearGeometry();
-		this.display.drawPoints(this.label.getPoints(this.frameIndex));
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
 	}
 	
 	
@@ -191,17 +119,39 @@ public class LabelController extends Controller {
 	 * Pass control to this controller
 	 */
 	@Override
-	public void pass(Video video) {
+	public void pass(Video tempVideo) {
 		
-		// debug trace
-		Debug.trace("Label controller recieved pass instruction");
+		// setup label
+		label = new Label(MAX_POINTS, tempVideo.length);
 		
-		// set the video and label
-		this.video = video;
-		this.label = new Label(MAX_POINTS, this.video.getFrames());
+		super.pass(tempVideo);
+	}
+	
+	
+	/**
+	 * Display next frame up from current frame
+	 */
+	@Override
+	public void nextFrame() {
 		
-		// update display
-		this.display.setTitle("MotionVDL Labelling stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		// draw frame label
+		display.clearGeometry();
+		display.drawPoints(label.getPoints(frameIndex));
+		
+		super.nextFrame();
+	}
+	
+	
+	/**
+	 * Display next frame down from current frame
+	 */
+	@Override
+	public void prevFrame() {
+		
+		// draw frame label
+		display.clearGeometry();
+		display.drawPoints(label.getPoints(frameIndex));
+		
+		super.prevFrame();
 	}
 }

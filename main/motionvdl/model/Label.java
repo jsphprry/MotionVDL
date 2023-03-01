@@ -5,51 +5,34 @@ import java.awt.Point;
 import motionvdl.Debug;
 
 /**
- * Video label implemented as multistack of 2d integer precision points
+ * Video frame label implemented as an array of stacks of 
+ * 2d integer precision points with one stack per video frame
  * @author Joseph
  */
-public class Label {
+public class Label extends Encoding {
 	
 	// metadata
-	private final int capacity;
-	private final int frames;
-	private int[] pointCounts;
+	private final int capacity; // maximum stack capacity
+	private final int length;   // the number of stacks
 	
 	// point buffer
-	private Point[][] buffer;
+	private Point[][] buffer; // underlying array
+	private int[] sizes;      // the sizes of each stack
 	
 	/**
 	 * Constructor for Label instance
 	 * @param capacity The individual stack capacity
 	 * @param frames The stack count
 	 */
-	public Label(int capacity, int frames) {
+	public Label(int capacity, int length) {
 		
 		// setup metadata
 		this.capacity = capacity;
-		this.frames = frames;
-		this.pointCounts = new int[this.frames]; // default int value is 0 so no need to populate array
+		this.length = length;
 		
-		// setup buffer
-		this.buffer = new Point[this.frames][this.capacity];
-	}
-	
-	
-	/**
-	 * Get individual stack capacity
-	 * @return The individual stack capacity
-	 */
-	public int getCapacity() {
-		return this.capacity;
-	}
-	
-	
-	/**
-	 * Get stack count
-	 * @return The label frames
-	 */
-	public int getFrames() {
-		return this.frames;
+		// setup point buffer
+		buffer = new Point[length][capacity];
+		sizes = new int[length]; // default int value is 0 so no need to populate array
 	}
 	
 	
@@ -61,17 +44,15 @@ public class Label {
 	public Point[] getPoints(int index) {
 		
 		// get stack size
-		int pointCount = this.pointCounts[index];
+		int pointCount = sizes[index];
 		
 		// debug trace
 		Debug.trace("Found "+pointCount+" points on label stack "+index);
 		
-		// setup array
+		// setup array of points
 		Point[] framePoints = new Point[pointCount];
-		
-		// populate array
 		for (int i=0; i < pointCount; i++) {
-			framePoints[i] = this.buffer[index][i];
+			framePoints[i] = buffer[index][i];
 		}
 		
 		return framePoints;
@@ -80,81 +61,78 @@ public class Label {
 	
 	/**
 	 * Pop from a stack
-	 * @param index The stack index
+	 * @param stack The stack index
 	 * @return 2d point
 	 */
-	public Point pop(int index) {
+	public Point pop(int stack) {
 		
 		// debug trace
-		Debug.trace("Popped point from label stack "+index);
+		Debug.trace("Popped point from label stack "+stack);
 		
 		// throw empty stack
-		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is empty");
+		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is empty");
 		
-		// get current index from stack size
-		int currentIndex = this.pointCounts[index] - 1;
-		
-		// decrement frame point count
-		this.pointCounts[index] -= 1;
+		// decrement stack size
+		int index = sizes[stack] - 1;
+		sizes[stack] -= 1;
 		
 		// return point at index
-		return this.buffer[index][currentIndex];
+		return buffer[stack][index];
 	}
 	
 	
 	/**
 	 * Push to a stack
-	 * @param index The stack index
+	 * @param stack The stack index
 	 * @param x The x axis of the point
 	 * @param y The y axis of the point
 	 */
-	public void push(int index, int x, int y) {
+	public void push(int stack, int x, int y) {
 		
 		// debug trace
-		Debug.trace("Pushed point ("+x+","+y+") to label stack "+index);
+		Debug.trace("Pushed point ("+x+","+y+") to label stack "+stack);
 		
 		// throw full stack
-		if (this.pointCounts[index] == this.capacity) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is full");
-		
-		// get next index from stack size
-		int nextIndex = this.pointCounts[index];
+		if (sizes[stack] == capacity) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is full");
 		
 		// increment stack size
-		this.pointCounts[index] += 1;
+		int index = sizes[stack];
+		sizes[stack] += 1;
 		
 		// push to stack
-		this.buffer[index][nextIndex] = new Point(x,y);
+		buffer[stack][index] = new Point(x,y);
 	}
 	
 	
 	/**
 	 * Delete from a stack
-	 * @param index The stack index
+	 * @param stack The stack index
 	 */
-	public void delete(int index) {
+	public void delete(int stack) {
 		
 		// debug trace
-		Debug.trace("Deleted point from label stack "+index);
+		Debug.trace("Deleted point from label stack "+stack);
 		
 		// throw empty stack
-		if (this.pointCounts[index] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+index+" is empty");
+		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is empty");
 		
 		// decrement stack size
-		this.pointCounts[index] -= 1;
+		sizes[stack] -= 1;
 	}
 	
 	
 	/**
 	 * Check if a stack is full
-	 * @param index The stack index
+	 * @param stack The stack index
 	 * @return The result
 	 */
-	public boolean frameFull(int index) {
+	public boolean stackFull(int stack) {
 		
-		boolean full = (this.pointCounts[index] == this.capacity);
+		// determine result
+		boolean full = (sizes[stack] == capacity);
 		
 		// debug trace
-		Debug.trace("Checking if label stack "+index+" is full ("+full+")");
+		Debug.trace("Checking if label stack "+stack+" is full ("+full+")");
 		
 		return full;
 	}
@@ -165,9 +143,10 @@ public class Label {
 	 * @param index The stack index
 	 * @return The result
 	 */
-	public boolean frameEmpty(int index) {
-		
-		boolean empty = (this.pointCounts[index] == 0);
+	public boolean stackEmpty(int index) {
+
+		// determine result
+		boolean empty = (sizes[index] == 0);
 		
 		// debug trace
 		Debug.trace("Checking if label stack "+index+" is empty ("+empty+")");
@@ -175,27 +154,22 @@ public class Label {
 		return empty;
 	}
 	
+	
 	/**
 	 * Check if all stacks are full
 	 * @return The result
 	 */
-	public boolean full() {
+	public boolean checkComplete() {
 		
 		// debug trace
-		Debug.trace("Checking if all label stacks are full");
+		Debug.trace("Checking if the label is complete");
 		
-		// check if every frame stack is full
-		boolean full = false;
-		for (int i=0; i < this.frames; i++) {
-			
-			// is the current stack full?
-			full = frameFull(i);
-			
-			// break if not
-			if (!full) break;
+		// determine if every frame stack is full
+		for (int i=0; i < length; i++) {
+			if (stackEmpty(i)) return false;
 		}
 		
-		return full;
+		return true;
 	}
 	
 	
@@ -206,11 +180,11 @@ public class Label {
 	public byte[] encode() {
 		
 		// debug trace
-		Debug.trace("Encoded label");
+		Debug.trace("Encoded label as byte sequence");
 		
 		// setup metadata
-		int z = this.frames;   // The depth of the label buffer
-		int x = this.capacity; // The width of the label buffer
+		int z = length;   // The depth of the label buffer
+		int x = capacity; // The width of the label buffer
 		
 		// throw invalid size
 		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The video buffer is too large to export");
@@ -223,8 +197,8 @@ public class Label {
 		// encode each point in 2 bytes
 		for (int i=0; i < z; i++) {
 			for (int j=0; j < x; j++) {
-				encoding[2 + i*x*2 + j*2 + 0] = (byte) this.buffer[i][j].getX();
-				encoding[2 + i*x*2 + j*2 + 1] = (byte) this.buffer[i][j].getY();
+				encoding[2 + i*x*2 + j*2 + 0] = (byte) buffer[i][j].getX();
+				encoding[2 + i*x*2 + j*2 + 1] = (byte) buffer[i][j].getY();
 			}
 		}
 		

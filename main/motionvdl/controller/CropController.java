@@ -10,40 +10,37 @@ import motionvdl.model.Video;
  */
 public class CropController extends Controller {
 	
-	// crop frame origin coordinate
-	private int ax;
-	private int ay;
-	
-	// crop frame size
-	private int cfs;
-	
-	// frame limits
-	private int limx;
-	private int limy;
-	
-	// state flags
-	private boolean ready;
-	private boolean adjusted;
+	// variables
+	private int ax;   // top left point x axis
+	private int ay;   // top left point y axis
+	private int cfs;  // edge size
+	private int limx; // x axis limit
+	private int limy; // y axis limit
+	private boolean ready;    // ready-to-process flag
+	private boolean adjusted; // adjusted-by-user flag
 	
 	/**
-	 * Constructor for CropController instance
+	 * Construct crop controller
 	 * @param mainController The main controller
-	 * @param display The display
+	 * @param mainDisplay The main display
 	 */
-	public CropController(MainController mainController, Display display) {
+	public CropController(MainController mainController, Display mainDisplay) {
 		
-		// debug trace
-		Debug.trace("Created crop controller");
+		// setup metadata
+		displayTitle = "Cropping stage";
+		debugTitle = "CropController";
+		exportLocation = "videoS1";
 		
 		// setup components
-		this.linkedController = mainController;
-		this.display = display;
-		this.video = null;
+		linkedController = mainController;
+		display = mainDisplay;
 		
 		// setup variables
-		this.frameIndex = 0;
 		ready = false;
 		adjusted = false;
+		
+		// debug trace
+		Debug.trace("Created "+debugTitle);
 	}
 	
 	
@@ -53,28 +50,25 @@ public class CropController extends Controller {
 	 * @param y The y axis of the coordinate
 	 */
 	@Override
-	public void point(int x, int y) {
+	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace("Crop controller recieved point instruction");
-		
+		Debug.trace(debugTitle+" recieved click instruction");
 		
 		// first click
 		if (!ready && !adjusted) {
 			
-			// debug trace
-			Debug.trace("Crop controller ready");
-			
-			// define crop frame
+			// ready crop frame
 			ax = x;
 			ay = y;
 			cfs = (int) Math.min(Math.min(0.2*limx, limx-ax), Math.min(0.2*limy, limy-ay));
 			
-			// set state flags
+			// set flags
+			Debug.trace(debugTitle+" set ready");
 			ready = true;
 			adjusted = false;
 			
-			// update display
+			// draw crop frame
 			display.clearGeometry();
 			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			display.drawDiagonal(ax, ay);
@@ -84,10 +78,7 @@ public class CropController extends Controller {
 		// second click
 		} else if (ready && !adjusted) {
 			
-			// debug trace
-			Debug.trace("Crop controller ready and adjusted");
-			
-			// define crop frame
+			// adjust crop frame
 			// no handling for y coord because of the assumption that clicks cannot come from outside the frame
 			if (ay < y) {
 				cfs = Math.min(y-ay, limx-ax);
@@ -96,14 +87,18 @@ public class CropController extends Controller {
 				ax = ax-cfs;
 				ay = ay-cfs;
 			} else {
-				display.setMessage("Crop frame cannot have zero size");
+				
+				// update display
+				Debug.trace(debugTitle+" ignores click instruction, crop frame cannot have zero size");
+				display.setMessage("Warning! Crop frame cannot have zero size");
 			}
 			
-			// set state flags
+			// set flags
+			Debug.trace(debugTitle+" set ready and adjusted");
 			ready = true;
 			adjusted = true;
 			
-			// update display
+			// draw crop frame
 			display.clearGeometry();
 			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			display.drawDiagonal(ax, ay);
@@ -113,42 +108,40 @@ public class CropController extends Controller {
 		// third click
 		} else {
 			
-			// debug trace
-			Debug.trace("Crop controller clear frame");
-			
-			// set state flags
+			// reset flags
+			Debug.trace(debugTitle+" set not ready");
 			ready = false;
 			adjusted = false;
 			
-			// update display
+			// clear display
 			display.clearGeometry();
 		}
 	}
 	
 	
-	/*
-	 * Crop the video around the crop frame
+	/**
+	 * Crop the video to the crop frame
 	 */
 	@Override
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Crop controller recieved process instruction");
+		Debug.trace(debugTitle+" recieved process instruction");
 		
-		// if the crop frame is defined
+		// if the crop frame is ready
 		if (ready) {
 			
-			// crop video
-			video = video.crop(ax, ay, cfs, cfs);
+			// crop buffered video
+			buffer = buffer.crop(ax, ay, cfs, cfs);
 			
-			// update display
+			// clear crop frame and update frame
 			display.clearGeometry();
-			display.setFrame(video.getFrame(frameIndex));
+			display.setFrame(buffer.getFrame(frameIndex));
 		
-		// else report undefined crop frame 
+		// else warn
 		} else {
-			Debug.trace("Error: Crop controller crop frame is undefined");
-			display.setMessage("Error: Cannot crop when crop frame is undefined");
+			Debug.trace(debugTitle+" controller ignores process instruction");
+			display.setMessage("Warning! Not ready to crop");
 		}
 	}
 	
@@ -156,19 +149,12 @@ public class CropController extends Controller {
 	/**
 	 * Pass control to this controller
 	 */
-	@Override
-	public void pass(Video video) {
+	public void pass(Video tempVideo) {
 		
-		// debug trace
-		Debug.trace("Crop controller recieved pass instruction");
+		// setup variables
+		limy = tempVideo.height;
+		limx = tempVideo.width;
 		
-		// set the video
-		this.video = video;
-		limy = video.getHeight();
-		limx = video.getWidth();
-		
-		// update display
-		display.setTitle("MotionVDL Cropping stage");
-		display.setFrame(video.getFrame(frameIndex));
+		super.pass(tempVideo);
 	}
 }

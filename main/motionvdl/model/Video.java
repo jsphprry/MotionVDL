@@ -5,16 +5,16 @@ import java.awt.Color;
 import motionvdl.Debug;
 
 /**
- * Wrapper class for a video represented by a 3D Color array
+ * Wrapper class for a 3D Color array representing video data
  * @author Joseph
  */
-public class Video {
+public class Video extends Encoding {
 	
 	// video metadata
-	private int width;
-	private int height;
-	private int frames;
-	private boolean greyscale;
+	public final int width;
+	public final int height;
+	public final int length;
+	public final boolean greyscale;
 	
 	// video buffer
 	private Color[][][] buffer;
@@ -23,20 +23,20 @@ public class Video {
 	 * Constructor for Video instance from 3D Color array
 	 * @param videoBuffer The 3D Color array to wrap as Video
 	 */
-	public Video(Color[][][] videoBuffer, boolean greyscale) {
+	public Video(Color[][][] videoBuffer, boolean greyscaleFlag) {
 		
 		// setup metadata
-		this.frames  = videoBuffer.length;
-		this.height = videoBuffer[0].length;
-		this.width  = videoBuffer[0][0].length;
-		this.greyscale = greyscale;
+		length = videoBuffer.length;
+		height = videoBuffer[0].length;
+		width  = videoBuffer[0][0].length;
+		greyscale = greyscaleFlag;
 		
 		// setup buffer
-		this.buffer = new Color[this.frames][this.height][this.width];
-		for (int d=0; d < this.frames; d++) {
-			for (int h=0; h < this.height; h++) {
-				for (int w=0; w < this.width; w++) {
-					this.buffer[d][h][w] = videoBuffer[d][h][w];
+		buffer = new Color[length][height][width];
+		for (int d=0; d < length; d++) {
+			for (int h=0; h < height; h++) {
+				for (int w=0; w < width; w++) {
+					buffer[d][h][w] = videoBuffer[d][h][w];
 				}
 			}
 		}
@@ -91,39 +91,12 @@ public class Video {
 	
 	
 	/**
-	 * Get video resolution width
-	 * @return Video width
-	 */
-	public int getWidth() {
-		return this.width;
-	}
-	
-	
-	/**
-	 * Get video resolution height
-	 * @return Video height
-	 */
-	public int getHeight() {
-		return this.height;
-	}
-	
-	
-	/**
-	 * Get video frame count
-	 * @return Video frames
-	 */
-	public int getFrames() {
-		return this.frames;
-	}
-	
-	
-	/**
 	 * Get video frame by index
 	 * @param index Index of the frame
 	 * @return Frame at index
 	 */
 	public Color[][] getFrame(int index) {
-		return this.buffer[index];
+		return buffer[index];
 	}
 	
 	
@@ -138,26 +111,26 @@ public class Video {
 	public Video crop(int origin_x, int origin_y, int target_w, int target_h) {
 		
 		// debug trace
-		Debug.trace(String.format("Cropped video resolution from %sx%s to %sx%s", this.width, this.height, target_w, target_h));
+		Debug.trace(String.format("Cropped video resolution from %sx%s to %sx%s", width, height, target_w, target_h));
 		
 		// throw invalid parameters
-		if (origin_x < 0 || origin_y < 0 || origin_x >= this.width || origin_y >= this.height) throw new IllegalArgumentException("Invalid origin coordinate");
-		if (target_w <= 0 || target_h <= 0 || origin_x+target_w > this.width || origin_y+target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
+		if (origin_x < 0 || origin_y < 0 || origin_x >= width || origin_y >= height) throw new IllegalArgumentException("Invalid origin coordinate");
+		if (target_w <= 0 || target_h <= 0 || origin_x+target_w > width || origin_y+target_h > height) throw new IllegalArgumentException("Invalid target resolution");
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.frames][target_h][target_w];
+		Color[][][] workBuffer = new Color[length][target_h][target_w];
 		
 		// write crop-frame to work-buffer
-		for (int d=0; d < this.frames; d++) {
+		for (int d=0; d < length; d++) {
 			for (int h=0; h < target_h; h++) {
 				for (int w=0; w < target_w; w++) {
-					workBuffer[d][h][w] = this.buffer[d][origin_y+h][origin_x+w];
+					workBuffer[d][h][w] = buffer[d][origin_y+h][origin_x+w];
 				}
 			}
 		}
 		
 		// return work-buffer as Video
-		return new Video(workBuffer, this.greyscale);
+		return new Video(workBuffer, greyscale);
 	}
 	
 	
@@ -167,23 +140,23 @@ public class Video {
 	 * @param target_h target resolution height
 	 * @return The downscaled video
 	 */
-	public Video downScale(int target_w, int target_h) {
+	public Video reduce(int target_w, int target_h) {
 		
 		// debug trace
-		Debug.trace(String.format("Downscaled video resolution from %sx%s to %sx%s", this.width, this.height, target_w, target_h));
+		Debug.trace(String.format("Downscaled video resolution from %sx%s to %sx%s", width, height, target_w, target_h));
 		
 		// throw invalid parameters
-		if (target_w < 0 || target_h < 0 || target_w > this.width || target_h > this.height) throw new IllegalArgumentException("Invalid target resolution");
+		if (target_w < 0 || target_h < 0 || target_w > width || target_h > height) throw new IllegalArgumentException("Invalid target resolution");
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.frames][target_h][target_w];
+		Color[][][] workBuffer = new Color[length][target_h][target_w];
 		
 		// setup pool size
-		int pool_h = this.height / target_h;
-		int pool_w = this.width  / target_w;
+		int pool_h = height / target_h;
+		int pool_w = width  / target_w;
 		
 		// use average pooling to downscale buffer into work-buffer
-		for (int d=0; d < this.frames; d++) {
+		for (int d=0; d < length; d++) {
 			for (int h=0; h < target_h; h++) {
 				for (int w=0; w < target_w; w++) {
 					 
@@ -196,10 +169,10 @@ public class Video {
 					// calculate color channel sums
 					for (int ph=0; ph < pool_h; ph++) {
 						for (int pw=0; pw < pool_w; pw++) {
-							if (h*pool_h + ph < this.height && w*pool_w + pw < this.width) {
+							if (h*pool_h + ph < height && w*pool_w + pw < width) {
 								
 								// get color from buffer
-								Color color = this.buffer[d][h*pool_h + ph][w*pool_w + pw];
+								Color color = buffer[d][h*pool_h + ph][w*pool_w + pw];
 								
 								// add to color sum
 								channelRed   += color.getRed();
@@ -217,7 +190,7 @@ public class Video {
 		}
 		
 		// return work-buffer as Video
-		return new Video(workBuffer, this.greyscale);
+		return new Video(workBuffer, greyscale);
 	}
 	
 	
@@ -225,21 +198,21 @@ public class Video {
 	 * Convert video colors to greyscale
 	 * @return The greyscale video
 	 */
-	public Video greyScale() {
+	public Video greyscale() {
 		
 		// debug trace
 		Debug.trace("Converted video to greyscale");
 		
 		// initialise work-buffer
-		Color[][][] workBuffer = new Color[this.frames][this.height][this.width];
+		Color[][][] workBuffer = new Color[length][height][width];
 		
 		// write greyscale buffer values to work-buffer
-		for (int d=0; d < this.frames; d++) {
-			for (int h=0; h < this.height; h++) {
-				for (int w=0; w < this.width; w++) {
+		for (int d=0; d < length; d++) {
+			for (int h=0; h < height; h++) {
+				for (int w=0; w < width; w++) {
 					
 					// calculate greyscale value
-					Color color = this.buffer[d][h][w];
+					Color color = buffer[d][h][w];
 					int grey = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
 					
 					// write greyscale Color to work-buffer
@@ -260,13 +233,13 @@ public class Video {
 	public byte[] encode() {
 		
 		// debug trace
-		Debug.trace("Encoded video");
+		Debug.trace("Encoded video as byte sequence");
 		
 		// setup metadata
-		int z = this.frames;              // The depth of the video buffer
-		int y = this.height;              // The height of the video buffer
-		int x = this.width;               // The width of the video buffer
-		int c = (this.greyscale) ? 1 : 3; // The number of channels in each color
+		int z = length;              // The length of the video buffer
+		int y = height;              // The height of the video buffer
+		int x = width;               // The width of the video buffer
+		int c = (greyscale) ? 1 : 3; // The number of channels in each color
 		
 		// throw invalid size
 		if (x > 255 || y > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The video buffer is too large to export");
@@ -280,11 +253,11 @@ public class Video {
 		
 		// encode each n-channel color in n-bytes
 		// for greyscale video
-		if (this.greyscale) {
+		if (greyscale) {
 			for (int i=0; i < z; i++) {
 				for (int j=0; j < y; j++) {
 					for (int k=0; k < x; k++) {
-						encoding[4 + i*y*x + j*x + k] = (byte) this.buffer[i][j][k].getRed();
+						encoding[4 + i*y*x + j*x + k] = (byte) buffer[i][j][k].getRed();
 					}
 				}
 			}
@@ -294,9 +267,9 @@ public class Video {
 			for (int i=0; i < z; i++) {
 				for (int j=0; j < y; j++) {
 					for (int k=0; k < x; k++) {
-						encoding[4 + i*y*x*c + j*x*c + k*c + 0] = (byte) this.buffer[i][j][k].getRed();
-						encoding[4 + i*y*x*c + j*x*c + k*c + 1] = (byte) this.buffer[i][j][k].getGreen();
-						encoding[4 + i*y*x*c + j*x*c + k*c + 2] = (byte) this.buffer[i][j][k].getBlue();
+						encoding[4 + i*y*x*c + j*x*c + k*c + 0] = (byte) buffer[i][j][k].getRed();
+						encoding[4 + i*y*x*c + j*x*c + k*c + 1] = (byte) buffer[i][j][k].getGreen();
+						encoding[4 + i*y*x*c + j*x*c + k*c + 2] = (byte) buffer[i][j][k].getBlue();
 					}
 				}
 			}

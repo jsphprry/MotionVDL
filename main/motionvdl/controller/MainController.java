@@ -20,134 +20,126 @@ public class MainController extends Controller {
 	private int stage;
 	
 	/**
-	 * Constructor for main controller instance
-	 * @param display The display
+	 * Construct main controller
+	 * @param mainDisplay The main display
 	 */
-	public MainController(Display display) {
+	public MainController(Display mainDisplay) {
 		
-		// debug trace
-		Debug.trace("Created main controller");
-		
-		// setup subcontrollers
-		this.subcontrollers = new Controller[N_STAGES];
-		this.subcontrollers[0] = new CropController(this, display);
-		this.subcontrollers[1] = new ScaleController(this, display);
-		this.subcontrollers[2] = new ColorController(this, display);
-		this.subcontrollers[3] = new LabelController(this, display);
+		// setup metadata
+		debugTitle = "MainController";
 		
 		// setup components
-		this.linkedController = null; // will hold subcontroller after pass
-		this.display = null; // should stay null
-		this.video = null; // should stay null
+		subcontrollers = new Controller[N_STAGES];
+		subcontrollers[0] = new CropController(this, mainDisplay);
+		subcontrollers[1] = new ScaleController(this, mainDisplay);
+		subcontrollers[2] = new ColorController(this, mainDisplay);
+		subcontrollers[3] = new LabelController(this, mainDisplay);
 		
 		// setup variables
-		this.stage = -1;
+		stage = -1;
+		
+		// debug trace
+		Debug.trace("Created "+debugTitle);
 	}
 	
 	
 	/**
-	 * Frame click action
+	 * Pass instruction to subcontroller
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
 	 */
 	@Override
-	public void point(int x, int y) {
+	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace("Main controller recieved point instruction");
+		Debug.trace(debugTitle+" recieved click instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// call subcontroller
-		this.linkedController.point(x, y);
+		linkedController.click(x, y);
 	}
 	
 	
 	/**
-	 * Process button action
+	 * Pass instruction to subcontroller
 	 */
 	@Override
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Main controller recieved process instruction");
+		Debug.trace(debugTitle+" recieved process instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// call subcontroller
-		this.linkedController.process();
+		linkedController.process();
 	}
 	
 	
 	/**
-	 * Complete button action
+	 * Pass instruction to subcontroller
 	 */
-	@Override
 	public void complete() {
 		
 		// debug trace
-		Debug.trace("Main controller recieved complete instruction");
+		Debug.trace(debugTitle+" recieved complete instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// call subcontroller
-		this.linkedController.complete();
+		linkedController.complete();
 	}
 	
 	
 	/**
-	 * Display next frame up from current frame
+	 * Switch to next subcontroller
 	 */
-	@Override
-	public void frameUp() {
+	public void pass(Video tempVideo) {
 		
 		// debug trace
-		Debug.trace("Main controller recieved frameUp instruction");
-		
-		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
-		
-		// call subcontroller
-		this.linkedController.frameUp();
+		Debug.trace(debugTitle+" recieved pass instruction");
+
+		// pass control to next subcontroller
+		stage += 1;
+		linkedController = subcontrollers[stage];
+		linkedController.pass(tempVideo);
 	}
 	
 	
 	/**
-	 * Display next frame down from current frame
+	 * Pass instruction to subcontroller
 	 */
 	@Override
-	public void frameDown() {
+	public void nextFrame() {
 		
 		// debug trace
-		Debug.trace("Main controller recieved frameDown instruction");
+		Debug.trace(debugTitle+" recieved nextFrame instruction");
 		
 		// throw control-not-passed case
-		if (this.stage == -1) throw new IllegalStateException("Error: The main controller has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// call subcontroller
-		this.linkedController.frameDown();
+		linkedController.nextFrame();
 	}
 	
 	
 	/**
-	 * Pass control to the next subcontroller
+	 * Pass instruction to subcontroller
 	 */
 	@Override
-	public void pass(Video video) {
+	public void prevFrame() {
 		
 		// debug trace
-		Debug.trace("Main controller recieved pass instruction");
+		Debug.trace(debugTitle+" recieved prevFrame instruction");
 		
-		// increment stage counter
-		this.stage += 1;
+		// throw control-not-passed case
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
-		// set subcontroller
-		this.linkedController = this.subcontrollers[this.stage];
-		
-		// pass control to subcontroller
-		this.linkedController.pass(video);
+		// call subcontroller
+		linkedController.prevFrame();
 	}
 }

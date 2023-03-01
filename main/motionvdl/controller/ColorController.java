@@ -10,28 +10,27 @@ import motionvdl.model.Video;
  */
 public class ColorController extends Controller {
 	
-	// variables
-	private Video tempVideo;
-	private boolean greyscaleSet;
+	// 
+	private Video workBuffer;
 	
 	/**
 	 * Constructor for ColorController instance
 	 * @param mainController The main controller
-	 * @param display The display
+	 * @param mainDisplay The display
 	 */
-	public ColorController(MainController mainController, Display display) {
+	public ColorController(MainController mainController, Display mainDisplay) {
 		
-		// debug trace
-		Debug.trace("Created color controller");
+		// setup metadata
+		displayTitle = "Color stage";
+		debugTitle = "ColorController";
+		exportLocation = "videoS3";
 		
 		// setup components
-		this.linkedController = mainController;
-		this.display = display;
-		this.video = null;
+		linkedController = mainController;
+		display = mainDisplay;
 		
-		// setup variables
-		this.frameIndex = 0;
-		this.greyscaleSet = false;
+		// debug trace
+		Debug.trace("Created "+debugTitle);
 	}
 	
 	
@@ -42,60 +41,18 @@ public class ColorController extends Controller {
 	public void process() {
 		
 		// debug trace
-		Debug.trace("Color controller recieved process instruction");
+		Debug.trace(debugTitle+" recieved process instruction");
 		
 		// if greyscale video does not exist create it
-		if (this.tempVideo == null) this.tempVideo = this.video.greyScale();
+		if (workBuffer == null) workBuffer = buffer.greyscale();
 		
-		// swap videos
-		Video temp = this.video;
-		this.video = this.tempVideo;
-		this.tempVideo = temp;
-		this.greyscaleSet = !this.greyscaleSet;
-		
-		// update display
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
-		
-		// debug trace
-		if (this.greyscaleSet) {
-			Debug.trace("Color controller set to greyscale video");
-		} else {
-			Debug.trace("Color controller set to color video");
-		}
-	}
-	
-	
-	/**
-	 * Pass the video back to the main controller
-	 */
-	@Override
-	public void complete() {
-		
-		// debug trace
-		Debug.trace("Color controller recieved complete instruction");
-		
-		// free tempVideo
-		this.tempVideo = null;
-		
-		// call Controller complete
-		super.complete();
-	}
-	
-	
-	/**
-	 * Pass control to this controller
-	 */
-	@Override
-	public void pass(Video video) {
-		
-		// debug trace
-		Debug.trace("Color controller recieved pass instruction");
-		
-		// set the video
-		this.video = video;
+		// swap video buffers
+		Debug.trace(debugTitle+" swapped video buffers");
+		Video temp = buffer;
+		buffer = workBuffer;
+		workBuffer = temp;
 		
 		// update display
-		this.display.setTitle("MotionVDL color processing stage");
-		this.display.setFrame(this.video.getFrame(this.frameIndex));
+		display.setFrame(buffer.getFrame(frameIndex));
 	}
 }
