@@ -24,10 +24,10 @@ public class LabelController extends Controller {
 	 */
 	public LabelController(MainController mainController, Display mainDisplay) {
 		
-		// setup metadata
+		// setup titles
 		displayTitle = "Labelling stage";
 		debugTitle = "Label controller";
-		exportLocation = "labelS4";
+		outputTitle = "labelS4";
 		
 		// setup components
 		linkedController = mainController;
@@ -104,7 +104,7 @@ public class LabelController extends Controller {
 		
 		// export the label if complete
 		if (label.checkComplete()) {
-			label.export(exportLocation);
+			label.export(outputTitle);
 			
 		// else warn
 		} else {

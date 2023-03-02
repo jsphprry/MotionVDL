@@ -20,10 +20,10 @@ public class ScaleController extends Controller {
 	 */
 	public ScaleController(MainController mainController, Display mainDisplay) {
 		
-		// setup metadata
+		// setup titles
 		displayTitle = "Scaling stage";
 		debugTitle = "Scale controller";
-		exportLocation = "videoS2";
+		outputTitle = "videoS2";
 		
 		// setup components
 		linkedController = mainController;

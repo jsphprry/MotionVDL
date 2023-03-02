@@ -20,10 +20,10 @@ public class ColorController extends Controller {
 	 */
 	public ColorController(MainController mainController, Display mainDisplay) {
 		
-		// setup metadata
+		// setup titles
 		displayTitle = "Color stage";
 		debugTitle = "Color controller";
-		exportLocation = "videoS3";
+		outputTitle = "videoS3";
 		
 		// setup components
 		linkedController = mainController;

@@ -10,10 +10,10 @@ import motionvdl.model.Video;
  */
 public abstract class Controller {
 	
-	// metadata
+	// titles
 	protected String displayTitle = "MotionVDL";  // controller title on display
 	protected String debugTitle = "[controller]"; // controller title in debug output
-	protected String exportLocation = "video";    // filesystem location for exported encodings
+	protected String outputTitle = "video";       // filesystem location for exported encodings, appends .mvdl
 	
 	// components
 	protected Controller linkedController;
@@ -59,7 +59,7 @@ public abstract class Controller {
 		Debug.trace(debugTitle+" recieved complete instruction");
 		
 		// export and free video buffer
-		buffer.export(exportLocation);
+		buffer.export(outputTitle);
 		Video temp = buffer;
 		buffer = null;
 		

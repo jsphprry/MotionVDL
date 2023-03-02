@@ -25,7 +25,7 @@ public class MainController extends Controller {
 	 */
 	public MainController(Display mainDisplay) {
 		
-		// setup metadata
+		// setup titles
 		debugTitle = "Main controller";
 		
 		// setup components

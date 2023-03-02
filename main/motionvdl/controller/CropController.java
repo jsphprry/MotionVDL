@@ -26,10 +26,10 @@ public class CropController extends Controller {
 	 */
 	public CropController(MainController mainController, Display mainDisplay) {
 		
-		// setup metadata
+		// setup titles
 		displayTitle = "Cropping stage";
 		debugTitle = "Crop controller";
-		exportLocation = "videoS1";
+		outputTitle = "videoS1";
 		
 		// setup components
 		linkedController = mainController;
