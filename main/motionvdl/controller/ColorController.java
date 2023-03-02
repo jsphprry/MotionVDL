@@ -30,7 +30,7 @@ public class ColorController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created ColorController '"+debugTitle+"'");
+		Debug.trace(String.format("Created ColorController '%s'", debugTitle));
 	}
 	
 	

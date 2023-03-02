@@ -26,7 +26,7 @@ public class CropController extends Controller {
 	 */
 	public CropController(MainController mainController, Display mainDisplay) {
 		
-		// setup labels
+		// setup metadata
 		displayTitle = "Cropping stage";
 		debugTitle = "Crop controller";
 		exportLocation = "videoS1";
@@ -40,7 +40,7 @@ public class CropController extends Controller {
 		adjusted = false;
 		
 		// debug trace
-		Debug.trace("Created CropController '"+debugTitle+"'");
+		Debug.trace(String.format("Created CropController '%s'", debugTitle));
 	}
 	
 	
@@ -87,10 +87,10 @@ public class CropController extends Controller {
 					cfs = Math.min(y-ay, limx-ax);
 				
 				// if the second click is above the first
-				} else if (ay > y) {
+				} else {
 					cfs = Math.min(ay-y, ax);
-					ax = ax-cfs;
-					ay = ay-cfs;
+					ax -= cfs;
+					ay -= cfs;
 				}
 				
 				// set flags
@@ -106,7 +106,7 @@ public class CropController extends Controller {
 			
 			// else warn
 			} else {
-				Debug.trace(debugTitle+" ignored click instruction, crop frame cannot have zero size");
+				Debug.trace(debugTitle+" ignored click instruction 'crop frame cannot have zero size'");
 				display.setMessage("Warning! Crop frame cannot have zero size");
 			}
 			
@@ -146,7 +146,7 @@ public class CropController extends Controller {
 		
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" controller ignored process instruction");
+			Debug.trace(debugTitle+" ignored process instruction");
 			display.setMessage("Warning! Not ready to crop");
 		}
 	}

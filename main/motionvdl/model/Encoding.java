@@ -27,21 +27,21 @@ public abstract class Encoding {
 	public static void export(Encoding data, String location) {
 		
 		// encode data
-		byte[] encode = data.encode();
+		byte[] encoding = data.encode();
 
 		// try to write encoding to filesystem location
 		try {
 			String filename = location+".mvdl";
 			FileOutputStream stream = new FileOutputStream(filename);
-			stream.write(encode);
+			stream.write(encoding);
 			stream.close();
 			
 			// debug trace
 			Debug.trace("Encoding exported to "+filename);
 		
-		// catch to report error
+		// catch and trace error
 		} catch (Exception e) {
-			Debug.trace("Error! "+e.getMessage());
+			Debug.trace("Error writing to file! "+e.getMessage());
 		}
 	}
 }

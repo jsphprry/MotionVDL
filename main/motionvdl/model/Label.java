@@ -37,6 +37,21 @@ public class Label extends Encoding {
 	
 	
 	/**
+	 * Return a point from a stack by index
+	 * @param stack The stack index
+	 * @param index The point index
+	 * @return The point at the stack point index
+	 */
+	public Point getPoint(int stack, int index) {
+		
+		// throw out of bounds
+		if (index > sizes[stack]) throw new ArrayIndexOutOfBoundsException("Index is larger than stack size");
+		
+		return buffer[stack][index];
+	}
+	
+	
+	/**
 	 * Get an array of the points on a stack
 	 * @param stack The stack index
 	 * @return Array of points on the frame

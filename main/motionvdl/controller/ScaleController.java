@@ -30,7 +30,7 @@ public class ScaleController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created ScaleController '"+debugTitle+"'");
+		Debug.trace(String.format("Created ScaleController '%s'", debugTitle));
 	}
 	
 	
@@ -58,7 +58,7 @@ public class ScaleController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" ignored process instruction, invalid target resolution");
+			Debug.trace(debugTitle+" ignored process instruction 'invalid target resolution'");
 			display.setMessage("Warning! Invalid target resolution");
 		}
 	}

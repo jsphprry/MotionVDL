@@ -24,14 +24,15 @@ public class TestMVDL {
 		
 		// constants
 		int N_FRAMES = 10;
-		
-		// setup components
-		Video noise = Video.noise(250,200,N_FRAMES);
+
+		// setup display and controller
 		Display display = new Display(500,350);
 		MainController controller = new MainController(display);
+		// display receiver is not needed for this test
+		//display.sendTo(controller); 
 		
-		// start the main controller
-		controller.pass(noise);
+		// start main controller with video noise
+		controller.pass(Video.noise(250,200,N_FRAMES));
 		
 		// crop stage
 		controller.click(100,100); // ready

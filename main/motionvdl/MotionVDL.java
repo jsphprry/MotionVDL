@@ -24,7 +24,12 @@ public class MotionVDL {
 		// setup debug
 		if (args.length >= 2) Debug.setup(Boolean.parseBoolean(args[1]));
 		
-		// start main controller and display with video file
-		new MainController(new Display(350, 500)).pass(Video.fromFile(args[0]));
+		// setup display and controller
+		Display display = new Display(350, 500);
+		MainController controller = new MainController(display);
+		display.sendTo(controller);
+		
+		// start main controller with video file
+		controller.pass(Video.fromFile(args[0]));
 	}
 }

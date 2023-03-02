@@ -3,6 +3,9 @@ package motionvdl.display;
 import java.awt.Color;
 import java.awt.Point;
 
+import motionvdl.controller.Controller;
+import motionvdl.controller.MainController;
+
 public class Display {
 	
 	//private Label title;
@@ -11,6 +14,7 @@ public class Display {
 	
 	private int height;
 	private int width;
+	private Controller receiver;
 	
 	public Display(int h, int w) {
 		this.height = h;
@@ -19,6 +23,19 @@ public class Display {
 		//this.videoFrame = new Frame();
 		
 	}
+	
+	
+	/**
+	 * Store a reference to the receiving controller
+	 * @param controller The controller reference
+	 */
+	public void sendTo(Controller controller) {
+		receiver = controller;
+	}
+	
+	
+	
+	
 	
 	public void setTitle(String string) {
 		// TODO Auto-generated method stub

@@ -25,7 +25,7 @@ public class MainController extends Controller {
 	 */
 	public MainController(Display mainDisplay) {
 		
-		// setup labels
+		// setup metadata
 		debugTitle = "Main controller";
 		
 		// setup components
@@ -39,7 +39,7 @@ public class MainController extends Controller {
 		stage = -1;
 		
 		// debug trace
-		Debug.trace("Created MainController '"+debugTitle+"'");
+		Debug.trace(String.format("Created MainController '%s'", debugTitle));
 	}
 	
 	
@@ -51,11 +51,11 @@ public class MainController extends Controller {
 	@Override
 	public void click(int x, int y) {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved click instruction");
-		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved click instruction");
 		
 		// call subcontroller
 		linkedController.click(x, y);
@@ -68,11 +68,11 @@ public class MainController extends Controller {
 	@Override
 	public void process() {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
-		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved process instruction");
 		
 		// call subcontroller
 		linkedController.process();
@@ -84,11 +84,11 @@ public class MainController extends Controller {
 	 */
 	public void complete() {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved complete instruction");
-		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved complete instruction");
 		
 		// call subcontroller
 		linkedController.complete();
@@ -116,11 +116,11 @@ public class MainController extends Controller {
 	@Override
 	public void nextFrame() {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved nextFrame instruction");
-		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved nextFrame instruction");
 		
 		// call subcontroller
 		linkedController.nextFrame();
@@ -133,11 +133,11 @@ public class MainController extends Controller {
 	@Override
 	public void prevFrame() {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved prevFrame instruction");
-		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved prevFrame instruction");
 		
 		// call subcontroller
 		linkedController.prevFrame();

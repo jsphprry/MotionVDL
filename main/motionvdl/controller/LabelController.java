@@ -34,7 +34,7 @@ public class LabelController extends Controller {
 		display = mainDisplay;
 		
 		// debug trace
-		Debug.trace("Created LabelController '"+debugTitle+"'");
+		Debug.trace(String.format("Created LabelController '%s'", debugTitle));
 	}
 	
 	
@@ -61,7 +61,7 @@ public class LabelController extends Controller {
 		
 		// else warn that the frame is complete
 		} else {
-			Debug.trace("Label controller ignored point instruction");
+			Debug.trace("Label controller ignored point instruction 'frame is full'");
 			display.setMessage("Warning! Frame is full");
 		}
 	}

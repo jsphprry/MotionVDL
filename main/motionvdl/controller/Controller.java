@@ -10,7 +10,7 @@ import motionvdl.model.Video;
  */
 public abstract class Controller {
 	
-	// labels
+	// metadata
 	protected String displayTitle = "MotionVDL";  // controller title on display
 	protected String debugTitle = "[controller]"; // controller title in debug output
 	protected String exportLocation = "video";    // filesystem location for exported encodings
@@ -54,7 +54,7 @@ public abstract class Controller {
 	 * For the main controller this should pass instruction to current subcontroller
 	 */
 	public void complete() {
-
+		
 		// debug trace
 		Debug.trace(debugTitle+" recieved complete instruction");
 		
