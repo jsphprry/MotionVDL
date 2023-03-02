@@ -72,6 +72,16 @@ public class Label extends Encoding {
 	
 	
 	/**
+	 * Return the size of a stack
+	 * @param stack The stack index
+	 * @return The size of the stack
+	 */
+	public int getSize(int stack) {
+		return sizes[stack];
+	}
+	
+	
+	/**
 	 * Pop from a stack
 	 * @param stack The stack index
 	 * @return 2d point
