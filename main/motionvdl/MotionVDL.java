@@ -1,5 +1,7 @@
 package motionvdl;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
@@ -8,8 +10,8 @@ import motionvdl.model.Video;
  * MotionVDL application starter 
  * @author Joseph
  */
-public class MotionVDL {
-	
+public class MotionVDL extends Application {
+
 	/**
 	 * MotionVDL starter program
 	 * defines the program arguments
@@ -25,11 +27,22 @@ public class MotionVDL {
 		if (args.length >= 2) Debug.setup(Boolean.parseBoolean(args[1]));
 		
 		// setup display and controller
-		Display display = new Display(350, 500);
+		Display display = new Display(675, 475, new Stage());
 		MainController controller = new MainController(display);
 		display.sendTo(controller);
 		
 		// start main controller with video file
 		controller.pass(Video.fromFile(args[0]));
+	}
+
+
+
+	@Override
+	public void start(Stage stage) {
+		Display display = new Display(675, 475, stage);
+	}
+
+	public static void tempDisplay(String[] args) {
+		launch(args);
 	}
 }

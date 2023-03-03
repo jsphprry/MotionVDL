@@ -11,16 +11,24 @@
     -fx-font: 12pt "Arial";
 }
 
-#cropLine {
-    -fx-stroke-width: 5pt;
+#connectorID {
+    -fx-stroke-width: 2.5pt;
 }
 
-#paneID {
-    -fx-background-color: #ffe6ef;
+#cropLine {
+    -fx-stroke-width: 5pt;
 }
 
 #opaqueSquare {
     -fx-fill: WHITE;
     -fx-stroke: BLACK;
     -fx-opacity: 0.2;
+}
+
+#paneID {
+    -fx-background-color: #ffe6ef;
+}
+
+#pointID {
+    -fx-fill: BLACK;
 }
