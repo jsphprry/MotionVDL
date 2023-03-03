@@ -1,0 +1,34 @@
+.button {
+    -fx-cursor: hand;
+    -fx-background-radius: 15px;
+}
+
+.label {
+    -fx-font: 15pt "Arial";
+}
+
+.text-field {
+    -fx-font: 12pt "Arial";
+}
+
+#cropLine {
+    -fx-stroke-width: 5pt;
+}
+
+#lineID {
+    -fx-stroke-width: 2.5pt;
+}
+
+#opaqueSquare {
+    -fx-fill: WHITE;
+    -fx-stroke: BLACK;
+    -fx-opacity: 0.2;
+}
+
+#paneID {
+    -fx-background-color: #ffe6ef;
+}
+
+#pointID {
+    -fx-fill: BLACK;
+}
