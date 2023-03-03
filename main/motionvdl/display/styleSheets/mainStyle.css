@@ -11,12 +11,12 @@
     -fx-font: 12pt "Arial";
 }
 
-#connectorID {
-    -fx-stroke-width: 2.5pt;
-}
-
 #cropLine {
     -fx-stroke-width: 5pt;
+}
+
+#lineID {
+    -fx-stroke-width: 2.5pt;
 }
 
 #opaqueSquare {
