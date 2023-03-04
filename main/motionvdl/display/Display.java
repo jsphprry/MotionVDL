@@ -41,7 +41,7 @@ public class Display {
 	private Button prevBut;
 	private Circle[] points;
 	private Line diagonalLine;
-	private Line[] lines;
+	private Line[] connectors;
 	private Rectangle opaqueSquare;
 	
 	// Joseph - the instantiation of stage would be best encapsulated 
@@ -78,7 +78,7 @@ public class Display {
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> System.out.println(event)  /* Controller Reference Here */ );
+				event -> drawPoint((int) event.getX(), (int) event.getY())  /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for processing
@@ -137,10 +137,10 @@ public class Display {
 		}
 
 		// Lines to connect points during the labelling stage
-		this.lines = new Line[10];
-		for (int i = 0; i < this.lines.length; i++) {
-			this.lines[i] = new Line();
-			this.lines[i].setId("lineID");
+		this.connectors = new Line[10];
+		for (int i = 0; i < this.connectors.length; i++) {
+			this.connectors[i] = new Line();
+			this.connectors[i].setId("lineID");
 		}
 
 		// Line to visualise crop after first click during cropping stage
@@ -184,18 +184,57 @@ public class Display {
 	public void drawPoint(int x, int y) {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
-		// TODO: Replace 0 with the number based on how many points have been placed - passed as parameter?
 		
 		// Joseph - getChildren() returns a type implementing ObservableList, which itself implements List
 		// List has the method size() which returns the number of elements in the list so you could try 
 		// size() to get the next index for the points array if you create a temporary variable to hold 
 		// the list to call size() on
-		
-		this.points[0].setCenterX(x);
-		this.points[0].setCenterY(y);
-		this.primaryPane.getChildren().add(this.points[0]);
+
+		int pointNum = (int) this.primaryPane
+				.getChildren()
+				.stream()
+				.filter(node -> node instanceof Circle)
+				.count();
+
+		if (pointNum < 11) {
+			this.points[pointNum].setCenterX(x);
+			this.points[pointNum].setCenterY(y);
+			this.primaryPane.getChildren().add(this.points[pointNum]);
+			if (pointNum > 0) {
+				drawConnector(pointNum);
+			}
+		} else {
+			setMessage("All points placed!");
+		}
 	}
-	
+
+	public void drawConnector(int pointNum) {
+		pointNum--;   // Decrement as there will always be one less line than point
+		switch (pointNum) {
+			default -> {
+				connectors[pointNum].setStartX(this.points[pointNum].getCenterX());
+				connectors[pointNum].setStartY(this.points[pointNum].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+
+			// Special cases for points not connected to previous point
+			case 3, 5 -> {
+				connectors[pointNum].setStartX(this.points[1].getCenterX());
+				connectors[pointNum].setStartY(this.points[1].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+			case 8 -> {
+				connectors[pointNum].setStartX(this.points[6].getCenterX());
+				connectors[pointNum].setStartY(this.points[6].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+		}
+		this.primaryPane.getChildren().add(this.connectors[pointNum]);
+	}
+
 	public void drawPoints(Point[] points) {
 		// TODO: Draw multiple points on the display
 		
@@ -238,7 +277,7 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.diagonalLine);
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
-		this.primaryPane.getChildren().removeAll(this.lines);
+		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
 
 
