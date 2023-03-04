@@ -16,47 +16,52 @@ public final class Debug {
 	
 	/**
 	 * Setup the debug trace
-	 * @param verbose Enable or disable debug trace
+	 * @param verbose Enable (true) or disable (false) debug trace
 	 */
 	public static void setup(boolean verbose) {
 		
-		// set enabled flag
+		// set flag
 		enabled = verbose;
 		
+		// if the debug trace is enabled
 		if (enabled) {
 			
-			// setup time stamp formatter
+			// setup timestamp
 			timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
 			
-			// setup file writer
+			// try to setup log file
 			try {
 				printWriter = new PrintWriter(new FileWriter("MVDL.log"));
-				trace("Created log file");
+				trace("Created log file 'MVDL.log'");
 			
-			// if there is an issue
+			// warn if IO error
 			} catch (IOException e) {
-				System.out.println("Error: Problem setting up file writer. "+e.getMessage());
+				System.out.println("Warning! Problem setting up file writer");
+				System.out.println("Caught message: "+e.getMessage());
 			}
+		
+		// otherwise free resources
+		} else {
+			timeStamp = null;
+			printWriter = null;
 		}
 	}
 	
 	
 	/**
-	 * Record a debug trace
-	 * @param message The message for the debug trace
+	 * Record a debug trace to terminal and log file
+	 * @param message The message string
 	 */
 	public static void trace(String message) {
 		
-		// record message if the trace is enabled
+		// if the debug trace is enabled
 		if (enabled) {
 			
-			// format message with time stamp
-			message = timeStamp.format(LocalDateTime.now()) +" | " + message;
+			// reformat message with time stamp
+			message = timeStamp.format(LocalDateTime.now())+" | "+message;
 			
-			// print message to terminal
+			// record message to terminal and log file
 			System.out.println(message);
-			
-			// write message to log file
 			printWriter.println(message);
 			printWriter.flush();
 		}

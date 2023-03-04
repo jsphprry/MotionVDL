@@ -8,8 +8,11 @@ import motionvdl.model.Video;
 
 /**
  * MotionVDL application starter 
- * @author Joseph
+ * @author Henri, Joseph
  */
+// Joseph - Is it standard javafx design for the whole 
+// MVC be inside an Application-inheriting class like this? 
+// Maybe you could explain this to me next time we meet
 public class MotionVDL extends Application {
 
 	/**
@@ -34,14 +37,15 @@ public class MotionVDL extends Application {
 		// start main controller with video file
 		controller.pass(Video.fromFile(args[0]));
 	}
-
-
+	
+	
 
 	@Override
 	public void start(Stage stage) {
 		Display display = new Display(675, 475, stage);
 	}
-
+	
+	// Joseph - could be replaced with literal launch()
 	public static void tempDisplay(String[] args) {
 		launch(args);
 	}

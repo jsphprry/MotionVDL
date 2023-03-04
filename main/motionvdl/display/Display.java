@@ -15,6 +15,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 
+/**
+ * MotionVDL display component
+ * @author Henri
+ */
 public class Display {
 	
 	//private Label title;
@@ -40,11 +44,17 @@ public class Display {
 	private Line[] lines;
 	private Rectangle opaqueSquare;
 	
+	// Joseph - the instantiation of stage would be best encapsulated 
+	// inside the constructor here, since it seems that all 
+	// instantiations of Display pass stage as new Stage()
+	// 
+	// Joseph - actually it seems that MotionVDL.start() passes 
+	// stage to Display as an argument, but I can't find a use of
+	// start in the code so I'm not sure where that argument comes 
+	// from, maybe you could explain this to me next meeting.
 	public Display(int h, int w, Stage stage) {
 		this.height = h;
 		this.width = w;
-		
-		//this.videoFrame = new Frame();
 
 		this.primaryStage = stage;
 		this.primaryPane = new Pane();
@@ -175,6 +185,12 @@ public class Display {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
 		// TODO: Replace 0 with the number based on how many points have been placed - passed as parameter?
+		
+		// Joseph - getChildren() returns a type implementing ObservableList, which itself implements List
+		// List has the method size() which returns the number of elements in the list so you could try 
+		// size() to get the next index for the points array if you create a temporary variable to hold 
+		// the list to call size() on
+		
 		this.points[0].setCenterX(x);
 		this.points[0].setCenterY(y);
 		this.primaryPane.getChildren().add(this.points[0]);
