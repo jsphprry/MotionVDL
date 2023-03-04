@@ -23,19 +23,16 @@ public final class Debug {
 		// set flag
 		enabled = verbose;
 		
-		// if the debug trace is enabled
+		// if the debug trace is enabled try to setup
 		if (enabled) {
-			
-			// setup timestamp
-			timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
-			
-			// try to setup log file
 			try {
+				timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
 				printWriter = new PrintWriter(new FileWriter("MVDL.log"));
 				trace("Created log file 'MVDL.log'");
 			
-			// warn if IO error
+			// disable trace and print warning if IO error
 			} catch (IOException e) {
+				enabled = false;
 				System.out.println("Warning! Problem setting up file writer");
 				System.out.println("Caught message: "+e.getMessage());
 			}
