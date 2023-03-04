@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -171,10 +173,23 @@ public class Display {
 		this.titleLab.setText(string);
 	}
 	
-	public void setFrame(Color[][] frame) {
-		// TODO: JavaFX ImageView requires type Image, so must convert from Color[][] to Image to display on screen
-		// this.imageView.setImage(frame);
-		
+	public void setFrame(Color[][] colorArray) {
+		// TODO: Might work, need an example to make sure
+		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
+		PixelWriter writer = frame.getPixelWriter();
+		for (int y = 0; y < colorArray.length; y++) {
+			for (int x = 0; x < colorArray[y].length; x++) {
+				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
+				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
+						colorArray[y][x].getRed(),
+						colorArray[y][x].getGreen(),
+						colorArray[y][x].getBlue() );
+
+				// Set each pixel's color
+				writer.setColor(x, y, fxColor);
+			}
+		}
+		this.imageView.setImage(frame);
 	}
 	
 	public void setMessage(String string) {
@@ -209,7 +224,7 @@ public class Display {
 	}
 
 	public void drawConnector(int pointNum) {
-		pointNum--;   // Decrement as there will always be one less line than point
+		pointNum--;  // Decrement as there will always be one less connector than point
 		switch (pointNum) {
 			default -> {
 				connectors[pointNum].setStartX(this.points[pointNum].getCenterX());
