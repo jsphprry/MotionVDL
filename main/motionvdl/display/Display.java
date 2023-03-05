@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import motionvdl.controller.Controller;
 
 /**
@@ -54,11 +55,15 @@ public class Display {
 	// stage to Display as an argument, but I can't find a use of
 	// start in the code so I'm not sure where that argument comes 
 	// from, maybe you could explain this to me next meeting.
-	public Display(int h, int w, Stage stage) {
+
+	// Henri - Reconsidering, I will reprogram MotionVDL class
+	// to account for a new display instead of default - makes
+	// things easier to handle in that class also
+	public Display(int h, int w) {
 		this.height = h;
 		this.width = w;
 
-		this.primaryStage = stage;
+		this.primaryStage = new Stage();
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
 		this.primaryScene = new Scene(this.primaryPane, this.height, this.width);
@@ -177,16 +182,16 @@ public class Display {
 		// TODO: Might work, need an example to make sure
 		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
 		PixelWriter writer = frame.getPixelWriter();
-		for (int y = 0; y < colorArray.length; y++) {
-			for (int x = 0; x < colorArray[y].length; x++) {
+		for (int i = 0; i < colorArray.length; i++) {
+			for (int j = 0; j < colorArray[i].length; j++) {
 				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
 				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
-						colorArray[y][x].getRed(),
-						colorArray[y][x].getGreen(),
-						colorArray[y][x].getBlue() );
+						colorArray[i][j].getRed(),
+						colorArray[i][j].getGreen(),
+						colorArray[i][j].getBlue() );
 
 				// Set each pixel's color
-				writer.setColor(x, y, fxColor);
+				writer.setColor(j, i, fxColor);
 			}
 		}
 		this.imageView.setImage(frame);
@@ -204,6 +209,11 @@ public class Display {
 		// List has the method size() which returns the number of elements in the list so you could try 
 		// size() to get the next index for the points array if you create a temporary variable to hold 
 		// the list to call size() on
+
+		// Very clever - I hadn't even considered that and I probably never would have - this
+		// makes it so much easier to draw the points and connectors, as I've done below, the
+		// pointNum variable counts only the number of Circle objects which are currently on
+		// screen, which is much better than storing a counter variable
 
 		int pointNum = (int) this.primaryPane
 				.getChildren()
