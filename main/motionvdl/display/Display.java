@@ -6,6 +6,7 @@ import java.awt.Point;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
@@ -15,7 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import motionvdl.controller.Controller;
 
 /**
@@ -28,24 +28,26 @@ public class Display {
 	//private Frame videoFrame;
 	//private Label message;
 	
-	private int height;
-	private int width;
+	private int HEIGHT;
+	private int WIDTH;
 	private Controller receiver;
 
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Pane primaryPane;
-	private ImageView imageView;
-	private Label titleLab;
-	private Label messageLab;
 	private Button processBut;
 	private Button completeBut;
 	private Button nextBut;
 	private Button prevBut;
 	private Circle[] points;
+	private ImageView imageView;
+	private Label titleLab;
+	private Label messageLab;
 	private Line diagonalLine;
 	private Line[] connectors;
 	private Rectangle opaqueSquare;
+	private TextField widthTextField;
+	private TextField heightTextField;
 	
 	// Joseph - the instantiation of stage would be best encapsulated 
 	// inside the constructor here, since it seems that all 
@@ -59,21 +61,20 @@ public class Display {
 	// Henri - Reconsidering, I will reprogram MotionVDL class
 	// to account for a new display instead of default - makes
 	// things easier to handle in that class also
-	public Display(int h, int w) {
-		this.height = h;
-		this.width = w;
+	public Display(int w, int h) {
+		this.WIDTH = w;
+		this.HEIGHT = h;
 
 		this.primaryStage = new Stage();
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
-		this.primaryScene = new Scene(this.primaryPane, this.height, this.width);
+		this.primaryScene = new Scene(this.primaryPane, this.WIDTH, this.HEIGHT);
 		this.primaryScene.getStylesheets().add("motionvdl/display/styleSheets/mainStyle.css");
 
 		// Title Label
-		this.titleLab = new Label();
+		this.titleLab = new Label("Title");
 		this.titleLab.setLayoutX(6);
 		this.titleLab.setLayoutY(6);
-		this.titleLab.setText("Title");
 		this.primaryPane.getChildren().add(this.titleLab);
 
 		// ImageView to show current frame
@@ -89,50 +90,45 @@ public class Display {
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for processing
-		this.processBut = new Button();
+		this.processBut = new Button("Process");
 		this.processBut.setLayoutX(475);
 		this.processBut.setLayoutY(60);
 		this.processBut.setMinSize(160,50);
-		this.processBut.setText("Process");
 		this.processBut.setOnAction(
 				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.processBut);
 
 		// Button for completing
-		this.completeBut = new Button();
+		this.completeBut = new Button("Complete");
 		this.completeBut.setLayoutX(475);
 		this.completeBut.setLayoutY(120);
 		this.completeBut.setMinSize(160,50);
-		this.completeBut.setText("Complete");
 		this.completeBut.setOnAction(
 				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.completeBut);
 
 		// Button for switching to previous frame
-		this.prevBut = new Button();
+		this.prevBut = new Button("Previous");
 		this.prevBut.setLayoutX(475);
 		this.prevBut.setLayoutY(180);
 		this.prevBut.setMinSize(78,50);
-		this.prevBut.setText("Previous");
 		this.prevBut.setOnAction(
 				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.prevBut);
 
 		// Button for switching to next frame
-		this.nextBut = new Button();
+		this.nextBut = new Button("Next");
 		this.nextBut.setLayoutX(557);
 		this.nextBut.setLayoutY(180);
 		this.nextBut.setMinSize(78,50);
-		this.nextBut.setText("Next");
 		this.nextBut.setOnAction(
 				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.nextBut);
 
 		// Message area Label
-		this.messageLab = new Label();
+		this.messageLab = new Label("Message area");
 		this.messageLab.setLayoutX(475);
 		this.messageLab.setLayoutY(280);
-		this.messageLab.setText("Message area");
 		this.primaryPane.getChildren().add(this.messageLab);
 
 		// Points to be placed on the ImageView to visualise a click
@@ -150,6 +146,22 @@ public class Display {
 			this.connectors[i].setId("lineID");
 		}
 
+		// TextField for specifying resolution width
+		this.widthTextField = new TextField();
+		this.widthTextField.setLayoutX(475);
+		this.widthTextField.setLayoutY(240);
+		this.widthTextField.setMinSize(5, 5);
+		this.widthTextField.setMaxWidth(78);
+		this.primaryPane.getChildren().add(this.widthTextField);
+
+		// TextField for specifying resolution height
+		this.heightTextField = new TextField();
+		this.heightTextField.setLayoutX(557);
+		this.heightTextField.setLayoutY(240);
+		this.heightTextField.setMinSize(5, 5);
+		this.heightTextField.setMaxWidth(78);
+		this.primaryPane.getChildren().add(this.heightTextField);
+
 		// Line to visualise crop after first click during cropping stage
 		this.diagonalLine = new Line();
 
@@ -164,8 +176,7 @@ public class Display {
 		this.primaryStage.setScene(this.primaryScene);
 		this.primaryStage.show();
 	}
-	
-	
+
 	/**
 	 * Store a reference to the receiving controller
 	 * @param controller The controller reference
@@ -226,15 +237,20 @@ public class Display {
 			this.points[pointNum].setCenterY(y);
 			this.primaryPane.getChildren().add(this.points[pointNum]);
 			if (pointNum > 0) {
-				drawConnector(pointNum);
+				drawConnector(pointNum - 1);
 			}
 		} else {
 			setMessage("All points placed!");
 		}
 	}
 
+	public void drawPoints(Point[] drawPoints) {
+		for (Point point : drawPoints) {
+			drawPoint(point.x, point.y);
+		}
+	}
+
 	public void drawConnector(int pointNum) {
-		pointNum--;  // Decrement as there will always be one less connector than point
 		switch (pointNum) {
 			default -> {
 				connectors[pointNum].setStartX(this.points[pointNum].getCenterX());
@@ -258,11 +274,6 @@ public class Display {
 			}
 		}
 		this.primaryPane.getChildren().add(this.connectors[pointNum]);
-	}
-
-	public void drawPoints(Point[] points) {
-		// TODO: Draw multiple points on the display
-		
 	}
 	
 	public void drawDiagonal(int ax, int ay) {
@@ -305,9 +316,14 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
 
-
 	public Point getTarget() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			int widthInt = Integer.parseInt(this.widthTextField.getText());
+			int heightInt = Integer.parseInt(this.heightTextField.getText());
+			System.out.println(widthInt + ", " + heightInt);
+			return (new Point(widthInt, heightInt));
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
+		}
 	}
 }
