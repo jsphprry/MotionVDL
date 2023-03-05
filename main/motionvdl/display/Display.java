@@ -8,11 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import motionvdl.controller.Controller;
 
 /**
@@ -41,7 +44,7 @@ public class Display {
 	private Button prevBut;
 	private Circle[] points;
 	private Line diagonalLine;
-	private Line[] lines;
+	private Line[] connectors;
 	private Rectangle opaqueSquare;
 	
 	// Joseph - the instantiation of stage would be best encapsulated 
@@ -52,11 +55,15 @@ public class Display {
 	// stage to Display as an argument, but I can't find a use of
 	// start in the code so I'm not sure where that argument comes 
 	// from, maybe you could explain this to me next meeting.
-	public Display(int h, int w, Stage stage) {
+
+	// Henri - Reconsidering, I will reprogram MotionVDL class
+	// to account for a new display instead of default - makes
+	// things easier to handle in that class also
+	public Display(int h, int w) {
 		this.height = h;
 		this.width = w;
 
-		this.primaryStage = stage;
+		this.primaryStage = new Stage();
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
 		this.primaryScene = new Scene(this.primaryPane, this.height, this.width);
@@ -78,7 +85,7 @@ public class Display {
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> System.out.println(event)  /* Controller Reference Here */ );
+				event -> drawPoint((int) event.getX(), (int) event.getY())  /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for processing
@@ -137,10 +144,10 @@ public class Display {
 		}
 
 		// Lines to connect points during the labelling stage
-		this.lines = new Line[10];
-		for (int i = 0; i < this.lines.length; i++) {
-			this.lines[i] = new Line();
-			this.lines[i].setId("lineID");
+		this.connectors = new Line[10];
+		for (int i = 0; i < this.connectors.length; i++) {
+			this.connectors[i] = new Line();
+			this.connectors[i].setId("lineID");
 		}
 
 		// Line to visualise crop after first click during cropping stage
@@ -171,10 +178,23 @@ public class Display {
 		this.titleLab.setText(string);
 	}
 	
-	public void setFrame(Color[][] frame) {
-		// TODO: JavaFX ImageView requires type Image, so must convert from Color[][] to Image to display on screen
-		// this.imageView.setImage(frame);
-		
+	public void setFrame(Color[][] colorArray) {
+		// TODO: Might work, need an example to make sure
+		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
+		PixelWriter writer = frame.getPixelWriter();
+		for (int i = 0; i < colorArray.length; i++) {
+			for (int j = 0; j < colorArray[i].length; j++) {
+				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
+				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
+						colorArray[i][j].getRed(),
+						colorArray[i][j].getGreen(),
+						colorArray[i][j].getBlue() );
+
+				// Set each pixel's color
+				writer.setColor(j, i, fxColor);
+			}
+		}
+		this.imageView.setImage(frame);
 	}
 	
 	public void setMessage(String string) {
@@ -184,18 +204,62 @@ public class Display {
 	public void drawPoint(int x, int y) {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
-		// TODO: Replace 0 with the number based on how many points have been placed - passed as parameter?
 		
 		// Joseph - getChildren() returns a type implementing ObservableList, which itself implements List
 		// List has the method size() which returns the number of elements in the list so you could try 
 		// size() to get the next index for the points array if you create a temporary variable to hold 
 		// the list to call size() on
-		
-		this.points[0].setCenterX(x);
-		this.points[0].setCenterY(y);
-		this.primaryPane.getChildren().add(this.points[0]);
+
+		// Very clever - I hadn't even considered that and I probably never would have - this
+		// makes it so much easier to draw the points and connectors, as I've done below, the
+		// pointNum variable counts only the number of Circle objects which are currently on
+		// screen, which is much better than storing a counter variable
+
+		int pointNum = (int) this.primaryPane
+				.getChildren()
+				.stream()
+				.filter(node -> node instanceof Circle)
+				.count();
+
+		if (pointNum < 11) {
+			this.points[pointNum].setCenterX(x);
+			this.points[pointNum].setCenterY(y);
+			this.primaryPane.getChildren().add(this.points[pointNum]);
+			if (pointNum > 0) {
+				drawConnector(pointNum);
+			}
+		} else {
+			setMessage("All points placed!");
+		}
 	}
-	
+
+	public void drawConnector(int pointNum) {
+		pointNum--;  // Decrement as there will always be one less connector than point
+		switch (pointNum) {
+			default -> {
+				connectors[pointNum].setStartX(this.points[pointNum].getCenterX());
+				connectors[pointNum].setStartY(this.points[pointNum].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+
+			// Special cases for points not connected to previous point
+			case 3, 5 -> {
+				connectors[pointNum].setStartX(this.points[1].getCenterX());
+				connectors[pointNum].setStartY(this.points[1].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+			case 8 -> {
+				connectors[pointNum].setStartX(this.points[6].getCenterX());
+				connectors[pointNum].setStartY(this.points[6].getCenterY());
+				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
+				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+			}
+		}
+		this.primaryPane.getChildren().add(this.connectors[pointNum]);
+	}
+
 	public void drawPoints(Point[] points) {
 		// TODO: Draw multiple points on the display
 		
@@ -238,7 +302,7 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.diagonalLine);
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
-		this.primaryPane.getChildren().removeAll(this.lines);
+		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
 
 
