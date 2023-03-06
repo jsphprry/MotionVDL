@@ -23,9 +23,9 @@ import motionvdl.controller.Controller;
  * @author Henri
  */
 public class Display {
-	
-	private int HEIGHT;
-	private int WIDTH;
+
+	private final int WIDTH;
+	private final int HEIGHT;
 	private Controller receiver;
 
 	private Stage primaryStage;
@@ -57,11 +57,11 @@ public class Display {
 	// Henri 230305. Reconsidering, I will reprogram MotionVDL class
 	// to account for a new display instead of default - makes
 	// things easier to handle in that class also
-	public Display(int w, int h) {
+	public Display(int w, int h, Stage stage) {
 		this.WIDTH = w;
 		this.HEIGHT = h;
 
-		this.primaryStage = new Stage();
+		this.primaryStage = stage;
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
 		this.primaryScene = new Scene(this.primaryPane, this.WIDTH, this.HEIGHT);
@@ -124,7 +124,7 @@ public class Display {
 		// Message area Label
 		this.messageLab = new Label("Message area");
 		this.messageLab.setLayoutX(475);
-		this.messageLab.setLayoutY(280);
+		this.messageLab.setLayoutY(300);
 		this.primaryPane.getChildren().add(this.messageLab);
 
 		// Points to be placed on the ImageView to visualise a click
@@ -231,7 +231,10 @@ public class Display {
 		// Joseph 230306. The controller uses drawPoint in scenarios that do not always need a 
 		// wireframe, for instance in the crop stage when defining the crop frame. because 
 		// of this I think It might be best if we have seperate methods for drawing points 
-		// and connectors 
+		// and connectors
+
+		// Henri 230306. I don't think the crop controller needs to place points,
+		// as it's already drawing other visual elements
 
 		if (pointNum < 11) {
 			this.points[pointNum].setCenterX(x);
@@ -290,6 +293,11 @@ public class Display {
 		// Joseph 230306 - This handling might not be neccesary 
 		// if we implement with the assumption that clicks 
 		// cannot come from invalid positions
+
+		// Henri 230306 - This isn't handling for the click location - it
+		// is to ensure the line gets drawn only within the bounds of the
+		// ImageView, by evenly increasing the line length until it touches
+		// the bounds of the ImageView
 		
 		while(this.diagonalLine.getStartX() != this.imageView.getLayoutX()
 				&& this.diagonalLine.getStartY() != this.imageView.getLayoutY()) {

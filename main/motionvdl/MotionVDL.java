@@ -29,39 +29,25 @@ public class MotionVDL extends Application {
 	 * @param args[0] Video location on filesystem
 	 * @param args[1] Debug setup flag
 	 */
-	public static void main(String[] args) {
-		
-		// throw insufficient arguments
-		if (args.length == 0) throw new IllegalArgumentException("Insufficient arguments");
-		
-		// setup debug
-		if (args.length >= 2) Debug.setup(Boolean.parseBoolean(args[1]));
-		
-		// setup display and controller
-		Display display = new Display(675, 475);
-		MainController controller = new MainController(display);
-		display.sendTo(controller);
-		
-		// start main controller with video file
-		controller.pass(Video.fromFile(args[0]));
-	}
-	
-
 	@Override
 	public void start(Stage stage) {
-		// TODO: Use Parameters to pass args[]
+
+		// need to use Parameters to get args[], and then save in List
 		Parameters params = getParameters();
 		List<String> args = params.getRaw();
-		stage.close();
-		Display display = new Display(675, 475);
-	}
-	
-	// Joseph - could be replaced with literal launch()
 
-	// Henri - I don't think it can - will explain further
-	// Also, this is just a temporary method for me to test
-	// the display design
-	public static void tempDisplay(String[] args) {
-		launch(args);
+		// throw insufficient arguments
+		if (args.size() == 0) throw new IllegalArgumentException("Insufficient arguments");
+
+		// setup debug
+		if (args.size() >= 2) Debug.setup(Boolean.parseBoolean(args.get(1)));
+
+		// setup display and controller
+		Display display = new Display(675, 475, stage);
+		MainController controller = new MainController(display);
+		display.sendTo(controller);
+
+		// start main controller with video file
+		controller.pass(Video.fromFile(args.get(0)));
 	}
 }
