@@ -6,6 +6,6 @@ package motionvdl;
  */
 public class JavaFXLauncher {
 
-    public static void main (String[] args) { MotionVDL.tempDisplay(args); }
+    public static void main(String[] args) { MotionVDL.main(args); }
 
 }
