@@ -24,6 +24,8 @@ import java.util.List;
 
 // Henri 230306. I have altered the structure slightly, which is required in order to
 // run the JavaFX application. I have made sure to preserve your code also.
+// Note: When testing the display on its own, you need to comment out all
+// other code in start() except the display initialisation
 
 public class MotionVDL extends Application {
 
