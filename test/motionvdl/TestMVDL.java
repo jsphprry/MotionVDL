@@ -3,7 +3,6 @@ package motionvdl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.stage.Stage;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
 import motionvdl.model.Video;
@@ -31,7 +30,7 @@ public class TestMVDL {
 		Debug.trace("---Setup display and controller---");
 		
 		// setup display and controller
-		Display display = new Display(500, 350, new Stage());
+		Display display = new Display(500, 350);
 		MainController controller = new MainController(display);
 		display.sendTo(controller);
 		
