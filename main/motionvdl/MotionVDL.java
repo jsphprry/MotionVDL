@@ -21,6 +21,10 @@ import java.util.List;
 
 // Henri - I will also need to slightly alter the structure
 // of this class - will explain further, but should be fine
+
+// Henri - I have altered the structure slightly, which is required in order to
+// run the JavaFX application. I have made sure to preserve your code also.
+
 public class MotionVDL extends Application {
 
 	/**
@@ -29,6 +33,10 @@ public class MotionVDL extends Application {
 	 * @param args[0] Video location on filesystem
 	 * @param args[1] Debug setup flag
 	 */
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	@Override
 	public void start(Stage stage) {
 
