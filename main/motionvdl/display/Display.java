@@ -24,10 +24,6 @@ import motionvdl.controller.Controller;
  */
 public class Display {
 	
-	//private Label title;
-	//private Frame videoFrame;
-	//private Label message;
-	
 	private int HEIGHT;
 	private int WIDTH;
 	private Controller receiver;
@@ -49,16 +45,16 @@ public class Display {
 	private TextField widthTextField;
 	private TextField heightTextField;
 	
-	// Joseph - the instantiation of stage would be best encapsulated 
+	// Joseph 230305. the instantiation of stage would be best encapsulated 
 	// inside the constructor here, since it seems that all 
 	// instantiations of Display pass stage as new Stage()
 	// 
-	// Joseph - actually it seems that MotionVDL.start() passes 
+	// Joseph 230305. actually it seems that MotionVDL.start() passes 
 	// stage to Display as an argument, but I can't find a use of
 	// start in the code so I'm not sure where that argument comes 
 	// from, maybe you could explain this to me next meeting.
 
-	// Henri - Reconsidering, I will reprogram MotionVDL class
+	// Henri 230305. Reconsidering, I will reprogram MotionVDL class
 	// to account for a new display instead of default - makes
 	// things easier to handle in that class also
 	public Display(int w, int h) {
@@ -216,12 +212,12 @@ public class Display {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
 		
-		// Joseph - getChildren() returns a type implementing ObservableList, which itself implements List
+		// Joseph 230305. getChildren() returns a type implementing ObservableList, which itself implements List
 		// List has the method size() which returns the number of elements in the list so you could try 
 		// size() to get the next index for the points array if you create a temporary variable to hold 
 		// the list to call size() on
 
-		// Very clever - I hadn't even considered that and I probably never would have - this
+		// Henri 230305. Very clever - I hadn't even considered that and I probably never would have - this
 		// makes it so much easier to draw the points and connectors, as I've done below, the
 		// pointNum variable counts only the number of Circle objects which are currently on
 		// screen, which is much better than storing a counter variable
@@ -231,6 +227,11 @@ public class Display {
 				.stream()
 				.filter(node -> node instanceof Circle)
 				.count();
+		
+		// Joseph 230306. The controller uses drawPoint in scenarios that do not always need a 
+		// wireframe, for instance in the crop stage when defining the crop frame. because 
+		// of this I think It might be best if we have seperate methods for drawing points 
+		// and connectors 
 
 		if (pointNum < 11) {
 			this.points[pointNum].setCenterX(x);
@@ -283,8 +284,13 @@ public class Display {
 		this.diagonalLine.setStartY(ay);
 		this.diagonalLine.setEndX(ax);
 		this.diagonalLine.setEndY(ay);
-
+		
 		// Ensure line is within the bounds of the ImageView
+		
+		// Joseph 230306 - This handling might not be neccesary 
+		// if we implement with the assumption that clicks 
+		// cannot come from invalid positions
+		
 		while(this.diagonalLine.getStartX() != this.imageView.getLayoutX()
 				&& this.diagonalLine.getStartY() != this.imageView.getLayoutY()) {
 			this.diagonalLine.setStartX(this.diagonalLine.getStartX()-1);
@@ -315,7 +321,7 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
-
+	
 	public Point getTarget() {
 		try {
 			int widthInt = Integer.parseInt(this.widthTextField.getText());
