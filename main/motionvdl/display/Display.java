@@ -57,6 +57,9 @@ public class Display {
 	// Henri 230305. Reconsidering, I will reprogram MotionVDL class
 	// to account for a new display instead of default - makes
 	// things easier to handle in that class also
+
+	// Henri 230306. I have decided it would be more memory efficient to
+	// keep the auto-generated default stage as the one that is sent.
 	public Display(int w, int h, Stage stage) {
 		this.WIDTH = w;
 		this.HEIGHT = h;
@@ -233,8 +236,8 @@ public class Display {
 		// of this I think It might be best if we have seperate methods for drawing points 
 		// and connectors
 
-		// Henri 230306. I don't think the crop controller needs to place points,
-		// as it's already drawing other visual elements
+		// Henri 230306. I don't think the crop controller needs to place points, does it?
+		// As it's already drawing other visual elements instead (diagonal line then square)
 
 		if (pointNum < 11) {
 			this.points[pointNum].setCenterX(x);

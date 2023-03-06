@@ -1,7 +1,5 @@
 package motionvdl;
 
-import javafx.application.Application;
-
 /**
  * Launch the application with JavaFX enabled.
  * @author Henri
