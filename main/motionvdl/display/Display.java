@@ -188,6 +188,13 @@ public class Display {
 		this.titleLab.setText(string);
 	}
 	
+	// Joseph 230307. I've tried running this with a noise video, at the moment I get two errors:
+	// * error from javafx.scene.paint.Color about value ranges, awt.color uses 0-255 range and 
+	//   javafx.scene.paint.Color uses 0.0-1.0 range. This is ok we just need to normalise the 
+	//   colorArray color channels before converting to javafx.scene.paint.Color
+	// * 'IndexOutOfBoundsException: 300, 0' from line 204 (209) I haven't looked into this one 
+	//   yet but it's probably just something to do with the argument order in the WritableImage 
+	//   constructor.
 	public void setFrame(Color[][] colorArray) {
 		// TODO: Might work, need an example to make sure
 		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
@@ -198,7 +205,7 @@ public class Display {
 				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
 						colorArray[i][j].getRed(),
 						colorArray[i][j].getGreen(),
-						colorArray[i][j].getBlue() );
+						colorArray[i][j].getBlue());
 
 				// Set each pixel's color
 				writer.setColor(j, i, fxColor);
@@ -235,10 +242,16 @@ public class Display {
 		// wireframe, for instance in the crop stage when defining the crop frame. because 
 		// of this I think It might be best if we have seperate methods for drawing points 
 		// and connectors
-
+		
 		// Henri 230306. I don't think the crop controller needs to place points, does it?
 		// As it's already drawing other visual elements instead (diagonal line then square)
-
+		
+		// Joseph 230307. In the case of point B, (second click) where it's vertical axis is 
+		// mapped to the unit square, it might be more intuitive for a user to see a point, but 
+		// honestly that's pretty subjective. I would probably say that from program-design-wise, 
+		// it's usually best to seperate different functionalities like these to make the code 
+		// more modular
+		
 		if (pointNum < 11) {
 			this.points[pointNum].setCenterX(x);
 			this.points[pointNum].setCenterY(y);
@@ -293,14 +306,18 @@ public class Display {
 		
 		// Ensure line is within the bounds of the ImageView
 		
-		// Joseph 230306 - This handling might not be neccesary 
+		// Joseph 230306. This handling might not be neccesary 
 		// if we implement with the assumption that clicks 
 		// cannot come from invalid positions
-
-		// Henri 230306 - This isn't handling for the click location - it
+		
+		// Henri 230306. This isn't handling for the click location - it
 		// is to ensure the line gets drawn only within the bounds of the
 		// ImageView, by evenly increasing the line length until it touches
 		// the bounds of the ImageView
+		
+		// Joseph 230307. Ah I understand sorry for misunderstanding.
+		// In that case, I think there might be a more efficient way to do 
+		// this using a non-linear function, let's discuss it next meeting.
 		
 		while(this.diagonalLine.getStartX() != this.imageView.getLayoutX()
 				&& this.diagonalLine.getStartY() != this.imageView.getLayoutY()) {

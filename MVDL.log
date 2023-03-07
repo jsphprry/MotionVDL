@@ -1,3 +1,9 @@
-2023/03/06 | 17:27:48 | Created log file 'MVDL.log'
-2023/03/06 | 17:27:48 | ---Begin standard test---
-2023/03/06 | 17:27:48 | ---Setup display and controller---
+2023/03/07 | 09:50:20 | Created log file 'MVDL.log'
+2023/03/07 | 09:50:21 | Created CropController 'Crop controller'
+2023/03/07 | 09:50:21 | Created ScaleController 'Scale controller'
+2023/03/07 | 09:50:21 | Created ColorController 'Color controller'
+2023/03/07 | 09:50:21 | Created LabelController 'Label controller'
+2023/03/07 | 09:50:21 | Created MainController 'Main controller'
+2023/03/07 | 09:50:21 | Created noise video
+2023/03/07 | 09:50:27 | Main controller recieved pass instruction
+2023/03/07 | 09:50:27 | Crop controller recieved pass instruction
