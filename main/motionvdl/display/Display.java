@@ -192,7 +192,7 @@ public class Display {
 	// * error from javafx.scene.paint.Color about value ranges, awt.color uses 0-255 range and 
 	//   javafx.scene.paint.Color uses 0.0-1.0 range. This is ok we just need to normalise the 
 	//   colorArray color channels before converting to javafx.scene.paint.Color
-	// * 'IndexOutOfBoundsException: 300, 0' from line 204 (209) I haven't looked into this one 
+	// * 'IndexOutOfBoundsException: 300, 0' from line 211 I haven't looked into this one 
 	//   yet but it's probably just something to do with the argument order in the WritableImage 
 	//   constructor.
 	public void setFrame(Color[][] colorArray) {
