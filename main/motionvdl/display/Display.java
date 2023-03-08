@@ -2,6 +2,8 @@ package motionvdl.display;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,12 +37,12 @@ public class Display {
 	private Button completeBut;
 	private Button nextBut;
 	private Button prevBut;
-	private Circle[] points;
 	private ImageView imageView;
 	private Label titleLab;
 	private Label messageLab;
 	private Line diagonalLine;
-	private Line[] connectors;
+	private List<Circle> points;
+	private List<Line> connectors;
 	private Rectangle opaqueSquare;
 	private TextField widthTextField;
 	private TextField heightTextField;
@@ -85,7 +87,7 @@ public class Display {
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> drawPoint((int) event.getX(), (int) event.getY())  /* Controller Reference Here */ );
+				event -> System.out.println(event)  /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for processing
@@ -94,7 +96,7 @@ public class Display {
 		this.processBut.setLayoutY(60);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
-				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
+				event -> System.out.println(event)/* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.processBut);
 
 		// Button for completing
@@ -103,7 +105,7 @@ public class Display {
 		this.completeBut.setLayoutY(120);
 		this.completeBut.setMinSize(160,50);
 		this.completeBut.setOnAction(
-				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
+				event -> System.out.println(event) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.completeBut);
 
 		// Button for switching to previous frame
@@ -112,7 +114,7 @@ public class Display {
 		this.prevBut.setLayoutY(180);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
+				event -> System.out.println(event) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.prevBut);
 
 		// Button for switching to next frame
@@ -121,7 +123,7 @@ public class Display {
 		this.nextBut.setLayoutY(180);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-				actionEvent -> System.out.println(actionEvent) /* Controller Reference Here */ );
+				event -> System.out.println(event) /* Controller Reference Here */ );
 		this.primaryPane.getChildren().add(this.nextBut);
 
 		// Message area Label
@@ -131,19 +133,10 @@ public class Display {
 		this.primaryPane.getChildren().add(this.messageLab);
 
 		// Points to be placed on the ImageView to visualise a click
-		this.points = new Circle[11];
-		for (int i = 0; i < this.points.length; i++) {
-			this.points[i] = new Circle();
-			this.points[i].setId("pointID");
-			this.points[i].setRadius(7);
-		}
+		this.points = new ArrayList<>();
 
 		// Lines to connect points during the labelling stage
-		this.connectors = new Line[10];
-		for (int i = 0; i < this.connectors.length; i++) {
-			this.connectors[i] = new Line();
-			this.connectors[i].setId("lineID");
-		}
+		this.connectors = new ArrayList<>();
 
 		// TextField for specifying resolution width
 		this.widthTextField = new TextField();
@@ -221,6 +214,7 @@ public class Display {
 	public void drawPoint(int x, int y) {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
+		int pointNum = getPointNum();
 		
 		// Joseph 230305. getChildren() returns a type implementing ObservableList, which itself implements List
 		// List has the method size() which returns the number of elements in the list so you could try 
@@ -231,12 +225,6 @@ public class Display {
 		// makes it so much easier to draw the points and connectors, as I've done below, the
 		// pointNum variable counts only the number of Circle objects which are currently on
 		// screen, which is much better than storing a counter variable
-
-		int pointNum = (int) this.primaryPane
-				.getChildren()
-				.stream()
-				.filter(node -> node instanceof Circle)
-				.count();
 		
 		// Joseph 230306. The controller uses drawPoint in scenarios that do not always need a 
 		// wireframe, for instance in the crop stage when defining the crop frame. because 
@@ -251,17 +239,29 @@ public class Display {
 		// honestly that's pretty subjective. I would probably say that from program-design-wise, 
 		// it's usually best to seperate different functionalities like these to make the code 
 		// more modular
-		
-		if (pointNum < 11) {
-			this.points[pointNum].setCenterX(x);
-			this.points[pointNum].setCenterY(y);
-			this.primaryPane.getChildren().add(this.points[pointNum]);
-			if (pointNum > 0) {
-				drawConnector(pointNum - 1);
-			}
-		} else {
-			setMessage("All points placed!");
+
+		// Henri 230307. Ok I see what you mean, now this method will simply create a new Circle
+		// object any time it's called. The checks that there are a certain number of points being
+		// placed, which I've commented out below, will need to be in the Controllers, for which
+		// I've created a new method called getPointNum() which will return the number of points
+		// currently placed on screen
+
+//		if (pointNum < 11) {
+		this.points.add(new Circle());
+		this.points.get(pointNum).setId("pointID");
+		this.points.get(pointNum).setRadius(7);
+		this.points.get(pointNum).setCenterX(x);
+		this.points.get(pointNum).setCenterY(y);
+		if (pointNum > 0) {
+			drawConnector();
 		}
+		this.primaryPane.getChildren().add(this.points.get(pointNum));
+//			if (pointNum > 0) {
+//				drawConnector(pointNum - 1);
+//			}
+//		} else {
+//			setMessage("All points placed!");
+//		}
 	}
 
 	public void drawPoints(Point[] drawPoints) {
@@ -270,30 +270,33 @@ public class Display {
 		}
 	}
 
-	public void drawConnector(int pointNum) {
+	public void drawConnector() {
+		int pointNum = getPointNum() - 1;
+		this.connectors.add(new Line());
+		this.connectors.get(pointNum).setId("lineID");
 		switch (pointNum) {
 			default -> {
-				connectors[pointNum].setStartX(this.points[pointNum].getCenterX());
-				connectors[pointNum].setStartY(this.points[pointNum].getCenterY());
-				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
-				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+				this.connectors.get(pointNum).setStartX(this.points.get(pointNum).getCenterX());
+				this.connectors.get(pointNum).setStartY(this.points.get(pointNum).getCenterY());
+				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
+				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
 			}
 
 			// Special cases for points not connected to previous point
 			case 3, 5 -> {
-				connectors[pointNum].setStartX(this.points[1].getCenterX());
-				connectors[pointNum].setStartY(this.points[1].getCenterY());
-				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
-				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+				this.connectors.get(pointNum).setStartX(this.points.get(1).getCenterX());
+				this.connectors.get(pointNum).setStartY(this.points.get(1).getCenterY());
+				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
+				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
 			}
 			case 8 -> {
-				connectors[pointNum].setStartX(this.points[6].getCenterX());
-				connectors[pointNum].setStartY(this.points[6].getCenterY());
-				connectors[pointNum].setEndX(this.points[pointNum + 1].getCenterX());
-				connectors[pointNum].setEndY(this.points[pointNum + 1].getCenterY());
+				this.connectors.get(pointNum).setStartX(this.points.get(6).getCenterX());
+				this.connectors.get(pointNum).setStartY(this.points.get(6).getCenterY());
+				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
+				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
 			}
 		}
-		this.primaryPane.getChildren().add(this.connectors[pointNum]);
+		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
 	
 	public void drawDiagonal(int ax, int ay) {
@@ -360,4 +363,13 @@ public class Display {
 			throw new NumberFormatException();
 		}
 	}
+
+	public int getPointNum() {
+		return  (int) this.primaryPane
+				.getChildren()
+				.stream()
+				.filter(node -> node instanceof Circle)
+				.count();
+	}
+
 }
