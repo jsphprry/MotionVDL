@@ -2,6 +2,8 @@ package motionvdl.display;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -188,23 +187,60 @@ public class Display {
 	// * 'IndexOutOfBoundsException: 300, 0' from line 211 I haven't looked into this one 
 	//   yet but it's probably just something to do with the argument order in the WritableImage 
 	//   constructor.
-	public void setFrame(Color[][] colorArray) {
-		// TODO: Might work, need an example to make sure
-		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
-		PixelWriter writer = frame.getPixelWriter();
-		for (int i = 0; i < colorArray.length; i++) {
-			for (int j = 0; j < colorArray[i].length; j++) {
-				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
-				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
-						colorArray[i][j].getRed(),
-						colorArray[i][j].getGreen(),
-						colorArray[i][j].getBlue());
 
-				// Set each pixel's color
-				writer.setColor(j, i, fxColor);
+	// Henri 230309. I've rewritten it to instead keep everything in Swing until
+	// an awt Image has been created, which is then converted to a JavaFX image.
+	// Hopefully this will work?
+	public void setFrame(Color[][] colorArray) {
+//		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
+//		PixelWriter writer = frame.getPixelWriter();
+//		for (int i = 0; i < colorArray.length; i++) {
+//			for (int j = 0; j < colorArray[i].length; j++) {
+//				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
+//				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
+//						colorArray[i][j].getRed(),
+//						colorArray[i][j].getGreen(),
+//						colorArray[i][j].getBlue());
+//
+//				// Set each pixel's color
+//				writer.setColor(j, i, fxColor);
+//			}
+//		}
+//		this.imageView.setImage(frame);
+
+		// Convert color array to awt.BufferImage
+		int width = colorArray.length;
+		int height = colorArray[0].length;
+		BufferedImage bImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				Color color = colorArray[x][y];
+				int rgb = color.getRGB();
+				bImage.setRGB(x, y, rgb);
 			}
 		}
-		this.imageView.setImage(frame);
+
+		width = bImage.getWidth();
+		height = bImage.getHeight();
+		byte[] buffer = new byte[width * height * 4];
+
+		// Copy pixel data from BufferedImage to byte array
+		int[] pixels = bImage.getRGB(0, 0, width, height, null, 0, width);
+		for (int i = 0; i < pixels.length; i++) {
+			buffer[i * 4 + 3] = (byte) ((pixels[i] >> 24) & 0xFF);
+			buffer[i * 4 + 2] = (byte) ((pixels[i] >> 16) & 0xFF);
+			buffer[i * 4 + 1] = (byte) ((pixels[i] >> 8) & 0xFF);
+			buffer[i * 4] = (byte) ((pixels[i]) & 0xFF);
+		}
+
+		// Create JavaFX WritableImage and write pixel data
+		WritableImage wImage = new WritableImage(width, height);
+		PixelWriter pixelWriter = wImage.getPixelWriter();
+		PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
+		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
+
+		this.imageView.setImage(wImage);
 	}
 	
 	public void setMessage(String string) {
