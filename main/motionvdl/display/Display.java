@@ -81,12 +81,13 @@ public class Display {
 		this.imageView = new ImageView();
 		this.imageView.setLayoutX(15);
 		this.imageView.setLayoutY(50);
-		this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
+		//this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> System.out.println(event)  /* Controller Reference Here */ );
+			event -> receiver.click((int)event.getX(), (int)event.getY())
+		);
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for processing
@@ -95,7 +96,8 @@ public class Display {
 		this.processBut.setLayoutY(60);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
-				event -> System.out.println(event)/* Controller Reference Here */ );
+			event -> receiver.process()
+		);
 		this.primaryPane.getChildren().add(this.processBut);
 
 		// Button for completing
@@ -104,7 +106,8 @@ public class Display {
 		this.completeBut.setLayoutY(120);
 		this.completeBut.setMinSize(160,50);
 		this.completeBut.setOnAction(
-				event -> System.out.println(event) /* Controller Reference Here */ );
+			event -> receiver.complete()
+		);
 		this.primaryPane.getChildren().add(this.completeBut);
 
 		// Button for switching to previous frame
@@ -113,7 +116,8 @@ public class Display {
 		this.prevBut.setLayoutY(180);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-				event -> System.out.println(event) /* Controller Reference Here */ );
+			event -> receiver.prevFrame()
+		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
 		// Button for switching to next frame
@@ -122,7 +126,8 @@ public class Display {
 		this.nextBut.setLayoutY(180);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-				event -> System.out.println(event) /* Controller Reference Here */ );
+			event -> receiver.nextFrame()
+		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
 		// Message area Label
