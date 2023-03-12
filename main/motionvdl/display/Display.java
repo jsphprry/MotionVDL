@@ -28,7 +28,6 @@ public class Display {
 	private final int WIDTH;
 	private final int HEIGHT;
 	private Controller receiver;
-
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Pane primaryPane;
@@ -39,7 +38,7 @@ public class Display {
 	private ImageView imageView;
 	private Label titleLab;
 	private Label messageLab;
-	private Line diagonalLine;
+	private Line cropLine;
 	private List<Circle> points;
 	private List<Line> connectors;
 	private Rectangle opaqueSquare;
@@ -61,6 +60,13 @@ public class Display {
 
 	// Henri 230306. I have decided it would be more memory efficient to
 	// keep the auto-generated default stage as the one that is sent.
+
+	/**
+	 * Display constructor.
+	 * @param w      Width of the window
+	 * @param h      Height of the window
+	 * @param stage  Default Stage to be used by the Application
+	 */
 	public Display(int w, int h, Stage stage) {
 		this.WIDTH = w;
 		this.HEIGHT = h;
@@ -73,15 +79,17 @@ public class Display {
 
 		// Title Label
 		this.titleLab = new Label("Title");
+		this.titleLab.setId("labelID");
 		this.titleLab.setLayoutX(6);
 		this.titleLab.setLayoutY(6);
 		this.primaryPane.getChildren().add(this.titleLab);
 
 		// ImageView to show current frame
 		this.imageView = new ImageView();
+		this.imageView.setId("imageViewID");
 		this.imageView.setLayoutX(15);
 		this.imageView.setLayoutY(50);
-		//this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
+		this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
@@ -92,6 +100,7 @@ public class Display {
 
 		// Button for processing
 		this.processBut = new Button("Process");
+		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(475);
 		this.processBut.setLayoutY(60);
 		this.processBut.setMinSize(160,50);
@@ -102,6 +111,7 @@ public class Display {
 
 		// Button for completing
 		this.completeBut = new Button("Complete");
+		this.completeBut.setId("buttonID");
 		this.completeBut.setLayoutX(475);
 		this.completeBut.setLayoutY(120);
 		this.completeBut.setMinSize(160,50);
@@ -112,6 +122,7 @@ public class Display {
 
 		// Button for switching to previous frame
 		this.prevBut = new Button("Previous");
+		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(475);
 		this.prevBut.setLayoutY(180);
 		this.prevBut.setMinSize(78,50);
@@ -122,6 +133,7 @@ public class Display {
 
 		// Button for switching to next frame
 		this.nextBut = new Button("Next");
+		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(557);
 		this.nextBut.setLayoutY(180);
 		this.nextBut.setMinSize(78,50);
@@ -132,6 +144,9 @@ public class Display {
 
 		// Message area Label
 		this.messageLab = new Label("Message area");
+		this.messageLab.setId("labelID");
+		this.messageLab.setMaxWidth(160);
+		this.messageLab.setWrapText(true);
 		this.messageLab.setLayoutX(475);
 		this.messageLab.setLayoutY(300);
 		this.primaryPane.getChildren().add(this.messageLab);
@@ -144,6 +159,7 @@ public class Display {
 
 		// TextField for specifying resolution width
 		this.widthTextField = new TextField();
+		this.widthTextField.setId("textFieldID");
 		this.widthTextField.setLayoutX(475);
 		this.widthTextField.setLayoutY(240);
 		this.widthTextField.setMinSize(5, 5);
@@ -152,6 +168,7 @@ public class Display {
 
 		// TextField for specifying resolution height
 		this.heightTextField = new TextField();
+		this.heightTextField.setId("textFieldID");
 		this.heightTextField.setLayoutX(557);
 		this.heightTextField.setLayoutY(240);
 		this.heightTextField.setMinSize(5, 5);
@@ -159,11 +176,12 @@ public class Display {
 		this.primaryPane.getChildren().add(this.heightTextField);
 
 		// Line to visualise crop after first click during cropping stage
-		this.diagonalLine = new Line();
+		this.cropLine = new Line();
+		this.cropLine.setId("cropLineID");
 
 		// Square to visualise crop after second click during cropping stage
 		this.opaqueSquare = new Rectangle();
-		this.opaqueSquare.setId("opaqueSquare");
+		this.opaqueSquare.setId("opaqueSquareID");
 
 		// Details relating to window itself
 		this.primaryStage.setTitle("MotionVDL");
@@ -174,13 +192,17 @@ public class Display {
 	}
 
 	/**
-	 * Store a reference to the receiving controller
+	 * Store a reference to the receiving controller.
 	 * @param controller The controller reference
 	 */
 	public void sendTo(Controller controller) {
 		this.receiver = controller;
 	}
-	
+
+	/**
+	 * Set the title of the Scene.
+	 * @param string Text to be set as title
+	 */
 	public void setTitle(String string) {
 		this.titleLab.setText(string);
 	}
@@ -196,28 +218,17 @@ public class Display {
 	// Henri 230309. I've rewritten it to instead keep everything in Swing until
 	// an awt Image has been created, which is then converted to a JavaFX image.
 	// Hopefully this will work?
-	public void setFrame(Color[][] colorArray) {
-//		WritableImage frame = new WritableImage(colorArray.length, colorArray[0].length);
-//		PixelWriter writer = frame.getPixelWriter();
-//		for (int i = 0; i < colorArray.length; i++) {
-//			for (int j = 0; j < colorArray[i].length; j++) {
-//				// Convert each java.awt.Color object to a javafx.scene.paint.Color object
-//				javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.color(
-//						colorArray[i][j].getRed(),
-//						colorArray[i][j].getGreen(),
-//						colorArray[i][j].getBlue());
-//
-//				// Set each pixel's color
-//				writer.setColor(j, i, fxColor);
-//			}
-//		}
-//		this.imageView.setImage(frame);
 
-		// Convert color array to awt.BufferImage
+	/**
+	 * Convert an array of AWT Colors to JavaFX Image, then set
+	 * the ImageView's Image property to display this frame.
+	 * @param colorArray Array of colors, containing the current frame
+	 */
+	public void setFrame(Color[][] colorArray) {
+		// Convert color array to awt.BufferedImage
 		int width = colorArray.length;
 		int height = colorArray[0].length;
 		BufferedImage bImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				Color color = colorArray[x][y];
@@ -226,11 +237,10 @@ public class Display {
 			}
 		}
 
+		// Copy pixel data from BufferedImage to byte array
 		width = bImage.getWidth();
 		height = bImage.getHeight();
 		byte[] buffer = new byte[width * height * 4];
-
-		// Copy pixel data from BufferedImage to byte array
 		int[] pixels = bImage.getRGB(0, 0, width, height, null, 0, width);
 		for (int i = 0; i < pixels.length; i++) {
 			buffer[i * 4 + 3] = (byte) ((pixels[i] >> 24) & 0xFF);
@@ -247,11 +257,20 @@ public class Display {
 
 		this.imageView.setImage(wImage);
 	}
-	
+
+	/**
+	 * Send the user a message, using a Label.
+	 * @param string Text to show the user
+	 */
 	public void setMessage(String string) {
 		this.messageLab.setText(string);
 	}
 
+	/**
+	 * Draw a point on the ImageView, using a Circle object.
+	 * @param x x co-ordinate of the user's click on the ImageView
+	 * @param y y co-ordinate of the user's click on the ImageView
+	 */
 	public void drawPoint(int x, int y) {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
@@ -287,7 +306,6 @@ public class Display {
 		// I've created a new method called getPointNum() which will return the number of points
 		// currently placed on screen
 
-//		if (pointNum < 11) {
 		this.points.add(new Circle());
 		this.points.get(pointNum).setId("pointID");
 		this.points.get(pointNum).setRadius(7);
@@ -297,20 +315,21 @@ public class Display {
 			drawConnector();
 		}
 		this.primaryPane.getChildren().add(this.points.get(pointNum));
-//			if (pointNum > 0) {
-//				drawConnector(pointNum - 1);
-//			}
-//		} else {
-//			setMessage("All points placed!");
-//		}
 	}
 
+	/**
+	 * Draw multiple points on the ImageView.
+	 * @param drawPoints An array of x and y co-ordinates for each point
+	 */
 	public void drawPoints(Point[] drawPoints) {
 		for (Point point : drawPoints) {
 			drawPoint(point.x, point.y);
 		}
 	}
 
+	/**
+	 * Draw a Line object which connects two points.
+	 */
 	public void drawConnector() {
 		int pointNum = getPointNum() - 1;
 		this.connectors.add(new Line());
@@ -339,14 +358,19 @@ public class Display {
 		}
 		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
-	
+
+	/**
+	 * Draw a diagonal Line object to visualise cropping process.
+	 * @param ax x co-ordinate of the user's click on the ImageView
+	 * @param ay y co-ordinate of the user's click on the ImageView
+	 */
 	public void drawDiagonal(int ax, int ay) {
 		ax += (int) this.imageView.getLayoutX();
 		ay += (int) this.imageView.getLayoutY();
-		this.diagonalLine.setStartX(ax);
-		this.diagonalLine.setStartY(ay);
-		this.diagonalLine.setEndX(ax);
-		this.diagonalLine.setEndY(ay);
+		this.cropLine.setStartX(ax);
+		this.cropLine.setStartY(ay);
+		this.cropLine.setEndX(ax);
+		this.cropLine.setEndY(ay);
 		
 		// Ensure line is within the bounds of the ImageView
 		
@@ -363,19 +387,26 @@ public class Display {
 		// In that case, I think there might be a more efficient way to do 
 		// this using a non-linear function, let's discuss it next meeting.
 		
-		while(this.diagonalLine.getStartX() != this.imageView.getLayoutX()
-				&& this.diagonalLine.getStartY() != this.imageView.getLayoutY()) {
-			this.diagonalLine.setStartX(this.diagonalLine.getStartX()-1);
-			this.diagonalLine.setStartY(this.diagonalLine.getStartY()-1);
+		while(this.cropLine.getStartX() != this.imageView.getLayoutX()
+				&& this.cropLine.getStartY() != this.imageView.getLayoutY()) {
+			this.cropLine.setStartX(this.cropLine.getStartX()-1);
+			this.cropLine.setStartY(this.cropLine.getStartY()-1);
 		}
-		while(this.diagonalLine.getEndX() != (this.imageView.getLayoutX() + this.imageView.getFitWidth())
-				&& this.diagonalLine.getEndY() != (this.imageView.getLayoutY() + this.imageView.getFitHeight())) {
-			this.diagonalLine.setEndX(this.diagonalLine.getEndX()+1);
-			this.diagonalLine.setEndY(this.diagonalLine.getEndY()+1);
+		while(this.cropLine.getEndX() != (this.imageView.getLayoutX() + this.imageView.getFitWidth())
+				&& this.cropLine.getEndY() != (this.imageView.getLayoutY() + this.imageView.getFitHeight())) {
+			this.cropLine.setEndX(this.cropLine.getEndX()+1);
+			this.cropLine.setEndY(this.cropLine.getEndY()+1);
 		}
-		this.primaryPane.getChildren().add(this.diagonalLine);
+		this.primaryPane.getChildren().add(this.cropLine);
 	}
-	
+
+	/**
+	 * Draw an opaque Rectangle object to visualise cropping process.
+	 * @param ax x co-ordinate of the user's first click on the ImageView
+	 * @param ay y co-ordinate of the user's first click on the ImageView
+	 * @param bx x co-ordinate of the user's second click on the ImageView
+	 * @param by y co-ordinate of the user's second click on the ImageView
+	 */
 	public void drawRectangle(int ax, int ay, int bx, int by) {
 		ax += (int) this.imageView.getLayoutX();
 		ay += (int) this.imageView.getLayoutY();
@@ -385,15 +416,22 @@ public class Display {
 		this.opaqueSquare.setHeight(by);
 		this.primaryPane.getChildren().add(opaqueSquare);
 	}
-	
+
+	/**
+	 * Clear all Lines, Circles, and Rectangle objects from the Pane.
+	 */
 	public void clearGeometry() {
 		// Even if these nodes haven't yet been added to the Pane, this will still work
-		this.primaryPane.getChildren().remove(this.diagonalLine);
+		this.primaryPane.getChildren().remove(this.cropLine);
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
-	
+
+	/**
+	 * Process a user's input for target resolution, and return only if valid.
+	 * @return A Point containing the x and y properties for the resolution
+	 */
 	public Point getTarget() {
 		try {
 			int widthInt = Integer.parseInt(this.widthTextField.getText());
@@ -405,12 +443,16 @@ public class Display {
 		}
 	}
 
+	/**
+	 * Use a stream to find how many instances of Circle
+	 * objects are actively on the Pane.
+	 * @return The number of points actively on the Pane
+	 */
 	public int getPointNum() {
-		return  (int) this.primaryPane
+		return (int) this.primaryPane
 				.getChildren()
 				.stream()
 				.filter(node -> node instanceof Circle)
 				.count();
 	}
-
 }
