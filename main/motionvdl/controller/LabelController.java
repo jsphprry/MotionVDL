@@ -135,12 +135,12 @@ public class LabelController extends Controller {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved nextFrame instruction");
-		
+
+		super.nextFrame();
+
 		// draw frame label
 		display.clearGeometry();
 		display.drawPoints(label.getPoints(frameIndex));
-		
-		super.nextFrame();
 	}
 	
 	
