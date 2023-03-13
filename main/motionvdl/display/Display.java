@@ -32,7 +32,7 @@ public class Display {
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Pane primaryPane;
-	private Button completeBut;
+	private Button processBut;
 	private Button nextBut;
 	private Button prevBut;
 	private ImageView imageView;
@@ -83,18 +83,17 @@ public class Display {
 		this.primaryPane.getChildren().add(imageView);
 
 		// Button for completing
-		this.completeBut = new Button("Process + Complete");
-		this.completeBut.setId("buttonID");
-		this.completeBut.setLayoutX(475);
-		this.completeBut.setLayoutY(120);
-		this.completeBut.setMinSize(160,50);
-		this.completeBut.setOnAction(
+		this.processBut = new Button("Process + Complete");
+		this.processBut.setId("buttonID");
+		this.processBut.setLayoutX(475);
+		this.processBut.setLayoutY(120);
+		this.processBut.setMinSize(160,50);
+		this.processBut.setOnAction(
 			event -> {
 				receiver.process();
 				receiver.complete();
-			}
-		);
-		this.primaryPane.getChildren().add(this.completeBut);
+			});
+		this.primaryPane.getChildren().add(this.processBut);
 
 		// Button for switching to previous frame
 		this.prevBut = new Button("Previous");
@@ -299,41 +298,42 @@ public class Display {
 	 * @param ay y co-ordinate of the user's click on the ImageView
 	 */
 	public void drawDiagonal(int ax, int ay) {
-		ax += (int) this.imageView.getLayoutX();
-		ay += (int) this.imageView.getLayoutY();
-		this.cropLine.setStartX(ax);
-		this.cropLine.setStartY(ay);
-		this.cropLine.setEndX(ax);
-		this.cropLine.setEndY(ay);
-		
-		// Ensure line is within the bounds of the ImageView
-		while(this.cropLine.getStartX() != this.imageView.getLayoutX()
-				&& this.cropLine.getStartY() != this.imageView.getLayoutY()) {
-			this.cropLine.setStartX(this.cropLine.getStartX()-1);
-			this.cropLine.setStartY(this.cropLine.getStartY()-1);
-		}
-		while(this.cropLine.getEndX() != (this.imageView.getLayoutX() + this.imageView.getFitWidth())
-				&& this.cropLine.getEndY() != (this.imageView.getLayoutY() + this.imageView.getFitHeight())) {
-			this.cropLine.setEndX(this.cropLine.getEndX()+1);
-			this.cropLine.setEndY(this.cropLine.getEndY()+1);
+		int c = ay - ax;
+		if (ax > ay) {
+			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
+			this.cropLine.setStartY(this.imageView.getLayoutY());
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
+		} else if (ax < ay) {
+			this.cropLine.setStartX(this.imageView.getLayoutX());
+			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
+		} else {
+			this.cropLine.setStartX(this.imageView.getLayoutX());
+			this.cropLine.setStartY(this.imageView.getLayoutY());
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
 		}
 		this.primaryPane.getChildren().add(this.cropLine);
 	}
 
 	/**
 	 * Draw an opaque Rectangle object to visualise cropping process.
-	 * @param ax x co-ordinate of the user's first click on the ImageView
-	 * @param ay y co-ordinate of the user's first click on the ImageView
-	 * @param bx x co-ordinate of the user's second click on the ImageView
-	 * @param by y co-ordinate of the user's second click on the ImageView
+	 * @param ax x co-ordinate of the top-left corner of the rectangle
+	 * @param ay y co-ordinate of the top-left corner of the rectangle
+	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
+	 * @param by y co-ordinate of the bottom-right corner of the rectangle
 	 */
 	public void drawRectangle(int ax, int ay, int bx, int by) {
 		ax += (int) this.imageView.getLayoutX();
 		ay += (int) this.imageView.getLayoutY();
+		bx += (int) this.imageView.getLayoutX();
+		by += (int) this.imageView.getLayoutY();
 		this.opaqueSquare.setLayoutX(ax);
 		this.opaqueSquare.setLayoutY(ay);
-		this.opaqueSquare.setWidth(bx);
-		this.opaqueSquare.setHeight(by);
+		this.opaqueSquare.setWidth(bx-ax);
+		this.opaqueSquare.setHeight(by-ay);
 		this.primaryPane.getChildren().add(opaqueSquare);
 	}
 
