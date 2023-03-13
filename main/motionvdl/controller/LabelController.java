@@ -133,6 +133,9 @@ public class LabelController extends Controller {
 	@Override
 	public void nextFrame() {
 		
+		// debug trace
+		Debug.trace(debugTitle+" recieved nextFrame instruction");
+		
 		// draw frame label
 		display.clearGeometry();
 		display.drawPoints(label.getPoints(frameIndex));
@@ -146,6 +149,9 @@ public class LabelController extends Controller {
 	 */
 	@Override
 	public void prevFrame() {
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved prevFrame instruction");
 		
 		// draw frame label
 		display.clearGeometry();
