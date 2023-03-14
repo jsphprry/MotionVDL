@@ -95,7 +95,7 @@ public class CropController extends Controller {
 				display.clearGeometry();
 				display.drawDiagonal(ax, ay);
 				display.drawPoint(ax, ay);
-				display.drawPoint(ax+cfs, ay+cfs);
+				display.drawPoint(x, y);
 				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 				
 			// else warn
@@ -106,7 +106,7 @@ public class CropController extends Controller {
 			
 			
 		// third click
-		} else {
+		} else if (click == 3){
 
 			// reset crop frame
 			click = 0;

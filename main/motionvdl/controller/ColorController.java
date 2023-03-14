@@ -37,7 +37,7 @@ public class ColorController extends Controller {
 	/**
 	 * Toggle between greyscale and color video
 	 */
-	public void click() {
+	public void click(int x, int y) {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved click");

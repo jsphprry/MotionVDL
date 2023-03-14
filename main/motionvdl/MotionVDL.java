@@ -44,6 +44,6 @@ public class MotionVDL extends Application {
 
 		// start main controller with video file
 		//controller.pass(Video.fromFile(args.get(0)));
-		controller.pass(Video.noise(500,300,255));
+		controller.pass(Video.noise(100,100,10));
 	}
 }

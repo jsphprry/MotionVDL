@@ -70,7 +70,7 @@ public class MainController extends Controller {
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved nextFrame instruction");
+		Debug.trace(debugTitle+" recieved up");
 		
 		// call subcontroller
 		linkedController.up();
@@ -86,7 +86,7 @@ public class MainController extends Controller {
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved prevFrame instruction");
+		Debug.trace(debugTitle+" recieved down");
 		
 		// call subcontroller
 		linkedController.down();
@@ -102,7 +102,7 @@ public class MainController extends Controller {
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process");
+		Debug.trace(debugTitle+" recieved undo");
 		
 		// call subcontroller
 		linkedController.undo();
@@ -118,7 +118,7 @@ public class MainController extends Controller {
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved complete instruction");
+		Debug.trace(debugTitle+" recieved next");
 		
 		// call subcontroller
 		linkedController.next();
@@ -131,7 +131,7 @@ public class MainController extends Controller {
 	public void pass(Video tempVideo) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved pass instruction");
+		Debug.trace(debugTitle+" recieved pass");
 
 		// pass control to next subcontroller
 		stage += 1;

@@ -46,19 +46,19 @@ public class ScaleController extends Controller {
 		// placeholder
 		int target = 50;//display.getTarget();
 		
-		// if the target is valid
+		// valid target resolution
 		if (target > 0 && target < buffer.width && target < MAX_RES) {
 			
 			// scale the video
 			buffer = buffer.reduce(target, target);
 			
-			// update the display
-			display.setFrame(buffer.getFrame(frameIndex));
+			// next stage
+			super.next();
 			
-		// else warn
+		// invalid target resolution
 		} else {
-			Debug.trace(debugTitle+"skipped next: inavlid target resolution");
-			display.setMessage("*Inavlid target resolution*");
+			Debug.trace(debugTitle+" skipped next: inavlid target resolution");
+			display.setMessage("*Invalid target resolution*");
 		}
 	}
 }

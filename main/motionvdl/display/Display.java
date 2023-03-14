@@ -83,47 +83,32 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
-<<<<<<< Updated upstream
 		// Radio button to toggle automatic mode
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
 		this.toggleAutoBut.setId("radioID");
 		this.toggleAutoBut.setLayoutX(500);
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
-		this.toggleAutoBut.setOnAction(
+		/*this.toggleAutoBut.setOnAction(
 				event -> {
-					if (this.toggleAutoBut.isSelected()){
+					if (){
 						System.out.println("Radio button selected - enable auto");    // Controller reference here
 					} else {
 						System.out.println("Radio button deselected - disable auto"); // Controller reference here
 					}
 				}
-=======
-		// Button for completing
-		this.completeBut = new Button("Process + Complete");
-		this.completeBut.setId("buttonID");
-		this.completeBut.setLayoutX(475);
-		this.completeBut.setLayoutY(120);
-		this.completeBut.setMinSize(160,50);
-		this.completeBut.setOnAction(
-			event -> {
-				receiver.undo();
-				receiver.next();
-			}
->>>>>>> Stashed changes
-		);
+		);*/
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
-		this.processBut = new Button("Process + Complete");
+		this.processBut = new Button("Next stage");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(475);
 		this.processBut.setLayoutY(90);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
 				event -> {
-					receiver.process();
-					receiver.complete();
+					receiver.next();
 				}
 		);
 		this.primaryPane.getChildren().add(this.processBut);
@@ -134,37 +119,29 @@ public class Display {
 		this.undoBut.setLayoutY(150);
 		this.undoBut.setMinSize(160, 50);
 		this.undoBut.setOnAction(
-				event -> System.out.println(event)
+				event -> receiver.undo()
 		);
 		this.primaryPane.getChildren().add(this.undoBut);
 
 		// Button for switching to previous frame
-		this.prevBut = new Button("Previous");
+		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(475);
 		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-<<<<<<< Updated upstream
-				event -> receiver.prevFrame()
-=======
-			event -> receiver.down()
->>>>>>> Stashed changes
+				event -> receiver.down()
 		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
 		// Button for switching to next frame
-		this.nextBut = new Button("Next");
+		this.nextBut = new Button("->");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(557);
 		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-<<<<<<< Updated upstream
-				event -> receiver.nextFrame()
-=======
-			event -> receiver.up()
->>>>>>> Stashed changes
+				event -> receiver.up()
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
@@ -279,6 +256,7 @@ public class Display {
 	public void setMessage(String string) {
 		this.messageLab.setText(string);
 	}
+
 
 	/**
 	 * Draw a point on the ImageView, using a Circle object.
@@ -426,9 +404,12 @@ public class Display {
 				.filter(node -> node instanceof Circle)
 				.count();
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean getRadio() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.toggleAutoBut.isSelected();
 	}
 }

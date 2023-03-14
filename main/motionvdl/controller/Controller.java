@@ -112,6 +112,7 @@ public abstract class Controller {
 		buffer = tempVideo;
 		
 		// update display
+		display.clearGeometry();
 		display.setTitle(displayTitle);
 		display.setFrame(buffer.getFrame(frameIndex));
 	}
