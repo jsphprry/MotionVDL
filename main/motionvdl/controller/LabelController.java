@@ -39,15 +39,14 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Record a point
+	 * Record a point on the current video frame
 	 * @param x The x axis of the click event
 	 * @param y The y axis of the click event
 	 */
-	@Override
 	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click instruction");
+		Debug.trace(debugTitle+" recieved click");
 
 		// record point if the frame label is incomplete
 		if (!label.stackFull(frameIndex)) {
@@ -57,26 +56,59 @@ public class LabelController extends Controller {
 			display.drawPoint(x, y);
 			
 			// if point completes frame label, display next frame
-			if (label.stackFull(frameIndex)) nextFrame();
+			if (display.getRadio() && label.stackFull(frameIndex)) up();
 		
 		// else warn that the frame is complete
 		} else {
-			Debug.trace("Label controller ignored point instruction 'frame is full'");
-			display.setMessage("Warning! Frame is full");
+			Debug.trace(debugTitle+" skipped click: max points on frame");
+			display.setMessage("*Max points on frame*");
 		}
 	}
 	
 	
 	/**
-	 * Delete last point
+	 * Display next frame and frame-label
 	 */
-	@Override
-	public void process() {
+	public void up() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
+		Debug.trace(debugTitle+" recieved up");
+		
+		// default behaviour
+		super.up();
+		
+		// draw frame label
+		display.clearGeometry();
+		display.drawPoints(label.getPoints(frameIndex));
+	}
+	
+	
+	/**
+	 * Display previous frame and frame-label
+	 */
+	public void down() {
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved down");
+		
+		// default behaviour
+		super.down();
+		
+		// draw frame label
+		display.clearGeometry();
+		display.drawPoints(label.getPoints(frameIndex));
+	}
+	
+	
+	/**
+	 * Remove the last point on the current frame
+	 */
+	public void undo() {
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved undo");
 
-		// if the frame label is not empty
+		// non-empty label
 		if (!label.stackEmpty(frameIndex)) {
 			
 			// remove point
@@ -86,21 +118,20 @@ public class LabelController extends Controller {
 			display.clearGeometry();
 			display.drawPoints(label.getPoints(frameIndex));
 		
-		// if the frame label is empty
+		// empty label
 		} else {
-			prevFrame();
+			down();
 		}
 	}
 	
 	
 	/**
-	 * Try to export the labelled video
+	 * Export the body label
 	 */
-	@Override
-	public void complete() {
+	public void next() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved complete instruction");
+		Debug.trace(debugTitle+" recieved next");
 		
 		// export the label if complete
 		if (label.checkComplete()) {
@@ -108,57 +139,21 @@ public class LabelController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" ignored complete instruction");
-			display.setMessage("Warning! The label must be complete to export");
+			Debug.trace(debugTitle+" skipped next: incomplete label");
+			display.setMessage("*Incomplete label*");
 		}
 	}
 	
 	
 	/**
-	 * Pass control to this controller
+	 * Setup label then pass control
 	 */
-	@Override
 	public void pass(Video tempVideo) {
 		
 		// setup label
 		label = new Label(MAX_POINTS, tempVideo.length);
 		
+		// pass control
 		super.pass(tempVideo);
-	}
-	
-	
-	/**
-	 * Display next frame up from current frame
-	 */
-	@Override
-	public void nextFrame() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved nextFrame instruction");
-		
-		// default behaviour
-		super.nextFrame();
-		
-		// draw frame label
-		display.clearGeometry();
-		display.drawPoints(label.getPoints(frameIndex));
-	}
-	
-	
-	/**
-	 * Display next frame down from current frame
-	 */
-	@Override
-	public void prevFrame() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved prevFrame instruction");
-		
-		// default behaviour
-		super.prevFrame();
-		
-		// draw frame label
-		display.clearGeometry();
-		display.drawPoints(label.getPoints(frameIndex));
 	}
 }

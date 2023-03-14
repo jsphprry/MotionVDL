@@ -48,14 +48,13 @@ public class MainController extends Controller {
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
 	 */
-	@Override
 	public void click(int x, int y) {
 		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click instruction");
+		Debug.trace(debugTitle+" recieved click");
 		
 		// call subcontroller
 		linkedController.click(x, y);
@@ -65,24 +64,55 @@ public class MainController extends Controller {
 	/**
 	 * Pass instruction to subcontroller
 	 */
-	@Override
-	public void process() {
+	public void up() {
 		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
+		Debug.trace(debugTitle+" recieved nextFrame instruction");
 		
 		// call subcontroller
-		linkedController.process();
+		linkedController.up();
 	}
 	
 	
 	/**
 	 * Pass instruction to subcontroller
 	 */
-	public void complete() {
+	public void down() {
+		
+		// throw control-not-passed case
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved prevFrame instruction");
+		
+		// call subcontroller
+		linkedController.down();
+	}
+	
+	
+	/**
+	 * Pass instruction to subcontroller
+	 */
+	public void undo() {
+		
+		// throw control-not-passed case
+		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved process");
+		
+		// call subcontroller
+		linkedController.undo();
+	}
+	
+	
+	/**
+	 * Pass instruction to subcontroller
+	 */
+	public void next() {
 		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
@@ -91,7 +121,7 @@ public class MainController extends Controller {
 		Debug.trace(debugTitle+" recieved complete instruction");
 		
 		// call subcontroller
-		linkedController.complete();
+		linkedController.next();
 	}
 	
 	
@@ -107,39 +137,5 @@ public class MainController extends Controller {
 		stage += 1;
 		linkedController = subcontrollers[stage];
 		linkedController.pass(tempVideo);
-	}
-	
-	
-	/**
-	 * Pass instruction to subcontroller
-	 */
-	@Override
-	public void nextFrame() {
-		
-		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved nextFrame instruction");
-		
-		// call subcontroller
-		linkedController.nextFrame();
-	}
-	
-	
-	/**
-	 * Pass instruction to subcontroller
-	 */
-	@Override
-	public void prevFrame() {
-		
-		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved prevFrame instruction");
-		
-		// call subcontroller
-		linkedController.prevFrame();
 	}
 }

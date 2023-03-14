@@ -83,6 +83,7 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
+<<<<<<< Updated upstream
 		// Radio button to toggle automatic mode
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
 		this.toggleAutoBut.setId("radioID");
@@ -97,6 +98,19 @@ public class Display {
 						System.out.println("Radio button deselected - disable auto"); // Controller reference here
 					}
 				}
+=======
+		// Button for completing
+		this.completeBut = new Button("Process + Complete");
+		this.completeBut.setId("buttonID");
+		this.completeBut.setLayoutX(475);
+		this.completeBut.setLayoutY(120);
+		this.completeBut.setMinSize(160,50);
+		this.completeBut.setOnAction(
+			event -> {
+				receiver.undo();
+				receiver.next();
+			}
+>>>>>>> Stashed changes
 		);
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
@@ -131,7 +145,11 @@ public class Display {
 		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
+<<<<<<< Updated upstream
 				event -> receiver.prevFrame()
+=======
+			event -> receiver.down()
+>>>>>>> Stashed changes
 		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
@@ -142,7 +160,11 @@ public class Display {
 		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
+<<<<<<< Updated upstream
 				event -> receiver.nextFrame()
+=======
+			event -> receiver.up()
+>>>>>>> Stashed changes
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
@@ -403,5 +425,10 @@ public class Display {
 				.stream()
 				.filter(node -> node instanceof Circle)
 				.count();
+	}
+
+	public boolean getRadio() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

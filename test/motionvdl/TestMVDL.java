@@ -38,21 +38,21 @@ public class TestMVDL {
 		// crop stage
 		controller.click(100,100); // ready
 		controller.click(200,200); // ready and adjusted
-		controller.process();      // crop video
-		controller.complete();     // next stage
+		controller.undo();      // crop video
+		controller.next();     // next stage
 		
 		// scale stage
-		controller.process();  // scale video
-		controller.complete(); // next stage
+		controller.undo();  // scale video
+		controller.next(); // next stage
 		
 		// color stage
-		controller.process();  // convert to greyscale
-		controller.process();  // back to color
-		controller.process();  // back to greyscale
-		controller.complete(); // next stage
+		controller.undo();  // convert to greyscale
+		controller.undo();  // back to color
+		controller.undo();  // back to greyscale
+		controller.next(); // next stage
 		
 		// labelling stage
 		for (int i=0; i < N_FRAMES; i++) for (int j=0; j < 11; j++) controller.click(j,j); // on each frame place 11 points
-		controller.complete(); // complete program
+		controller.next(); // complete program
 	}
 }

@@ -37,11 +37,10 @@ public class ColorController extends Controller {
 	/**
 	 * Toggle between greyscale and color video
 	 */
-	@Override
-	public void process() {
+	public void click() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
+		Debug.trace(debugTitle+" recieved click");
 		
 		// if greyscale video does not exist create it
 		if (workBuffer == null) workBuffer = buffer.greyscale();
@@ -50,7 +49,7 @@ public class ColorController extends Controller {
 		Video temp = buffer;
 		buffer = workBuffer;
 		workBuffer = temp;
-		Debug.trace(debugTitle+" displaying "+((buffer.greyscale) ? "greyscale" : "color")+" video");
+		Debug.trace(debugTitle+" displayed "+((buffer.greyscale) ? "greyscale" : "color")+" video");
 		
 		// update display
 		display.setFrame(buffer.getFrame(frameIndex));

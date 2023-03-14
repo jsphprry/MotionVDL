@@ -23,40 +23,71 @@ public abstract class Controller {
 	// variables
 	protected int frameIndex;
 	
+	
 	/**
-	 * Default controller click instruction
-	 * No axis limits because of the assumption that clicks cannot come from outside the frame
+	 * Respond to click event
+	 * default: Do nothing
 	 * @param x The x axis of the click
 	 * @param y The y axis of the click
 	 */
 	public void click(int x, int y) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click instruction");
-		Debug.trace(debugTitle+" ignored click instruction");
+		Debug.trace(debugTitle+" skipped click: no action");
 	}
 	
 	
 	/**
-	 * Default controller process instruction
+	 * Display next video frame
+	 * default: Display next possible frame
 	 */
-	public void process() {
+	public void up() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
-		Debug.trace(debugTitle+" ignored process instruction");
+		Debug.trace(debugTitle+" recieved up");
+		
+		// display next frame
+		frameIndex = Math.min(buffer.length - 1, frameIndex + 1);
+		display.setFrame(buffer.getFrame(frameIndex));
+		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 	
 	
 	/**
-	 * Default controller complete instruction
-	 * For subcontrollers this should pass control to the main controller
-	 * For the main controller this should pass instruction to current subcontroller
+	 * Display previous video frame
+	 * default: Display previous possible frame
 	 */
-	public void complete() {
+	public void down() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved complete instruction");
+		Debug.trace(debugTitle+" recieved down");
+		
+		// display previous frame
+		frameIndex = Math.max(0, frameIndex - 1);
+		display.setFrame(buffer.getFrame(frameIndex));
+		Debug.trace(debugTitle+" set to frame "+frameIndex);
+	}
+	
+	
+	/**
+	 * Undo the most recent change to the data
+	 * default: Do nothing.
+	 */
+	public void undo() {
+		
+		// debug trace
+		Debug.trace(debugTitle+" skipped undo: no action");
+	}
+	
+	
+	/**
+	 * Switch to the next controller stage
+	 * default: Export video data and pass control to the linked controller
+	 */
+	public void next() {
+		
+		// debug trace
+		Debug.trace(debugTitle+" recieved next");
 		
 		// export and free video buffer
 		buffer.export(outputTitle);
@@ -69,14 +100,13 @@ public abstract class Controller {
 	
 	
 	/**
-	 * Default controller pass instruction
-	 * In the subcontrollers this should setup the controller with a video
-	 * In the main controller this should switch control to the next subcontroller
+	 * Pass control to this controller
+	 * default: Setup display and video
 	 */
 	public void pass(Video tempVideo) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved pass instruction");
+		Debug.trace(debugTitle+" recieved pass");
 		
 		// setup video
 		buffer = tempVideo;
@@ -84,37 +114,5 @@ public abstract class Controller {
 		// update display
 		display.setTitle(displayTitle);
 		display.setFrame(buffer.getFrame(frameIndex));
-	}
-	
-	
-	/**
-	 * Default controller nextFrame instruction
-	 * Display next frame up from current frame
-	 */
-	public void nextFrame() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved nextFrame instruction");
-		
-		// display next frame
-		frameIndex = Math.min(buffer.length - 1, frameIndex + 1);
-		display.setFrame(buffer.getFrame(frameIndex));
-		Debug.trace(debugTitle+" set to frame "+frameIndex);
-	}
-	
-	
-	/**
-	 * Default controller prevFrame instruction
-	 * Display next frame down from current frame
-	 */
-	public void prevFrame() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved prevFrame instruction");
-		
-		// display previous frame
-		frameIndex = Math.max(0, frameIndex - 1);
-		display.setFrame(buffer.getFrame(frameIndex));
-		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 }

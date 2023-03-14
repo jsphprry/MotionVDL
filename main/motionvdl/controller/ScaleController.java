@@ -35,13 +35,12 @@ public class ScaleController extends Controller {
 	
 	
 	/**
-	 * Scale the video
+	 * Downscale the video data
 	 */
-	@Override
-	public void process() {
+	public void next() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
+		Debug.trace(debugTitle+" recieved next");
 		
 		// get the target resolution
 		// placeholder
@@ -58,8 +57,8 @@ public class ScaleController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" ignored process instruction 'invalid target resolution'");
-			display.setMessage("Warning! Invalid target resolution");
+			Debug.trace(debugTitle+"skipped next: inavlid target resolution");
+			display.setMessage("*Inavlid target resolution*");
 		}
 	}
 }

@@ -16,8 +16,9 @@ public class CropController extends Controller {
 	private int cfs;  // edge size
 	private int limx; // x axis limit
 	private int limy; // y axis limit
-	private boolean ready;    // ready-to-process flag
-	private boolean adjusted; // adjusted-by-user flag
+	private int click; // click counter
+	//private boolean ready;    // ready-to-process flag
+	//private boolean adjusted; // adjusted-by-user flag
 	
 	/**
 	 * Construct crop controller
@@ -36,8 +37,9 @@ public class CropController extends Controller {
 		display = mainDisplay;
 		
 		// setup crop frame variables
-		ready = false;
-		adjusted = false;
+		click = 0;
+		//ready = false;
+		//adjusted = false;
 		
 		// debug trace
 		Debug.trace(String.format("Created CropController '%s'", debugTitle));
@@ -45,28 +47,25 @@ public class CropController extends Controller {
 	
 	
 	/**
-	 * Set the crop frame coordinates
+	 * Define the crop frame
 	 * @param x The x axis of the coordinate
 	 * @param y The y axis of the coordinate
 	 */
-	@Override
 	public void click(int x, int y) {
 		
+		// increment click counter
+		click += 1;
+		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click instruction");
+		Debug.trace(debugTitle+" recieved click "+click);
 		
 		// first click
-		if (!ready && !adjusted) {
+		if (click == 1) {
 			
-			// suggest crop frame
+			// use crop frame suggestion function
 			ax = x;
 			ay = y;
 			cfs = (int) Math.min(Math.min(0.2*limx, limx-ax), Math.min(0.2*limy, limy-ay));
-			
-			// set flags
-			Debug.trace(debugTitle+" set ready");
-			ready = true;
-			adjusted = false;
 			
 			// draw crop frame
 			display.clearGeometry();
@@ -76,27 +75,21 @@ public class CropController extends Controller {
 		
 		
 		// second click
-		} else if (ready && !adjusted) {
+		} else if (click == 2) {
 			
-			// adjust crop frame 
-			// if the second click is valid
+			// adjust crop frame if valid click
 			if (ay != y) {
 				
-				// if the second click is below the first
+				// use crop frame adjustment function
 				if (ay < y) {
 					cfs = Math.min(y-ay, limx-ax);
-				
-				// if the second click is above the first
+					//ax = ax;
+					//ay = ay;
 				} else {
 					cfs = Math.min(ay-y, ax);
 					ax -= cfs;
 					ay -= cfs;
 				}
-				
-				// set flags
-				Debug.trace(debugTitle+" set ready and adjusted");
-				ready = true;
-				adjusted = true;
 				
 				// draw crop frame
 				display.clearGeometry();
@@ -104,57 +97,48 @@ public class CropController extends Controller {
 				display.drawPoint(ax, ay);
 				display.drawPoint(ax+cfs, ay+cfs);
 				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
-			
+				
 			// else warn
 			} else {
-				Debug.trace(debugTitle+" ignored click instruction 'crop frame cannot have zero size'");
-				display.setMessage("Warning! Crop frame cannot have zero size");
+				Debug.trace(debugTitle+" skipped click: invalid point");
+				display.setMessage("*Invalid point*");
 			}
 			
 			
 		// third click
 		} else {
-			
-			// reset flags
-			Debug.trace(debugTitle+" set not ready");
-			ready = false;
-			adjusted = false;
-			
-			// clear display
+
+			// reset crop frame
+			click = 0;
 			display.clearGeometry();
 		}
 	}
 	
 	
 	/**
-	 * Crop the video to the crop frame
+	 * Crop the video data and switch stage
 	 */
-	@Override
-	public void process() {
+	public void next() {
 		
-		// debug trace
-		Debug.trace(debugTitle+" recieved process instruction");
-		
-		// if the crop frame is ready
-		if (ready) {
+		// with defined crop frame
+		if (click > 1) {
 			
-			// crop buffered video
+			// crop video and next stage
 			buffer = buffer.crop(ax, ay, cfs, cfs);
 			
-			// update display
-			display.clearGeometry();
-			display.setFrame(buffer.getFrame(frameIndex));
+			// next stage
+			super.next();
 		
-		// else warn
+		// with undefined crop frame
 		} else {
-			Debug.trace(debugTitle+" ignored process instruction");
-			display.setMessage("Warning! Not ready to crop");
+			Debug.trace(debugTitle+" skipped next: undefined crop frame");
+			display.setMessage("*Undefined crop frame*");
 		}
 	}
 	
 	
 	/**
-	 * Pass control to this controller
+	 * Store video resolution then pass control
 	 */
 	public void pass(Video tempVideo) {
 		
@@ -162,6 +146,7 @@ public class CropController extends Controller {
 		limy = tempVideo.height;
 		limx = tempVideo.width;
 		
+		// pass control
 		super.pass(tempVideo);
 	}
 }
