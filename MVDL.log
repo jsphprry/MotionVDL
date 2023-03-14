@@ -1,89 +1,1506 @@
-2023/03/14 | 10:30:00 | Created log file 'MVDL.log'
-2023/03/14 | 10:30:01 | Created CropController 'Crop controller'
-2023/03/14 | 10:30:01 | Created ScaleController 'Scale controller'
-2023/03/14 | 10:30:01 | Created ColorController 'Color controller'
-2023/03/14 | 10:30:01 | Created LabelController 'Label controller'
-2023/03/14 | 10:30:01 | Created MainController 'Main controller'
-2023/03/14 | 10:30:01 | Created noise video
-2023/03/14 | 10:30:08 | Main controller recieved pass instruction
-2023/03/14 | 10:30:08 | Crop controller recieved pass instruction
-2023/03/14 | 10:30:13 | Main controller recieved click instruction
-2023/03/14 | 10:30:13 | Crop controller recieved click instruction
-2023/03/14 | 10:30:13 | Crop controller set ready
-2023/03/14 | 10:30:13 | Display received clear instruction
-2023/03/14 | 10:30:14 | Main controller recieved click instruction
-2023/03/14 | 10:30:14 | Crop controller recieved click instruction
-2023/03/14 | 10:30:14 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:14 | Display received clear instruction
-2023/03/14 | 10:30:15 | Main controller recieved click instruction
-2023/03/14 | 10:30:15 | Crop controller recieved click instruction
-2023/03/14 | 10:30:15 | Crop controller set not ready
-2023/03/14 | 10:30:15 | Display received clear instruction
-2023/03/14 | 10:30:16 | Main controller recieved click instruction
-2023/03/14 | 10:30:16 | Crop controller recieved click instruction
-2023/03/14 | 10:30:16 | Crop controller set ready
-2023/03/14 | 10:30:16 | Display received clear instruction
-2023/03/14 | 10:30:17 | Main controller recieved click instruction
-2023/03/14 | 10:30:17 | Crop controller recieved click instruction
-2023/03/14 | 10:30:17 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:17 | Display received clear instruction
-2023/03/14 | 10:30:18 | Main controller recieved click instruction
-2023/03/14 | 10:30:18 | Crop controller recieved click instruction
-2023/03/14 | 10:30:18 | Crop controller set not ready
-2023/03/14 | 10:30:18 | Display received clear instruction
-2023/03/14 | 10:30:18 | Main controller recieved click instruction
-2023/03/14 | 10:30:18 | Crop controller recieved click instruction
-2023/03/14 | 10:30:18 | Crop controller set ready
-2023/03/14 | 10:30:18 | Display received clear instruction
-2023/03/14 | 10:30:19 | Main controller recieved click instruction
-2023/03/14 | 10:30:19 | Crop controller recieved click instruction
-2023/03/14 | 10:30:19 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:19 | Display received clear instruction
-2023/03/14 | 10:30:20 | Main controller recieved click instruction
-2023/03/14 | 10:30:20 | Crop controller recieved click instruction
-2023/03/14 | 10:30:20 | Crop controller set not ready
-2023/03/14 | 10:30:20 | Display received clear instruction
-2023/03/14 | 10:30:20 | Main controller recieved click instruction
-2023/03/14 | 10:30:20 | Crop controller recieved click instruction
-2023/03/14 | 10:30:20 | Crop controller set ready
-2023/03/14 | 10:30:20 | Display received clear instruction
-2023/03/14 | 10:30:21 | Main controller recieved click instruction
-2023/03/14 | 10:30:21 | Crop controller recieved click instruction
-2023/03/14 | 10:30:21 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:21 | Display received clear instruction
-2023/03/14 | 10:30:22 | Main controller recieved click instruction
-2023/03/14 | 10:30:22 | Crop controller recieved click instruction
-2023/03/14 | 10:30:22 | Crop controller set not ready
-2023/03/14 | 10:30:22 | Display received clear instruction
-2023/03/14 | 10:30:22 | Main controller recieved click instruction
-2023/03/14 | 10:30:22 | Crop controller recieved click instruction
-2023/03/14 | 10:30:22 | Crop controller set ready
-2023/03/14 | 10:30:22 | Display received clear instruction
-2023/03/14 | 10:30:23 | Main controller recieved click instruction
-2023/03/14 | 10:30:23 | Crop controller recieved click instruction
-2023/03/14 | 10:30:23 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:23 | Display received clear instruction
-2023/03/14 | 10:30:24 | Main controller recieved click instruction
-2023/03/14 | 10:30:24 | Crop controller recieved click instruction
-2023/03/14 | 10:30:24 | Crop controller set not ready
-2023/03/14 | 10:30:24 | Display received clear instruction
-2023/03/14 | 10:30:24 | Main controller recieved click instruction
-2023/03/14 | 10:30:24 | Crop controller recieved click instruction
-2023/03/14 | 10:30:24 | Crop controller set ready
-2023/03/14 | 10:30:24 | Display received clear instruction
-2023/03/14 | 10:30:26 | Main controller recieved click instruction
-2023/03/14 | 10:30:26 | Crop controller recieved click instruction
-2023/03/14 | 10:30:26 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:26 | Display received clear instruction
-2023/03/14 | 10:30:27 | Main controller recieved click instruction
-2023/03/14 | 10:30:27 | Crop controller recieved click instruction
-2023/03/14 | 10:30:27 | Crop controller set not ready
-2023/03/14 | 10:30:27 | Display received clear instruction
-2023/03/14 | 10:30:27 | Main controller recieved click instruction
-2023/03/14 | 10:30:27 | Crop controller recieved click instruction
-2023/03/14 | 10:30:27 | Crop controller set ready
-2023/03/14 | 10:30:27 | Display received clear instruction
-2023/03/14 | 10:30:28 | Main controller recieved click instruction
-2023/03/14 | 10:30:28 | Crop controller recieved click instruction
-2023/03/14 | 10:30:28 | Crop controller set ready and adjusted
-2023/03/14 | 10:30:28 | Display received clear instruction
+2023/03/14 | 11:05:00 | Created log file 'MVDL.log'
+2023/03/14 | 11:05:01 | Created CropController 'Crop controller'
+2023/03/14 | 11:05:01 | Created ScaleController 'Scale controller'
+2023/03/14 | 11:05:01 | Created ColorController 'Color controller'
+2023/03/14 | 11:05:01 | Created LabelController 'Label controller'
+2023/03/14 | 11:05:01 | Created MainController 'Main controller'
+2023/03/14 | 11:05:01 | Created noise video
+2023/03/14 | 11:05:07 | Main controller recieved pass instruction
+2023/03/14 | 11:05:07 | Crop controller recieved pass instruction
+2023/03/14 | 11:05:08 | Main controller recieved click instruction
+2023/03/14 | 11:05:08 | Crop controller recieved click instruction
+2023/03/14 | 11:05:08 | Crop controller set ready
+2023/03/14 | 11:05:08 | Display received clear instruction
+2023/03/14 | 11:05:09 | Main controller recieved click instruction
+2023/03/14 | 11:05:09 | Crop controller recieved click instruction
+2023/03/14 | 11:05:09 | Crop controller set ready and adjusted
+2023/03/14 | 11:05:09 | Display received clear instruction
+2023/03/14 | 11:05:10 | Main controller recieved process instruction
+2023/03/14 | 11:05:10 | Crop controller recieved process instruction
+2023/03/14 | 11:05:10 | Video resolution cropped from 500x300 to 129x129
+2023/03/14 | 11:05:10 | Display received clear instruction
+2023/03/14 | 11:05:10 | Main controller recieved complete instruction
+2023/03/14 | 11:05:10 | Crop controller recieved complete instruction
+2023/03/14 | 11:05:10 | Video encoded as byte sequence
+2023/03/14 | 11:05:10 | Encoding exported to videoS1.mvdl
+2023/03/14 | 11:05:10 | Main controller recieved pass instruction
+2023/03/14 | 11:05:10 | Scale controller recieved pass instruction
+2023/03/14 | 11:05:12 | Main controller recieved process instruction
+2023/03/14 | 11:05:12 | Scale controller recieved process instruction
+2023/03/14 | 11:05:12 | Video resolution downscaled from 129x129 to 50x50
+2023/03/14 | 11:05:12 | Main controller recieved complete instruction
+2023/03/14 | 11:05:12 | Scale controller recieved complete instruction
+2023/03/14 | 11:05:12 | Video encoded as byte sequence
+2023/03/14 | 11:05:12 | Encoding exported to videoS2.mvdl
+2023/03/14 | 11:05:12 | Main controller recieved pass instruction
+2023/03/14 | 11:05:12 | Color controller recieved pass instruction
+2023/03/14 | 11:05:14 | Main controller recieved process instruction
+2023/03/14 | 11:05:14 | Color controller recieved process instruction
+2023/03/14 | 11:05:14 | Video converted to greyscale
+2023/03/14 | 11:05:14 | Color controller displaying greyscale video
+2023/03/14 | 11:05:14 | Main controller recieved complete instruction
+2023/03/14 | 11:05:14 | Color controller recieved complete instruction
+2023/03/14 | 11:05:14 | Video encoded as byte sequence
+2023/03/14 | 11:05:14 | Encoding exported to videoS3.mvdl
+2023/03/14 | 11:05:14 | Main controller recieved pass instruction
+2023/03/14 | 11:05:14 | Label controller recieved pass instruction
+2023/03/14 | 11:05:16 | Main controller recieved click instruction
+2023/03/14 | 11:05:16 | Label controller recieved click instruction
+2023/03/14 | 11:05:16 | Label stack 0 is not full (0 points)
+2023/03/14 | 11:05:16 | Label pushed point (155,75) to stack 0
+2023/03/14 | 11:05:16 | Label stack 0 is not full (1 points)
+2023/03/14 | 11:05:16 | Main controller recieved click instruction
+2023/03/14 | 11:05:16 | Label controller recieved click instruction
+2023/03/14 | 11:05:16 | Label stack 0 is not full (1 points)
+2023/03/14 | 11:05:16 | Label pushed point (150,182) to stack 0
+2023/03/14 | 11:05:16 | Label stack 0 is not full (2 points)
+2023/03/14 | 11:05:17 | Main controller recieved click instruction
+2023/03/14 | 11:05:17 | Label controller recieved click instruction
+2023/03/14 | 11:05:17 | Label stack 0 is not full (2 points)
+2023/03/14 | 11:05:17 | Label pushed point (208,187) to stack 0
+2023/03/14 | 11:05:17 | Label stack 0 is not full (3 points)
+2023/03/14 | 11:05:17 | Main controller recieved click instruction
+2023/03/14 | 11:05:17 | Label controller recieved click instruction
+2023/03/14 | 11:05:17 | Label stack 0 is not full (3 points)
+2023/03/14 | 11:05:17 | Label pushed point (292,142) to stack 0
+2023/03/14 | 11:05:17 | Label stack 0 is not full (4 points)
+2023/03/14 | 11:05:18 | Main controller recieved click instruction
+2023/03/14 | 11:05:18 | Label controller recieved click instruction
+2023/03/14 | 11:05:18 | Label stack 0 is not full (4 points)
+2023/03/14 | 11:05:18 | Label pushed point (77,174) to stack 0
+2023/03/14 | 11:05:18 | Label stack 0 is not full (5 points)
+2023/03/14 | 11:05:18 | Main controller recieved click instruction
+2023/03/14 | 11:05:18 | Label controller recieved click instruction
+2023/03/14 | 11:05:18 | Label stack 0 is not full (5 points)
+2023/03/14 | 11:05:18 | Label pushed point (39,120) to stack 0
+2023/03/14 | 11:05:18 | Label stack 0 is not full (6 points)
+2023/03/14 | 11:05:19 | Main controller recieved click instruction
+2023/03/14 | 11:05:19 | Label controller recieved click instruction
+2023/03/14 | 11:05:19 | Label stack 0 is not full (6 points)
+2023/03/14 | 11:05:19 | Label pushed point (141,264) to stack 0
+2023/03/14 | 11:05:19 | Label stack 0 is not full (7 points)
+2023/03/14 | 11:05:19 | Main controller recieved click instruction
+2023/03/14 | 11:05:19 | Label controller recieved click instruction
+2023/03/14 | 11:05:19 | Label stack 0 is not full (7 points)
+2023/03/14 | 11:05:19 | Label pushed point (192,293) to stack 0
+2023/03/14 | 11:05:19 | Label stack 0 is not full (8 points)
+2023/03/14 | 11:05:19 | Main controller recieved click instruction
+2023/03/14 | 11:05:19 | Label controller recieved click instruction
+2023/03/14 | 11:05:19 | Label stack 0 is not full (8 points)
+2023/03/14 | 11:05:19 | Label pushed point (252,349) to stack 0
+2023/03/14 | 11:05:19 | Label stack 0 is not full (9 points)
+2023/03/14 | 11:05:20 | Main controller recieved click instruction
+2023/03/14 | 11:05:20 | Label controller recieved click instruction
+2023/03/14 | 11:05:20 | Label stack 0 is not full (9 points)
+2023/03/14 | 11:05:20 | Label pushed point (110,286) to stack 0
+2023/03/14 | 11:05:20 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:05:20 | Main controller recieved click instruction
+2023/03/14 | 11:05:20 | Label controller recieved click instruction
+2023/03/14 | 11:05:20 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:05:20 | Label pushed point (69,343) to stack 0
+2023/03/14 | 11:05:20 | Label stack 0 is full (11 points)
+2023/03/14 | 11:05:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:20 | Label controller set to frame 1
+2023/03/14 | 11:05:20 | Display received clear instruction
+2023/03/14 | 11:05:22 | Main controller recieved click instruction
+2023/03/14 | 11:05:22 | Label controller recieved click instruction
+2023/03/14 | 11:05:22 | Label stack 1 is not full (0 points)
+2023/03/14 | 11:05:22 | Label pushed point (193,65) to stack 1
+2023/03/14 | 11:05:22 | Label stack 1 is not full (1 points)
+2023/03/14 | 11:05:22 | Main controller recieved click instruction
+2023/03/14 | 11:05:22 | Label controller recieved click instruction
+2023/03/14 | 11:05:22 | Label stack 1 is not full (1 points)
+2023/03/14 | 11:05:22 | Label pushed point (189,138) to stack 1
+2023/03/14 | 11:05:22 | Label stack 1 is not full (2 points)
+2023/03/14 | 11:05:22 | Main controller recieved click instruction
+2023/03/14 | 11:05:22 | Label controller recieved click instruction
+2023/03/14 | 11:05:22 | Label stack 1 is not full (2 points)
+2023/03/14 | 11:05:22 | Label pushed point (257,210) to stack 1
+2023/03/14 | 11:05:22 | Label stack 1 is not full (3 points)
+2023/03/14 | 11:05:23 | Main controller recieved click instruction
+2023/03/14 | 11:05:23 | Label controller recieved click instruction
+2023/03/14 | 11:05:23 | Label stack 1 is not full (3 points)
+2023/03/14 | 11:05:23 | Label pushed point (291,268) to stack 1
+2023/03/14 | 11:05:23 | Label stack 1 is not full (4 points)
+2023/03/14 | 11:05:24 | Main controller recieved click instruction
+2023/03/14 | 11:05:24 | Label controller recieved click instruction
+2023/03/14 | 11:05:24 | Label stack 1 is not full (4 points)
+2023/03/14 | 11:05:24 | Label pushed point (144,156) to stack 1
+2023/03/14 | 11:05:24 | Label stack 1 is not full (5 points)
+2023/03/14 | 11:05:24 | Main controller recieved click instruction
+2023/03/14 | 11:05:24 | Label controller recieved click instruction
+2023/03/14 | 11:05:24 | Label stack 1 is not full (5 points)
+2023/03/14 | 11:05:24 | Label pushed point (87,218) to stack 1
+2023/03/14 | 11:05:24 | Label stack 1 is not full (6 points)
+2023/03/14 | 11:05:24 | Main controller recieved click instruction
+2023/03/14 | 11:05:24 | Label controller recieved click instruction
+2023/03/14 | 11:05:24 | Label stack 1 is not full (6 points)
+2023/03/14 | 11:05:24 | Label pushed point (67,274) to stack 1
+2023/03/14 | 11:05:24 | Label stack 1 is not full (7 points)
+2023/03/14 | 11:05:26 | Main controller recieved click instruction
+2023/03/14 | 11:05:26 | Label controller recieved click instruction
+2023/03/14 | 11:05:26 | Label stack 1 is not full (7 points)
+2023/03/14 | 11:05:26 | Label pushed point (88,313) to stack 1
+2023/03/14 | 11:05:26 | Label stack 1 is not full (8 points)
+2023/03/14 | 11:05:26 | Main controller recieved click instruction
+2023/03/14 | 11:05:26 | Label controller recieved click instruction
+2023/03/14 | 11:05:26 | Label stack 1 is not full (8 points)
+2023/03/14 | 11:05:26 | Label pushed point (84,356) to stack 1
+2023/03/14 | 11:05:26 | Label stack 1 is not full (9 points)
+2023/03/14 | 11:05:27 | Main controller recieved click instruction
+2023/03/14 | 11:05:27 | Label controller recieved click instruction
+2023/03/14 | 11:05:27 | Label stack 1 is not full (9 points)
+2023/03/14 | 11:05:27 | Label pushed point (59,310) to stack 1
+2023/03/14 | 11:05:27 | Label stack 1 is not full (10 points)
+2023/03/14 | 11:05:27 | Main controller recieved click instruction
+2023/03/14 | 11:05:27 | Label controller recieved click instruction
+2023/03/14 | 11:05:27 | Label stack 1 is not full (10 points)
+2023/03/14 | 11:05:27 | Label pushed point (41,348) to stack 1
+2023/03/14 | 11:05:27 | Label stack 1 is full (11 points)
+2023/03/14 | 11:05:27 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:27 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:27 | Label controller set to frame 2
+2023/03/14 | 11:05:27 | Display received clear instruction
+2023/03/14 | 11:05:28 | Main controller recieved click instruction
+2023/03/14 | 11:05:28 | Label controller recieved click instruction
+2023/03/14 | 11:05:28 | Label stack 2 is not full (0 points)
+2023/03/14 | 11:05:28 | Label pushed point (190,69) to stack 2
+2023/03/14 | 11:05:28 | Label stack 2 is not full (1 points)
+2023/03/14 | 11:05:28 | Main controller recieved click instruction
+2023/03/14 | 11:05:28 | Label controller recieved click instruction
+2023/03/14 | 11:05:28 | Label stack 2 is not full (1 points)
+2023/03/14 | 11:05:28 | Label pushed point (194,157) to stack 2
+2023/03/14 | 11:05:28 | Label stack 2 is not full (2 points)
+2023/03/14 | 11:05:29 | Main controller recieved click instruction
+2023/03/14 | 11:05:29 | Label controller recieved click instruction
+2023/03/14 | 11:05:29 | Label stack 2 is not full (2 points)
+2023/03/14 | 11:05:29 | Label pushed point (269,142) to stack 2
+2023/03/14 | 11:05:29 | Label stack 2 is not full (3 points)
+2023/03/14 | 11:05:29 | Main controller recieved click instruction
+2023/03/14 | 11:05:29 | Label controller recieved click instruction
+2023/03/14 | 11:05:29 | Label stack 2 is not full (3 points)
+2023/03/14 | 11:05:29 | Label pushed point (334,87) to stack 2
+2023/03/14 | 11:05:29 | Label stack 2 is not full (4 points)
+2023/03/14 | 11:05:29 | Main controller recieved click instruction
+2023/03/14 | 11:05:29 | Label controller recieved click instruction
+2023/03/14 | 11:05:29 | Label stack 2 is not full (4 points)
+2023/03/14 | 11:05:29 | Label pushed point (142,158) to stack 2
+2023/03/14 | 11:05:29 | Label stack 2 is not full (5 points)
+2023/03/14 | 11:05:30 | Main controller recieved click instruction
+2023/03/14 | 11:05:30 | Label controller recieved click instruction
+2023/03/14 | 11:05:30 | Label stack 2 is not full (5 points)
+2023/03/14 | 11:05:30 | Label pushed point (63,106) to stack 2
+2023/03/14 | 11:05:30 | Label stack 2 is not full (6 points)
+2023/03/14 | 11:05:30 | Main controller recieved click instruction
+2023/03/14 | 11:05:30 | Label controller recieved click instruction
+2023/03/14 | 11:05:30 | Label stack 2 is not full (6 points)
+2023/03/14 | 11:05:30 | Label pushed point (190,299) to stack 2
+2023/03/14 | 11:05:30 | Label stack 2 is not full (7 points)
+2023/03/14 | 11:05:31 | Main controller recieved click instruction
+2023/03/14 | 11:05:31 | Label controller recieved click instruction
+2023/03/14 | 11:05:31 | Label stack 2 is not full (7 points)
+2023/03/14 | 11:05:31 | Label pushed point (290,329) to stack 2
+2023/03/14 | 11:05:31 | Label stack 2 is not full (8 points)
+2023/03/14 | 11:05:31 | Main controller recieved click instruction
+2023/03/14 | 11:05:31 | Label controller recieved click instruction
+2023/03/14 | 11:05:31 | Label stack 2 is not full (8 points)
+2023/03/14 | 11:05:31 | Label pushed point (320,367) to stack 2
+2023/03/14 | 11:05:31 | Label stack 2 is not full (9 points)
+2023/03/14 | 11:05:32 | Main controller recieved click instruction
+2023/03/14 | 11:05:32 | Label controller recieved click instruction
+2023/03/14 | 11:05:32 | Label stack 2 is not full (9 points)
+2023/03/14 | 11:05:32 | Label pushed point (168,327) to stack 2
+2023/03/14 | 11:05:32 | Label stack 2 is not full (10 points)
+2023/03/14 | 11:05:32 | Main controller recieved click instruction
+2023/03/14 | 11:05:32 | Label controller recieved click instruction
+2023/03/14 | 11:05:32 | Label stack 2 is not full (10 points)
+2023/03/14 | 11:05:32 | Label pushed point (107,383) to stack 2
+2023/03/14 | 11:05:32 | Label stack 2 is full (11 points)
+2023/03/14 | 11:05:32 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:32 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:32 | Label controller set to frame 3
+2023/03/14 | 11:05:32 | Display received clear instruction
+2023/03/14 | 11:05:33 | Main controller recieved click instruction
+2023/03/14 | 11:05:33 | Label controller recieved click instruction
+2023/03/14 | 11:05:33 | Label stack 3 is not full (0 points)
+2023/03/14 | 11:05:33 | Label pushed point (185,51) to stack 3
+2023/03/14 | 11:05:33 | Label stack 3 is not full (1 points)
+2023/03/14 | 11:05:34 | Main controller recieved click instruction
+2023/03/14 | 11:05:34 | Label controller recieved click instruction
+2023/03/14 | 11:05:34 | Label stack 3 is not full (1 points)
+2023/03/14 | 11:05:34 | Label pushed point (175,154) to stack 3
+2023/03/14 | 11:05:34 | Label stack 3 is not full (2 points)
+2023/03/14 | 11:05:34 | Main controller recieved click instruction
+2023/03/14 | 11:05:34 | Label controller recieved click instruction
+2023/03/14 | 11:05:34 | Label stack 3 is not full (2 points)
+2023/03/14 | 11:05:34 | Label pushed point (259,128) to stack 3
+2023/03/14 | 11:05:34 | Label stack 3 is not full (3 points)
+2023/03/14 | 11:05:34 | Main controller recieved click instruction
+2023/03/14 | 11:05:34 | Label controller recieved click instruction
+2023/03/14 | 11:05:34 | Label stack 3 is not full (3 points)
+2023/03/14 | 11:05:34 | Label pushed point (340,85) to stack 3
+2023/03/14 | 11:05:34 | Label stack 3 is not full (4 points)
+2023/03/14 | 11:05:35 | Main controller recieved click instruction
+2023/03/14 | 11:05:35 | Label controller recieved click instruction
+2023/03/14 | 11:05:35 | Label stack 3 is not full (4 points)
+2023/03/14 | 11:05:35 | Label pushed point (127,159) to stack 3
+2023/03/14 | 11:05:35 | Label stack 3 is not full (5 points)
+2023/03/14 | 11:05:35 | Main controller recieved click instruction
+2023/03/14 | 11:05:35 | Label controller recieved click instruction
+2023/03/14 | 11:05:35 | Label stack 3 is not full (5 points)
+2023/03/14 | 11:05:35 | Label pushed point (48,96) to stack 3
+2023/03/14 | 11:05:35 | Label stack 3 is not full (6 points)
+2023/03/14 | 11:05:36 | Main controller recieved click instruction
+2023/03/14 | 11:05:36 | Label controller recieved click instruction
+2023/03/14 | 11:05:36 | Label stack 3 is not full (6 points)
+2023/03/14 | 11:05:36 | Label pushed point (189,223) to stack 3
+2023/03/14 | 11:05:36 | Label stack 3 is not full (7 points)
+2023/03/14 | 11:05:36 | Main controller recieved click instruction
+2023/03/14 | 11:05:36 | Label controller recieved click instruction
+2023/03/14 | 11:05:36 | Label stack 3 is not full (7 points)
+2023/03/14 | 11:05:36 | Label pushed point (223,306) to stack 3
+2023/03/14 | 11:05:36 | Label stack 3 is not full (8 points)
+2023/03/14 | 11:05:37 | Main controller recieved click instruction
+2023/03/14 | 11:05:37 | Label controller recieved click instruction
+2023/03/14 | 11:05:37 | Label stack 3 is not full (8 points)
+2023/03/14 | 11:05:37 | Label pushed point (297,317) to stack 3
+2023/03/14 | 11:05:37 | Label stack 3 is not full (9 points)
+2023/03/14 | 11:05:37 | Main controller recieved click instruction
+2023/03/14 | 11:05:37 | Label controller recieved click instruction
+2023/03/14 | 11:05:37 | Label stack 3 is not full (9 points)
+2023/03/14 | 11:05:37 | Label pushed point (152,275) to stack 3
+2023/03/14 | 11:05:37 | Label stack 3 is not full (10 points)
+2023/03/14 | 11:05:38 | Main controller recieved click instruction
+2023/03/14 | 11:05:38 | Label controller recieved click instruction
+2023/03/14 | 11:05:38 | Label stack 3 is not full (10 points)
+2023/03/14 | 11:05:38 | Label pushed point (120,333) to stack 3
+2023/03/14 | 11:05:38 | Label stack 3 is full (11 points)
+2023/03/14 | 11:05:38 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:38 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:38 | Label controller set to frame 4
+2023/03/14 | 11:05:38 | Display received clear instruction
+2023/03/14 | 11:05:39 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:39 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:39 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:39 | Label controller set to frame 3
+2023/03/14 | 11:05:39 | Display received clear instruction
+2023/03/14 | 11:05:40 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller set to frame 2
+2023/03/14 | 11:05:40 | Display received clear instruction
+2023/03/14 | 11:05:40 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller set to frame 1
+2023/03/14 | 11:05:40 | Display received clear instruction
+2023/03/14 | 11:05:40 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:40 | Label controller set to frame 0
+2023/03/14 | 11:05:40 | Display received clear instruction
+2023/03/14 | 11:05:41 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:41 | Label controller set to frame 0
+2023/03/14 | 11:05:41 | Display received clear instruction
+2023/03/14 | 11:05:41 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller set to frame 1
+2023/03/14 | 11:05:41 | Display received clear instruction
+2023/03/14 | 11:05:41 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:41 | Label controller set to frame 2
+2023/03/14 | 11:05:41 | Display received clear instruction
+2023/03/14 | 11:05:42 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller set to frame 3
+2023/03/14 | 11:05:42 | Display received clear instruction
+2023/03/14 | 11:05:42 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:42 | Label controller set to frame 4
+2023/03/14 | 11:05:42 | Display received clear instruction
+2023/03/14 | 11:05:43 | Main controller recieved click instruction
+2023/03/14 | 11:05:43 | Label controller recieved click instruction
+2023/03/14 | 11:05:43 | Label stack 4 is not full (0 points)
+2023/03/14 | 11:05:43 | Label pushed point (203,72) to stack 4
+2023/03/14 | 11:05:43 | Label stack 4 is not full (1 points)
+2023/03/14 | 11:05:43 | Main controller recieved click instruction
+2023/03/14 | 11:05:43 | Label controller recieved click instruction
+2023/03/14 | 11:05:43 | Label stack 4 is not full (1 points)
+2023/03/14 | 11:05:43 | Label pushed point (202,163) to stack 4
+2023/03/14 | 11:05:43 | Label stack 4 is not full (2 points)
+2023/03/14 | 11:05:44 | Main controller recieved click instruction
+2023/03/14 | 11:05:44 | Label controller recieved click instruction
+2023/03/14 | 11:05:44 | Label stack 4 is not full (2 points)
+2023/03/14 | 11:05:44 | Label pushed point (270,200) to stack 4
+2023/03/14 | 11:05:44 | Label stack 4 is not full (3 points)
+2023/03/14 | 11:05:44 | Main controller recieved click instruction
+2023/03/14 | 11:05:44 | Label controller recieved click instruction
+2023/03/14 | 11:05:44 | Label stack 4 is not full (3 points)
+2023/03/14 | 11:05:44 | Label pushed point (331,134) to stack 4
+2023/03/14 | 11:05:44 | Label stack 4 is not full (4 points)
+2023/03/14 | 11:05:44 | Main controller recieved click instruction
+2023/03/14 | 11:05:44 | Label controller recieved click instruction
+2023/03/14 | 11:05:44 | Label stack 4 is not full (4 points)
+2023/03/14 | 11:05:44 | Label pushed point (133,158) to stack 4
+2023/03/14 | 11:05:44 | Label stack 4 is not full (5 points)
+2023/03/14 | 11:05:45 | Main controller recieved click instruction
+2023/03/14 | 11:05:45 | Label controller recieved click instruction
+2023/03/14 | 11:05:45 | Label stack 4 is not full (5 points)
+2023/03/14 | 11:05:45 | Label pushed point (74,104) to stack 4
+2023/03/14 | 11:05:45 | Label stack 4 is not full (6 points)
+2023/03/14 | 11:05:45 | Main controller recieved click instruction
+2023/03/14 | 11:05:45 | Label controller recieved click instruction
+2023/03/14 | 11:05:45 | Label stack 4 is not full (6 points)
+2023/03/14 | 11:05:45 | Label pushed point (172,228) to stack 4
+2023/03/14 | 11:05:45 | Label stack 4 is not full (7 points)
+2023/03/14 | 11:05:46 | Main controller recieved click instruction
+2023/03/14 | 11:05:46 | Label controller recieved click instruction
+2023/03/14 | 11:05:46 | Label stack 4 is not full (7 points)
+2023/03/14 | 11:05:46 | Label pushed point (213,328) to stack 4
+2023/03/14 | 11:05:46 | Label stack 4 is not full (8 points)
+2023/03/14 | 11:05:46 | Main controller recieved click instruction
+2023/03/14 | 11:05:46 | Label controller recieved click instruction
+2023/03/14 | 11:05:46 | Label stack 4 is not full (8 points)
+2023/03/14 | 11:05:46 | Label pushed point (268,372) to stack 4
+2023/03/14 | 11:05:46 | Label stack 4 is not full (9 points)
+2023/03/14 | 11:05:46 | Main controller recieved click instruction
+2023/03/14 | 11:05:46 | Label controller recieved click instruction
+2023/03/14 | 11:05:46 | Label stack 4 is not full (9 points)
+2023/03/14 | 11:05:46 | Label pushed point (112,279) to stack 4
+2023/03/14 | 11:05:46 | Label stack 4 is not full (10 points)
+2023/03/14 | 11:05:47 | Main controller recieved click instruction
+2023/03/14 | 11:05:47 | Label controller recieved click instruction
+2023/03/14 | 11:05:47 | Label stack 4 is not full (10 points)
+2023/03/14 | 11:05:47 | Label pushed point (96,340) to stack 4
+2023/03/14 | 11:05:47 | Label stack 4 is full (11 points)
+2023/03/14 | 11:05:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:47 | Label controller set to frame 5
+2023/03/14 | 11:05:47 | Display received clear instruction
+2023/03/14 | 11:05:48 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller set to frame 4
+2023/03/14 | 11:05:48 | Display received clear instruction
+2023/03/14 | 11:05:48 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:48 | Label controller set to frame 3
+2023/03/14 | 11:05:48 | Display received clear instruction
+2023/03/14 | 11:05:49 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller set to frame 2
+2023/03/14 | 11:05:49 | Display received clear instruction
+2023/03/14 | 11:05:49 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller set to frame 1
+2023/03/14 | 11:05:49 | Display received clear instruction
+2023/03/14 | 11:05:49 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller set to frame 0
+2023/03/14 | 11:05:49 | Display received clear instruction
+2023/03/14 | 11:05:49 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:05:49 | Label controller set to frame 0
+2023/03/14 | 11:05:49 | Display received clear instruction
+2023/03/14 | 11:05:50 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller set to frame 1
+2023/03/14 | 11:05:50 | Display received clear instruction
+2023/03/14 | 11:05:50 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller set to frame 2
+2023/03/14 | 11:05:50 | Display received clear instruction
+2023/03/14 | 11:05:50 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller set to frame 3
+2023/03/14 | 11:05:50 | Display received clear instruction
+2023/03/14 | 11:05:50 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:50 | Label controller set to frame 4
+2023/03/14 | 11:05:50 | Display received clear instruction
+2023/03/14 | 11:05:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:05:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:51 | Label controller set to frame 5
+2023/03/14 | 11:05:51 | Display received clear instruction
+2023/03/14 | 11:05:52 | Main controller recieved click instruction
+2023/03/14 | 11:05:52 | Label controller recieved click instruction
+2023/03/14 | 11:05:52 | Label stack 5 is not full (0 points)
+2023/03/14 | 11:05:52 | Label pushed point (182,68) to stack 5
+2023/03/14 | 11:05:52 | Label stack 5 is not full (1 points)
+2023/03/14 | 11:05:52 | Main controller recieved click instruction
+2023/03/14 | 11:05:52 | Label controller recieved click instruction
+2023/03/14 | 11:05:52 | Label stack 5 is not full (1 points)
+2023/03/14 | 11:05:52 | Label pushed point (175,157) to stack 5
+2023/03/14 | 11:05:52 | Label stack 5 is not full (2 points)
+2023/03/14 | 11:05:53 | Main controller recieved click instruction
+2023/03/14 | 11:05:53 | Label controller recieved click instruction
+2023/03/14 | 11:05:53 | Label stack 5 is not full (2 points)
+2023/03/14 | 11:05:53 | Label pushed point (229,182) to stack 5
+2023/03/14 | 11:05:53 | Label stack 5 is not full (3 points)
+2023/03/14 | 11:05:53 | Main controller recieved click instruction
+2023/03/14 | 11:05:53 | Label controller recieved click instruction
+2023/03/14 | 11:05:53 | Label stack 5 is not full (3 points)
+2023/03/14 | 11:05:53 | Label pushed point (280,143) to stack 5
+2023/03/14 | 11:05:53 | Label stack 5 is not full (4 points)
+2023/03/14 | 11:05:53 | Main controller recieved click instruction
+2023/03/14 | 11:05:53 | Label controller recieved click instruction
+2023/03/14 | 11:05:53 | Label stack 5 is not full (4 points)
+2023/03/14 | 11:05:53 | Label pushed point (115,158) to stack 5
+2023/03/14 | 11:05:53 | Label stack 5 is not full (5 points)
+2023/03/14 | 11:05:54 | Main controller recieved click instruction
+2023/03/14 | 11:05:54 | Label controller recieved click instruction
+2023/03/14 | 11:05:54 | Label stack 5 is not full (5 points)
+2023/03/14 | 11:05:54 | Label pushed point (66,103) to stack 5
+2023/03/14 | 11:05:54 | Label stack 5 is not full (6 points)
+2023/03/14 | 11:05:54 | Main controller recieved click instruction
+2023/03/14 | 11:05:54 | Label controller recieved click instruction
+2023/03/14 | 11:05:54 | Label stack 5 is not full (6 points)
+2023/03/14 | 11:05:54 | Label pushed point (176,244) to stack 5
+2023/03/14 | 11:05:54 | Label stack 5 is not full (7 points)
+2023/03/14 | 11:05:55 | Main controller recieved click instruction
+2023/03/14 | 11:05:55 | Label controller recieved click instruction
+2023/03/14 | 11:05:55 | Label stack 5 is not full (7 points)
+2023/03/14 | 11:05:55 | Label pushed point (214,312) to stack 5
+2023/03/14 | 11:05:55 | Label stack 5 is not full (8 points)
+2023/03/14 | 11:05:55 | Main controller recieved click instruction
+2023/03/14 | 11:05:55 | Label controller recieved click instruction
+2023/03/14 | 11:05:55 | Label stack 5 is not full (8 points)
+2023/03/14 | 11:05:55 | Label pushed point (255,336) to stack 5
+2023/03/14 | 11:05:55 | Label stack 5 is not full (9 points)
+2023/03/14 | 11:05:56 | Main controller recieved click instruction
+2023/03/14 | 11:05:56 | Label controller recieved click instruction
+2023/03/14 | 11:05:56 | Label stack 5 is not full (9 points)
+2023/03/14 | 11:05:56 | Label pushed point (137,280) to stack 5
+2023/03/14 | 11:05:56 | Label stack 5 is not full (10 points)
+2023/03/14 | 11:05:56 | Main controller recieved click instruction
+2023/03/14 | 11:05:56 | Label controller recieved click instruction
+2023/03/14 | 11:05:56 | Label stack 5 is not full (10 points)
+2023/03/14 | 11:05:56 | Label pushed point (113,339) to stack 5
+2023/03/14 | 11:05:56 | Label stack 5 is full (11 points)
+2023/03/14 | 11:05:56 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:56 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:05:56 | Label controller set to frame 6
+2023/03/14 | 11:05:56 | Display received clear instruction
+2023/03/14 | 11:06:10 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller set to frame 5
+2023/03/14 | 11:06:10 | Display received clear instruction
+2023/03/14 | 11:06:10 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller set to frame 4
+2023/03/14 | 11:06:10 | Display received clear instruction
+2023/03/14 | 11:06:10 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:10 | Label controller set to frame 3
+2023/03/14 | 11:06:10 | Display received clear instruction
+2023/03/14 | 11:06:11 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller set to frame 2
+2023/03/14 | 11:06:11 | Display received clear instruction
+2023/03/14 | 11:06:11 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller set to frame 1
+2023/03/14 | 11:06:11 | Display received clear instruction
+2023/03/14 | 11:06:11 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller set to frame 0
+2023/03/14 | 11:06:11 | Display received clear instruction
+2023/03/14 | 11:06:11 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:11 | Label controller set to frame 0
+2023/03/14 | 11:06:11 | Display received clear instruction
+2023/03/14 | 11:06:12 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:12 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:12 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:12 | Label controller set to frame 0
+2023/03/14 | 11:06:12 | Display received clear instruction
+2023/03/14 | 11:06:12 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:12 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:12 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:12 | Label controller set to frame 1
+2023/03/14 | 11:06:13 | Display received clear instruction
+2023/03/14 | 11:06:13 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller set to frame 2
+2023/03/14 | 11:06:13 | Display received clear instruction
+2023/03/14 | 11:06:13 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:13 | Label controller set to frame 3
+2023/03/14 | 11:06:13 | Display received clear instruction
+2023/03/14 | 11:06:14 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller set to frame 4
+2023/03/14 | 11:06:14 | Display received clear instruction
+2023/03/14 | 11:06:14 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:14 | Label controller set to frame 5
+2023/03/14 | 11:06:14 | Display received clear instruction
+2023/03/14 | 11:06:15 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:06:15 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:15 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:15 | Label controller set to frame 6
+2023/03/14 | 11:06:15 | Display received clear instruction
+2023/03/14 | 11:06:16 | Main controller recieved click instruction
+2023/03/14 | 11:06:16 | Label controller recieved click instruction
+2023/03/14 | 11:06:16 | Label stack 6 is not full (0 points)
+2023/03/14 | 11:06:16 | Label pushed point (200,115) to stack 6
+2023/03/14 | 11:06:16 | Label stack 6 is not full (1 points)
+2023/03/14 | 11:06:17 | Main controller recieved click instruction
+2023/03/14 | 11:06:17 | Label controller recieved click instruction
+2023/03/14 | 11:06:17 | Label stack 6 is not full (1 points)
+2023/03/14 | 11:06:17 | Label pushed point (172,189) to stack 6
+2023/03/14 | 11:06:17 | Label stack 6 is not full (2 points)
+2023/03/14 | 11:06:17 | Main controller recieved click instruction
+2023/03/14 | 11:06:17 | Label controller recieved click instruction
+2023/03/14 | 11:06:17 | Label stack 6 is not full (2 points)
+2023/03/14 | 11:06:17 | Label pushed point (250,191) to stack 6
+2023/03/14 | 11:06:17 | Label stack 6 is not full (3 points)
+2023/03/14 | 11:06:17 | Main controller recieved click instruction
+2023/03/14 | 11:06:17 | Label controller recieved click instruction
+2023/03/14 | 11:06:17 | Label stack 6 is not full (3 points)
+2023/03/14 | 11:06:17 | Label pushed point (318,157) to stack 6
+2023/03/14 | 11:06:17 | Label stack 6 is not full (4 points)
+2023/03/14 | 11:06:17 | Main controller recieved click instruction
+2023/03/14 | 11:06:17 | Label controller recieved click instruction
+2023/03/14 | 11:06:17 | Label stack 6 is not full (4 points)
+2023/03/14 | 11:06:17 | Label pushed point (142,172) to stack 6
+2023/03/14 | 11:06:17 | Label stack 6 is not full (5 points)
+2023/03/14 | 11:06:18 | Main controller recieved click instruction
+2023/03/14 | 11:06:18 | Label controller recieved click instruction
+2023/03/14 | 11:06:18 | Label stack 6 is not full (5 points)
+2023/03/14 | 11:06:18 | Label pushed point (79,115) to stack 6
+2023/03/14 | 11:06:18 | Label stack 6 is not full (6 points)
+2023/03/14 | 11:06:18 | Main controller recieved click instruction
+2023/03/14 | 11:06:18 | Label controller recieved click instruction
+2023/03/14 | 11:06:18 | Label stack 6 is not full (6 points)
+2023/03/14 | 11:06:18 | Label pushed point (132,257) to stack 6
+2023/03/14 | 11:06:18 | Label stack 6 is not full (7 points)
+2023/03/14 | 11:06:19 | Main controller recieved click instruction
+2023/03/14 | 11:06:19 | Label controller recieved click instruction
+2023/03/14 | 11:06:19 | Label stack 6 is not full (7 points)
+2023/03/14 | 11:06:19 | Label pushed point (187,333) to stack 6
+2023/03/14 | 11:06:19 | Label stack 6 is not full (8 points)
+2023/03/14 | 11:06:19 | Main controller recieved click instruction
+2023/03/14 | 11:06:19 | Label controller recieved click instruction
+2023/03/14 | 11:06:19 | Label stack 6 is not full (8 points)
+2023/03/14 | 11:06:19 | Label pushed point (231,362) to stack 6
+2023/03/14 | 11:06:19 | Label stack 6 is not full (9 points)
+2023/03/14 | 11:06:20 | Main controller recieved click instruction
+2023/03/14 | 11:06:20 | Label controller recieved click instruction
+2023/03/14 | 11:06:20 | Label stack 6 is not full (9 points)
+2023/03/14 | 11:06:20 | Label pushed point (86,305) to stack 6
+2023/03/14 | 11:06:20 | Label stack 6 is not full (10 points)
+2023/03/14 | 11:06:20 | Main controller recieved click instruction
+2023/03/14 | 11:06:20 | Label controller recieved click instruction
+2023/03/14 | 11:06:20 | Label stack 6 is not full (10 points)
+2023/03/14 | 11:06:20 | Label pushed point (71,344) to stack 6
+2023/03/14 | 11:06:20 | Label stack 6 is full (11 points)
+2023/03/14 | 11:06:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:06:20 | Label controller set to frame 7
+2023/03/14 | 11:06:20 | Display received clear instruction
+2023/03/14 | 11:06:21 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller set to frame 6
+2023/03/14 | 11:06:21 | Display received clear instruction
+2023/03/14 | 11:06:21 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:21 | Label controller set to frame 5
+2023/03/14 | 11:06:21 | Display received clear instruction
+2023/03/14 | 11:06:22 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller set to frame 4
+2023/03/14 | 11:06:22 | Display received clear instruction
+2023/03/14 | 11:06:22 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller set to frame 3
+2023/03/14 | 11:06:22 | Display received clear instruction
+2023/03/14 | 11:06:22 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller set to frame 2
+2023/03/14 | 11:06:22 | Display received clear instruction
+2023/03/14 | 11:06:22 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:22 | Label controller set to frame 1
+2023/03/14 | 11:06:22 | Display received clear instruction
+2023/03/14 | 11:06:23 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller set to frame 0
+2023/03/14 | 11:06:23 | Display received clear instruction
+2023/03/14 | 11:06:23 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller set to frame 0
+2023/03/14 | 11:06:23 | Display received clear instruction
+2023/03/14 | 11:06:23 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:06:23 | Label controller set to frame 0
+2023/03/14 | 11:06:23 | Display received clear instruction
+2023/03/14 | 11:07:41 | Main controller recieved process instruction
+2023/03/14 | 11:07:41 | Label controller recieved process instruction
+2023/03/14 | 11:07:41 | Label stack 0 is not empty (11 points)
+2023/03/14 | 11:07:41 | Label deleted point from stack 0
+2023/03/14 | 11:07:41 | Display received clear instruction
+2023/03/14 | 11:07:41 | Main controller recieved complete instruction
+2023/03/14 | 11:07:41 | Label controller recieved complete instruction
+2023/03/14 | 11:07:41 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:07:41 | Label is incomplete
+2023/03/14 | 11:07:41 | Label controller ignored complete instruction
+2023/03/14 | 11:07:44 | Main controller recieved click instruction
+2023/03/14 | 11:07:44 | Label controller recieved click instruction
+2023/03/14 | 11:07:44 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:07:44 | Label pushed point (95,336) to stack 0
+2023/03/14 | 11:07:44 | Label stack 0 is full (11 points)
+2023/03/14 | 11:07:44 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:44 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:44 | Label controller set to frame 1
+2023/03/14 | 11:07:44 | Display received clear instruction
+2023/03/14 | 11:07:45 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:45 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:45 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:45 | Label controller set to frame 2
+2023/03/14 | 11:07:45 | Display received clear instruction
+2023/03/14 | 11:07:47 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller set to frame 3
+2023/03/14 | 11:07:47 | Display received clear instruction
+2023/03/14 | 11:07:47 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:47 | Label controller set to frame 4
+2023/03/14 | 11:07:47 | Display received clear instruction
+2023/03/14 | 11:07:48 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:48 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:48 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:48 | Label controller set to frame 5
+2023/03/14 | 11:07:48 | Display received clear instruction
+2023/03/14 | 11:07:49 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller set to frame 6
+2023/03/14 | 11:07:49 | Display received clear instruction
+2023/03/14 | 11:07:49 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:07:49 | Label controller set to frame 7
+2023/03/14 | 11:07:49 | Display received clear instruction
+2023/03/14 | 11:08:02 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:02 | Label controller set to frame 6
+2023/03/14 | 11:08:02 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 5
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 4
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 3
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 2
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 1
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:03 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:03 | Label controller set to frame 0
+2023/03/14 | 11:08:03 | Display received clear instruction
+2023/03/14 | 11:08:04 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller set to frame 0
+2023/03/14 | 11:08:04 | Display received clear instruction
+2023/03/14 | 11:08:04 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller set to frame 0
+2023/03/14 | 11:08:04 | Display received clear instruction
+2023/03/14 | 11:08:04 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:04 | Label controller set to frame 0
+2023/03/14 | 11:08:04 | Display received clear instruction
+2023/03/14 | 11:08:05 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:08:05 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:08:05 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:08:05 | Label controller set to frame 1
+2023/03/14 | 11:08:05 | Display received clear instruction
+2023/03/14 | 11:08:06 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:08:06 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:06 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:08:06 | Label controller set to frame 0
+2023/03/14 | 11:08:06 | Display received clear instruction
+2023/03/14 | 11:08:07 | Main controller recieved process instruction
+2023/03/14 | 11:08:07 | Label controller recieved process instruction
+2023/03/14 | 11:08:07 | Label stack 0 is not empty (11 points)
+2023/03/14 | 11:08:07 | Label deleted point from stack 0
+2023/03/14 | 11:08:07 | Display received clear instruction
+2023/03/14 | 11:08:07 | Main controller recieved complete instruction
+2023/03/14 | 11:08:07 | Label controller recieved complete instruction
+2023/03/14 | 11:08:07 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:08:07 | Label is incomplete
+2023/03/14 | 11:08:07 | Label controller ignored complete instruction
+2023/03/14 | 11:08:08 | Main controller recieved click instruction
+2023/03/14 | 11:08:08 | Label controller recieved click instruction
+2023/03/14 | 11:08:08 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:08:08 | Label pushed point (92,336) to stack 0
+2023/03/14 | 11:08:08 | Label stack 0 is full (11 points)
+2023/03/14 | 11:08:08 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:08:08 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:08:08 | Label controller set to frame 1
+2023/03/14 | 11:08:08 | Display received clear instruction
+2023/03/14 | 11:11:42 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller set to frame 0
+2023/03/14 | 11:11:42 | Display received clear instruction
+2023/03/14 | 11:11:42 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:11:42 | Label controller set to frame 0
+2023/03/14 | 11:11:42 | Display received clear instruction
+2023/03/14 | 11:12:50 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller set to frame 0
+2023/03/14 | 11:12:50 | Display received clear instruction
+2023/03/14 | 11:12:50 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller set to frame 0
+2023/03/14 | 11:12:50 | Display received clear instruction
+2023/03/14 | 11:12:50 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller set to frame 0
+2023/03/14 | 11:12:50 | Display received clear instruction
+2023/03/14 | 11:12:50 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:50 | Label controller set to frame 0
+2023/03/14 | 11:12:50 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 1
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 2
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 3
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 4
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 5
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 6
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:51 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:51 | Label controller set to frame 7
+2023/03/14 | 11:12:51 | Display received clear instruction
+2023/03/14 | 11:12:52 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:52 | Label controller set to frame 8
+2023/03/14 | 11:12:52 | Display received clear instruction
+2023/03/14 | 11:12:52 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller set to frame 7
+2023/03/14 | 11:12:52 | Display received clear instruction
+2023/03/14 | 11:12:52 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:52 | Label controller set to frame 6
+2023/03/14 | 11:12:52 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 5
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 4
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 3
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 2
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 1
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:53 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:53 | Label controller set to frame 0
+2023/03/14 | 11:12:53 | Display received clear instruction
+2023/03/14 | 11:12:54 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller set to frame 0
+2023/03/14 | 11:12:54 | Display received clear instruction
+2023/03/14 | 11:12:54 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:54 | Label controller set to frame 0
+2023/03/14 | 11:12:54 | Display received clear instruction
+2023/03/14 | 11:12:54 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:54 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:54 | Label controller set to frame 1
+2023/03/14 | 11:12:54 | Display received clear instruction
+2023/03/14 | 11:12:55 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller set to frame 2
+2023/03/14 | 11:12:55 | Display received clear instruction
+2023/03/14 | 11:12:55 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller set to frame 3
+2023/03/14 | 11:12:55 | Display received clear instruction
+2023/03/14 | 11:12:55 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller set to frame 4
+2023/03/14 | 11:12:55 | Display received clear instruction
+2023/03/14 | 11:12:55 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller set to frame 5
+2023/03/14 | 11:12:55 | Display received clear instruction
+2023/03/14 | 11:12:55 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:55 | Label controller set to frame 6
+2023/03/14 | 11:12:55 | Display received clear instruction
+2023/03/14 | 11:12:56 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:56 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:56 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:56 | Label controller set to frame 7
+2023/03/14 | 11:12:56 | Display received clear instruction
+2023/03/14 | 11:12:56 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:56 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:56 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:56 | Label controller set to frame 6
+2023/03/14 | 11:12:56 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 5
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 4
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 3
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 2
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 1
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:57 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:57 | Label controller set to frame 0
+2023/03/14 | 11:12:57 | Display received clear instruction
+2023/03/14 | 11:12:58 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller set to frame 0
+2023/03/14 | 11:12:58 | Display received clear instruction
+2023/03/14 | 11:12:58 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:12:58 | Label controller set to frame 0
+2023/03/14 | 11:12:58 | Display received clear instruction
+2023/03/14 | 11:12:59 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller set to frame 1
+2023/03/14 | 11:12:59 | Display received clear instruction
+2023/03/14 | 11:12:59 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller set to frame 2
+2023/03/14 | 11:12:59 | Display received clear instruction
+2023/03/14 | 11:12:59 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller set to frame 3
+2023/03/14 | 11:12:59 | Display received clear instruction
+2023/03/14 | 11:12:59 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller set to frame 4
+2023/03/14 | 11:12:59 | Display received clear instruction
+2023/03/14 | 11:12:59 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:12:59 | Label controller set to frame 5
+2023/03/14 | 11:12:59 | Display received clear instruction
+2023/03/14 | 11:13:00 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller set to frame 6
+2023/03/14 | 11:13:00 | Display received clear instruction
+2023/03/14 | 11:13:00 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:13:00 | Label controller set to frame 7
+2023/03/14 | 11:13:00 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 6
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 5
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 4
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 3
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 2
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 1
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:01 | Label controller set to frame 0
+2023/03/14 | 11:13:01 | Display received clear instruction
+2023/03/14 | 11:13:02 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller set to frame 0
+2023/03/14 | 11:13:02 | Display received clear instruction
+2023/03/14 | 11:13:02 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller set to frame 0
+2023/03/14 | 11:13:02 | Display received clear instruction
+2023/03/14 | 11:13:02 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller set to frame 0
+2023/03/14 | 11:13:02 | Display received clear instruction
+2023/03/14 | 11:13:02 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:13:02 | Label controller set to frame 0
+2023/03/14 | 11:13:02 | Display received clear instruction
+2023/03/14 | 11:14:14 | Main controller recieved process instruction
+2023/03/14 | 11:14:14 | Label controller recieved process instruction
+2023/03/14 | 11:14:14 | Label stack 0 is not empty (11 points)
+2023/03/14 | 11:14:14 | Label deleted point from stack 0
+2023/03/14 | 11:14:14 | Display received clear instruction
+2023/03/14 | 11:14:14 | Main controller recieved complete instruction
+2023/03/14 | 11:14:14 | Label controller recieved complete instruction
+2023/03/14 | 11:14:14 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:14:14 | Label is incomplete
+2023/03/14 | 11:14:14 | Label controller ignored complete instruction
+2023/03/14 | 11:14:16 | Main controller recieved click instruction
+2023/03/14 | 11:14:16 | Label controller recieved click instruction
+2023/03/14 | 11:14:16 | Label stack 0 is not full (10 points)
+2023/03/14 | 11:14:16 | Label pushed point (88,345) to stack 0
+2023/03/14 | 11:14:16 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:16 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:16 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:16 | Label controller set to frame 1
+2023/03/14 | 11:14:16 | Display received clear instruction
+2023/03/14 | 11:14:17 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:17 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:17 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:17 | Label controller set to frame 0
+2023/03/14 | 11:14:17 | Display received clear instruction
+2023/03/14 | 11:14:18 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller set to frame 0
+2023/03/14 | 11:14:18 | Display received clear instruction
+2023/03/14 | 11:14:18 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller set to frame 0
+2023/03/14 | 11:14:18 | Display received clear instruction
+2023/03/14 | 11:14:18 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:18 | Label controller set to frame 0
+2023/03/14 | 11:14:18 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 1
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 2
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 3
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 4
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 5
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:19 | Label controller set to frame 6
+2023/03/14 | 11:14:19 | Display received clear instruction
+2023/03/14 | 11:14:20 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller set to frame 7
+2023/03/14 | 11:14:20 | Display received clear instruction
+2023/03/14 | 11:14:20 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:20 | Label controller set to frame 8
+2023/03/14 | 11:14:20 | Display received clear instruction
+2023/03/14 | 11:14:21 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller set to frame 7
+2023/03/14 | 11:14:21 | Display received clear instruction
+2023/03/14 | 11:14:21 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:21 | Label controller set to frame 6
+2023/03/14 | 11:14:21 | Display received clear instruction
+2023/03/14 | 11:14:22 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:22 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:22 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:22 | Label controller set to frame 7
+2023/03/14 | 11:14:22 | Display received clear instruction
+2023/03/14 | 11:14:50 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:50 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:50 | Label controller set to frame 6
+2023/03/14 | 11:14:50 | Display received clear instruction
+2023/03/14 | 11:14:51 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller set to frame 5
+2023/03/14 | 11:14:51 | Display received clear instruction
+2023/03/14 | 11:14:51 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller set to frame 4
+2023/03/14 | 11:14:51 | Display received clear instruction
+2023/03/14 | 11:14:51 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller set to frame 3
+2023/03/14 | 11:14:51 | Display received clear instruction
+2023/03/14 | 11:14:51 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller set to frame 2
+2023/03/14 | 11:14:51 | Display received clear instruction
+2023/03/14 | 11:14:51 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:51 | Label controller set to frame 1
+2023/03/14 | 11:14:51 | Display received clear instruction
+2023/03/14 | 11:14:52 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:14:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:52 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:14:52 | Label controller set to frame 0
+2023/03/14 | 11:14:52 | Display received clear instruction
+2023/03/14 | 11:14:52 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:14:52 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:52 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:14:52 | Label controller set to frame 1
+2023/03/14 | 11:14:52 | Display received clear instruction
+2023/03/14 | 11:14:53 | Main controller recieved process instruction
+2023/03/14 | 11:14:53 | Label controller recieved process instruction
+2023/03/14 | 11:14:53 | Label stack 1 is not empty (11 points)
+2023/03/14 | 11:14:53 | Label deleted point from stack 1
+2023/03/14 | 11:14:53 | Display received clear instruction
+2023/03/14 | 11:14:53 | Main controller recieved complete instruction
+2023/03/14 | 11:14:53 | Label controller recieved complete instruction
+2023/03/14 | 11:14:53 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:53 | Label stack 1 is not full (10 points)
+2023/03/14 | 11:14:53 | Label is incomplete
+2023/03/14 | 11:14:53 | Label controller ignored complete instruction
+2023/03/14 | 11:14:54 | Main controller recieved process instruction
+2023/03/14 | 11:14:54 | Label controller recieved process instruction
+2023/03/14 | 11:14:54 | Label stack 1 is not empty (10 points)
+2023/03/14 | 11:14:54 | Label deleted point from stack 1
+2023/03/14 | 11:14:54 | Display received clear instruction
+2023/03/14 | 11:14:54 | Main controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:54 | Label stack 1 is not full (9 points)
+2023/03/14 | 11:14:54 | Label is incomplete
+2023/03/14 | 11:14:54 | Label controller ignored complete instruction
+2023/03/14 | 11:14:54 | Main controller recieved process instruction
+2023/03/14 | 11:14:54 | Label controller recieved process instruction
+2023/03/14 | 11:14:54 | Label stack 1 is not empty (9 points)
+2023/03/14 | 11:14:54 | Label deleted point from stack 1
+2023/03/14 | 11:14:54 | Display received clear instruction
+2023/03/14 | 11:14:54 | Main controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:54 | Label stack 1 is not full (8 points)
+2023/03/14 | 11:14:54 | Label is incomplete
+2023/03/14 | 11:14:54 | Label controller ignored complete instruction
+2023/03/14 | 11:14:54 | Main controller recieved process instruction
+2023/03/14 | 11:14:54 | Label controller recieved process instruction
+2023/03/14 | 11:14:54 | Label stack 1 is not empty (8 points)
+2023/03/14 | 11:14:54 | Label deleted point from stack 1
+2023/03/14 | 11:14:54 | Display received clear instruction
+2023/03/14 | 11:14:54 | Main controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:54 | Label stack 1 is not full (7 points)
+2023/03/14 | 11:14:54 | Label is incomplete
+2023/03/14 | 11:14:54 | Label controller ignored complete instruction
+2023/03/14 | 11:14:54 | Main controller recieved process instruction
+2023/03/14 | 11:14:54 | Label controller recieved process instruction
+2023/03/14 | 11:14:54 | Label stack 1 is not empty (7 points)
+2023/03/14 | 11:14:54 | Label deleted point from stack 1
+2023/03/14 | 11:14:54 | Display received clear instruction
+2023/03/14 | 11:14:54 | Main controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:54 | Label stack 1 is not full (6 points)
+2023/03/14 | 11:14:54 | Label is incomplete
+2023/03/14 | 11:14:54 | Label controller ignored complete instruction
+2023/03/14 | 11:14:54 | Main controller recieved process instruction
+2023/03/14 | 11:14:54 | Label controller recieved process instruction
+2023/03/14 | 11:14:54 | Label stack 1 is not empty (6 points)
+2023/03/14 | 11:14:54 | Label deleted point from stack 1
+2023/03/14 | 11:14:54 | Display received clear instruction
+2023/03/14 | 11:14:54 | Main controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label controller recieved complete instruction
+2023/03/14 | 11:14:54 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:54 | Label stack 1 is not full (5 points)
+2023/03/14 | 11:14:54 | Label is incomplete
+2023/03/14 | 11:14:54 | Label controller ignored complete instruction
+2023/03/14 | 11:14:55 | Main controller recieved process instruction
+2023/03/14 | 11:14:55 | Label controller recieved process instruction
+2023/03/14 | 11:14:55 | Label stack 1 is not empty (5 points)
+2023/03/14 | 11:14:55 | Label deleted point from stack 1
+2023/03/14 | 11:14:55 | Display received clear instruction
+2023/03/14 | 11:14:55 | Main controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:55 | Label stack 1 is not full (4 points)
+2023/03/14 | 11:14:55 | Label is incomplete
+2023/03/14 | 11:14:55 | Label controller ignored complete instruction
+2023/03/14 | 11:14:55 | Main controller recieved process instruction
+2023/03/14 | 11:14:55 | Label controller recieved process instruction
+2023/03/14 | 11:14:55 | Label stack 1 is not empty (4 points)
+2023/03/14 | 11:14:55 | Label deleted point from stack 1
+2023/03/14 | 11:14:55 | Display received clear instruction
+2023/03/14 | 11:14:55 | Main controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:55 | Label stack 1 is not full (3 points)
+2023/03/14 | 11:14:55 | Label is incomplete
+2023/03/14 | 11:14:55 | Label controller ignored complete instruction
+2023/03/14 | 11:14:55 | Main controller recieved process instruction
+2023/03/14 | 11:14:55 | Label controller recieved process instruction
+2023/03/14 | 11:14:55 | Label stack 1 is not empty (3 points)
+2023/03/14 | 11:14:55 | Label deleted point from stack 1
+2023/03/14 | 11:14:55 | Display received clear instruction
+2023/03/14 | 11:14:55 | Main controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label controller recieved complete instruction
+2023/03/14 | 11:14:55 | Label stack 0 is full (11 points)
+2023/03/14 | 11:14:55 | Label stack 1 is not full (2 points)
+2023/03/14 | 11:14:55 | Label is incomplete
+2023/03/14 | 11:14:55 | Label controller ignored complete instruction
+2023/03/14 | 11:15:01 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:01 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:01 | Label controller set to frame 0
+2023/03/14 | 11:15:01 | Display received clear instruction
+2023/03/14 | 11:15:04 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:04 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:04 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:04 | Label controller set to frame 1
+2023/03/14 | 11:15:04 | Display received clear instruction
+2023/03/14 | 11:15:06 | Main controller recieved process instruction
+2023/03/14 | 11:15:06 | Label controller recieved process instruction
+2023/03/14 | 11:15:06 | Label stack 1 is not empty (2 points)
+2023/03/14 | 11:15:06 | Label deleted point from stack 1
+2023/03/14 | 11:15:06 | Display received clear instruction
+2023/03/14 | 11:15:06 | Main controller recieved complete instruction
+2023/03/14 | 11:15:06 | Label controller recieved complete instruction
+2023/03/14 | 11:15:06 | Label stack 0 is full (11 points)
+2023/03/14 | 11:15:06 | Label stack 1 is not full (1 points)
+2023/03/14 | 11:15:06 | Label is incomplete
+2023/03/14 | 11:15:06 | Label controller ignored complete instruction
+2023/03/14 | 11:15:07 | Main controller recieved process instruction
+2023/03/14 | 11:15:07 | Label controller recieved process instruction
+2023/03/14 | 11:15:07 | Label stack 1 is not empty (1 points)
+2023/03/14 | 11:15:07 | Label deleted point from stack 1
+2023/03/14 | 11:15:07 | Display received clear instruction
+2023/03/14 | 11:15:07 | Main controller recieved complete instruction
+2023/03/14 | 11:15:07 | Label controller recieved complete instruction
+2023/03/14 | 11:15:07 | Label stack 0 is full (11 points)
+2023/03/14 | 11:15:07 | Label stack 1 is not full (0 points)
+2023/03/14 | 11:15:07 | Label is incomplete
+2023/03/14 | 11:15:07 | Label controller ignored complete instruction
+2023/03/14 | 11:15:08 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:08 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:08 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:08 | Label controller set to frame 0
+2023/03/14 | 11:15:08 | Display received clear instruction
+2023/03/14 | 11:15:08 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:08 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:08 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:08 | Label controller set to frame 1
+2023/03/14 | 11:15:08 | Display received clear instruction
+2023/03/14 | 11:15:09 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:09 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:09 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:09 | Label controller set to frame 2
+2023/03/14 | 11:15:09 | Display received clear instruction
+2023/03/14 | 11:15:09 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:09 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:09 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:09 | Label controller set to frame 1
+2023/03/14 | 11:15:09 | Display received clear instruction
+2023/03/14 | 11:15:10 | Main controller recieved click instruction
+2023/03/14 | 11:15:10 | Label controller recieved click instruction
+2023/03/14 | 11:15:10 | Label stack 1 is not full (0 points)
+2023/03/14 | 11:15:10 | Label pushed point (181,77) to stack 1
+2023/03/14 | 11:15:10 | Label stack 1 is not full (1 points)
+2023/03/14 | 11:15:11 | Main controller recieved click instruction
+2023/03/14 | 11:15:11 | Label controller recieved click instruction
+2023/03/14 | 11:15:11 | Label stack 1 is not full (1 points)
+2023/03/14 | 11:15:11 | Label pushed point (174,149) to stack 1
+2023/03/14 | 11:15:11 | Label stack 1 is not full (2 points)
+2023/03/14 | 11:15:11 | Main controller recieved click instruction
+2023/03/14 | 11:15:11 | Label controller recieved click instruction
+2023/03/14 | 11:15:11 | Label stack 1 is not full (2 points)
+2023/03/14 | 11:15:11 | Label pushed point (277,170) to stack 1
+2023/03/14 | 11:15:11 | Label stack 1 is not full (3 points)
+2023/03/14 | 11:15:11 | Main controller recieved click instruction
+2023/03/14 | 11:15:11 | Label controller recieved click instruction
+2023/03/14 | 11:15:11 | Label stack 1 is not full (3 points)
+2023/03/14 | 11:15:11 | Label pushed point (322,121) to stack 1
+2023/03/14 | 11:15:11 | Label stack 1 is not full (4 points)
+2023/03/14 | 11:15:12 | Main controller recieved click instruction
+2023/03/14 | 11:15:12 | Label controller recieved click instruction
+2023/03/14 | 11:15:12 | Label stack 1 is not full (4 points)
+2023/03/14 | 11:15:12 | Label pushed point (108,154) to stack 1
+2023/03/14 | 11:15:12 | Label stack 1 is not full (5 points)
+2023/03/14 | 11:15:12 | Main controller recieved click instruction
+2023/03/14 | 11:15:12 | Label controller recieved click instruction
+2023/03/14 | 11:15:12 | Label stack 1 is not full (5 points)
+2023/03/14 | 11:15:12 | Label pushed point (61,101) to stack 1
+2023/03/14 | 11:15:12 | Label stack 1 is not full (6 points)
+2023/03/14 | 11:15:12 | Main controller recieved click instruction
+2023/03/14 | 11:15:12 | Label controller recieved click instruction
+2023/03/14 | 11:15:12 | Label stack 1 is not full (6 points)
+2023/03/14 | 11:15:12 | Label pushed point (162,247) to stack 1
+2023/03/14 | 11:15:12 | Label stack 1 is not full (7 points)
+2023/03/14 | 11:15:13 | Main controller recieved click instruction
+2023/03/14 | 11:15:13 | Label controller recieved click instruction
+2023/03/14 | 11:15:13 | Label stack 1 is not full (7 points)
+2023/03/14 | 11:15:13 | Label pushed point (217,289) to stack 1
+2023/03/14 | 11:15:13 | Label stack 1 is not full (8 points)
+2023/03/14 | 11:15:13 | Main controller recieved click instruction
+2023/03/14 | 11:15:13 | Label controller recieved click instruction
+2023/03/14 | 11:15:13 | Label stack 1 is not full (8 points)
+2023/03/14 | 11:15:13 | Label pushed point (276,332) to stack 1
+2023/03/14 | 11:15:13 | Label stack 1 is not full (9 points)
+2023/03/14 | 11:15:13 | Main controller recieved click instruction
+2023/03/14 | 11:15:13 | Label controller recieved click instruction
+2023/03/14 | 11:15:13 | Label stack 1 is not full (9 points)
+2023/03/14 | 11:15:13 | Label pushed point (336,337) to stack 1
+2023/03/14 | 11:15:13 | Label stack 1 is not full (10 points)
+2023/03/14 | 11:15:14 | Main controller recieved click instruction
+2023/03/14 | 11:15:14 | Label controller recieved click instruction
+2023/03/14 | 11:15:14 | Label stack 1 is not full (10 points)
+2023/03/14 | 11:15:14 | Label pushed point (147,318) to stack 1
+2023/03/14 | 11:15:14 | Label stack 1 is full (11 points)
+2023/03/14 | 11:15:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:14 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:14 | Label controller set to frame 2
+2023/03/14 | 11:15:14 | Display received clear instruction
+2023/03/14 | 11:15:16 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:16 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:16 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:16 | Label controller set to frame 1
+2023/03/14 | 11:15:16 | Display received clear instruction
+2023/03/14 | 11:15:17 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:17 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:17 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:17 | Label controller set to frame 2
+2023/03/14 | 11:15:17 | Display received clear instruction
+2023/03/14 | 11:15:18 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller set to frame 3
+2023/03/14 | 11:15:18 | Display received clear instruction
+2023/03/14 | 11:15:18 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:18 | Label controller set to frame 4
+2023/03/14 | 11:15:18 | Display received clear instruction
+2023/03/14 | 11:15:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller set to frame 5
+2023/03/14 | 11:15:19 | Display received clear instruction
+2023/03/14 | 11:15:19 | Main controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller recieved nextFrame instruction
+2023/03/14 | 11:15:19 | Label controller set to frame 6
+2023/03/14 | 11:15:19 | Display received clear instruction
+2023/03/14 | 11:15:24 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller set to frame 5
+2023/03/14 | 11:15:24 | Display received clear instruction
+2023/03/14 | 11:15:24 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller set to frame 4
+2023/03/14 | 11:15:24 | Display received clear instruction
+2023/03/14 | 11:15:24 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller set to frame 3
+2023/03/14 | 11:15:24 | Display received clear instruction
+2023/03/14 | 11:15:24 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller set to frame 2
+2023/03/14 | 11:15:24 | Display received clear instruction
+2023/03/14 | 11:15:24 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:24 | Label controller set to frame 1
+2023/03/14 | 11:15:24 | Display received clear instruction
+2023/03/14 | 11:15:25 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller set to frame 0
+2023/03/14 | 11:15:25 | Display received clear instruction
+2023/03/14 | 11:15:25 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller set to frame 0
+2023/03/14 | 11:15:25 | Display received clear instruction
+2023/03/14 | 11:15:25 | Main controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller recieved prevFrame instruction
+2023/03/14 | 11:15:25 | Label controller set to frame 0
+2023/03/14 | 11:15:25 | Display received clear instruction
