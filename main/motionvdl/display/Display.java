@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import motionvdl.Debug;
 import motionvdl.controller.Controller;
 
 /**
@@ -41,6 +41,7 @@ public class Display {
 	private Line cropLine;
 	private List<Circle> points;
 	private List<Line> connectors;
+	private RadioButton toggleAutoBut;
 	private Rectangle opaqueSquare;
 	private TextField widthTextField;
 	private TextField heightTextField;
@@ -73,26 +74,41 @@ public class Display {
 		this.imageView.setId("imageViewID");
 		this.imageView.setLayoutX(15);
 		this.imageView.setLayoutY(50);
-		this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-			event -> receiver.click((int)event.getX(), (int)event.getY())
+			event -> receiver.click((int) event.getX(), (int) event.getY())
 		);
-		this.primaryPane.getChildren().add(imageView);
+		this.primaryPane.getChildren().add(this.imageView);
 
-		// Button for completing
+		// Radio button to toggle automatic mode
+		this.toggleAutoBut = new RadioButton("Toggle Auto");
+		this.toggleAutoBut.setId("radioID");
+		this.toggleAutoBut.setLayoutX(500);
+		this.toggleAutoBut.setLayoutY(60);
+		this.toggleAutoBut.setMinSize(160, 50);
+		this.toggleAutoBut.setOnAction(
+				event -> {
+					if (this.toggleAutoBut.isSelected()){
+						System.out.println("Radio button selected - enable auto");    // Controller reference here
+					} else {
+						System.out.println("Radio button deselected - disable auto"); // Controller reference here
+					}
+				});
+		this.primaryPane.getChildren().add(this.toggleAutoBut);
+
+		// Button for processing
 		this.processBut = new Button("Process + Complete");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(475);
 		this.processBut.setLayoutY(120);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
-			event -> {
-				receiver.process();
-				receiver.complete();
-			});
+				event -> {
+					receiver.process();
+					receiver.complete();
+				});
 		this.primaryPane.getChildren().add(this.processBut);
 
 		// Button for switching to previous frame
