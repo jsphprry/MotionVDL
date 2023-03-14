@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import motionvdl.Debug;
 import motionvdl.controller.Controller;
 
 /**
@@ -32,7 +32,8 @@ public class Display {
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Pane primaryPane;
-	private Button completeBut;
+	private Button processBut;
+	private Button undoBut;
 	private Button nextBut;
 	private Button prevBut;
 	private ImageView imageView;
@@ -41,6 +42,7 @@ public class Display {
 	private Line cropLine;
 	private List<Circle> points;
 	private List<Line> connectors;
+	private RadioButton toggleAutoBut;
 	private Rectangle opaqueSquare;
 	private TextField widthTextField;
 	private TextField heightTextField;
@@ -63,7 +65,7 @@ public class Display {
 
 		// Title Label
 		this.titleLab = new Label("Title");
-		this.titleLab.setId("labelID");
+		this.titleLab.setId("titleLabID");
 		this.titleLab.setLayoutX(6);
 		this.titleLab.setLayoutY(6);
 		this.primaryPane.getChildren().add(this.titleLab);
@@ -72,38 +74,64 @@ public class Display {
 		this.imageView = new ImageView();
 		this.imageView.setId("imageViewID");
 		this.imageView.setLayoutX(15);
-		this.imageView.setLayoutY(50);
-		this.imageView.setImage(new Image("motionvdl/display/images/javaIcon.png")); // Set image to frame
-		this.imageView.setFitHeight(400);
-		this.imageView.setFitWidth(400);
+		this.imageView.setLayoutY(40);
+		this.imageView.setFitHeight(420);
+		this.imageView.setFitWidth(420);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-			event -> receiver.click((int)event.getX(), (int)event.getY())
+				event -> receiver.click((int) event.getX(), (int) event.getY())
 		);
-		this.primaryPane.getChildren().add(imageView);
+		this.primaryPane.getChildren().add(this.imageView);
 
-		// Button for completing
-		this.completeBut = new Button("Process + Complete");
-		this.completeBut.setId("buttonID");
-		this.completeBut.setLayoutX(475);
-		this.completeBut.setLayoutY(120);
-		this.completeBut.setMinSize(160,50);
-		this.completeBut.setOnAction(
-			event -> {
-				receiver.process();
-				receiver.complete();
-			}
+		// Radio button to toggle automatic mode
+		this.toggleAutoBut = new RadioButton("Toggle Auto");
+		this.toggleAutoBut.setId("radioID");
+		this.toggleAutoBut.setLayoutX(500);
+		this.toggleAutoBut.setLayoutY(40);
+		this.toggleAutoBut.setMinSize(160, 50);
+		this.toggleAutoBut.setOnAction(
+				event -> {
+					if (this.toggleAutoBut.isSelected()){
+						System.out.println("Radio button selected - enable auto");    // Controller reference here
+					} else {
+						System.out.println("Radio button deselected - disable auto"); // Controller reference here
+					}
+				}
 		);
-		this.primaryPane.getChildren().add(this.completeBut);
+		this.primaryPane.getChildren().add(this.toggleAutoBut);
+
+		// Button for processing
+		this.processBut = new Button("Process + Complete");
+		this.processBut.setId("buttonID");
+		this.processBut.setLayoutX(475);
+		this.processBut.setLayoutY(90);
+		this.processBut.setMinSize(160,50);
+		this.processBut.setOnAction(
+				event -> {
+					receiver.process();
+					receiver.complete();
+				}
+		);
+		this.primaryPane.getChildren().add(this.processBut);
+
+		this.undoBut = new Button("Undo");
+		this.undoBut.setId("buttonID");
+		this.undoBut.setLayoutX(475);
+		this.undoBut.setLayoutY(150);
+		this.undoBut.setMinSize(160, 50);
+		this.undoBut.setOnAction(
+				event -> System.out.println(event)
+		);
+		this.primaryPane.getChildren().add(this.undoBut);
 
 		// Button for switching to previous frame
 		this.prevBut = new Button("Previous");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(475);
-		this.prevBut.setLayoutY(180);
+		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-			event -> receiver.prevFrame()
+				event -> receiver.prevFrame()
 		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
@@ -111,33 +139,18 @@ public class Display {
 		this.nextBut = new Button("Next");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(557);
-		this.nextBut.setLayoutY(180);
+		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-			event -> receiver.nextFrame()
+				event -> receiver.nextFrame()
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
-
-		// Message area Label
-		this.messageLab = new Label("Message area");
-		this.messageLab.setId("labelID");
-		this.messageLab.setMaxWidth(160);
-		this.messageLab.setWrapText(true);
-		this.messageLab.setLayoutX(475);
-		this.messageLab.setLayoutY(300);
-		this.primaryPane.getChildren().add(this.messageLab);
-
-		// Points to be placed on the ImageView to visualise a click
-		this.points = new ArrayList<>();
-
-		// Lines to connect points during the labelling stage
-		this.connectors = new ArrayList<>();
 
 		// TextField for specifying resolution width
 		this.widthTextField = new TextField();
 		this.widthTextField.setId("textFieldID");
 		this.widthTextField.setLayoutX(475);
-		this.widthTextField.setLayoutY(240);
+		this.widthTextField.setLayoutY(270);
 		this.widthTextField.setMinSize(5, 5);
 		this.widthTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.widthTextField);
@@ -146,10 +159,25 @@ public class Display {
 		this.heightTextField = new TextField();
 		this.heightTextField.setId("textFieldID");
 		this.heightTextField.setLayoutX(557);
-		this.heightTextField.setLayoutY(240);
+		this.heightTextField.setLayoutY(270);
 		this.heightTextField.setMinSize(5, 5);
 		this.heightTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.heightTextField);
+
+		// Message area Label
+		this.messageLab = new Label("Message area");
+		this.messageLab.setId("messageLabID");
+		this.messageLab.setLayoutX(475);
+		this.messageLab.setLayoutY(310);
+		this.messageLab.setMaxWidth(160);
+		this.messageLab.setWrapText(true);
+		this.primaryPane.getChildren().add(this.messageLab);
+
+		// Points to be placed on the ImageView to visualise a click
+		this.points = new ArrayList<>();
+
+		// Lines to connect points during the labelling stage
+		this.connectors = new ArrayList<>();
 
 		// Line to visualise crop after first click during cropping stage
 		this.cropLine = new Line();
@@ -299,41 +327,42 @@ public class Display {
 	 * @param ay y co-ordinate of the user's click on the ImageView
 	 */
 	public void drawDiagonal(int ax, int ay) {
-		ax += (int) this.imageView.getLayoutX();
-		ay += (int) this.imageView.getLayoutY();
-		this.cropLine.setStartX(ax);
-		this.cropLine.setStartY(ay);
-		this.cropLine.setEndX(ax);
-		this.cropLine.setEndY(ay);
-		
-		// Ensure line is within the bounds of the ImageView
-		while(this.cropLine.getStartX() != this.imageView.getLayoutX()
-				&& this.cropLine.getStartY() != this.imageView.getLayoutY()) {
-			this.cropLine.setStartX(this.cropLine.getStartX()-1);
-			this.cropLine.setStartY(this.cropLine.getStartY()-1);
-		}
-		while(this.cropLine.getEndX() != (this.imageView.getLayoutX() + this.imageView.getFitWidth())
-				&& this.cropLine.getEndY() != (this.imageView.getLayoutY() + this.imageView.getFitHeight())) {
-			this.cropLine.setEndX(this.cropLine.getEndX()+1);
-			this.cropLine.setEndY(this.cropLine.getEndY()+1);
+		int c = ay - ax;
+		if (ax > ay) {
+			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
+			this.cropLine.setStartY(this.imageView.getLayoutY());
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
+		} else if (ax < ay) {
+			this.cropLine.setStartX(this.imageView.getLayoutX());
+			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
+		} else {
+			this.cropLine.setStartX(this.imageView.getLayoutX());
+			this.cropLine.setStartY(this.imageView.getLayoutY());
+			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
 		}
 		this.primaryPane.getChildren().add(this.cropLine);
 	}
 
 	/**
 	 * Draw an opaque Rectangle object to visualise cropping process.
-	 * @param ax x co-ordinate of the user's first click on the ImageView
-	 * @param ay y co-ordinate of the user's first click on the ImageView
-	 * @param bx x co-ordinate of the user's second click on the ImageView
-	 * @param by y co-ordinate of the user's second click on the ImageView
+	 * @param ax x co-ordinate of the top-left corner of the rectangle
+	 * @param ay y co-ordinate of the top-left corner of the rectangle
+	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
+	 * @param by y co-ordinate of the bottom-right corner of the rectangle
 	 */
 	public void drawRectangle(int ax, int ay, int bx, int by) {
 		ax += (int) this.imageView.getLayoutX();
 		ay += (int) this.imageView.getLayoutY();
+		bx += (int) this.imageView.getLayoutX();
+		by += (int) this.imageView.getLayoutY();
 		this.opaqueSquare.setLayoutX(ax);
 		this.opaqueSquare.setLayoutY(ay);
-		this.opaqueSquare.setWidth(bx);
-		this.opaqueSquare.setHeight(by);
+		this.opaqueSquare.setWidth(bx - ax);
+		this.opaqueSquare.setHeight(by - ay);
 		this.primaryPane.getChildren().add(opaqueSquare);
 	}
 
@@ -346,7 +375,6 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
-		Debug.trace("Display received clear instruction");
 	}
 
 	/**
