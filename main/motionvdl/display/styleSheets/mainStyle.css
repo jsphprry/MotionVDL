@@ -4,7 +4,7 @@
 }
 
 #cropLineID {
-    -fx-stroke-width: 5pt;
+    -fx-stroke-width: 2pt;
 }
 
 #imageViewID {
@@ -16,7 +16,7 @@
 }
 
 #lineID {
-    -fx-stroke-width: 2.5pt;
+    -fx-stroke-width: 4pt;
 }
 
 #opaqueSquareID {

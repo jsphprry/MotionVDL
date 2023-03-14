@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import motionvdl.Debug;
 import motionvdl.controller.Controller;
 
 /**
@@ -31,7 +32,6 @@ public class Display {
 	private Stage primaryStage;
 	private Scene primaryScene;
 	private Pane primaryPane;
-	private Button processBut;
 	private Button completeBut;
 	private Button nextBut;
 	private Button prevBut;
@@ -44,22 +44,6 @@ public class Display {
 	private Rectangle opaqueSquare;
 	private TextField widthTextField;
 	private TextField heightTextField;
-	
-	// Joseph 230305. the instantiation of stage would be best encapsulated 
-	// inside the constructor here, since it seems that all 
-	// instantiations of Display pass stage as new Stage()
-	// 
-	// Joseph 230305. actually it seems that MotionVDL.start() passes 
-	// stage to Display as an argument, but I can't find a use of
-	// start in the code so I'm not sure where that argument comes 
-	// from, maybe you could explain this to me next meeting.
-
-	// Henri 230305. Reconsidering, I will reprogram MotionVDL class
-	// to account for a new display instead of default - makes
-	// things easier to handle in that class also
-
-	// Henri 230306. I have decided it would be more memory efficient to
-	// keep the auto-generated default stage as the one that is sent.
 
 	/**
 	 * Display constructor.
@@ -98,25 +82,17 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(imageView);
 
-		// Button for processing
-		this.processBut = new Button("Process");
-		this.processBut.setId("buttonID");
-		this.processBut.setLayoutX(475);
-		this.processBut.setLayoutY(60);
-		this.processBut.setMinSize(160,50);
-		this.processBut.setOnAction(
-			event -> receiver.process()
-		);
-		this.primaryPane.getChildren().add(this.processBut);
-
 		// Button for completing
-		this.completeBut = new Button("Complete");
+		this.completeBut = new Button("Process + Complete");
 		this.completeBut.setId("buttonID");
 		this.completeBut.setLayoutX(475);
 		this.completeBut.setLayoutY(120);
 		this.completeBut.setMinSize(160,50);
 		this.completeBut.setOnAction(
-			event -> receiver.complete()
+			event -> {
+				receiver.process();
+				receiver.complete();
+			}
 		);
 		this.primaryPane.getChildren().add(this.completeBut);
 
@@ -206,18 +182,6 @@ public class Display {
 	public void setTitle(String string) {
 		this.titleLab.setText(string);
 	}
-	
-	// Joseph 230307. I've tried running this with a noise video, at the moment I get two errors:
-	// * error from javafx.scene.paint.Color about value ranges, awt.color uses 0-255 range and 
-	//   javafx.scene.paint.Color uses 0.0-1.0 range. This is ok we just need to normalise the 
-	//   colorArray color channels before converting to javafx.scene.paint.Color
-	// * 'IndexOutOfBoundsException: 300, 0' from line 211 I haven't looked into this one 
-	//   yet but it's probably just something to do with the argument order in the WritableImage 
-	//   constructor.
-
-	// Henri 230309. I've rewritten it to instead keep everything in Swing until
-	// an awt Image has been created, which is then converted to a JavaFX image.
-	// Hopefully this will work?
 
 	/**
 	 * Convert an array of AWT Colors to JavaFX Image, then set
@@ -275,36 +239,6 @@ public class Display {
 		x += (int) this.imageView.getLayoutX();
 		y += (int) this.imageView.getLayoutY();
 		int pointNum = getPointNum();
-		
-		// Joseph 230305. getChildren() returns a type implementing ObservableList, which itself implements List
-		// List has the method size() which returns the number of elements in the list so you could try 
-		// size() to get the next index for the points array if you create a temporary variable to hold 
-		// the list to call size() on
-
-		// Henri 230305. Very clever - I hadn't even considered that and I probably never would have - this
-		// makes it so much easier to draw the points and connectors, as I've done below, the
-		// pointNum variable counts only the number of Circle objects which are currently on
-		// screen, which is much better than storing a counter variable
-		
-		// Joseph 230306. The controller uses drawPoint in scenarios that do not always need a 
-		// wireframe, for instance in the crop stage when defining the crop frame. because 
-		// of this I think It might be best if we have seperate methods for drawing points 
-		// and connectors
-		
-		// Henri 230306. I don't think the crop controller needs to place points, does it?
-		// As it's already drawing other visual elements instead (diagonal line then square)
-		
-		// Joseph 230307. In the case of point B, (second click) where it's vertical axis is 
-		// mapped to the unit square, it might be more intuitive for a user to see a point, but 
-		// honestly that's pretty subjective. I would probably say that from program-design-wise, 
-		// it's usually best to seperate different functionalities like these to make the code 
-		// more modular
-
-		// Henri 230307. Ok I see what you mean, now this method will simply create a new Circle
-		// object any time it's called. The checks that there are a certain number of points being
-		// placed, which I've commented out below, will need to be in the Controllers, for which
-		// I've created a new method called getPointNum() which will return the number of points
-		// currently placed on screen
 
 		this.points.add(new Circle());
 		this.points.get(pointNum).setId("pointID");
@@ -373,20 +307,6 @@ public class Display {
 		this.cropLine.setEndY(ay);
 		
 		// Ensure line is within the bounds of the ImageView
-		
-		// Joseph 230306. This handling might not be neccesary 
-		// if we implement with the assumption that clicks 
-		// cannot come from invalid positions
-		
-		// Henri 230306. This isn't handling for the click location - it
-		// is to ensure the line gets drawn only within the bounds of the
-		// ImageView, by evenly increasing the line length until it touches
-		// the bounds of the ImageView
-		
-		// Joseph 230307. Ah I understand sorry for misunderstanding.
-		// In that case, I think there might be a more efficient way to do 
-		// this using a non-linear function, let's discuss it next meeting.
-		
 		while(this.cropLine.getStartX() != this.imageView.getLayoutX()
 				&& this.cropLine.getStartY() != this.imageView.getLayoutY()) {
 			this.cropLine.setStartX(this.cropLine.getStartX()-1);
@@ -426,6 +346,7 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
+		Debug.trace("Display received clear instruction");
 	}
 
 	/**
