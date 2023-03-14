@@ -65,7 +65,7 @@ public class Display {
 
 		// Title Label
 		this.titleLab = new Label("Title");
-		this.titleLab.setId("labelID");
+		this.titleLab.setId("titleLabID");
 		this.titleLab.setLayoutX(6);
 		this.titleLab.setLayoutY(6);
 		this.primaryPane.getChildren().add(this.titleLab);
@@ -87,7 +87,7 @@ public class Display {
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
 		this.toggleAutoBut.setId("radioID");
 		this.toggleAutoBut.setLayoutX(500);
-		this.toggleAutoBut.setLayoutY(30);
+		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
 		this.toggleAutoBut.setOnAction(
 				event -> {
@@ -104,7 +104,7 @@ public class Display {
 		this.processBut = new Button("Process + Complete");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(475);
-		this.processBut.setLayoutY(80);
+		this.processBut.setLayoutY(90);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
 				event -> {
@@ -117,7 +117,7 @@ public class Display {
 		this.undoBut = new Button("Undo");
 		this.undoBut.setId("buttonID");
 		this.undoBut.setLayoutX(475);
-		this.undoBut.setLayoutY(140);
+		this.undoBut.setLayoutY(150);
 		this.undoBut.setMinSize(160, 50);
 		this.undoBut.setOnAction(
 				event -> System.out.println(event)
@@ -128,7 +128,7 @@ public class Display {
 		this.prevBut = new Button("Previous");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(475);
-		this.prevBut.setLayoutY(200);
+		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
 				event -> receiver.prevFrame()
@@ -139,7 +139,7 @@ public class Display {
 		this.nextBut = new Button("Next");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(557);
-		this.nextBut.setLayoutY(200);
+		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
 				event -> receiver.nextFrame()
@@ -150,7 +150,7 @@ public class Display {
 		this.widthTextField = new TextField();
 		this.widthTextField.setId("textFieldID");
 		this.widthTextField.setLayoutX(475);
-		this.widthTextField.setLayoutY(260);
+		this.widthTextField.setLayoutY(270);
 		this.widthTextField.setMinSize(5, 5);
 		this.widthTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.widthTextField);
@@ -159,16 +159,16 @@ public class Display {
 		this.heightTextField = new TextField();
 		this.heightTextField.setId("textFieldID");
 		this.heightTextField.setLayoutX(557);
-		this.heightTextField.setLayoutY(260);
+		this.heightTextField.setLayoutY(270);
 		this.heightTextField.setMinSize(5, 5);
 		this.heightTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.heightTextField);
 
 		// Message area Label
 		this.messageLab = new Label("Message area");
-		this.messageLab.setId("labelID");
+		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(475);
-		this.messageLab.setLayoutY(300);
+		this.messageLab.setLayoutY(310);
 		this.messageLab.setMaxWidth(160);
 		this.messageLab.setWrapText(true);
 		this.primaryPane.getChildren().add(this.messageLab);

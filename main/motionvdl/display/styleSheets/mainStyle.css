@@ -13,12 +13,12 @@
     -fx-cursor: crosshair;
 }
 
-#labelID {
-    -fx-font: 15pt "Arial";
-}
-
 #lineID {
     -fx-stroke-width: 4pt;
+}
+
+#messageLabID {
+    -fx-font: 14pt "Arial";
 }
 
 #opaqueSquareID {
@@ -42,4 +42,8 @@
 #textFieldID {
     -fx-font: 12pt "Arial";
     -fx-cursor: text;
+}
+
+#titleLabID {
+    -fx-font: 16pt "Arial";
 }
