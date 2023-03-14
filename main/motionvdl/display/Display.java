@@ -332,8 +332,8 @@ public class Display {
 		by += (int) this.imageView.getLayoutY();
 		this.opaqueSquare.setLayoutX(ax);
 		this.opaqueSquare.setLayoutY(ay);
-		this.opaqueSquare.setWidth(bx-ax);
-		this.opaqueSquare.setHeight(by-ay);
+		this.opaqueSquare.setWidth(bx - ax);
+		this.opaqueSquare.setHeight(by - ay);
 		this.primaryPane.getChildren().add(opaqueSquare);
 	}
 
@@ -346,7 +346,6 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
-		Debug.trace("Display received clear instruction");
 	}
 
 	/**
