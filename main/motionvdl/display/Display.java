@@ -33,6 +33,7 @@ public class Display {
 	private Scene primaryScene;
 	private Pane primaryPane;
 	private Button processBut;
+	private Button undoBut;
 	private Button nextBut;
 	private Button prevBut;
 	private ImageView imageView;
@@ -73,12 +74,12 @@ public class Display {
 		this.imageView = new ImageView();
 		this.imageView.setId("imageViewID");
 		this.imageView.setLayoutX(15);
-		this.imageView.setLayoutY(50);
-		this.imageView.setFitHeight(400);
-		this.imageView.setFitWidth(400);
+		this.imageView.setLayoutY(40);
+		this.imageView.setFitHeight(420);
+		this.imageView.setFitWidth(420);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-			event -> receiver.click((int) event.getX(), (int) event.getY())
+				event -> receiver.click((int) event.getX(), (int) event.getY())
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
@@ -86,7 +87,7 @@ public class Display {
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
 		this.toggleAutoBut.setId("radioID");
 		this.toggleAutoBut.setLayoutX(500);
-		this.toggleAutoBut.setLayoutY(60);
+		this.toggleAutoBut.setLayoutY(30);
 		this.toggleAutoBut.setMinSize(160, 50);
 		this.toggleAutoBut.setOnAction(
 				event -> {
@@ -95,30 +96,42 @@ public class Display {
 					} else {
 						System.out.println("Radio button deselected - disable auto"); // Controller reference here
 					}
-				});
+				}
+		);
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
 		this.processBut = new Button("Process + Complete");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(475);
-		this.processBut.setLayoutY(120);
+		this.processBut.setLayoutY(80);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
 				event -> {
 					receiver.process();
 					receiver.complete();
-				});
+				}
+		);
 		this.primaryPane.getChildren().add(this.processBut);
+
+		this.undoBut = new Button("Undo");
+		this.undoBut.setId("buttonID");
+		this.undoBut.setLayoutX(475);
+		this.undoBut.setLayoutY(140);
+		this.undoBut.setMinSize(160, 50);
+		this.undoBut.setOnAction(
+				event -> System.out.println(event)
+		);
+		this.primaryPane.getChildren().add(this.undoBut);
 
 		// Button for switching to previous frame
 		this.prevBut = new Button("Previous");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(475);
-		this.prevBut.setLayoutY(180);
+		this.prevBut.setLayoutY(200);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-			event -> receiver.prevFrame()
+				event -> receiver.prevFrame()
 		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
@@ -126,33 +139,18 @@ public class Display {
 		this.nextBut = new Button("Next");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(557);
-		this.nextBut.setLayoutY(180);
+		this.nextBut.setLayoutY(200);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-			event -> receiver.nextFrame()
+				event -> receiver.nextFrame()
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
-
-		// Message area Label
-		this.messageLab = new Label("Message area");
-		this.messageLab.setId("labelID");
-		this.messageLab.setMaxWidth(160);
-		this.messageLab.setWrapText(true);
-		this.messageLab.setLayoutX(475);
-		this.messageLab.setLayoutY(300);
-		this.primaryPane.getChildren().add(this.messageLab);
-
-		// Points to be placed on the ImageView to visualise a click
-		this.points = new ArrayList<>();
-
-		// Lines to connect points during the labelling stage
-		this.connectors = new ArrayList<>();
 
 		// TextField for specifying resolution width
 		this.widthTextField = new TextField();
 		this.widthTextField.setId("textFieldID");
 		this.widthTextField.setLayoutX(475);
-		this.widthTextField.setLayoutY(240);
+		this.widthTextField.setLayoutY(260);
 		this.widthTextField.setMinSize(5, 5);
 		this.widthTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.widthTextField);
@@ -161,10 +159,25 @@ public class Display {
 		this.heightTextField = new TextField();
 		this.heightTextField.setId("textFieldID");
 		this.heightTextField.setLayoutX(557);
-		this.heightTextField.setLayoutY(240);
+		this.heightTextField.setLayoutY(260);
 		this.heightTextField.setMinSize(5, 5);
 		this.heightTextField.setMaxWidth(78);
 		this.primaryPane.getChildren().add(this.heightTextField);
+
+		// Message area Label
+		this.messageLab = new Label("Message area");
+		this.messageLab.setId("labelID");
+		this.messageLab.setLayoutX(475);
+		this.messageLab.setLayoutY(300);
+		this.messageLab.setMaxWidth(160);
+		this.messageLab.setWrapText(true);
+		this.primaryPane.getChildren().add(this.messageLab);
+
+		// Points to be placed on the ImageView to visualise a click
+		this.points = new ArrayList<>();
+
+		// Lines to connect points during the labelling stage
+		this.connectors = new ArrayList<>();
 
 		// Line to visualise crop after first click during cropping stage
 		this.cropLine = new Line();
