@@ -1,9 +1,29 @@
-2023/03/13 | 11:21:42 | Created log file 'MVDL.log'
-2023/03/13 | 11:21:44 | Created CropController 'Crop controller'
-2023/03/13 | 11:21:44 | Created ScaleController 'Scale controller'
-2023/03/13 | 11:21:44 | Created ColorController 'Color controller'
-2023/03/13 | 11:21:44 | Created LabelController 'Label controller'
-2023/03/13 | 11:21:44 | Created MainController 'Main controller'
-2023/03/13 | 11:21:44 | Created noise video
-2023/03/13 | 11:21:50 | Main controller recieved pass instruction
-2023/03/13 | 11:21:50 | Crop controller recieved pass instruction
+2023/03/14 | 11:29:34 | Created log file 'MVDL.log'
+2023/03/14 | 11:29:35 | Created CropController 'Crop controller'
+2023/03/14 | 11:29:35 | Created ScaleController 'Scale controller'
+2023/03/14 | 11:29:35 | Created ColorController 'Color controller'
+2023/03/14 | 11:29:35 | Created LabelController 'Label controller'
+2023/03/14 | 11:29:35 | Created MainController 'Main controller'
+2023/03/14 | 11:29:35 | Created noise video
+2023/03/14 | 11:29:41 | Main controller recieved pass instruction
+2023/03/14 | 11:29:41 | Crop controller recieved pass instruction
+2023/03/14 | 11:29:42 | Main controller recieved click instruction
+2023/03/14 | 11:29:42 | Crop controller recieved click instruction
+2023/03/14 | 11:29:42 | Crop controller set ready
+2023/03/14 | 11:29:42 | Display received clear instruction
+2023/03/14 | 11:29:43 | Main controller recieved click instruction
+2023/03/14 | 11:29:43 | Crop controller recieved click instruction
+2023/03/14 | 11:29:43 | Crop controller set ready and adjusted
+2023/03/14 | 11:29:43 | Display received clear instruction
+2023/03/14 | 11:29:45 | Main controller recieved click instruction
+2023/03/14 | 11:29:45 | Crop controller recieved click instruction
+2023/03/14 | 11:29:45 | Crop controller set not ready
+2023/03/14 | 11:29:45 | Display received clear instruction
+2023/03/14 | 11:29:46 | Main controller recieved click instruction
+2023/03/14 | 11:29:46 | Crop controller recieved click instruction
+2023/03/14 | 11:29:46 | Crop controller set ready
+2023/03/14 | 11:29:46 | Display received clear instruction
+2023/03/14 | 11:29:47 | Main controller recieved click instruction
+2023/03/14 | 11:29:47 | Crop controller recieved click instruction
+2023/03/14 | 11:29:47 | Crop controller set ready and adjusted
+2023/03/14 | 11:29:47 | Display received clear instruction
