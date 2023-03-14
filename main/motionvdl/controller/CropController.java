@@ -100,9 +100,10 @@ public class CropController extends Controller {
 				
 				// draw crop frame
 				display.clearGeometry();
-				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 				display.drawDiagonal(ax, ay);
 				display.drawPoint(ax, ay);
+				display.drawPoint(ax+cfs, ay+cfs);
+				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			
 			// else warn
 			} else {
