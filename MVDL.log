@@ -1,9 +1,89 @@
-2023/03/13 | 11:21:42 | Created log file 'MVDL.log'
-2023/03/13 | 11:21:44 | Created CropController 'Crop controller'
-2023/03/13 | 11:21:44 | Created ScaleController 'Scale controller'
-2023/03/13 | 11:21:44 | Created ColorController 'Color controller'
-2023/03/13 | 11:21:44 | Created LabelController 'Label controller'
-2023/03/13 | 11:21:44 | Created MainController 'Main controller'
-2023/03/13 | 11:21:44 | Created noise video
-2023/03/13 | 11:21:50 | Main controller recieved pass instruction
-2023/03/13 | 11:21:50 | Crop controller recieved pass instruction
+2023/03/14 | 10:30:00 | Created log file 'MVDL.log'
+2023/03/14 | 10:30:01 | Created CropController 'Crop controller'
+2023/03/14 | 10:30:01 | Created ScaleController 'Scale controller'
+2023/03/14 | 10:30:01 | Created ColorController 'Color controller'
+2023/03/14 | 10:30:01 | Created LabelController 'Label controller'
+2023/03/14 | 10:30:01 | Created MainController 'Main controller'
+2023/03/14 | 10:30:01 | Created noise video
+2023/03/14 | 10:30:08 | Main controller recieved pass instruction
+2023/03/14 | 10:30:08 | Crop controller recieved pass instruction
+2023/03/14 | 10:30:13 | Main controller recieved click instruction
+2023/03/14 | 10:30:13 | Crop controller recieved click instruction
+2023/03/14 | 10:30:13 | Crop controller set ready
+2023/03/14 | 10:30:13 | Display received clear instruction
+2023/03/14 | 10:30:14 | Main controller recieved click instruction
+2023/03/14 | 10:30:14 | Crop controller recieved click instruction
+2023/03/14 | 10:30:14 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:14 | Display received clear instruction
+2023/03/14 | 10:30:15 | Main controller recieved click instruction
+2023/03/14 | 10:30:15 | Crop controller recieved click instruction
+2023/03/14 | 10:30:15 | Crop controller set not ready
+2023/03/14 | 10:30:15 | Display received clear instruction
+2023/03/14 | 10:30:16 | Main controller recieved click instruction
+2023/03/14 | 10:30:16 | Crop controller recieved click instruction
+2023/03/14 | 10:30:16 | Crop controller set ready
+2023/03/14 | 10:30:16 | Display received clear instruction
+2023/03/14 | 10:30:17 | Main controller recieved click instruction
+2023/03/14 | 10:30:17 | Crop controller recieved click instruction
+2023/03/14 | 10:30:17 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:17 | Display received clear instruction
+2023/03/14 | 10:30:18 | Main controller recieved click instruction
+2023/03/14 | 10:30:18 | Crop controller recieved click instruction
+2023/03/14 | 10:30:18 | Crop controller set not ready
+2023/03/14 | 10:30:18 | Display received clear instruction
+2023/03/14 | 10:30:18 | Main controller recieved click instruction
+2023/03/14 | 10:30:18 | Crop controller recieved click instruction
+2023/03/14 | 10:30:18 | Crop controller set ready
+2023/03/14 | 10:30:18 | Display received clear instruction
+2023/03/14 | 10:30:19 | Main controller recieved click instruction
+2023/03/14 | 10:30:19 | Crop controller recieved click instruction
+2023/03/14 | 10:30:19 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:19 | Display received clear instruction
+2023/03/14 | 10:30:20 | Main controller recieved click instruction
+2023/03/14 | 10:30:20 | Crop controller recieved click instruction
+2023/03/14 | 10:30:20 | Crop controller set not ready
+2023/03/14 | 10:30:20 | Display received clear instruction
+2023/03/14 | 10:30:20 | Main controller recieved click instruction
+2023/03/14 | 10:30:20 | Crop controller recieved click instruction
+2023/03/14 | 10:30:20 | Crop controller set ready
+2023/03/14 | 10:30:20 | Display received clear instruction
+2023/03/14 | 10:30:21 | Main controller recieved click instruction
+2023/03/14 | 10:30:21 | Crop controller recieved click instruction
+2023/03/14 | 10:30:21 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:21 | Display received clear instruction
+2023/03/14 | 10:30:22 | Main controller recieved click instruction
+2023/03/14 | 10:30:22 | Crop controller recieved click instruction
+2023/03/14 | 10:30:22 | Crop controller set not ready
+2023/03/14 | 10:30:22 | Display received clear instruction
+2023/03/14 | 10:30:22 | Main controller recieved click instruction
+2023/03/14 | 10:30:22 | Crop controller recieved click instruction
+2023/03/14 | 10:30:22 | Crop controller set ready
+2023/03/14 | 10:30:22 | Display received clear instruction
+2023/03/14 | 10:30:23 | Main controller recieved click instruction
+2023/03/14 | 10:30:23 | Crop controller recieved click instruction
+2023/03/14 | 10:30:23 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:23 | Display received clear instruction
+2023/03/14 | 10:30:24 | Main controller recieved click instruction
+2023/03/14 | 10:30:24 | Crop controller recieved click instruction
+2023/03/14 | 10:30:24 | Crop controller set not ready
+2023/03/14 | 10:30:24 | Display received clear instruction
+2023/03/14 | 10:30:24 | Main controller recieved click instruction
+2023/03/14 | 10:30:24 | Crop controller recieved click instruction
+2023/03/14 | 10:30:24 | Crop controller set ready
+2023/03/14 | 10:30:24 | Display received clear instruction
+2023/03/14 | 10:30:26 | Main controller recieved click instruction
+2023/03/14 | 10:30:26 | Crop controller recieved click instruction
+2023/03/14 | 10:30:26 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:26 | Display received clear instruction
+2023/03/14 | 10:30:27 | Main controller recieved click instruction
+2023/03/14 | 10:30:27 | Crop controller recieved click instruction
+2023/03/14 | 10:30:27 | Crop controller set not ready
+2023/03/14 | 10:30:27 | Display received clear instruction
+2023/03/14 | 10:30:27 | Main controller recieved click instruction
+2023/03/14 | 10:30:27 | Crop controller recieved click instruction
+2023/03/14 | 10:30:27 | Crop controller set ready
+2023/03/14 | 10:30:27 | Display received clear instruction
+2023/03/14 | 10:30:28 | Main controller recieved click instruction
+2023/03/14 | 10:30:28 | Crop controller recieved click instruction
+2023/03/14 | 10:30:28 | Crop controller set ready and adjusted
+2023/03/14 | 10:30:28 | Display received clear instruction
