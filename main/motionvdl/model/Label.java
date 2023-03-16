@@ -1,19 +1,16 @@
 package motionvdl.model;
 
-import java.awt.Point;
-
 import motionvdl.Debug;
 
 /**
- * Video frame label implemented as an array of stacks of 
- * 2d integer precision points with one stack per video frame
+ * Video frame label implemented as an array of stacks of double precision 2D points, where 0<x<1 and 0<y<1
  * @author Joseph
  */
 public class Label extends Encoding {
 	
 	// metadata
-	public final int capacity; // maximum stack capacity
-	public final int length;   // the number of stacks
+	public final int size;          // the number of stacks
+	public final int stackCapacity; // maximum stack capacity
 	
 	// point buffer
 	private Point[][] buffer; // underlying array
@@ -21,63 +18,42 @@ public class Label extends Encoding {
 	
 	/**
 	 * Constructor for Label instance
-	 * @param capacity The individual stack capacity
-	 * @param frames The stack count
+	 * @param size The number of stacks
+	 * @param stackCapacity The individual stack capacity
 	 */
-	public Label(int capacity, int length) {
+	public Label(int size, int stackCapacity) {
 		
 		// setup metadata
-		this.capacity = capacity;
-		this.length = length;
+		this.size = size;
+		this.stackCapacity = stackCapacity;
 		
 		// setup point buffer
-		buffer = new Point[length][capacity];
-		sizes = new int[length]; // default int value is 0 so no need to populate array
+		buffer = new Point[size][stackCapacity];
+		sizes = new int[size]; // default int value is 0 so no need to populate array
 	}
 	
 	
 	/**
-	 * Return a point from a stack by index
+	 * Push to a stack
 	 * @param stack The stack index
-	 * @param index The point index
-	 * @return The point at the stack point index
+	 * @param x The normalised x axis of the point
+	 * @param y The normalised y axis of the point
 	 */
-	public Point getPoint(int stack, int index) {
+	public void push(int stack, double x, double y) {
 		
-		// throw out of bounds
-		if (index > sizes[stack]) throw new ArrayIndexOutOfBoundsException("Index is larger than stack size");
+		// debug trace
+		Debug.trace(String.format("Label pushed point (%d,%d) to stack %d", x, y, stack));
 		
-		return buffer[stack][index];
-	}
-	
-	
-	/**
-	 * Get an array of the points on a stack
-	 * @param stack The stack index
-	 * @return Array of points on the frame
-	 */
-	public Point[] getPoints(int stack) {
+		// throw invalid point and full stack
+		if (x > 1.0 || x < 0.0 || y > 1.0 || y < 0.0) throw new IllegalArgumentException("Error: Invalid point");
+		if (sizes[stack] == stackCapacity) throw new ArrayIndexOutOfBoundsException("Error: Stack "+stack+" is full");
 		
-		// get stack size
-		int size = sizes[stack];
+		// increment stack size
+		int index = sizes[stack];
+		sizes[stack] += 1;
 		
-		// setup array of points
-		Point[] framePoints = new Point[size];
-		for (int i=0; i < size; i++) {
-			framePoints[i] = buffer[stack][i];
-		}
-		
-		return framePoints;
-	}
-	
-	
-	/**
-	 * Return the size of a stack
-	 * @param stack The stack index
-	 * @return The size of the stack
-	 */
-	public int getSize(int stack) {
-		return sizes[stack];
+		// push to stack
+		buffer[stack][index] = new Point(x,y);
 	}
 	
 	
@@ -104,29 +80,6 @@ public class Label extends Encoding {
 	
 	
 	/**
-	 * Push to a stack
-	 * @param stack The stack index
-	 * @param x The x axis of the point
-	 * @param y The y axis of the point
-	 */
-	public void push(int stack, int x, int y) {
-		
-		// debug trace
-		Debug.trace(String.format("Label pushed point (%d,%d) to stack %d", x, y, stack));
-		
-		// throw full stack
-		if (sizes[stack] == capacity) throw new ArrayIndexOutOfBoundsException("Error: Label stack "+stack+" is full");
-		
-		// increment stack size
-		int index = sizes[stack];
-		sizes[stack] += 1;
-		
-		// push to stack
-		buffer[stack][index] = new Point(x,y);
-	}
-	
-	
-	/**
 	 * Delete from a stack
 	 * @param stack The stack index
 	 */
@@ -144,6 +97,51 @@ public class Label extends Encoding {
 	
 	
 	/**
+	 * Get an array of the points on a stack
+	 * @param stack The stack index
+	 * @return Array of points on the frame
+	 */
+	public Point[] getPoints(int stack) {
+		
+		// get stack size
+		int size = sizes[stack];
+		
+		// setup array of points
+		Point[] framePoints = new Point[size];
+		for (int i=0; i < size; i++) {
+			framePoints[i] = buffer[stack][i];
+		}
+		
+		return framePoints;
+	}
+	
+	
+//	/**
+//	 * Return a point from a stack by index
+//	 * @param stack The stack index
+//	 * @param index The point index
+//	 * @return The point at the stack-point index
+//	 */
+//	public Point getPoint(int stack, int index) {
+//		
+//		// throw out of bounds
+//		if (index > sizes[stack]) throw new ArrayIndexOutOfBoundsException("Index is larger than stack size");
+//		
+//		return buffer[stack][index];
+//	}
+//	
+//	
+//	/**
+//	 * Return the size of a stack
+//	 * @param stack The stack index
+//	 * @return The size of the stack
+//	 */
+//	public int getSize(int stack) {
+//		return sizes[stack];
+//	}
+	
+	
+	/**
 	 * Check if a stack is full
 	 * @param stack The stack index
 	 * @return The result
@@ -152,7 +150,7 @@ public class Label extends Encoding {
 		
 		// determine result
 		int size = sizes[stack];
-		boolean full = (size == capacity);
+		boolean full = (size == stackCapacity);
 		
 		// debug trace
 		Debug.trace(String.format("Label stack "+stack+" is %sfull (%d points)", ((full) ? "" : "not "), size));
@@ -186,7 +184,7 @@ public class Label extends Encoding {
 	public boolean checkComplete() {
 		
 		// determine if every stack is full
-		for (int i=0; i < length; i++) {
+		for (int i=0; i < size; i++) {
 			if (!stackFull(i)) {
 				Debug.trace("Label is incomplete");
 				return false;
@@ -208,8 +206,8 @@ public class Label extends Encoding {
 		Debug.trace("Label encoded as byte sequence");
 		
 		// setup metadata
-		int z = length;   // The depth of the label buffer
-		int x = capacity; // The width of the label buffer
+		int z = size;          // The depth of the label buffer
+		int x = stackCapacity; // The width of the label buffer
 		
 		// throw invalid size
 		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The label buffer is too large to export");
@@ -219,11 +217,11 @@ public class Label extends Encoding {
 		encoding[0] = (byte) z;
 		encoding[1] = (byte) x;
 		
-		// encode each point in 2 bytes
+		// encode each point scaled to 0-255 in 2 bytes
 		for (int i=0; i < z; i++) {
 			for (int j=0; j < x; j++) {
-				encoding[2 + i*x*2 + j*2 + 0] = (byte) buffer[i][j].getX();
-				encoding[2 + i*x*2 + j*2 + 1] = (byte) buffer[i][j].getY();
+				encoding[2 + i*x*2 + j*2 + 0] = (byte) (buffer[i][j].getX() * 255);
+				encoding[2 + i*x*2 + j*2 + 1] = (byte) (buffer[i][j].getY() * 255);
 			}
 		}
 		

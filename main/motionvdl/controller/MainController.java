@@ -45,10 +45,10 @@ public class MainController extends Controller {
 	
 	/**
 	 * Pass instruction to subcontroller
-	 * @param x The x axis of the click
-	 * @param y The y axis of the click
+	 * @param x The normalised x axis of the click event
+	 * @param y The normalised y axis of the click event
 	 */
-	public void click(int x, int y) {
+	public void click(double x, double y) {
 		
 		// throw control-not-passed case
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");

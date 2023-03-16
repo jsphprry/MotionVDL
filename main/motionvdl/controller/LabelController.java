@@ -40,10 +40,10 @@ public class LabelController extends Controller {
 	
 	/**
 	 * Record a point on the current video frame
-	 * @param x The x axis of the click event
-	 * @param y The y axis of the click event
+	 * @param x The normalised x axis of the click event
+	 * @param y The normalised y axis of the click event
 	 */
-	public void click(int x, int y) {
+	public void click(double x, double y) {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved click");

@@ -26,8 +26,8 @@ import motionvdl.controller.Controller;
  */
 public class Display {
 
-	private final int WIDTH;
-	private final int HEIGHT;
+	public final int WIDTH;
+	public final int HEIGHT;
 	private Controller receiver;
 	private Stage primaryStage;
 	private Scene primaryScene;
@@ -79,7 +79,7 @@ public class Display {
 		this.imageView.setFitWidth(420);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> receiver.click((int) event.getX(), (int) event.getY())
+				event -> receiver.click(event.getX()/WIDTH, event.getY()/HEIGHT)
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 

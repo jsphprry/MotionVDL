@@ -102,32 +102,38 @@ public class Video extends Encoding {
 	
 	/**
 	 * Video resolution cropping
-	 * @param origin_x crop origin coordinate
-	 * @param origin_y crop origin coordinate
-	 * @param target_w target resolution width
-	 * @param target_h target resolution height
+	 * @param ax Crop frame top-left normalised x coord
+	 * @param ay Crop frame top-left normalised y coord
+	 * @param bx Crop frame bottom-right normalised x coord
+	 * @param by Crop frame bottom-right normalised y coord
 	 * @return The cropped video
 	 */
-	public Video crop(int origin_x, int origin_y, int target_w, int target_h) {
-		
-		// debug trace
-		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, target_w, target_h));
+	public Video crop(double ax, double ay, double bx, double by) {
 		
 		// throw invalid parameters
-		if (origin_x < 0 || origin_y < 0 || origin_x >= width || origin_y >= height) throw new IllegalArgumentException("Invalid origin coordinate");
-		if (target_w <= 0 || target_h <= 0 || origin_x+target_w > width || origin_y+target_h > height) throw new IllegalArgumentException("Invalid target resolution");
+		if (ax < 0.0 || ay < 0.0 || bx >= 1.0 || by >= 1.0) throw new IllegalArgumentException("Out-of-bounds");
+		if (ax >= bx || ay >= by) throw new IllegalArgumentException("Inverted-frame");
 		
-		// initialise work-buffer
-		Color[][][] workBuffer = new Color[length][target_h][target_w];
+		// scale normalised coordinates
+		int oy = (int) (height * ay);     // scaled top-left y axis
+		int ox = (int) (width * ax);      // scaled top-left x axis
+		int h = (int) (height * (by-ay)); // scaled crop frame height
+		int w = (int) (width * (bx-ax));  // scaled crop frame width
 		
-		// write crop-frame to work-buffer
-		for (int d=0; d < length; d++) {
-			for (int h=0; h < target_h; h++) {
-				for (int w=0; w < target_w; w++) {
-					workBuffer[d][h][w] = buffer[d][origin_y+h][origin_x+w];
+		// setup work-buffer
+		Color[][][] workBuffer = new Color[length][h][w];
+		
+		// copy buffer values within crop frame to work-buffer
+		for (int i=0; i < length; i++) {
+			for (int j=0; j < h; j++) {
+				for (int k=0; k < w; k++) {
+					workBuffer[i][j][k] = buffer[i][oy+j][ox+k];
 				}
 			}
 		}
+		
+		// debug trace
+		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, w, h));
 		
 		// return work-buffer as Video
 		return new Video(workBuffer, greyscale);
@@ -140,10 +146,7 @@ public class Video extends Encoding {
 	 * @param target_h target resolution height
 	 * @return The downscaled video
 	 */
-	public Video reduce(int target_w, int target_h) {
-		
-		// debug trace
-		Debug.trace(String.format("Video resolution downscaled from %sx%s to %sx%s", width, height, target_w, target_h));
+	public Video downScale(int target_w, int target_h) {
 		
 		// throw invalid parameters
 		if (target_w < 0 || target_h < 0 || target_w > width || target_h > height) throw new IllegalArgumentException("Invalid target resolution");
@@ -189,6 +192,9 @@ public class Video extends Encoding {
 			}
 		}
 		
+		// debug trace
+		Debug.trace(String.format("Video resolution downscaled from %sx%s to %sx%s", width, height, target_w, target_h));
+		
 		// return work-buffer as Video
 		return new Video(workBuffer, greyscale);
 	}
@@ -198,10 +204,7 @@ public class Video extends Encoding {
 	 * Convert video colors to greyscale
 	 * @return The greyscale video
 	 */
-	public Video greyscale() {
-		
-		// debug trace
-		Debug.trace("Video converted to greyscale");
+	public Video greyScale() {
 		
 		// initialise work-buffer
 		Color[][][] workBuffer = new Color[length][height][width];
@@ -221,6 +224,9 @@ public class Video extends Encoding {
 			}
 		}
 		
+		// debug trace
+		Debug.trace("Video converted to greyscale");
+		
 		// return work-buffer as Video
 		return new Video(workBuffer, true);
 	}
@@ -231,9 +237,6 @@ public class Video extends Encoding {
 	 * @return The encoded video
 	 */
 	public byte[] encode() {
-		
-		// debug trace
-		Debug.trace("Video encoded as byte sequence");
 		
 		// setup metadata
 		int z = length;              // The length of the video buffer
@@ -274,6 +277,9 @@ public class Video extends Encoding {
 				}
 			}
 		}
+		
+		// debug trace
+		Debug.trace("Video encoded as byte sequence");
 		
 		return encoding;
 	}

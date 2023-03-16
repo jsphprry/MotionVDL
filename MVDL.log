@@ -1,41 +1,57 @@
-2023/03/14 | 22:39:11 | Created log file 'MVDL.log'
-2023/03/14 | 22:39:12 | Created CropController 'Crop controller'
-2023/03/14 | 22:39:12 | Created ScaleController 'Scale controller'
-2023/03/14 | 22:39:12 | Created ColorController 'Color controller'
-2023/03/14 | 22:39:12 | Created LabelController 'Label controller'
-2023/03/14 | 22:39:12 | Created MainController 'Main controller'
-2023/03/14 | 22:39:12 | Created noise video
-2023/03/14 | 22:39:12 | Main controller recieved pass
-2023/03/14 | 22:39:12 | Crop controller recieved pass
-2023/03/14 | 22:39:14 | Main controller recieved click
-2023/03/14 | 22:39:14 | Crop controller recieved click 1
-2023/03/14 | 22:39:15 | Main controller recieved click
-2023/03/14 | 22:39:15 | Crop controller recieved click 2
-2023/03/14 | 22:39:17 | Main controller recieved click
-2023/03/14 | 22:39:17 | Crop controller recieved click 3
-2023/03/14 | 22:39:18 | Main controller recieved click
-2023/03/14 | 22:39:18 | Crop controller recieved click 1
-2023/03/14 | 22:39:18 | Main controller recieved click
-2023/03/14 | 22:39:18 | Crop controller recieved click 2
-2023/03/14 | 22:39:20 | Main controller recieved click
-2023/03/14 | 22:39:20 | Crop controller recieved click 3
-2023/03/14 | 22:39:20 | Main controller recieved click
-2023/03/14 | 22:39:20 | Crop controller recieved click 1
-2023/03/14 | 22:39:21 | Main controller recieved click
-2023/03/14 | 22:39:21 | Crop controller recieved click 2
-2023/03/14 | 22:39:24 | Main controller recieved click
-2023/03/14 | 22:39:24 | Crop controller recieved click 3
-2023/03/14 | 22:39:24 | Main controller recieved click
-2023/03/14 | 22:39:24 | Crop controller recieved click 1
-2023/03/14 | 22:39:25 | Main controller recieved click
-2023/03/14 | 22:39:25 | Crop controller recieved click 2
-2023/03/14 | 22:39:39 | Main controller recieved next
-2023/03/14 | 22:39:39 | Video resolution cropped from 100x100 to 23x23
-2023/03/14 | 22:39:39 | Crop controller recieved next
-2023/03/14 | 22:39:39 | Video encoded as byte sequence
-2023/03/14 | 22:39:39 | Encoding exported to videoS1.mvdl
-2023/03/14 | 22:39:39 | Main controller recieved pass
-2023/03/14 | 22:39:39 | Scale controller recieved pass
-2023/03/14 | 22:39:40 | Main controller recieved next
-2023/03/14 | 22:39:40 | Scale controller recieved next
-2023/03/14 | 22:39:40 | Scale controllerskipped next: inavlid target resolution
+2023/03/16 | 17:28:37 | Created log file 'MVDL.log'
+2023/03/16 | 17:28:38 | Created CropController 'Crop controller'
+2023/03/16 | 17:28:38 | Created ScaleController 'Scale controller'
+2023/03/16 | 17:28:38 | Created ColorController 'Color controller'
+2023/03/16 | 17:28:38 | Created LabelController 'Label controller'
+2023/03/16 | 17:28:38 | Created MainController 'Main controller'
+2023/03/16 | 17:28:38 | Created noise video
+2023/03/16 | 17:28:38 | Main controller recieved pass
+2023/03/16 | 17:28:38 | Crop controller recieved pass
+2023/03/16 | 17:28:52 | Main controller recieved click
+2023/03/16 | 17:28:52 | Crop controller recieved click 1 417 134
+2023/03/16 | 17:28:52 | Crop controller ax:417 ay:134 cfs:95
+2023/03/16 | 17:28:56 | Main controller recieved click
+2023/03/16 | 17:28:56 | Crop controller recieved click 2 114 203
+2023/03/16 | 17:28:56 | Crop controller ax:417 ay:134 cfs:69
+2023/03/16 | 17:28:56 | Main controller recieved click
+2023/03/16 | 17:28:56 | Crop controller recieved click 3 58 168
+2023/03/16 | 17:28:57 | Main controller recieved click
+2023/03/16 | 17:28:57 | Crop controller recieved click 1 87 180
+2023/03/16 | 17:28:57 | Crop controller ax:87 ay:180 cfs:95
+2023/03/16 | 17:28:59 | Main controller recieved click
+2023/03/16 | 17:28:59 | Crop controller recieved click 2 321 314
+2023/03/16 | 17:28:59 | Crop controller ax:87 ay:180 cfs:134
+2023/03/16 | 17:29:00 | Main controller recieved click
+2023/03/16 | 17:29:00 | Crop controller recieved click 3 253 150
+2023/03/16 | 17:29:01 | Main controller recieved click
+2023/03/16 | 17:29:01 | Crop controller recieved click 1 376 97
+2023/03/16 | 17:29:01 | Crop controller ax:376 ay:97 cfs:95
+2023/03/16 | 17:30:28 | Main controller recieved click
+2023/03/16 | 17:30:28 | Crop controller recieved click 2 190 373
+2023/03/16 | 17:30:28 | Crop controller ax:376 ay:97 cfs:276
+2023/03/16 | 17:30:30 | Main controller recieved click
+2023/03/16 | 17:30:30 | Crop controller recieved click 3 190 375
+2023/03/16 | 17:30:31 | Main controller recieved click
+2023/03/16 | 17:30:31 | Crop controller recieved click 1 32 48
+2023/03/16 | 17:30:31 | Crop controller ax:32 ay:48 cfs:95
+2023/03/16 | 17:30:33 | Main controller recieved click
+2023/03/16 | 17:30:33 | Crop controller recieved click 2 16 0
+2023/03/16 | 17:30:33 | Crop controller ax:0 ay:16 cfs:32
+2023/03/16 | 17:30:33 | Main controller recieved click
+2023/03/16 | 17:30:33 | Crop controller recieved click 3 100 294
+2023/03/16 | 17:30:34 | Main controller recieved click
+2023/03/16 | 17:30:34 | Crop controller recieved click 1 92 340
+2023/03/16 | 17:30:34 | Crop controller ax:92 ay:340 cfs:95
+2023/03/16 | 17:30:35 | Main controller recieved click
+2023/03/16 | 17:30:35 | Crop controller recieved click 2 92 38
+2023/03/16 | 17:30:35 | Crop controller ax:0 ay:248 cfs:92
+2023/03/16 | 17:30:36 | Main controller recieved click
+2023/03/16 | 17:30:36 | Crop controller recieved click 3 303 97
+2023/03/16 | 17:30:36 | Main controller recieved click
+2023/03/16 | 17:30:36 | Crop controller recieved click 1 384 343
+2023/03/16 | 17:30:36 | Crop controller ax:384 ay:343 cfs:95
+2023/03/16 | 17:30:37 | Main controller recieved click
+2023/03/16 | 17:30:37 | Crop controller recieved click 2 307 294
+2023/03/16 | 17:30:37 | Crop controller ax:335 ay:294 cfs:49
+2023/03/16 | 17:30:38 | Main controller recieved click
+2023/03/16 | 17:30:38 | Crop controller recieved click 3 307 295

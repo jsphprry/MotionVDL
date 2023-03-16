@@ -36,14 +36,16 @@ public class ColorController extends Controller {
 	
 	/**
 	 * Toggle between greyscale and color video
+	 * @param x The normalised x axis of the click event
+	 * @param y The normalised y axis of the click event
 	 */
-	public void click(int x, int y) {
+	public void click(double x, double y) {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved click");
 		
 		// if greyscale video does not exist create it
-		if (workBuffer == null) workBuffer = buffer.greyscale();
+		if (workBuffer == null) workBuffer = buffer.greyScale();
 		
 		// swap video buffers
 		Video temp = buffer;

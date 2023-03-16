@@ -10,15 +10,11 @@ import motionvdl.model.Video;
  */
 public class CropController extends Controller {
 	
-	// crop frame variables
-	private int ax;   // top left point x axis
-	private int ay;   // top left point y axis
-	private int cfs;  // edge size
-	private int limx; // x axis limit
-	private int limy; // y axis limit
+	// variables
+	private double ax;   // top-left norm x axis
+	private double ay;   // top-left norm y axis
+	private double cfs;  // crop frame edge size
 	private int click; // click counter
-	//private boolean ready;    // ready-to-process flag
-	//private boolean adjusted; // adjusted-by-user flag
 	
 	/**
 	 * Construct crop controller
@@ -38,8 +34,6 @@ public class CropController extends Controller {
 		
 		// setup crop frame variables
 		click = 0;
-		//ready = false;
-		//adjusted = false;
 		
 		// debug trace
 		Debug.trace(String.format("Created CropController '%s'", debugTitle));
@@ -48,41 +42,40 @@ public class CropController extends Controller {
 	
 	/**
 	 * Define the crop frame
-	 * @param x The x axis of the coordinate
-	 * @param y The y axis of the coordinate
+	 * @param x The normalised x axis of the click event
+	 * @param y The normalised y axis of the click event
 	 */
-	public void click(int x, int y) {
+	public void click(double x, double y) {
 		
 		// increment click counter
 		click += 1;
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click "+click);
+		Debug.trace(debugTitle+" recieved click"+click+" "+x+" "+y);
 		
-		// first click
+		// first click suggests frame
 		if (click == 1) {
 			
 			// use crop frame suggestion function
 			ax = x;
 			ay = y;
-			cfs = (int) Math.min(Math.min(0.2*limx, limx-ax), Math.min(0.2*limy, limy-ay));
+			cfs = Math.min(Math.min(0.2, 1.0-ax), Math.min(0.2, 1.0-ay));
 			
 			// draw crop frame
-			display.clearGeometry();
 			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			display.drawDiagonal(ax, ay);
 			display.drawPoint(ax, ay);
 		
 		
-		// second click
+		// second click adjusts frame
 		} else if (click == 2) {
 			
-			// adjust crop frame if valid click
+			// if adjustment is valid
 			if (ay != y) {
 				
 				// use crop frame adjustment function
 				if (ay < y) {
-					cfs = Math.min(y-ay, limx-ax);
+					cfs = Math.min(y-ay, 1.0-ax);
 					//ax = ax;
 					//ay = ay;
 				} else {
@@ -95,7 +88,7 @@ public class CropController extends Controller {
 				display.clearGeometry();
 				display.drawDiagonal(ax, ay);
 				display.drawPoint(ax, ay);
-				display.drawPoint(x, y);
+				display.drawPoint(ax+cfs, ay+cfs);
 				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 				
 			// else warn
@@ -105,10 +98,8 @@ public class CropController extends Controller {
 			}
 			
 			
-		// third click
-		} else if (click == 3){
-
-			// reset crop frame
+		// third click resets
+		} else {
 			click = 0;
 			display.clearGeometry();
 		}
@@ -120,33 +111,28 @@ public class CropController extends Controller {
 	 */
 	public void next() {
 		
+		// debug trace
+		Debug.trace(debugTitle+" recieved next");
+		
 		// with defined crop frame
-		if (click > 1) {
+		if (click == 1 || click == 2) {
 			
 			// crop video and next stage
-			buffer = buffer.crop(ax, ay, cfs, cfs);
+			buffer = buffer.crop(ax, ay, ax+cfs, ay+cfs);
 			
-			// next stage
-			super.next();
+			// duplicate code. so that debug trace can be ordered correctly ('recieved' before 'crop')
+			// export and free video buffer
+			buffer.export(outputTitle);
+			Video temp = buffer;
+			buffer = null;
+			
+			// pass temporary video to the linked controller
+			linkedController.pass(temp);
 		
 		// with undefined crop frame
 		} else {
 			Debug.trace(debugTitle+" skipped next: undefined crop frame");
 			display.setMessage("*Undefined crop frame*");
 		}
-	}
-	
-	
-	/**
-	 * Store video resolution then pass control
-	 */
-	public void pass(Video tempVideo) {
-		
-		// setup variables
-		limy = tempVideo.height;
-		limx = tempVideo.width;
-		
-		// pass control
-		super.pass(tempVideo);
 	}
 }

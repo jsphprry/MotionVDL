@@ -27,10 +27,10 @@ public abstract class Controller {
 	/**
 	 * Respond to click event
 	 * default: Do nothing
-	 * @param x The x axis of the click
-	 * @param y The y axis of the click
+	 * @param x The normalised x axis of the click event
+	 * @param y The normalised y axis of the click event
 	 */
-	public void click(int x, int y) {
+	public void click(double x, double y) {
 		
 		// debug trace
 		Debug.trace(debugTitle+" skipped click: no action");

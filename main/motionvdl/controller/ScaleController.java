@@ -50,7 +50,7 @@ public class ScaleController extends Controller {
 		if (target > 0 && target < buffer.width && target < MAX_RES) {
 			
 			// scale the video
-			buffer = buffer.reduce(target, target);
+			buffer = buffer.downScale(target, target);
 			
 			// next stage
 			super.next();
