@@ -65,37 +65,28 @@ public class VideoController extends Controller {
 			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			display.drawDiagonal(ax, ay);
 			display.drawPoint(ax, ay);
-		
+			
 		
 		// second click adjusts frame
 		} else if (click == 2) {
 			
-			// if adjustment is valid
-			if (ay != y) {
-				
-				// use crop frame adjustment function
-				if (ay < y) {
-					cfs = Math.min(y-ay, 1.0-ax);
-					//ax = ax;
-					//ay = ay;
-				} else {
-					cfs = Math.min(ay-y, ax);
-					ax -= cfs;
-					ay -= cfs;
-				}
-				
-				// draw crop frame
-				display.clearGeometry();
-				display.drawDiagonal(ax, ay);
-				display.drawPoint(ax, ay);
-				display.drawPoint(ax+cfs, ay+cfs);
-				display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
-				
-			// else warn
+			// use crop frame adjustment function
+			if (ay < y) {
+				cfs = Math.min(y-ay, 1.0-ax);
+				//ax = ax;
+				//ay = ay;
 			} else {
-				Debug.trace(debugTitle+" skipped click: invalid point");
-				display.setMessage("*Invalid point*");
+				cfs = Math.min(ay-y, ax);
+				ax -= cfs;
+				ay -= cfs;
 			}
+			
+			// draw crop frame
+			display.clearGeometry();
+			display.drawDiagonal(ax, ay);
+			display.drawPoint(ax, ay);
+			display.drawPoint(ax+cfs, ay+cfs);
+			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
 			
 			
 		// third click resets frame
