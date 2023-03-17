@@ -29,23 +29,23 @@ public class Display {
 	public final int WIDTH;
 	public final int HEIGHT;
 	private Controller receiver;
-	private Stage primaryStage;
-	private Scene primaryScene;
-	private Pane primaryPane;
-	private Button processBut;
-	private Button undoBut;
-	private Button nextBut;
-	private Button prevBut;
-	private ImageView imageView;
-	private Label titleLab;
-	private Label messageLab;
-	private Line cropLine;
-	private List<Circle> points;
-	private List<Line> connectors;
-	private RadioButton toggleAutoBut;
-	private Rectangle opaqueSquare;
-	private TextField widthTextField;
-	private TextField heightTextField;
+	private final Stage primaryStage;
+	private final Scene primaryScene;
+	private final Pane primaryPane;
+	private final Button processBut;
+	private final Button undoBut;
+	private final Button nextBut;
+	private final Button prevBut;
+	private final ImageView imageView;
+	private final Label titleLab;
+	private final Label messageLab;
+	private final Line cropLine;
+	private final List<Circle> points;
+	private final List<Line> connectors;
+	private final RadioButton toggleAutoBut;
+	private final Rectangle opaqueSquare;
+	private final TextField widthTextField;
+	private final TextField heightTextField;
 
 	/**
 	 * Display constructor.
@@ -91,7 +91,7 @@ public class Display {
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
 		/*this.toggleAutoBut.setOnAction(
-				event ->    // Controller reference here
+				event ->    // Controller reference here (if needed?)
 		);*/
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
@@ -257,18 +257,19 @@ public class Display {
 	 * @param y Normalised y co-ordinate of the user's click on the ImageView
 	 */
 	public void drawPoint(double x, double y) {
+		// Convert normalised co-ordinates to relative
 		x = x * this.imageView.getFitWidth() + this.imageView.getLayoutX();
 		y = y * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-		int pointNum = getPointNum();
 
+		int pointNum = getPointNum();
 		this.points.add(new Circle());
 		this.points.get(pointNum).setId("pointID");
 		this.points.get(pointNum).setRadius(7);
 		this.points.get(pointNum).setCenterX(x);
 		this.points.get(pointNum).setCenterY(y);
-		if (pointNum > 0) {
-			drawConnector();
-		}
+		if (pointNum > 0) {     //
+			drawConnector();    // Ideally should be moved to LabelController
+		}                       //
 		this.primaryPane.getChildren().add(this.points.get(pointNum));
 	}
 
@@ -320,8 +321,10 @@ public class Display {
 	 * @param ay y co-ordinate of the user's click on the ImageView
 	 */
 	public void drawDiagonal(double ax, double ay) {
+		// Convert normalised co-ordinates to relative
 		ax = ax * this.imageView.getFitWidth();
 		ay = ay * this.imageView.getFitHeight();
+
 		double c = ay - ax;
 		if (ax > ay) {
 			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
@@ -350,10 +353,12 @@ public class Display {
 	 * @param by y co-ordinate of the bottom-right corner of the rectangle
 	 */
 	public void drawRectangle(double ax, double ay, double bx, double by) {
+		// Convert normalised co-ordinates to relative
 		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
 		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
 		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
 		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
+
 		this.opaqueSquare.setLayoutX(ax);
 		this.opaqueSquare.setLayoutY(ay);
 		this.opaqueSquare.setWidth(bx - ax);
