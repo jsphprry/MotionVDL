@@ -1,7 +1,6 @@
 package motionvdl.display;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
+import motionvdl.model.Point;
 
 /**
  * MotionVDL display component
@@ -79,7 +79,8 @@ public class Display {
 		this.imageView.setFitWidth(420);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> receiver.click(event.getX()/WIDTH, event.getY()/HEIGHT)
+				event -> receiver.click(event.getX() / this.imageView.getFitWidth(),
+										event.getY() / this.imageView.getFitHeight())
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
@@ -90,13 +91,7 @@ public class Display {
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
 		/*this.toggleAutoBut.setOnAction(
-				event -> {
-					if (){
-						System.out.println("Radio button selected - enable auto");    // Controller reference here
-					} else {
-						System.out.println("Radio button deselected - disable auto"); // Controller reference here
-					}
-				}
+				event ->    // Controller reference here
 		);*/
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
@@ -107,9 +102,7 @@ public class Display {
 		this.processBut.setLayoutY(90);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
-				event -> {
-					receiver.next();
-				}
+				event -> receiver.next()
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
@@ -260,12 +253,12 @@ public class Display {
 
 	/**
 	 * Draw a point on the ImageView, using a Circle object.
-	 * @param x x co-ordinate of the user's click on the ImageView
-	 * @param y y co-ordinate of the user's click on the ImageView
+	 * @param x Normalised x co-ordinate of the user's click on the ImageView
+	 * @param y Normalised y co-ordinate of the user's click on the ImageView
 	 */
-	public void drawPoint(int x, int y) {
-		x += (int) this.imageView.getLayoutX();
-		y += (int) this.imageView.getLayoutY();
+	public void drawPoint(double x, double y) {
+		x = x * this.imageView.getFitWidth() + this.imageView.getLayoutX();
+		y = y * this.imageView.getFitHeight() + this.imageView.getLayoutY();
 		int pointNum = getPointNum();
 
 		this.points.add(new Circle());
@@ -285,7 +278,7 @@ public class Display {
 	 */
 	public void drawPoints(Point[] drawPoints) {
 		for (Point point : drawPoints) {
-			drawPoint(point.x, point.y);
+			drawPoint(point.getX(), point.getY());
 		}
 	}
 
@@ -326,8 +319,10 @@ public class Display {
 	 * @param ax x co-ordinate of the user's click on the ImageView
 	 * @param ay y co-ordinate of the user's click on the ImageView
 	 */
-	public void drawDiagonal(int ax, int ay) {
-		int c = ay - ax;
+	public void drawDiagonal(double ax, double ay) {
+		ax = ax * this.imageView.getFitWidth();
+		ay = ay * this.imageView.getFitHeight();
+		double c = ay - ax;
 		if (ax > ay) {
 			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
 			this.cropLine.setStartY(this.imageView.getLayoutY());
@@ -354,11 +349,11 @@ public class Display {
 	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
 	 * @param by y co-ordinate of the bottom-right corner of the rectangle
 	 */
-	public void drawRectangle(int ax, int ay, int bx, int by) {
-		ax += (int) this.imageView.getLayoutX();
-		ay += (int) this.imageView.getLayoutY();
-		bx += (int) this.imageView.getLayoutX();
-		by += (int) this.imageView.getLayoutY();
+	public void drawRectangle(double ax, double ay, double bx, double by) {
+		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
+		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
+		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
+		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
 		this.opaqueSquare.setLayoutX(ax);
 		this.opaqueSquare.setLayoutY(ay);
 		this.opaqueSquare.setWidth(bx - ax);
