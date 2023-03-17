@@ -8,7 +8,7 @@ import motionvdl.model.Video;
  * MotionVDL cropping subcontroller
  * @author Joseph
  */
-public class CropController extends Controller {
+public class VideoController extends Controller {
 	
 	// variables
 	private double ax;  // top-left norm x axis
@@ -21,12 +21,12 @@ public class CropController extends Controller {
 	 * @param mainController The main controller
 	 * @param mainDisplay The main display
 	 */
-	public CropController(MainController mainController, Display mainDisplay) {
+	public VideoController(MainController mainController, Display mainDisplay) {
 		
 		// setup titles
-		displayTitle = "Cropping stage";
-		debugTitle = "Crop controller";
-		outputTitle = "videoS1";
+		displayTitle = "Video preprocessing";
+		debugTitle = "Video controller";
+		outputTitle = "video";
 		
 		// setup components
 		linkedController = mainController;
@@ -51,8 +51,7 @@ public class CropController extends Controller {
 		click += 1;
 		
 		// debug trace
-		//Debug.trace(debugTitle+" recieved click"+click+" ("+x+" "+y+")");
-		Debug.trace(String.format("%s recieved click%d (%d,%d)",debugTitle, click, x, y));
+		Debug.trace(String.format("%s recieved click%d (%f.2f,%f.2f)",debugTitle, click, x, y));
 		
 		// first click suggests frame
 		if (click == 1) {
@@ -108,31 +107,45 @@ public class CropController extends Controller {
 	
 	
 	/**
-	 * Crop the video data and switch stage
+	 * Crop scale and color the video data then switch stage
 	 */
 	public void next() {
 		
 		// debug trace
 		Debug.trace(debugTitle+" recieved next");
 		
-		// with defined crop frame
-		if (click == 1 || click == 2) {
+		// get target resolution and color flag
+		int target = 50;//display.getTarget();
+		boolean grey = display.getRadio();
+		
+		// proceed if crop frame and target resolution are valid
+		boolean validCF = (0 < click && click <= 2);
+		boolean validTR = (0 < target && target <= cfs);
+		if (validCF && validTR) {
 			
-			// crop video and next stage
-			buffer = buffer.crop(ax, ay, ax+cfs, ay+cfs);
+			// crop scale and color video
+			video = video.crop(ax, ay, ax+cfs, ay+cfs).downScale(target, target);
+			if (grey) video = video.greyScale();
 			
-			// duplicate code. so that debug trace can be ordered correctly ('recieved' before 'crop')
+			//// duplicate code rather than super call. Done so that debug 
+			//// trace is correctly ordered ('recieved next' before 'crop video')
 			// export and free video buffer
-			buffer.export(outputTitle);
-			Video temp = buffer;
-			buffer = null;
+			video.export(outputTitle);
+			Video temp = video;
+			video = null;
 			
 			// pass temporary video to the linked controller
 			linkedController.pass(temp);
+			//// end of duplicate
 		
-		// with undefined crop frame
+		// skip and warn if invalid target resolution
+		} else if (validCF && !validTR) {
+			Debug.trace(debugTitle+" no action, invalid target resolution");
+			display.setMessage("*Invalid target resolution*");
+		
+		// skip and warn if invalid crop frame
 		} else {
-			Debug.trace(debugTitle+" skipped next: undefined crop frame");
+			Debug.trace(debugTitle+" no action, undefined crop frame");
 			display.setMessage("*Undefined crop frame*");
 		}
 	}
