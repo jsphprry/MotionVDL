@@ -18,7 +18,7 @@ public abstract class Controller {
 	// components
 	protected Controller linkedController;
 	protected Display display;
-	protected Video buffer;
+	protected Video video;
 	
 	// variables
 	protected int frameIndex;
@@ -47,8 +47,8 @@ public abstract class Controller {
 		Debug.trace(debugTitle+" recieved up");
 		
 		// display next frame
-		frameIndex = Math.min(buffer.length - 1, frameIndex + 1);
-		display.setFrame(buffer.getFrame(frameIndex));
+		frameIndex = Math.min(video.length - 1, frameIndex + 1);
+		display.setFrame(video.getFrame(frameIndex));
 		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 	
@@ -64,19 +64,22 @@ public abstract class Controller {
 		
 		// display previous frame
 		frameIndex = Math.max(0, frameIndex - 1);
-		display.setFrame(buffer.getFrame(frameIndex));
+		display.setFrame(video.getFrame(frameIndex));
 		Debug.trace(debugTitle+" set to frame "+frameIndex);
 	}
 	
 	
 	/**
 	 * Undo the most recent change to the data
-	 * default: Do nothing.
+	 * default: Clear display geometry.
 	 */
 	public void undo() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" skipped undo: no action");
+		Debug.trace(debugTitle+" recieved undo");
+		
+		// update display
+		display.clearGeometry();
 	}
 	
 	
@@ -90,9 +93,9 @@ public abstract class Controller {
 		Debug.trace(debugTitle+" recieved next");
 		
 		// export and free video buffer
-		buffer.export(outputTitle);
-		Video temp = buffer;
-		buffer = null;
+		video.export(outputTitle);
+		Video temp = video;
+		video = null;
 		
 		// pass temporary video to the linked controller
 		linkedController.pass(temp);
@@ -109,11 +112,11 @@ public abstract class Controller {
 		Debug.trace(debugTitle+" recieved pass");
 		
 		// setup video
-		buffer = tempVideo;
+		video = tempVideo;
 		
 		// update display
 		display.clearGeometry();
 		display.setTitle(displayTitle);
-		display.setFrame(buffer.getFrame(frameIndex));
+		display.setFrame(video.getFrame(frameIndex));
 	}
 }

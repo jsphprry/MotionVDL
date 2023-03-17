@@ -14,7 +14,7 @@ public class LabelController extends Controller {
 	// constants
 	private final static int MAX_POINTS = 11;
 	
-	// variables
+	// components
 	private Label label;
 	
 	/**
@@ -25,9 +25,9 @@ public class LabelController extends Controller {
 	public LabelController(MainController mainController, Display mainDisplay) {
 		
 		// setup titles
-		displayTitle = "Labelling stage";
+		displayTitle = "Frame labelling";
 		debugTitle = "Label controller";
-		outputTitle = "labelS4";
+		outputTitle = "label";
 		
 		// setup components
 		linkedController = mainController;
@@ -60,8 +60,8 @@ public class LabelController extends Controller {
 		
 		// else warn that the frame is complete
 		} else {
-			Debug.trace(debugTitle+" skipped click: max points on frame");
-			display.setMessage("*Max points on frame*");
+			Debug.trace(debugTitle+" no action, frame is full");
+			display.setMessage("*Frame is full*");
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class LabelController extends Controller {
 	
 	
 	/**
-	 * Export the body label
+	 * Export the label
 	 */
 	public void next() {
 		
@@ -139,7 +139,7 @@ public class LabelController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" skipped next: incomplete label");
+			Debug.trace(debugTitle+" no action, incomplete label");
 			display.setMessage("*Incomplete label*");
 		}
 	}

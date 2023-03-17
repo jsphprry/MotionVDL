@@ -3,7 +3,8 @@ package motionvdl.model;
 import motionvdl.Debug;
 
 /**
- * Video frame label implemented as an array of stacks of double precision 2D points, where 0<x<1 and 0<y<1
+ * Video frame label implemented as an array of stacks of 
+ * normalised double precision 2D points, where 0<x<1 and 0<y<1
  * @author Joseph
  */
 public class Label extends Encoding {
@@ -206,22 +207,22 @@ public class Label extends Encoding {
 		Debug.trace("Label encoded as byte sequence");
 		
 		// setup metadata
-		int z = size;          // The depth of the label buffer
-		int x = stackCapacity; // The width of the label buffer
+		int h = size;          // The height of the label buffer
+		int w = stackCapacity; // The width of the label buffer
 		
 		// throw invalid size
-		if (x > 255 || z > 255) throw new ArrayIndexOutOfBoundsException("The label buffer is too large to export");
+		if (w > 255 || h > 255) throw new ArrayIndexOutOfBoundsException("The label buffer is too large to export");
 		
 		// encode metadata
-		byte[] encoding = new byte[2 + 2*z*x];
-		encoding[0] = (byte) z;
-		encoding[1] = (byte) x;
+		byte[] encoding = new byte[2 + 2*h*w];
+		encoding[0] = (byte) h;
+		encoding[1] = (byte) w;
 		
 		// encode each point scaled to 0-255 in 2 bytes
-		for (int i=0; i < z; i++) {
-			for (int j=0; j < x; j++) {
-				encoding[2 + i*x*2 + j*2 + 0] = (byte) (buffer[i][j].getX() * 255);
-				encoding[2 + i*x*2 + j*2 + 1] = (byte) (buffer[i][j].getY() * 255);
+		for (int i=0; i < h; i++) {
+			for (int j=0; j < w; j++) {
+				encoding[2 + i*w*2 + j*2 + 0] = (byte) (buffer[i][j].getX() * 255);
+				encoding[2 + i*w*2 + j*2 + 1] = (byte) (buffer[i][j].getY() * 255);
 			}
 		}
 		

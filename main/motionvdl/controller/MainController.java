@@ -11,7 +11,7 @@ import motionvdl.model.Video;
 public class MainController extends Controller {
 	
 	// constants
-	private final static int N_STAGES = 4;
+	private final static int N_STAGES = 2;
 	
 	// components
 	private Controller[] subcontrollers;
@@ -30,10 +30,8 @@ public class MainController extends Controller {
 		
 		// setup components
 		subcontrollers = new Controller[N_STAGES];
-		subcontrollers[0] = new CropController(this, mainDisplay);
-		subcontrollers[1] = new ScaleController(this, mainDisplay);
-		subcontrollers[2] = new ColorController(this, mainDisplay);
-		subcontrollers[3] = new LabelController(this, mainDisplay);
+		subcontrollers[0] = new VideoController(this, mainDisplay);
+		subcontrollers[1] = new LabelController(this, mainDisplay);
 		
 		// setup variables
 		stage = -1;
