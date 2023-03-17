@@ -102,10 +102,10 @@ public class Video extends Encoding {
 	
 	/**
 	 * Video resolution cropping
-	 * @param ax Crop frame top-left normalised x coord
-	 * @param ay Crop frame top-left normalised y coord
-	 * @param bx Crop frame bottom-right normalised x coord
-	 * @param by Crop frame bottom-right normalised y coord
+	 * @param ax The normalised crop frame top-left x coord
+	 * @param ay The normalised crop frame top-left y coord
+	 * @param bx The normalised crop frame bottom-right x coord
+	 * @param by The normalised crop frame bottom-right y coord
 	 * @return The cropped video
 	 */
 	public Video crop(double ax, double ay, double bx, double by) {
@@ -115,25 +115,25 @@ public class Video extends Encoding {
 		if (ax >= bx || ay >= by) throw new IllegalArgumentException("Inverted-frame");
 		
 		// scale normalised coordinates
-		int oy = (int) (height * ay);     // scaled top-left y axis
-		int ox = (int) (width * ax);      // scaled top-left x axis
-		int h = (int) (height * (by-ay)); // scaled crop frame height
-		int w = (int) (width * (bx-ax));  // scaled crop frame width
+		int cy = (int) (height * ay);      // scaled top-left y axis
+		int cx = (int) (width * ax);       // scaled top-left x axis
+		int ch = (int) (height * (by-ay)); // scaled crop frame height
+		int cw = (int) (width * (bx-ax));  // scaled crop frame width
 		
 		// setup work-buffer
-		Color[][][] workBuffer = new Color[length][h][w];
+		Color[][][] workBuffer = new Color[length][ch][cw];
 		
 		// copy buffer values within crop frame to work-buffer
 		for (int i=0; i < length; i++) {
-			for (int j=0; j < h; j++) {
-				for (int k=0; k < w; k++) {
-					workBuffer[i][j][k] = buffer[i][oy+j][ox+k];
+			for (int j=0; j < ch; j++) {
+				for (int k=0; k < cw; k++) {
+					workBuffer[i][j][k] = buffer[i][cy+j][cx+k];
 				}
 			}
 		}
 		
 		// debug trace
-		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, w, h));
+		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, cw, ch));
 		
 		// return work-buffer as Video
 		return new Video(workBuffer, greyscale);

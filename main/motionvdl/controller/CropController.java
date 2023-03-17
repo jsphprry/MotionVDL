@@ -11,10 +11,10 @@ import motionvdl.model.Video;
 public class CropController extends Controller {
 	
 	// variables
-	private double ax;   // top-left norm x axis
-	private double ay;   // top-left norm y axis
-	private double cfs;  // crop frame edge size
-	private int click; // click counter
+	private double ax;  // top-left norm x axis
+	private double ay;  // top-left norm y axis
+	private double cfs; // square crop frame edge size
+	private int click;  // click counter
 	
 	/**
 	 * Construct crop controller
@@ -51,7 +51,8 @@ public class CropController extends Controller {
 		click += 1;
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click"+click+" "+x+" "+y);
+		//Debug.trace(debugTitle+" recieved click"+click+" ("+x+" "+y+")");
+		Debug.trace(String.format("%s recieved click%d (%d,%d)",debugTitle, click, x, y));
 		
 		// first click suggests frame
 		if (click == 1) {
@@ -59,7 +60,7 @@ public class CropController extends Controller {
 			// use crop frame suggestion function
 			ax = x;
 			ay = y;
-			cfs = Math.min(Math.min(0.2, 1.0-ax), Math.min(0.2, 1.0-ay));
+			cfs = Math.min(Math.min(0.2, 1.0-x), Math.min(0.2, 1.0-y));
 			
 			// draw crop frame
 			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);

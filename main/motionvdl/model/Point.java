@@ -26,6 +26,8 @@ public class Point {
 	 */
 	public double getX() {
 		
+		// no handling because constructor would never allow 0 args
+		
 		// return first element
 		return this.point[0];
 	}
@@ -36,7 +38,7 @@ public class Point {
 	 */
 	public double getY() {
 		
-		// throw invalid operation
+		// throw no-such-axis
 		if (this.point.length < 2) throw new ArrayIndexOutOfBoundsException("Point has no y axis");
 		
 		// return second element
@@ -49,8 +51,8 @@ public class Point {
 	 */
 	public double getZ() {
 		
-		// throw invalid operation
-		if (this.point.length < 3) throw new ArrayIndexOutOfBoundsException("Point has no x axis");
+		// throw no-such-axis
+		if (this.point.length < 3) throw new ArrayIndexOutOfBoundsException("Point has no z axis");
 		
 		// return third element
 		return this.point[2];
@@ -63,7 +65,7 @@ public class Point {
 	 */
 	public double getAxis(int index) {
 		
-		// throw invalid operation
+		// throw no-such-axis
 		if (index >= this.point.length) throw new ArrayIndexOutOfBoundsException("Point has no axis "+index);
 		
 		// return indexed element
