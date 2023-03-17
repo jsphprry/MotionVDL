@@ -26,7 +26,7 @@ public class Point {
 	 */
 	public double getX() {
 		
-		// no handling because constructor would never allow 0 args
+		// no exception because constructor can never allow 0 args
 		
 		// return first element
 		return this.point[0];

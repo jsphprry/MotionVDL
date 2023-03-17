@@ -14,7 +14,7 @@ public class LabelController extends Controller {
 	// constants
 	private final static int MAX_POINTS = 11;
 	
-	// variables
+	// components
 	private Label label;
 	
 	/**

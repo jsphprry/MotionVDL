@@ -3,8 +3,8 @@ package motionvdl.model;
 import motionvdl.Debug;
 
 /**
- * Video frame label implemented as an array of stacks 
- * of normalised double precision 2D points, where 0<x<1 and 0<y<1
+ * Video frame label implemented as an array of stacks of 
+ * normalised double precision 2D points, where 0<x<1 and 0<y<1
  * @author Joseph
  */
 public class Label extends Encoding {

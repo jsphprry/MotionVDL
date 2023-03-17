@@ -32,7 +32,7 @@ public class VideoController extends Controller {
 		linkedController = mainController;
 		display = mainDisplay;
 		
-		// setup crop frame variables
+		// setup variables
 		click = 0;
 		
 		// debug trace
@@ -98,7 +98,7 @@ public class VideoController extends Controller {
 			}
 			
 			
-		// third click resets
+		// third click resets frame
 		} else {
 			click = 0;
 			display.clearGeometry();
