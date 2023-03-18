@@ -46,22 +46,24 @@ public class LabelController extends Controller {
 	public void click(double x, double y) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click");
+		Debug.trace(String.format("%s recieved click (%.2f,%.2f)",debugTitle, x, y));
 
-		// record point if the frame label is incomplete
-		if (!label.stackFull(frameIndex)) {
+		// if the current frame label is incomplete
+		if (!label.checkStackFull(frameIndex)) {
 			
 			// record point
 			label.push(frameIndex, x, y);
 			display.drawPoint(x, y);
 			
-			// if point completes frame label, display next frame
-			if (display.getRadio() && label.stackFull(frameIndex)) up();
+			// if auto-next is enabled, then check if the 
+			// current stack is full and frame-up if true
+			if (display.getRadio()) if (label.checkStackFull(frameIndex)) up();
 		
 		// else warn that the frame is complete
 		} else {
-			Debug.trace(debugTitle+" no action, frame is full");
-			display.setMessage("*Frame is full*");
+			String message = String.format("Label stack%d is full", frameIndex);
+			Debug.trace(debugTitle+" ignored next: "+message);
+			display.setMessage(message);
 		}
 	}
 	
@@ -70,9 +72,6 @@ public class LabelController extends Controller {
 	 * Display next frame and frame-label
 	 */
 	public void up() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved up");
 		
 		// default behaviour
 		super.up();
@@ -87,9 +86,6 @@ public class LabelController extends Controller {
 	 * Display previous frame and frame-label
 	 */
 	public void down() {
-		
-		// debug trace
-		Debug.trace(debugTitle+" recieved down");
 		
 		// default behaviour
 		super.down();
@@ -109,7 +105,7 @@ public class LabelController extends Controller {
 		Debug.trace(debugTitle+" recieved undo");
 
 		// non-empty label
-		if (!label.stackEmpty(frameIndex)) {
+		if (!label.checkStackEmpty(frameIndex)) {
 			
 			// remove point
 			label.delete(frameIndex);
@@ -139,8 +135,9 @@ public class LabelController extends Controller {
 			
 		// else warn
 		} else {
-			Debug.trace(debugTitle+" no action, incomplete label");
-			display.setMessage("*Incomplete label*");
+			String message = "Incomplete label";
+			Debug.trace(debugTitle+" ignored next: "+message);
+			display.setMessage(message);
 		}
 	}
 	
@@ -151,7 +148,7 @@ public class LabelController extends Controller {
 	public void pass(Video tempVideo) {
 		
 		// setup label
-		label = new Label(MAX_POINTS, tempVideo.length);
+		label = new Label(tempVideo.length, MAX_POINTS);
 		
 		// pass control
 		super.pass(tempVideo);

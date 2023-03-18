@@ -102,40 +102,32 @@ public class Video extends Encoding {
 	
 	/**
 	 * Video resolution cropping
-	 * @param ax The normalised crop frame top-left x coord
-	 * @param ay The normalised crop frame top-left y coord
-	 * @param bx The normalised crop frame bottom-right x coord
-	 * @param by The normalised crop frame bottom-right y coord
+	 * @param x The top-left crop frame x coordinate 
+	 * @param x The top-left crop frame y coordinate 
+	 * @param size The crop frame edge size
 	 * @return The cropped video
 	 */
-	public Video crop(double ax, double ay, double bx, double by) {
+	public Video squareCrop(int x, int y, int size) {
 		
 		// throw invalid parameters
-		if (ax < 0.0 || ay < 0.0 || bx >= 1.0 || by >= 1.0) throw new IllegalArgumentException("Out-of-bounds");
-		if (ax >= bx || ay >= by) throw new IllegalArgumentException("Inverted-frame");
-		
-		// scale normalised coordinates
-		int cy = (int) (height * ay);      // scaled top-left y axis
-		int cx = (int) (width * ax);       // scaled top-left x axis
-		int ch = (int) (height * (by-ay)); // scaled crop frame height
-		int cw = (int) (width * (bx-ax));  // scaled crop frame width
+		if (0 > x || x >= width) throw new IllegalArgumentException("Invalid x coord");
+		if (0 > y || y >= height) throw new IllegalArgumentException("Invalid y coord");
+		if (0 > size || size >= Math.min(height,width)) throw new IllegalArgumentException("Invalid size");
 		
 		// setup work-buffer
-		Color[][][] workBuffer = new Color[length][ch][cw];
+		Color[][][] workBuffer = new Color[length][size][size];
 		
 		// copy buffer values within crop frame to work-buffer
 		for (int i=0; i < length; i++) {
-			for (int j=0; j < ch; j++) {
-				for (int k=0; k < cw; k++) {
-					workBuffer[i][j][k] = buffer[i][cy+j][cx+k];
+			for (int j=0; j < size; j++) {
+				for (int k=0; k < size; k++) {
+					workBuffer[i][j][k] = buffer[i][y+j][x+k];
 				}
 			}
 		}
 		
-		// debug trace
-		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, cw, ch));
-		
 		// return work-buffer as Video
+		Debug.trace(String.format("Video resolution cropped from %sx%s to %sx%s", width, height, size, size));
 		return new Video(workBuffer, greyscale);
 	}
 	
@@ -192,10 +184,8 @@ public class Video extends Encoding {
 			}
 		}
 		
-		// debug trace
-		Debug.trace(String.format("Video resolution downscaled from %sx%s to %sx%s", width, height, target_w, target_h));
-		
 		// return work-buffer as Video
+		Debug.trace(String.format("Video resolution downscaled from %sx%s to %sx%s", width, height, target_w, target_h));
 		return new Video(workBuffer, greyscale);
 	}
 	
@@ -224,10 +214,8 @@ public class Video extends Encoding {
 			}
 		}
 		
-		// debug trace
-		Debug.trace("Video converted to greyscale");
-		
 		// return work-buffer as Video
+		Debug.trace("Video converted to greyscale");
 		return new Video(workBuffer, true);
 	}
 	
@@ -278,9 +266,8 @@ public class Video extends Encoding {
 			}
 		}
 		
-		// debug trace
+		// return byte encoding
 		Debug.trace("Video encoded as byte sequence");
-		
 		return encoding;
 	}
 }

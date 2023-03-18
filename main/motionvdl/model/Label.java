@@ -43,11 +43,11 @@ public class Label extends Encoding {
 	public void push(int stack, double x, double y) {
 		
 		// debug trace
-		Debug.trace(String.format("Label pushed point (%d,%d) to stack %d", x, y, stack));
+		Debug.trace(String.format("Label received push(%d, %.2f, %.2f)", stack, x, y));
 		
 		// throw invalid point and full stack
-		if (x > 1.0 || x < 0.0 || y > 1.0 || y < 0.0) throw new IllegalArgumentException("Error: Invalid point");
-		if (sizes[stack] == stackCapacity) throw new ArrayIndexOutOfBoundsException("Error: Stack "+stack+" is full");
+		if (x > 1.0 || x < 0.0 || y > 1.0 || y < 0.0) throw new IllegalArgumentException("0<=x<=1 and 0<=y<=1 are not satisfied");
+		if (sizes[stack] == stackCapacity) throw new ArrayIndexOutOfBoundsException(String.format("Label stack%d is full", stack));
 		
 		// increment stack size
 		int index = sizes[stack];
@@ -66,10 +66,10 @@ public class Label extends Encoding {
 	public Point pop(int stack) {
 		
 		// debug trace
-		Debug.trace("Label popped point from stack "+stack);
+		Debug.trace(String.format("Label received pop(%d)", stack));
 		
 		// throw empty stack
-		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Label stack "+stack+" is empty");
+		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException(String.format("Label stack%d is empty", stack));
 		
 		// decrement stack size
 		int index = sizes[stack] - 1;
@@ -87,10 +87,10 @@ public class Label extends Encoding {
 	public void delete(int stack) {
 		
 		// debug trace
-		Debug.trace("Label deleted point from stack "+stack);
+		Debug.trace(String.format("Label received delete(%d)", stack));
 		
 		// throw empty stack
-		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException("Error: Frame stack "+stack+" is empty");
+		if (sizes[stack] == 0) throw new ArrayIndexOutOfBoundsException(String.format("Label stack%d is empty", stack));
 		
 		// decrement stack size
 		sizes[stack] -= 1;
@@ -117,29 +117,14 @@ public class Label extends Encoding {
 	}
 	
 	
-//	/**
-//	 * Return a point from a stack by index
-//	 * @param stack The stack index
-//	 * @param index The point index
-//	 * @return The point at the stack-point index
-//	 */
-//	public Point getPoint(int stack, int index) {
-//		
-//		// throw out of bounds
-//		if (index > sizes[stack]) throw new ArrayIndexOutOfBoundsException("Index is larger than stack size");
-//		
-//		return buffer[stack][index];
-//	}
-//	
-//	
-//	/**
-//	 * Return the size of a stack
-//	 * @param stack The stack index
-//	 * @return The size of the stack
-//	 */
-//	public int getSize(int stack) {
-//		return sizes[stack];
-//	}
+	/**
+	 * Return the size of a stack
+	 * @param stack The stack index
+	 * @return The size of the stack
+	 */
+	public int getStackSize(int stack) {
+		return sizes[stack];
+	}
 	
 	
 	/**
@@ -147,14 +132,14 @@ public class Label extends Encoding {
 	 * @param stack The stack index
 	 * @return The result
 	 */
-	public boolean stackFull(int stack) {
+	public boolean checkStackFull(int stack) {
 		
 		// determine result
 		int size = sizes[stack];
 		boolean full = (size == stackCapacity);
 		
 		// debug trace
-		Debug.trace(String.format("Label stack "+stack+" is %sfull (%d points)", ((full) ? "" : "not "), size));
+		Debug.trace(String.format("Label stack%d is %sfull [%d/%d points]", stack, ((full) ? "" : "not "), size, stackCapacity));
 		
 		return full;
 	}
@@ -165,14 +150,14 @@ public class Label extends Encoding {
 	 * @param stack The stack index
 	 * @return The result
 	 */
-	public boolean stackEmpty(int stack) {
+	public boolean checkStackEmpty(int stack) {
 
 		// determine result
 		int size = sizes[stack];
 		boolean empty = (size == 0);
 		
 		// debug trace
-		Debug.trace(String.format("Label stack "+stack+" is %sempty (%d points)", ((empty) ? "" : "not "), size));
+		Debug.trace(String.format("Label stack%d is %sempty [%d/%d points]", stack, ((empty) ? "" : "not "), size, stackCapacity));
 		
 		return empty;
 	}
@@ -186,7 +171,7 @@ public class Label extends Encoding {
 		
 		// determine if every stack is full
 		for (int i=0; i < size; i++) {
-			if (!stackFull(i)) {
+			if (!checkStackFull(i)) {
 				Debug.trace("Label is incomplete");
 				return false;
 			}

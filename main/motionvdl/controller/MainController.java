@@ -52,7 +52,7 @@ public class MainController extends Controller {
 		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved click");
+		Debug.trace(String.format("%s recieved click (%.2f,%.2f)",debugTitle, x, y));
 		
 		// call subcontroller
 		linkedController.click(x, y);

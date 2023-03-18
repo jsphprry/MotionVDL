@@ -51,7 +51,7 @@ public class VideoController extends Controller {
 		click += 1;
 		
 		// debug trace
-		Debug.trace(String.format("%s recieved click%d (%f.2f,%f.2f)",debugTitle, click, x, y));
+		Debug.trace(String.format("%s recieved click%d (%.2f,%.2f)",debugTitle, click, x, y));
 		
 		// first click suggests frame
 		if (click == 1) {
@@ -105,18 +105,19 @@ public class VideoController extends Controller {
 		// debug trace
 		Debug.trace(debugTitle+" recieved next");
 		
-		// get target resolution and color flag
-		int target = 50;//display.getTarget();
-		boolean grey = display.getRadio();
+		// get target res and scale crop frame
+		int targetRes = 50;//display.getTarget();
+		int cropX = (int) (ax * video.width);
+		int cropY = (int) (ay * video.height);
+		int cropRes = (int) (cfs * Math.min(video.height, video.width));
 		
 		// proceed if crop frame and target resolution are valid
 		boolean validCF = (0 < click && click <= 2);
-		boolean validTR = (0 < target && target <= cfs);
+		boolean validTR = (0 < targetRes && targetRes <= cropRes);
 		if (validCF && validTR) {
 			
 			// crop scale and color video
-			video = video.crop(ax, ay, ax+cfs, ay+cfs).downScale(target, target);
-			if (grey) video = video.greyScale();
+			video = video.squareCrop(cropX, cropY, cropRes).downScale(targetRes, targetRes).greyScale();
 			
 			//// duplicate code rather than super call. Done so that debug 
 			//// trace is correctly ordered ('recieved next' before 'crop video')
@@ -131,13 +132,15 @@ public class VideoController extends Controller {
 		
 		// skip and warn if invalid target resolution
 		} else if (validCF && !validTR) {
-			Debug.trace(debugTitle+" no action, invalid target resolution");
-			display.setMessage("*Invalid target resolution*");
+			String message = String.format("Invalid target resolution [targetRes=%d, cropRes=%d]", targetRes, cropRes);
+			Debug.trace(debugTitle+" ignored next: "+message);
+			display.setMessage(message);
 		
 		// skip and warn if invalid crop frame
 		} else {
-			Debug.trace(debugTitle+" no action, undefined crop frame");
-			display.setMessage("*Undefined crop frame*");
+			String message = String.format("Undefined crop frame [click=%d]", click);
+			Debug.trace(debugTitle+" ignored next: "+message);
+			display.setMessage(message);
 		}
 	}
 }
