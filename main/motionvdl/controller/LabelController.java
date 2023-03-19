@@ -46,7 +46,7 @@ public class LabelController extends Controller {
 	public void click(double x, double y) {
 		
 		// debug trace
-		Debug.trace(String.format("%s recieved click (%.2f,%.2f)",debugTitle, x, y));
+		Debug.trace(String.format("%s recieved click (%.2f,%.2f)", debugTitle, x, y));
 
 		// if the current frame label is incomplete
 		if (!label.checkStackFull(frameIndex)) {

@@ -1,194 +1,763 @@
-2023/03/18 | 14:18:27 | Created log file 'MVDL.log'
-2023/03/18 | 14:18:28 | Created CropController 'Video controller'
-2023/03/18 | 14:18:28 | Created LabelController 'Label controller'
-2023/03/18 | 14:18:28 | Created MainController 'Main controller'
-2023/03/18 | 14:18:28 | Created noise video
-2023/03/18 | 14:18:28 | Main controller recieved pass
-2023/03/18 | 14:18:28 | Video controller recieved pass
-2023/03/18 | 14:18:29 | Main controller recieved click (0.90,0.49)
-2023/03/18 | 14:18:29 | Video controller recieved click1 (0.90,0.49)
-2023/03/18 | 14:18:30 | Main controller recieved click (0.92,0.87)
-2023/03/18 | 14:18:30 | Video controller recieved click2 (0.92,0.87)
-2023/03/18 | 14:18:31 | Main controller recieved click (0.86,0.68)
-2023/03/18 | 14:18:31 | Video controller recieved click3 (0.86,0.68)
-2023/03/18 | 14:18:31 | Main controller recieved click (0.86,0.68)
-2023/03/18 | 14:18:31 | Video controller recieved click1 (0.86,0.68)
-2023/03/18 | 14:18:32 | Main controller recieved click (0.90,0.13)
-2023/03/18 | 14:18:32 | Video controller recieved click2 (0.90,0.13)
-2023/03/18 | 14:18:33 | Main controller recieved click (0.27,0.84)
-2023/03/18 | 14:18:33 | Video controller recieved click3 (0.27,0.84)
-2023/03/18 | 14:18:34 | Main controller recieved click (0.09,0.79)
-2023/03/18 | 14:18:34 | Video controller recieved click1 (0.09,0.79)
-2023/03/18 | 14:18:35 | Main controller recieved click (0.15,0.16)
-2023/03/18 | 14:18:35 | Video controller recieved click2 (0.15,0.16)
-2023/03/18 | 14:18:36 | Main controller recieved click (0.91,0.89)
-2023/03/18 | 14:18:36 | Video controller recieved click3 (0.91,0.89)
-2023/03/18 | 14:18:37 | Main controller recieved click (0.91,0.96)
-2023/03/18 | 14:18:37 | Video controller recieved click1 (0.91,0.96)
-2023/03/18 | 14:18:38 | Main controller recieved click (0.95,0.46)
-2023/03/18 | 14:18:38 | Video controller recieved click2 (0.95,0.46)
-2023/03/18 | 14:18:39 | Main controller recieved click (0.73,0.97)
-2023/03/18 | 14:18:39 | Video controller recieved click3 (0.73,0.97)
-2023/03/18 | 14:18:41 | Main controller recieved click (0.95,0.06)
-2023/03/18 | 14:18:41 | Video controller recieved click1 (0.95,0.06)
-2023/03/18 | 14:18:42 | Main controller recieved click (0.95,0.93)
-2023/03/18 | 14:18:42 | Video controller recieved click2 (0.95,0.93)
-2023/03/18 | 14:18:43 | Main controller recieved click (0.33,0.23)
-2023/03/18 | 14:18:43 | Video controller recieved click3 (0.33,0.23)
-2023/03/18 | 14:18:43 | Main controller recieved click (0.02,0.10)
-2023/03/18 | 14:18:43 | Video controller recieved click1 (0.02,0.10)
-2023/03/18 | 14:18:44 | Main controller recieved click (0.17,0.80)
-2023/03/18 | 14:18:44 | Video controller recieved click2 (0.17,0.80)
-2023/03/18 | 14:18:46 | Main controller recieved next
-2023/03/18 | 14:18:46 | Video controller recieved next
-2023/03/18 | 14:18:46 | Video resolution cropped from 200x100 to 70x70
-2023/03/18 | 14:18:46 | Video resolution downscaled from 70x70 to 50x50
-2023/03/18 | 14:18:46 | Video converted to greyscale
-2023/03/18 | 14:18:46 | Video encoded as byte sequence
-2023/03/18 | 14:18:46 | Encoding exported to video.mvdl
-2023/03/18 | 14:18:46 | Main controller recieved pass
-2023/03/18 | 14:18:46 | Label controller recieved pass
-2023/03/18 | 14:18:51 | Main controller recieved click (0.47,0.15)
-2023/03/18 | 14:18:51 | Label controller recieved click (0.47,0.15)
-2023/03/18 | 14:18:51 | Label stack0 is not full [0/11 points]
-2023/03/18 | 14:18:51 | Label received push(0, 0.47, 0.15)
-2023/03/18 | 14:18:51 | Main controller recieved click (0.46,0.52)
-2023/03/18 | 14:18:51 | Label controller recieved click (0.46,0.52)
-2023/03/18 | 14:18:51 | Label stack0 is not full [1/11 points]
-2023/03/18 | 14:18:51 | Label received push(0, 0.46, 0.52)
-2023/03/18 | 14:18:51 | Main controller recieved click (0.70,0.45)
-2023/03/18 | 14:18:51 | Label controller recieved click (0.70,0.45)
-2023/03/18 | 14:18:51 | Label stack0 is not full [2/11 points]
-2023/03/18 | 14:18:51 | Label received push(0, 0.70, 0.45)
-2023/03/18 | 14:18:52 | Main controller recieved click (0.83,0.25)
-2023/03/18 | 14:18:52 | Label controller recieved click (0.83,0.25)
-2023/03/18 | 14:18:52 | Label stack0 is not full [3/11 points]
-2023/03/18 | 14:18:52 | Label received push(0, 0.83, 0.25)
-2023/03/18 | 14:18:52 | Main controller recieved click (0.24,0.47)
-2023/03/18 | 14:18:52 | Label controller recieved click (0.24,0.47)
-2023/03/18 | 14:18:52 | Label stack0 is not full [4/11 points]
-2023/03/18 | 14:18:52 | Label received push(0, 0.24, 0.47)
-2023/03/18 | 14:18:52 | Main controller recieved click (0.20,0.29)
-2023/03/18 | 14:18:52 | Label controller recieved click (0.20,0.29)
-2023/03/18 | 14:18:52 | Label stack0 is not full [5/11 points]
-2023/03/18 | 14:18:52 | Label received push(0, 0.20, 0.29)
-2023/03/18 | 14:18:53 | Main controller recieved click (0.57,0.82)
-2023/03/18 | 14:18:53 | Label controller recieved click (0.57,0.82)
-2023/03/18 | 14:18:53 | Label stack0 is not full [6/11 points]
-2023/03/18 | 14:18:53 | Label received push(0, 0.57, 0.82)
-2023/03/18 | 14:18:53 | Main controller recieved click (0.76,0.93)
-2023/03/18 | 14:18:53 | Label controller recieved click (0.76,0.93)
-2023/03/18 | 14:18:53 | Label stack0 is not full [7/11 points]
-2023/03/18 | 14:18:53 | Label received push(0, 0.76, 0.93)
-2023/03/18 | 14:18:53 | Main controller recieved click (0.81,0.97)
-2023/03/18 | 14:18:53 | Label controller recieved click (0.81,0.97)
-2023/03/18 | 14:18:53 | Label stack0 is not full [8/11 points]
-2023/03/18 | 14:18:53 | Label received push(0, 0.81, 0.97)
-2023/03/18 | 14:18:53 | Main controller recieved click (0.32,0.82)
-2023/03/18 | 14:18:53 | Label controller recieved click (0.32,0.82)
-2023/03/18 | 14:18:53 | Label stack0 is not full [9/11 points]
-2023/03/18 | 14:18:53 | Label received push(0, 0.32, 0.82)
-2023/03/18 | 14:18:54 | Main controller recieved click (0.24,0.88)
-2023/03/18 | 14:18:54 | Label controller recieved click (0.24,0.88)
-2023/03/18 | 14:18:54 | Label stack0 is not full [10/11 points]
-2023/03/18 | 14:18:54 | Label received push(0, 0.24, 0.88)
-2023/03/18 | 14:18:55 | Main controller recieved up
-2023/03/18 | 14:18:55 | Label controller recieved up
-2023/03/18 | 14:18:55 | Label controller set to frame 1
-2023/03/18 | 14:18:56 | Main controller recieved click (0.45,0.24)
-2023/03/18 | 14:18:56 | Label controller recieved click (0.45,0.24)
-2023/03/18 | 14:18:56 | Label stack1 is not full [0/11 points]
-2023/03/18 | 14:18:56 | Label received push(1, 0.45, 0.24)
-2023/03/18 | 14:18:56 | Main controller recieved click (0.46,0.46)
-2023/03/18 | 14:18:56 | Label controller recieved click (0.46,0.46)
-2023/03/18 | 14:18:56 | Label stack1 is not full [1/11 points]
-2023/03/18 | 14:18:56 | Label received push(1, 0.46, 0.46)
-2023/03/18 | 14:18:56 | Main controller recieved click (0.68,0.43)
-2023/03/18 | 14:18:56 | Label controller recieved click (0.68,0.43)
-2023/03/18 | 14:18:56 | Label stack1 is not full [2/11 points]
-2023/03/18 | 14:18:56 | Label received push(1, 0.68, 0.43)
-2023/03/18 | 14:18:56 | Main controller recieved click (0.73,0.25)
-2023/03/18 | 14:18:56 | Label controller recieved click (0.73,0.25)
-2023/03/18 | 14:18:56 | Label stack1 is not full [3/11 points]
-2023/03/18 | 14:18:56 | Label received push(1, 0.73, 0.25)
-2023/03/18 | 14:18:57 | Main controller recieved click (0.23,0.40)
-2023/03/18 | 14:18:57 | Label controller recieved click (0.23,0.40)
-2023/03/18 | 14:18:57 | Label stack1 is not full [4/11 points]
-2023/03/18 | 14:18:57 | Label received push(1, 0.23, 0.40)
-2023/03/18 | 14:18:57 | Main controller recieved click (0.17,0.26)
-2023/03/18 | 14:18:57 | Label controller recieved click (0.17,0.26)
-2023/03/18 | 14:18:57 | Label stack1 is not full [5/11 points]
-2023/03/18 | 14:18:57 | Label received push(1, 0.17, 0.26)
-2023/03/18 | 14:18:57 | Main controller recieved click (0.54,0.67)
-2023/03/18 | 14:18:57 | Label controller recieved click (0.54,0.67)
-2023/03/18 | 14:18:57 | Label stack1 is not full [6/11 points]
-2023/03/18 | 14:18:57 | Label received push(1, 0.54, 0.67)
-2023/03/18 | 14:18:57 | Main controller recieved click (0.70,0.82)
-2023/03/18 | 14:18:57 | Label controller recieved click (0.70,0.82)
-2023/03/18 | 14:18:57 | Label stack1 is not full [7/11 points]
-2023/03/18 | 14:18:57 | Label received push(1, 0.70, 0.82)
-2023/03/18 | 14:18:58 | Main controller recieved click (0.78,0.89)
-2023/03/18 | 14:18:58 | Label controller recieved click (0.78,0.89)
-2023/03/18 | 14:18:58 | Label stack1 is not full [8/11 points]
-2023/03/18 | 14:18:58 | Label received push(1, 0.78, 0.89)
-2023/03/18 | 14:18:58 | Main controller recieved click (0.41,0.78)
-2023/03/18 | 14:18:58 | Label controller recieved click (0.41,0.78)
-2023/03/18 | 14:18:58 | Label stack1 is not full [9/11 points]
-2023/03/18 | 14:18:58 | Label received push(1, 0.41, 0.78)
-2023/03/18 | 14:18:59 | Main controller recieved click (0.38,0.90)
-2023/03/18 | 14:18:59 | Label controller recieved click (0.38,0.90)
-2023/03/18 | 14:18:59 | Label stack1 is not full [10/11 points]
-2023/03/18 | 14:18:59 | Label received push(1, 0.38, 0.90)
-2023/03/18 | 14:18:59 | Main controller recieved click (0.34,0.96)
-2023/03/18 | 14:18:59 | Label controller recieved click (0.34,0.96)
-2023/03/18 | 14:18:59 | Label stack1 is full [11/11 points]
-2023/03/18 | 14:18:59 | Label controller ignored next: Label stack1 is full
-2023/03/18 | 14:19:17 | Main controller recieved up
-2023/03/18 | 14:19:17 | Label controller recieved up
-2023/03/18 | 14:19:17 | Label controller set to frame 2
-2023/03/18 | 14:19:17 | Main controller recieved down
-2023/03/18 | 14:19:17 | Label controller recieved down
-2023/03/18 | 14:19:17 | Label controller set to frame 1
-2023/03/18 | 14:19:18 | Main controller recieved down
-2023/03/18 | 14:19:18 | Label controller recieved down
-2023/03/18 | 14:19:18 | Label controller set to frame 0
-2023/03/18 | 14:19:18 | Main controller recieved down
-2023/03/18 | 14:19:18 | Label controller recieved down
-2023/03/18 | 14:19:18 | Label controller set to frame 0
-2023/03/18 | 14:19:19 | Main controller recieved up
-2023/03/18 | 14:19:19 | Label controller recieved up
-2023/03/18 | 14:19:19 | Label controller set to frame 1
-2023/03/18 | 14:19:19 | Main controller recieved down
-2023/03/18 | 14:19:19 | Label controller recieved down
-2023/03/18 | 14:19:19 | Label controller set to frame 0
-2023/03/18 | 14:19:20 | Main controller recieved up
-2023/03/18 | 14:19:20 | Label controller recieved up
-2023/03/18 | 14:19:20 | Label controller set to frame 1
-2023/03/18 | 14:19:20 | Main controller recieved down
-2023/03/18 | 14:19:20 | Label controller recieved down
-2023/03/18 | 14:19:20 | Label controller set to frame 0
-2023/03/18 | 14:19:21 | Main controller recieved up
-2023/03/18 | 14:19:21 | Label controller recieved up
-2023/03/18 | 14:19:21 | Label controller set to frame 1
-2023/03/18 | 14:19:21 | Main controller recieved down
-2023/03/18 | 14:19:21 | Label controller recieved down
-2023/03/18 | 14:19:21 | Label controller set to frame 0
-2023/03/18 | 14:19:21 | Main controller recieved up
-2023/03/18 | 14:19:21 | Label controller recieved up
-2023/03/18 | 14:19:21 | Label controller set to frame 1
-2023/03/18 | 14:19:22 | Main controller recieved down
-2023/03/18 | 14:19:22 | Label controller recieved down
-2023/03/18 | 14:19:22 | Label controller set to frame 0
-2023/03/18 | 14:19:22 | Main controller recieved up
-2023/03/18 | 14:19:22 | Label controller recieved up
-2023/03/18 | 14:19:22 | Label controller set to frame 1
-2023/03/18 | 14:19:22 | Main controller recieved up
-2023/03/18 | 14:19:22 | Label controller recieved up
-2023/03/18 | 14:19:22 | Label controller set to frame 2
-2023/03/18 | 14:19:24 | Main controller recieved next
-2023/03/18 | 14:19:24 | Label controller recieved next
-2023/03/18 | 14:19:24 | Label stack0 is full [11/11 points]
-2023/03/18 | 14:19:24 | Label stack1 is full [11/11 points]
-2023/03/18 | 14:19:24 | Label stack2 is not full [0/11 points]
-2023/03/18 | 14:19:24 | Label is incomplete
-2023/03/18 | 14:19:24 | Label controller ignored next: Incomplete label
+2023/03/19 | 16:32:15 | Created log file 'MVDL.log'
+2023/03/19 | 16:32:16 | Created CropController 'Video controller'
+2023/03/19 | 16:32:16 | Created LabelController 'Label controller'
+2023/03/19 | 16:32:16 | Created MainController 'Main controller'
+2023/03/19 | 16:32:16 | Created noise video
+2023/03/19 | 16:32:16 | Main controller recieved pass
+2023/03/19 | 16:32:16 | Video controller recieved pass
+2023/03/19 | 16:32:17 | Main controller recieved click (0.09,0.08)
+2023/03/19 | 16:32:17 | Video controller recieved click1 (0.09,0.08)
+2023/03/19 | 16:32:18 | Main controller recieved click (0.82,0.87)
+2023/03/19 | 16:32:18 | Video controller recieved click2 (0.82,0.87)
+2023/03/19 | 16:32:19 | Main controller recieved next
+2023/03/19 | 16:32:19 | Video controller recieved next
+2023/03/19 | 16:32:19 | Video resolution cropped from 200x100 to 78x78
+2023/03/19 | 16:32:19 | Video resolution downscaled from 78x78 to 50x50
+2023/03/19 | 16:32:19 | Video converted to greyscale
+2023/03/19 | 16:32:19 | Video encoded as byte sequence
+2023/03/19 | 16:32:19 | Encoding exported to video.mvdl
+2023/03/19 | 16:32:19 | Main controller recieved pass
+2023/03/19 | 16:32:19 | Label controller recieved pass
+2023/03/19 | 16:47:16 | Main controller recieved click (0.48,0.20)
+2023/03/19 | 16:47:16 | Label controller recieved click (0.48,0.20)
+2023/03/19 | 16:47:16 | Label stack0 is not full [0/11 points]
+2023/03/19 | 16:47:16 | Label received push(0, 0.48, 0.20)
+2023/03/19 | 16:57:15 | Main controller recieved click (0.47,0.40)
+2023/03/19 | 16:57:15 | Label controller recieved click (0.47,0.40)
+2023/03/19 | 16:57:15 | Label stack0 is not full [1/11 points]
+2023/03/19 | 16:57:15 | Label received push(0, 0.47, 0.40)
+2023/03/19 | 16:57:15 | Label stack0 is not full [2/11 points]
+2023/03/19 | 16:57:16 | Main controller recieved click (0.63,0.42)
+2023/03/19 | 16:57:16 | Label controller recieved click (0.63,0.42)
+2023/03/19 | 16:57:16 | Label stack0 is not full [2/11 points]
+2023/03/19 | 16:57:16 | Label received push(0, 0.63, 0.42)
+2023/03/19 | 16:57:16 | Label stack0 is not full [3/11 points]
+2023/03/19 | 16:57:17 | Main controller recieved click (0.80,0.58)
+2023/03/19 | 16:57:17 | Label controller recieved click (0.80,0.58)
+2023/03/19 | 16:57:17 | Label stack0 is not full [3/11 points]
+2023/03/19 | 16:57:17 | Label received push(0, 0.80, 0.58)
+2023/03/19 | 16:57:17 | Label stack0 is not full [4/11 points]
+2023/03/19 | 16:57:18 | Main controller recieved click (0.30,0.43)
+2023/03/19 | 16:57:18 | Label controller recieved click (0.30,0.43)
+2023/03/19 | 16:57:18 | Label stack0 is not full [4/11 points]
+2023/03/19 | 16:57:18 | Label received push(0, 0.30, 0.43)
+2023/03/19 | 16:57:18 | Label stack0 is not full [5/11 points]
+2023/03/19 | 16:57:19 | Main controller recieved click (0.25,0.60)
+2023/03/19 | 16:57:19 | Label controller recieved click (0.25,0.60)
+2023/03/19 | 16:57:19 | Label stack0 is not full [5/11 points]
+2023/03/19 | 16:57:19 | Label received push(0, 0.25, 0.60)
+2023/03/19 | 16:57:19 | Label stack0 is not full [6/11 points]
+2023/03/19 | 16:57:20 | Main controller recieved click (0.46,0.71)
+2023/03/19 | 16:57:20 | Label controller recieved click (0.46,0.71)
+2023/03/19 | 16:57:20 | Label stack0 is not full [6/11 points]
+2023/03/19 | 16:57:20 | Label received push(0, 0.46, 0.71)
+2023/03/19 | 16:57:20 | Label stack0 is not full [7/11 points]
+2023/03/19 | 16:57:22 | Main controller recieved click (0.57,0.82)
+2023/03/19 | 16:57:22 | Label controller recieved click (0.57,0.82)
+2023/03/19 | 16:57:22 | Label stack0 is not full [7/11 points]
+2023/03/19 | 16:57:22 | Label received push(0, 0.57, 0.82)
+2023/03/19 | 16:57:22 | Label stack0 is not full [8/11 points]
+2023/03/19 | 16:57:22 | Main controller recieved click (0.60,0.91)
+2023/03/19 | 16:57:22 | Label controller recieved click (0.60,0.91)
+2023/03/19 | 16:57:22 | Label stack0 is not full [8/11 points]
+2023/03/19 | 16:57:22 | Label received push(0, 0.60, 0.91)
+2023/03/19 | 16:57:22 | Label stack0 is not full [9/11 points]
+2023/03/19 | 16:57:23 | Main controller recieved click (0.35,0.80)
+2023/03/19 | 16:57:23 | Label controller recieved click (0.35,0.80)
+2023/03/19 | 16:57:23 | Label stack0 is not full [9/11 points]
+2023/03/19 | 16:57:23 | Label received push(0, 0.35, 0.80)
+2023/03/19 | 16:57:23 | Label stack0 is not full [10/11 points]
+2023/03/19 | 16:57:23 | Main controller recieved click (0.34,0.91)
+2023/03/19 | 16:57:23 | Label controller recieved click (0.34,0.91)
+2023/03/19 | 16:57:23 | Label stack0 is not full [10/11 points]
+2023/03/19 | 16:57:23 | Label received push(0, 0.34, 0.91)
+2023/03/19 | 16:57:23 | Label stack0 is full [11/11 points]
+2023/03/19 | 16:57:23 | Label controller recieved up
+2023/03/19 | 16:57:23 | Label controller set to frame 1
+2023/03/19 | 16:59:48 | Main controller recieved click (0.78,0.73)
+2023/03/19 | 16:59:48 | Label controller recieved click (0.78,0.73)
+2023/03/19 | 16:59:48 | Label stack1 is not full [0/11 points]
+2023/03/19 | 16:59:48 | Label received push(1, 0.78, 0.73)
+2023/03/19 | 16:59:48 | Label stack1 is not full [1/11 points]
+2023/03/19 | 17:03:18 | Main controller recieved undo
+2023/03/19 | 17:03:18 | Label controller recieved undo
+2023/03/19 | 17:03:18 | Label stack1 is not empty [1/11 points]
+2023/03/19 | 17:03:18 | Label received delete(1)
+2023/03/19 | 17:10:05 | Main controller recieved click (0.45,0.14)
+2023/03/19 | 17:10:05 | Label controller recieved click (0.45,0.14)
+2023/03/19 | 17:10:05 | Label stack1 is not full [0/11 points]
+2023/03/19 | 17:10:05 | Label received push(1, 0.45, 0.14)
+2023/03/19 | 17:10:05 | Label stack1 is not full [1/11 points]
+2023/03/19 | 17:10:06 | Main controller recieved click (0.44,0.34)
+2023/03/19 | 17:10:06 | Label controller recieved click (0.44,0.34)
+2023/03/19 | 17:10:06 | Label stack1 is not full [1/11 points]
+2023/03/19 | 17:10:06 | Label received push(1, 0.44, 0.34)
+2023/03/19 | 17:10:06 | Label stack1 is not full [2/11 points]
+2023/03/19 | 17:10:07 | Main controller recieved click (0.62,0.38)
+2023/03/19 | 17:10:07 | Label controller recieved click (0.62,0.38)
+2023/03/19 | 17:10:07 | Label stack1 is not full [2/11 points]
+2023/03/19 | 17:10:07 | Label received push(1, 0.62, 0.38)
+2023/03/19 | 17:10:07 | Label stack1 is not full [3/11 points]
+2023/03/19 | 17:10:07 | Main controller recieved click (0.82,0.22)
+2023/03/19 | 17:10:07 | Label controller recieved click (0.82,0.22)
+2023/03/19 | 17:10:07 | Label stack1 is not full [3/11 points]
+2023/03/19 | 17:10:07 | Label received push(1, 0.82, 0.22)
+2023/03/19 | 17:10:07 | Label stack1 is not full [4/11 points]
+2023/03/19 | 17:10:08 | Main controller recieved click (0.28,0.38)
+2023/03/19 | 17:10:08 | Label controller recieved click (0.28,0.38)
+2023/03/19 | 17:10:08 | Label stack1 is not full [4/11 points]
+2023/03/19 | 17:10:08 | Label received push(1, 0.28, 0.38)
+2023/03/19 | 17:10:08 | Label stack1 is not full [5/11 points]
+2023/03/19 | 17:10:08 | Main controller recieved click (0.15,0.20)
+2023/03/19 | 17:10:08 | Label controller recieved click (0.15,0.20)
+2023/03/19 | 17:10:08 | Label stack1 is not full [5/11 points]
+2023/03/19 | 17:10:08 | Label received push(1, 0.15, 0.20)
+2023/03/19 | 17:10:08 | Label stack1 is not full [6/11 points]
+2023/03/19 | 17:10:09 | Main controller recieved click (0.41,0.60)
+2023/03/19 | 17:10:09 | Label controller recieved click (0.41,0.60)
+2023/03/19 | 17:10:09 | Label stack1 is not full [6/11 points]
+2023/03/19 | 17:10:09 | Label received push(1, 0.41, 0.60)
+2023/03/19 | 17:10:09 | Label stack1 is not full [7/11 points]
+2023/03/19 | 17:10:09 | Main controller recieved click (0.56,0.84)
+2023/03/19 | 17:10:09 | Label controller recieved click (0.56,0.84)
+2023/03/19 | 17:10:09 | Label stack1 is not full [7/11 points]
+2023/03/19 | 17:10:09 | Label received push(1, 0.56, 0.84)
+2023/03/19 | 17:10:09 | Label stack1 is not full [8/11 points]
+2023/03/19 | 17:10:09 | Main controller recieved click (0.71,0.96)
+2023/03/19 | 17:10:09 | Label controller recieved click (0.71,0.96)
+2023/03/19 | 17:10:09 | Label stack1 is not full [8/11 points]
+2023/03/19 | 17:10:09 | Label received push(1, 0.71, 0.96)
+2023/03/19 | 17:10:09 | Label stack1 is not full [9/11 points]
+2023/03/19 | 17:10:10 | Main controller recieved click (0.35,0.75)
+2023/03/19 | 17:10:10 | Label controller recieved click (0.35,0.75)
+2023/03/19 | 17:10:10 | Label stack1 is not full [9/11 points]
+2023/03/19 | 17:10:10 | Label received push(1, 0.35, 0.75)
+2023/03/19 | 17:10:10 | Label stack1 is not full [10/11 points]
+2023/03/19 | 17:10:10 | Main controller recieved click (0.31,0.86)
+2023/03/19 | 17:10:10 | Label controller recieved click (0.31,0.86)
+2023/03/19 | 17:10:10 | Label stack1 is not full [10/11 points]
+2023/03/19 | 17:10:10 | Label received push(1, 0.31, 0.86)
+2023/03/19 | 17:10:10 | Label stack1 is full [11/11 points]
+2023/03/19 | 17:10:10 | Label controller recieved up
+2023/03/19 | 17:10:10 | Label controller set to frame 2
+2023/03/19 | 17:10:11 | Main controller recieved click (0.42,0.15)
+2023/03/19 | 17:10:11 | Label controller recieved click (0.42,0.15)
+2023/03/19 | 17:10:11 | Label stack2 is not full [0/11 points]
+2023/03/19 | 17:10:11 | Label received push(2, 0.42, 0.15)
+2023/03/19 | 17:10:11 | Label stack2 is not full [1/11 points]
+2023/03/19 | 17:10:12 | Main controller recieved click (0.45,0.35)
+2023/03/19 | 17:10:12 | Label controller recieved click (0.45,0.35)
+2023/03/19 | 17:10:12 | Label stack2 is not full [1/11 points]
+2023/03/19 | 17:10:12 | Label received push(2, 0.45, 0.35)
+2023/03/19 | 17:10:12 | Label stack2 is not full [2/11 points]
+2023/03/19 | 17:10:12 | Main controller recieved click (0.58,0.31)
+2023/03/19 | 17:10:12 | Label controller recieved click (0.58,0.31)
+2023/03/19 | 17:10:12 | Label stack2 is not full [2/11 points]
+2023/03/19 | 17:10:12 | Label received push(2, 0.58, 0.31)
+2023/03/19 | 17:10:12 | Label stack2 is not full [3/11 points]
+2023/03/19 | 17:10:12 | Main controller recieved click (0.81,0.41)
+2023/03/19 | 17:10:12 | Label controller recieved click (0.81,0.41)
+2023/03/19 | 17:10:12 | Label stack2 is not full [3/11 points]
+2023/03/19 | 17:10:12 | Label received push(2, 0.81, 0.41)
+2023/03/19 | 17:10:12 | Label stack2 is not full [4/11 points]
+2023/03/19 | 17:10:13 | Main controller recieved click (0.34,0.41)
+2023/03/19 | 17:10:13 | Label controller recieved click (0.34,0.41)
+2023/03/19 | 17:10:13 | Label stack2 is not full [4/11 points]
+2023/03/19 | 17:10:13 | Label received push(2, 0.34, 0.41)
+2023/03/19 | 17:10:13 | Label stack2 is not full [5/11 points]
+2023/03/19 | 17:10:14 | Main controller recieved click (0.15,0.24)
+2023/03/19 | 17:10:14 | Label controller recieved click (0.15,0.24)
+2023/03/19 | 17:10:14 | Label stack2 is not full [5/11 points]
+2023/03/19 | 17:10:14 | Label received push(2, 0.15, 0.24)
+2023/03/19 | 17:10:14 | Label stack2 is not full [6/11 points]
+2023/03/19 | 17:10:14 | Main controller recieved click (0.44,0.58)
+2023/03/19 | 17:10:14 | Label controller recieved click (0.44,0.58)
+2023/03/19 | 17:10:14 | Label stack2 is not full [6/11 points]
+2023/03/19 | 17:10:14 | Label received push(2, 0.44, 0.58)
+2023/03/19 | 17:10:14 | Label stack2 is not full [7/11 points]
+2023/03/19 | 17:10:16 | Main controller recieved click (0.32,0.67)
+2023/03/19 | 17:10:16 | Label controller recieved click (0.32,0.67)
+2023/03/19 | 17:10:16 | Label stack2 is not full [7/11 points]
+2023/03/19 | 17:10:16 | Label received push(2, 0.32, 0.67)
+2023/03/19 | 17:10:16 | Label stack2 is not full [8/11 points]
+2023/03/19 | 17:10:17 | Main controller recieved click (0.29,0.85)
+2023/03/19 | 17:10:17 | Label controller recieved click (0.29,0.85)
+2023/03/19 | 17:10:17 | Label stack2 is not full [8/11 points]
+2023/03/19 | 17:10:17 | Label received push(2, 0.29, 0.85)
+2023/03/19 | 17:10:17 | Label stack2 is not full [9/11 points]
+2023/03/19 | 17:10:17 | Main controller recieved click (0.47,0.75)
+2023/03/19 | 17:10:17 | Label controller recieved click (0.47,0.75)
+2023/03/19 | 17:10:17 | Label stack2 is not full [9/11 points]
+2023/03/19 | 17:10:17 | Label received push(2, 0.47, 0.75)
+2023/03/19 | 17:10:17 | Label stack2 is not full [10/11 points]
+2023/03/19 | 17:10:18 | Main controller recieved click (0.54,0.90)
+2023/03/19 | 17:10:18 | Label controller recieved click (0.54,0.90)
+2023/03/19 | 17:10:18 | Label stack2 is not full [10/11 points]
+2023/03/19 | 17:10:18 | Label received push(2, 0.54, 0.90)
+2023/03/19 | 17:10:18 | Label stack2 is full [11/11 points]
+2023/03/19 | 17:10:18 | Label controller recieved up
+2023/03/19 | 17:10:18 | Label controller set to frame 3
+2023/03/19 | 17:10:19 | Main controller recieved click (0.40,0.17)
+2023/03/19 | 17:10:19 | Label controller recieved click (0.40,0.17)
+2023/03/19 | 17:10:19 | Label stack3 is not full [0/11 points]
+2023/03/19 | 17:10:19 | Label received push(3, 0.40, 0.17)
+2023/03/19 | 17:10:19 | Label stack3 is not full [1/11 points]
+2023/03/19 | 17:10:19 | Main controller recieved click (0.40,0.43)
+2023/03/19 | 17:10:19 | Label controller recieved click (0.40,0.43)
+2023/03/19 | 17:10:19 | Label stack3 is not full [1/11 points]
+2023/03/19 | 17:10:19 | Label received push(3, 0.40, 0.43)
+2023/03/19 | 17:10:19 | Label stack3 is not full [2/11 points]
+2023/03/19 | 17:10:19 | Main controller recieved click (0.52,0.43)
+2023/03/19 | 17:10:19 | Label controller recieved click (0.52,0.43)
+2023/03/19 | 17:10:19 | Label stack3 is not full [2/11 points]
+2023/03/19 | 17:10:19 | Label received push(3, 0.52, 0.43)
+2023/03/19 | 17:10:19 | Label stack3 is not full [3/11 points]
+2023/03/19 | 17:10:20 | Main controller recieved click (0.60,0.31)
+2023/03/19 | 17:10:20 | Label controller recieved click (0.60,0.31)
+2023/03/19 | 17:10:20 | Label stack3 is not full [3/11 points]
+2023/03/19 | 17:10:20 | Label received push(3, 0.60, 0.31)
+2023/03/19 | 17:10:20 | Label stack3 is not full [4/11 points]
+2023/03/19 | 17:10:20 | Main controller recieved click (0.26,0.33)
+2023/03/19 | 17:10:20 | Label controller recieved click (0.26,0.33)
+2023/03/19 | 17:10:20 | Label stack3 is not full [4/11 points]
+2023/03/19 | 17:10:20 | Label received push(3, 0.26, 0.33)
+2023/03/19 | 17:10:20 | Label stack3 is not full [5/11 points]
+2023/03/19 | 17:10:20 | Main controller recieved click (0.22,0.18)
+2023/03/19 | 17:10:20 | Label controller recieved click (0.22,0.18)
+2023/03/19 | 17:10:20 | Label stack3 is not full [5/11 points]
+2023/03/19 | 17:10:20 | Label received push(3, 0.22, 0.18)
+2023/03/19 | 17:10:20 | Label stack3 is not full [6/11 points]
+2023/03/19 | 17:10:21 | Main controller recieved click (0.41,0.58)
+2023/03/19 | 17:10:21 | Label controller recieved click (0.41,0.58)
+2023/03/19 | 17:10:21 | Label stack3 is not full [6/11 points]
+2023/03/19 | 17:10:21 | Label received push(3, 0.41, 0.58)
+2023/03/19 | 17:10:21 | Label stack3 is not full [7/11 points]
+2023/03/19 | 17:10:21 | Main controller recieved click (0.53,0.73)
+2023/03/19 | 17:10:21 | Label controller recieved click (0.53,0.73)
+2023/03/19 | 17:10:21 | Label stack3 is not full [7/11 points]
+2023/03/19 | 17:10:21 | Label received push(3, 0.53, 0.73)
+2023/03/19 | 17:10:21 | Label stack3 is not full [8/11 points]
+2023/03/19 | 17:10:22 | Main controller recieved click (0.63,0.82)
+2023/03/19 | 17:10:22 | Label controller recieved click (0.63,0.82)
+2023/03/19 | 17:10:22 | Label stack3 is not full [8/11 points]
+2023/03/19 | 17:10:22 | Label received push(3, 0.63, 0.82)
+2023/03/19 | 17:10:22 | Label stack3 is not full [9/11 points]
+2023/03/19 | 17:10:22 | Main controller recieved click (0.40,0.75)
+2023/03/19 | 17:10:22 | Label controller recieved click (0.40,0.75)
+2023/03/19 | 17:10:22 | Label stack3 is not full [9/11 points]
+2023/03/19 | 17:10:22 | Label received push(3, 0.40, 0.75)
+2023/03/19 | 17:10:22 | Label stack3 is not full [10/11 points]
+2023/03/19 | 17:10:23 | Main controller recieved click (0.38,0.85)
+2023/03/19 | 17:10:23 | Label controller recieved click (0.38,0.85)
+2023/03/19 | 17:10:23 | Label stack3 is not full [10/11 points]
+2023/03/19 | 17:10:23 | Label received push(3, 0.38, 0.85)
+2023/03/19 | 17:10:23 | Label stack3 is full [11/11 points]
+2023/03/19 | 17:10:23 | Label controller recieved up
+2023/03/19 | 17:10:23 | Label controller set to frame 4
+2023/03/19 | 17:10:24 | Main controller recieved down
+2023/03/19 | 17:10:24 | Label controller recieved down
+2023/03/19 | 17:10:24 | Label controller set to frame 3
+2023/03/19 | 17:10:24 | Main controller recieved down
+2023/03/19 | 17:10:24 | Label controller recieved down
+2023/03/19 | 17:10:24 | Label controller set to frame 2
+2023/03/19 | 17:10:24 | Main controller recieved down
+2023/03/19 | 17:10:24 | Label controller recieved down
+2023/03/19 | 17:10:24 | Label controller set to frame 1
+2023/03/19 | 17:10:24 | Main controller recieved down
+2023/03/19 | 17:10:24 | Label controller recieved down
+2023/03/19 | 17:10:24 | Label controller set to frame 0
+2023/03/19 | 17:10:25 | Main controller recieved down
+2023/03/19 | 17:10:25 | Label controller recieved down
+2023/03/19 | 17:10:25 | Label controller set to frame 0
+2023/03/19 | 17:10:25 | Main controller recieved up
+2023/03/19 | 17:10:25 | Label controller recieved up
+2023/03/19 | 17:10:25 | Label controller set to frame 1
+2023/03/19 | 17:10:25 | Main controller recieved up
+2023/03/19 | 17:10:25 | Label controller recieved up
+2023/03/19 | 17:10:25 | Label controller set to frame 2
+2023/03/19 | 17:10:26 | Main controller recieved up
+2023/03/19 | 17:10:26 | Label controller recieved up
+2023/03/19 | 17:10:26 | Label controller set to frame 3
+2023/03/19 | 17:10:26 | Main controller recieved up
+2023/03/19 | 17:10:26 | Label controller recieved up
+2023/03/19 | 17:10:26 | Label controller set to frame 4
+2023/03/19 | 17:10:27 | Main controller recieved click (0.46,0.17)
+2023/03/19 | 17:10:27 | Label controller recieved click (0.46,0.17)
+2023/03/19 | 17:10:27 | Label stack4 is not full [0/11 points]
+2023/03/19 | 17:10:27 | Label received push(4, 0.46, 0.17)
+2023/03/19 | 17:10:27 | Label stack4 is not full [1/11 points]
+2023/03/19 | 17:10:28 | Main controller recieved click (0.46,0.43)
+2023/03/19 | 17:10:28 | Label controller recieved click (0.46,0.43)
+2023/03/19 | 17:10:28 | Label stack4 is not full [1/11 points]
+2023/03/19 | 17:10:28 | Label received push(4, 0.46, 0.43)
+2023/03/19 | 17:10:28 | Label stack4 is not full [2/11 points]
+2023/03/19 | 17:10:28 | Main controller recieved click (0.58,0.45)
+2023/03/19 | 17:10:28 | Label controller recieved click (0.58,0.45)
+2023/03/19 | 17:10:28 | Label stack4 is not full [2/11 points]
+2023/03/19 | 17:10:28 | Label received push(4, 0.58, 0.45)
+2023/03/19 | 17:10:28 | Label stack4 is not full [3/11 points]
+2023/03/19 | 17:10:28 | Main controller recieved click (0.70,0.31)
+2023/03/19 | 17:10:28 | Label controller recieved click (0.70,0.31)
+2023/03/19 | 17:10:28 | Label stack4 is not full [3/11 points]
+2023/03/19 | 17:10:28 | Label received push(4, 0.70, 0.31)
+2023/03/19 | 17:10:28 | Label stack4 is not full [4/11 points]
+2023/03/19 | 17:10:29 | Main controller recieved click (0.32,0.45)
+2023/03/19 | 17:10:29 | Label controller recieved click (0.32,0.45)
+2023/03/19 | 17:10:29 | Label stack4 is not full [4/11 points]
+2023/03/19 | 17:10:29 | Label received push(4, 0.32, 0.45)
+2023/03/19 | 17:10:29 | Label stack4 is not full [5/11 points]
+2023/03/19 | 17:10:29 | Main controller recieved click (0.24,0.31)
+2023/03/19 | 17:10:29 | Label controller recieved click (0.24,0.31)
+2023/03/19 | 17:10:29 | Label stack4 is not full [5/11 points]
+2023/03/19 | 17:10:29 | Label received push(4, 0.24, 0.31)
+2023/03/19 | 17:10:29 | Label stack4 is not full [6/11 points]
+2023/03/19 | 17:10:30 | Main controller recieved click (0.45,0.60)
+2023/03/19 | 17:10:30 | Label controller recieved click (0.45,0.60)
+2023/03/19 | 17:10:30 | Label stack4 is not full [6/11 points]
+2023/03/19 | 17:10:30 | Label received push(4, 0.45, 0.60)
+2023/03/19 | 17:10:30 | Label stack4 is not full [7/11 points]
+2023/03/19 | 17:10:30 | Main controller recieved click (0.54,0.69)
+2023/03/19 | 17:10:30 | Label controller recieved click (0.54,0.69)
+2023/03/19 | 17:10:30 | Label stack4 is not full [7/11 points]
+2023/03/19 | 17:10:30 | Label received push(4, 0.54, 0.69)
+2023/03/19 | 17:10:30 | Label stack4 is not full [8/11 points]
+2023/03/19 | 17:10:30 | Main controller recieved click (0.62,0.80)
+2023/03/19 | 17:10:30 | Label controller recieved click (0.62,0.80)
+2023/03/19 | 17:10:30 | Label stack4 is not full [8/11 points]
+2023/03/19 | 17:10:30 | Label received push(4, 0.62, 0.80)
+2023/03/19 | 17:10:30 | Label stack4 is not full [9/11 points]
+2023/03/19 | 17:10:31 | Main controller recieved click (0.35,0.65)
+2023/03/19 | 17:10:31 | Label controller recieved click (0.35,0.65)
+2023/03/19 | 17:10:31 | Label stack4 is not full [9/11 points]
+2023/03/19 | 17:10:31 | Label received push(4, 0.35, 0.65)
+2023/03/19 | 17:10:31 | Label stack4 is not full [10/11 points]
+2023/03/19 | 17:10:31 | Main controller recieved click (0.35,0.77)
+2023/03/19 | 17:10:31 | Label controller recieved click (0.35,0.77)
+2023/03/19 | 17:10:31 | Label stack4 is not full [10/11 points]
+2023/03/19 | 17:10:31 | Label received push(4, 0.35, 0.77)
+2023/03/19 | 17:10:31 | Label stack4 is full [11/11 points]
+2023/03/19 | 17:10:31 | Label controller recieved up
+2023/03/19 | 17:10:31 | Label controller set to frame 5
+2023/03/19 | 17:10:32 | Main controller recieved click (0.42,0.18)
+2023/03/19 | 17:10:32 | Label controller recieved click (0.42,0.18)
+2023/03/19 | 17:10:32 | Label stack5 is not full [0/11 points]
+2023/03/19 | 17:10:32 | Label received push(5, 0.42, 0.18)
+2023/03/19 | 17:10:32 | Label stack5 is not full [1/11 points]
+2023/03/19 | 17:10:32 | Main controller recieved click (0.46,0.49)
+2023/03/19 | 17:10:32 | Label controller recieved click (0.46,0.49)
+2023/03/19 | 17:10:32 | Label stack5 is not full [1/11 points]
+2023/03/19 | 17:10:32 | Label received push(5, 0.46, 0.49)
+2023/03/19 | 17:10:32 | Label stack5 is not full [2/11 points]
+2023/03/19 | 17:10:33 | Main controller recieved click (0.61,0.53)
+2023/03/19 | 17:10:33 | Label controller recieved click (0.61,0.53)
+2023/03/19 | 17:10:33 | Label stack5 is not full [2/11 points]
+2023/03/19 | 17:10:33 | Label received push(5, 0.61, 0.53)
+2023/03/19 | 17:10:33 | Label stack5 is not full [3/11 points]
+2023/03/19 | 17:10:33 | Main controller recieved click (0.70,0.31)
+2023/03/19 | 17:10:33 | Label controller recieved click (0.70,0.31)
+2023/03/19 | 17:10:33 | Label stack5 is not full [3/11 points]
+2023/03/19 | 17:10:33 | Label received push(5, 0.70, 0.31)
+2023/03/19 | 17:10:33 | Label stack5 is not full [4/11 points]
+2023/03/19 | 17:10:34 | Main controller recieved click (0.36,0.48)
+2023/03/19 | 17:10:34 | Label controller recieved click (0.36,0.48)
+2023/03/19 | 17:10:34 | Label stack5 is not full [4/11 points]
+2023/03/19 | 17:10:34 | Label received push(5, 0.36, 0.48)
+2023/03/19 | 17:10:34 | Label stack5 is not full [5/11 points]
+2023/03/19 | 17:10:34 | Main controller recieved click (0.23,0.23)
+2023/03/19 | 17:10:34 | Label controller recieved click (0.23,0.23)
+2023/03/19 | 17:10:34 | Label stack5 is not full [5/11 points]
+2023/03/19 | 17:10:34 | Label received push(5, 0.23, 0.23)
+2023/03/19 | 17:10:34 | Label stack5 is not full [6/11 points]
+2023/03/19 | 17:10:35 | Main controller recieved click (0.46,0.60)
+2023/03/19 | 17:10:35 | Label controller recieved click (0.46,0.60)
+2023/03/19 | 17:10:35 | Label stack5 is not full [6/11 points]
+2023/03/19 | 17:10:35 | Label received push(5, 0.46, 0.60)
+2023/03/19 | 17:10:35 | Label stack5 is not full [7/11 points]
+2023/03/19 | 17:10:35 | Main controller recieved click (0.56,0.70)
+2023/03/19 | 17:10:35 | Label controller recieved click (0.56,0.70)
+2023/03/19 | 17:10:35 | Label stack5 is not full [7/11 points]
+2023/03/19 | 17:10:35 | Label received push(5, 0.56, 0.70)
+2023/03/19 | 17:10:35 | Label stack5 is not full [8/11 points]
+2023/03/19 | 17:10:35 | Main controller recieved click (0.63,0.82)
+2023/03/19 | 17:10:35 | Label controller recieved click (0.63,0.82)
+2023/03/19 | 17:10:35 | Label stack5 is not full [8/11 points]
+2023/03/19 | 17:10:35 | Label received push(5, 0.63, 0.82)
+2023/03/19 | 17:10:35 | Label stack5 is not full [9/11 points]
+2023/03/19 | 17:10:36 | Main controller recieved click (0.43,0.78)
+2023/03/19 | 17:10:36 | Label controller recieved click (0.43,0.78)
+2023/03/19 | 17:10:36 | Label stack5 is not full [9/11 points]
+2023/03/19 | 17:10:36 | Label received push(5, 0.43, 0.78)
+2023/03/19 | 17:10:36 | Label stack5 is not full [10/11 points]
+2023/03/19 | 17:10:37 | Main controller recieved click (0.43,0.88)
+2023/03/19 | 17:10:37 | Label controller recieved click (0.43,0.88)
+2023/03/19 | 17:10:37 | Label stack5 is not full [10/11 points]
+2023/03/19 | 17:10:37 | Label received push(5, 0.43, 0.88)
+2023/03/19 | 17:10:37 | Label stack5 is full [11/11 points]
+2023/03/19 | 17:10:37 | Label controller recieved up
+2023/03/19 | 17:10:37 | Label controller set to frame 6
+2023/03/19 | 17:10:37 | Main controller recieved click (0.42,0.19)
+2023/03/19 | 17:10:37 | Label controller recieved click (0.42,0.19)
+2023/03/19 | 17:10:37 | Label stack6 is not full [0/11 points]
+2023/03/19 | 17:10:37 | Label received push(6, 0.42, 0.19)
+2023/03/19 | 17:10:37 | Label stack6 is not full [1/11 points]
+2023/03/19 | 17:10:38 | Main controller recieved click (0.43,0.37)
+2023/03/19 | 17:10:38 | Label controller recieved click (0.43,0.37)
+2023/03/19 | 17:10:38 | Label stack6 is not full [1/11 points]
+2023/03/19 | 17:10:38 | Label received push(6, 0.43, 0.37)
+2023/03/19 | 17:10:38 | Label stack6 is not full [2/11 points]
+2023/03/19 | 17:10:38 | Main controller recieved click (0.56,0.35)
+2023/03/19 | 17:10:38 | Label controller recieved click (0.56,0.35)
+2023/03/19 | 17:10:38 | Label stack6 is not full [2/11 points]
+2023/03/19 | 17:10:38 | Label received push(6, 0.56, 0.35)
+2023/03/19 | 17:10:38 | Label stack6 is not full [3/11 points]
+2023/03/19 | 17:10:38 | Main controller recieved click (0.66,0.21)
+2023/03/19 | 17:10:38 | Label controller recieved click (0.66,0.21)
+2023/03/19 | 17:10:38 | Label stack6 is not full [3/11 points]
+2023/03/19 | 17:10:38 | Label received push(6, 0.66, 0.21)
+2023/03/19 | 17:10:38 | Label stack6 is not full [4/11 points]
+2023/03/19 | 17:10:39 | Main controller recieved click (0.25,0.39)
+2023/03/19 | 17:10:39 | Label controller recieved click (0.25,0.39)
+2023/03/19 | 17:10:39 | Label stack6 is not full [4/11 points]
+2023/03/19 | 17:10:39 | Label received push(6, 0.25, 0.39)
+2023/03/19 | 17:10:39 | Label stack6 is not full [5/11 points]
+2023/03/19 | 17:10:40 | Main controller recieved click (0.17,0.23)
+2023/03/19 | 17:10:40 | Label controller recieved click (0.17,0.23)
+2023/03/19 | 17:10:40 | Label stack6 is not full [5/11 points]
+2023/03/19 | 17:10:40 | Label received push(6, 0.17, 0.23)
+2023/03/19 | 17:10:40 | Label stack6 is not full [6/11 points]
+2023/03/19 | 17:10:40 | Main controller recieved click (0.42,0.54)
+2023/03/19 | 17:10:40 | Label controller recieved click (0.42,0.54)
+2023/03/19 | 17:10:40 | Label stack6 is not full [6/11 points]
+2023/03/19 | 17:10:40 | Label received push(6, 0.42, 0.54)
+2023/03/19 | 17:10:40 | Label stack6 is not full [7/11 points]
+2023/03/19 | 17:10:40 | Main controller recieved click (0.50,0.67)
+2023/03/19 | 17:10:40 | Label controller recieved click (0.50,0.67)
+2023/03/19 | 17:10:40 | Label stack6 is not full [7/11 points]
+2023/03/19 | 17:10:40 | Label received push(6, 0.50, 0.67)
+2023/03/19 | 17:10:40 | Label stack6 is not full [8/11 points]
+2023/03/19 | 17:10:41 | Main controller recieved click (0.61,0.80)
+2023/03/19 | 17:10:41 | Label controller recieved click (0.61,0.80)
+2023/03/19 | 17:10:41 | Label stack6 is not full [8/11 points]
+2023/03/19 | 17:10:41 | Label received push(6, 0.61, 0.80)
+2023/03/19 | 17:10:41 | Label stack6 is not full [9/11 points]
+2023/03/19 | 17:10:41 | Main controller recieved click (0.35,0.70)
+2023/03/19 | 17:10:41 | Label controller recieved click (0.35,0.70)
+2023/03/19 | 17:10:41 | Label stack6 is not full [9/11 points]
+2023/03/19 | 17:10:41 | Label received push(6, 0.35, 0.70)
+2023/03/19 | 17:10:41 | Label stack6 is not full [10/11 points]
+2023/03/19 | 17:10:42 | Main controller recieved click (0.35,0.79)
+2023/03/19 | 17:10:42 | Label controller recieved click (0.35,0.79)
+2023/03/19 | 17:10:42 | Label stack6 is not full [10/11 points]
+2023/03/19 | 17:10:42 | Label received push(6, 0.35, 0.79)
+2023/03/19 | 17:10:42 | Label stack6 is full [11/11 points]
+2023/03/19 | 17:10:42 | Label controller recieved up
+2023/03/19 | 17:10:42 | Label controller set to frame 7
+2023/03/19 | 17:10:42 | Main controller recieved click (0.44,0.14)
+2023/03/19 | 17:10:42 | Label controller recieved click (0.44,0.14)
+2023/03/19 | 17:10:42 | Label stack7 is not full [0/11 points]
+2023/03/19 | 17:10:42 | Label received push(7, 0.44, 0.14)
+2023/03/19 | 17:10:42 | Label stack7 is not full [1/11 points]
+2023/03/19 | 17:10:43 | Main controller recieved click (0.43,0.48)
+2023/03/19 | 17:10:43 | Label controller recieved click (0.43,0.48)
+2023/03/19 | 17:10:43 | Label stack7 is not full [1/11 points]
+2023/03/19 | 17:10:43 | Label received push(7, 0.43, 0.48)
+2023/03/19 | 17:10:43 | Label stack7 is not full [2/11 points]
+2023/03/19 | 17:10:43 | Main controller recieved click (0.55,0.42)
+2023/03/19 | 17:10:43 | Label controller recieved click (0.55,0.42)
+2023/03/19 | 17:10:43 | Label stack7 is not full [2/11 points]
+2023/03/19 | 17:10:43 | Label received push(7, 0.55, 0.42)
+2023/03/19 | 17:10:43 | Label stack7 is not full [3/11 points]
+2023/03/19 | 17:10:43 | Main controller recieved click (0.67,0.27)
+2023/03/19 | 17:10:43 | Label controller recieved click (0.67,0.27)
+2023/03/19 | 17:10:43 | Label stack7 is not full [3/11 points]
+2023/03/19 | 17:10:43 | Label received push(7, 0.67, 0.27)
+2023/03/19 | 17:10:43 | Label stack7 is not full [4/11 points]
+2023/03/19 | 17:10:44 | Main controller recieved click (0.37,0.41)
+2023/03/19 | 17:10:44 | Label controller recieved click (0.37,0.41)
+2023/03/19 | 17:10:44 | Label stack7 is not full [4/11 points]
+2023/03/19 | 17:10:44 | Label received push(7, 0.37, 0.41)
+2023/03/19 | 17:10:44 | Label stack7 is not full [5/11 points]
+2023/03/19 | 17:10:44 | Main controller recieved click (0.24,0.20)
+2023/03/19 | 17:10:44 | Label controller recieved click (0.24,0.20)
+2023/03/19 | 17:10:44 | Label stack7 is not full [5/11 points]
+2023/03/19 | 17:10:44 | Label received push(7, 0.24, 0.20)
+2023/03/19 | 17:10:44 | Label stack7 is not full [6/11 points]
+2023/03/19 | 17:10:45 | Main controller recieved click (0.46,0.56)
+2023/03/19 | 17:10:45 | Label controller recieved click (0.46,0.56)
+2023/03/19 | 17:10:45 | Label stack7 is not full [6/11 points]
+2023/03/19 | 17:10:45 | Label received push(7, 0.46, 0.56)
+2023/03/19 | 17:10:45 | Label stack7 is not full [7/11 points]
+2023/03/19 | 17:10:45 | Main controller recieved click (0.66,0.70)
+2023/03/19 | 17:10:45 | Label controller recieved click (0.66,0.70)
+2023/03/19 | 17:10:45 | Label stack7 is not full [7/11 points]
+2023/03/19 | 17:10:45 | Label received push(7, 0.66, 0.70)
+2023/03/19 | 17:10:45 | Label stack7 is not full [8/11 points]
+2023/03/19 | 17:10:46 | Main controller recieved click (0.66,0.85)
+2023/03/19 | 17:10:46 | Label controller recieved click (0.66,0.85)
+2023/03/19 | 17:10:46 | Label stack7 is not full [8/11 points]
+2023/03/19 | 17:10:46 | Label received push(7, 0.66, 0.85)
+2023/03/19 | 17:10:46 | Label stack7 is not full [9/11 points]
+2023/03/19 | 17:10:46 | Main controller recieved click (0.40,0.72)
+2023/03/19 | 17:10:46 | Label controller recieved click (0.40,0.72)
+2023/03/19 | 17:10:46 | Label stack7 is not full [9/11 points]
+2023/03/19 | 17:10:46 | Label received push(7, 0.40, 0.72)
+2023/03/19 | 17:10:46 | Label stack7 is not full [10/11 points]
+2023/03/19 | 17:10:47 | Main controller recieved click (0.40,0.82)
+2023/03/19 | 17:10:47 | Label controller recieved click (0.40,0.82)
+2023/03/19 | 17:10:47 | Label stack7 is not full [10/11 points]
+2023/03/19 | 17:10:47 | Label received push(7, 0.40, 0.82)
+2023/03/19 | 17:10:47 | Label stack7 is full [11/11 points]
+2023/03/19 | 17:10:47 | Label controller recieved up
+2023/03/19 | 17:10:47 | Label controller set to frame 8
+2023/03/19 | 17:10:47 | Main controller recieved click (0.43,0.25)
+2023/03/19 | 17:10:47 | Label controller recieved click (0.43,0.25)
+2023/03/19 | 17:10:47 | Label stack8 is not full [0/11 points]
+2023/03/19 | 17:10:47 | Label received push(8, 0.43, 0.25)
+2023/03/19 | 17:10:47 | Label stack8 is not full [1/11 points]
+2023/03/19 | 17:10:48 | Main controller recieved click (0.44,0.45)
+2023/03/19 | 17:10:48 | Label controller recieved click (0.44,0.45)
+2023/03/19 | 17:10:48 | Label stack8 is not full [1/11 points]
+2023/03/19 | 17:10:48 | Label received push(8, 0.44, 0.45)
+2023/03/19 | 17:10:48 | Label stack8 is not full [2/11 points]
+2023/03/19 | 17:10:48 | Main controller recieved click (0.55,0.40)
+2023/03/19 | 17:10:48 | Label controller recieved click (0.55,0.40)
+2023/03/19 | 17:10:48 | Label stack8 is not full [2/11 points]
+2023/03/19 | 17:10:48 | Label received push(8, 0.55, 0.40)
+2023/03/19 | 17:10:48 | Label stack8 is not full [3/11 points]
+2023/03/19 | 17:10:48 | Main controller recieved click (0.71,0.22)
+2023/03/19 | 17:10:48 | Label controller recieved click (0.71,0.22)
+2023/03/19 | 17:10:48 | Label stack8 is not full [3/11 points]
+2023/03/19 | 17:10:48 | Label received push(8, 0.71, 0.22)
+2023/03/19 | 17:10:48 | Label stack8 is not full [4/11 points]
+2023/03/19 | 17:10:49 | Main controller recieved click (0.34,0.44)
+2023/03/19 | 17:10:49 | Label controller recieved click (0.34,0.44)
+2023/03/19 | 17:10:49 | Label stack8 is not full [4/11 points]
+2023/03/19 | 17:10:49 | Label received push(8, 0.34, 0.44)
+2023/03/19 | 17:10:49 | Label stack8 is not full [5/11 points]
+2023/03/19 | 17:10:49 | Main controller recieved click (0.20,0.31)
+2023/03/19 | 17:10:49 | Label controller recieved click (0.20,0.31)
+2023/03/19 | 17:10:49 | Label stack8 is not full [5/11 points]
+2023/03/19 | 17:10:49 | Label received push(8, 0.20, 0.31)
+2023/03/19 | 17:10:49 | Label stack8 is not full [6/11 points]
+2023/03/19 | 17:10:50 | Main controller recieved click (0.46,0.59)
+2023/03/19 | 17:10:50 | Label controller recieved click (0.46,0.59)
+2023/03/19 | 17:10:50 | Label stack8 is not full [6/11 points]
+2023/03/19 | 17:10:50 | Label received push(8, 0.46, 0.59)
+2023/03/19 | 17:10:50 | Label stack8 is not full [7/11 points]
+2023/03/19 | 17:10:50 | Main controller recieved click (0.53,0.70)
+2023/03/19 | 17:10:50 | Label controller recieved click (0.53,0.70)
+2023/03/19 | 17:10:50 | Label stack8 is not full [7/11 points]
+2023/03/19 | 17:10:50 | Label received push(8, 0.53, 0.70)
+2023/03/19 | 17:10:50 | Label stack8 is not full [8/11 points]
+2023/03/19 | 17:10:50 | Main controller recieved click (0.63,0.81)
+2023/03/19 | 17:10:50 | Label controller recieved click (0.63,0.81)
+2023/03/19 | 17:10:50 | Label stack8 is not full [8/11 points]
+2023/03/19 | 17:10:50 | Label received push(8, 0.63, 0.81)
+2023/03/19 | 17:10:50 | Label stack8 is not full [9/11 points]
+2023/03/19 | 17:10:51 | Main controller recieved click (0.39,0.67)
+2023/03/19 | 17:10:51 | Label controller recieved click (0.39,0.67)
+2023/03/19 | 17:10:51 | Label stack8 is not full [9/11 points]
+2023/03/19 | 17:10:51 | Label received push(8, 0.39, 0.67)
+2023/03/19 | 17:10:51 | Label stack8 is not full [10/11 points]
+2023/03/19 | 17:10:51 | Main controller recieved click (0.38,0.79)
+2023/03/19 | 17:10:51 | Label controller recieved click (0.38,0.79)
+2023/03/19 | 17:10:51 | Label stack8 is not full [10/11 points]
+2023/03/19 | 17:10:51 | Label received push(8, 0.38, 0.79)
+2023/03/19 | 17:10:51 | Label stack8 is full [11/11 points]
+2023/03/19 | 17:10:51 | Label controller recieved up
+2023/03/19 | 17:10:51 | Label controller set to frame 9
+2023/03/19 | 17:10:52 | Main controller recieved click (0.44,0.25)
+2023/03/19 | 17:10:52 | Label controller recieved click (0.44,0.25)
+2023/03/19 | 17:10:52 | Label stack9 is not full [0/11 points]
+2023/03/19 | 17:10:52 | Label received push(9, 0.44, 0.25)
+2023/03/19 | 17:10:52 | Label stack9 is not full [1/11 points]
+2023/03/19 | 17:10:52 | Main controller recieved click (0.45,0.45)
+2023/03/19 | 17:10:52 | Label controller recieved click (0.45,0.45)
+2023/03/19 | 17:10:52 | Label stack9 is not full [1/11 points]
+2023/03/19 | 17:10:52 | Label received push(9, 0.45, 0.45)
+2023/03/19 | 17:10:52 | Label stack9 is not full [2/11 points]
+2023/03/19 | 17:10:53 | Main controller recieved click (0.61,0.50)
+2023/03/19 | 17:10:53 | Label controller recieved click (0.61,0.50)
+2023/03/19 | 17:10:53 | Label stack9 is not full [2/11 points]
+2023/03/19 | 17:10:53 | Label received push(9, 0.61, 0.50)
+2023/03/19 | 17:10:53 | Label stack9 is not full [3/11 points]
+2023/03/19 | 17:10:54 | Main controller recieved click (0.74,0.33)
+2023/03/19 | 17:10:54 | Label controller recieved click (0.74,0.33)
+2023/03/19 | 17:10:54 | Label stack9 is not full [3/11 points]
+2023/03/19 | 17:10:54 | Label received push(9, 0.74, 0.33)
+2023/03/19 | 17:10:54 | Label stack9 is not full [4/11 points]
+2023/03/19 | 17:10:55 | Main controller recieved click (0.28,0.47)
+2023/03/19 | 17:10:55 | Label controller recieved click (0.28,0.47)
+2023/03/19 | 17:10:55 | Label stack9 is not full [4/11 points]
+2023/03/19 | 17:10:55 | Label received push(9, 0.28, 0.47)
+2023/03/19 | 17:10:55 | Label stack9 is not full [5/11 points]
+2023/03/19 | 17:10:55 | Main controller recieved click (0.20,0.32)
+2023/03/19 | 17:10:55 | Label controller recieved click (0.20,0.32)
+2023/03/19 | 17:10:55 | Label stack9 is not full [5/11 points]
+2023/03/19 | 17:10:55 | Label received push(9, 0.20, 0.32)
+2023/03/19 | 17:10:55 | Label stack9 is not full [6/11 points]
+2023/03/19 | 17:10:56 | Main controller recieved click (0.40,0.58)
+2023/03/19 | 17:10:56 | Label controller recieved click (0.40,0.58)
+2023/03/19 | 17:10:56 | Label stack9 is not full [6/11 points]
+2023/03/19 | 17:10:56 | Label received push(9, 0.40, 0.58)
+2023/03/19 | 17:10:56 | Label stack9 is not full [7/11 points]
+2023/03/19 | 17:10:56 | Main controller recieved click (0.59,0.71)
+2023/03/19 | 17:10:56 | Label controller recieved click (0.59,0.71)
+2023/03/19 | 17:10:56 | Label stack9 is not full [7/11 points]
+2023/03/19 | 17:10:56 | Label received push(9, 0.59, 0.71)
+2023/03/19 | 17:10:56 | Label stack9 is not full [8/11 points]
+2023/03/19 | 17:10:57 | Main controller recieved click (0.65,0.82)
+2023/03/19 | 17:10:57 | Label controller recieved click (0.65,0.82)
+2023/03/19 | 17:10:57 | Label stack9 is not full [8/11 points]
+2023/03/19 | 17:10:57 | Label received push(9, 0.65, 0.82)
+2023/03/19 | 17:10:57 | Label stack9 is not full [9/11 points]
+2023/03/19 | 17:10:57 | Main controller recieved click (0.32,0.71)
+2023/03/19 | 17:10:57 | Label controller recieved click (0.32,0.71)
+2023/03/19 | 17:10:57 | Label stack9 is not full [9/11 points]
+2023/03/19 | 17:10:57 | Label received push(9, 0.32, 0.71)
+2023/03/19 | 17:10:57 | Label stack9 is not full [10/11 points]
+2023/03/19 | 17:10:58 | Main controller recieved click (0.33,0.82)
+2023/03/19 | 17:10:58 | Label controller recieved click (0.33,0.82)
+2023/03/19 | 17:10:58 | Label stack9 is not full [10/11 points]
+2023/03/19 | 17:10:58 | Label received push(9, 0.33, 0.82)
+2023/03/19 | 17:10:58 | Label stack9 is full [11/11 points]
+2023/03/19 | 17:10:58 | Label controller recieved up
+2023/03/19 | 17:10:58 | Label controller set to frame 9
+2023/03/19 | 17:11:03 | Main controller recieved up
+2023/03/19 | 17:11:03 | Label controller recieved up
+2023/03/19 | 17:11:03 | Label controller set to frame 9
+2023/03/19 | 17:11:06 | Main controller recieved down
+2023/03/19 | 17:11:06 | Label controller recieved down
+2023/03/19 | 17:11:06 | Label controller set to frame 8
+2023/03/19 | 17:11:06 | Main controller recieved down
+2023/03/19 | 17:11:06 | Label controller recieved down
+2023/03/19 | 17:11:06 | Label controller set to frame 7
+2023/03/19 | 17:11:06 | Main controller recieved down
+2023/03/19 | 17:11:06 | Label controller recieved down
+2023/03/19 | 17:11:06 | Label controller set to frame 6
+2023/03/19 | 17:11:07 | Main controller recieved down
+2023/03/19 | 17:11:07 | Label controller recieved down
+2023/03/19 | 17:11:07 | Label controller set to frame 5
+2023/03/19 | 17:11:07 | Main controller recieved down
+2023/03/19 | 17:11:07 | Label controller recieved down
+2023/03/19 | 17:11:07 | Label controller set to frame 4
+2023/03/19 | 17:11:07 | Main controller recieved down
+2023/03/19 | 17:11:07 | Label controller recieved down
+2023/03/19 | 17:11:07 | Label controller set to frame 3
+2023/03/19 | 17:11:07 | Main controller recieved down
+2023/03/19 | 17:11:07 | Label controller recieved down
+2023/03/19 | 17:11:07 | Label controller set to frame 2
+2023/03/19 | 17:11:08 | Main controller recieved down
+2023/03/19 | 17:11:08 | Label controller recieved down
+2023/03/19 | 17:11:08 | Label controller set to frame 1
+2023/03/19 | 17:11:08 | Main controller recieved down
+2023/03/19 | 17:11:08 | Label controller recieved down
+2023/03/19 | 17:11:08 | Label controller set to frame 0
+2023/03/19 | 17:11:08 | Main controller recieved down
+2023/03/19 | 17:11:08 | Label controller recieved down
+2023/03/19 | 17:11:08 | Label controller set to frame 0
+2023/03/19 | 17:11:09 | Main controller recieved up
+2023/03/19 | 17:11:09 | Label controller recieved up
+2023/03/19 | 17:11:09 | Label controller set to frame 1
+2023/03/19 | 17:11:09 | Main controller recieved up
+2023/03/19 | 17:11:09 | Label controller recieved up
+2023/03/19 | 17:11:09 | Label controller set to frame 2
+2023/03/19 | 17:11:09 | Main controller recieved up
+2023/03/19 | 17:11:09 | Label controller recieved up
+2023/03/19 | 17:11:09 | Label controller set to frame 3
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 4
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 5
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 6
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 7
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 8
+2023/03/19 | 17:11:10 | Main controller recieved up
+2023/03/19 | 17:11:10 | Label controller recieved up
+2023/03/19 | 17:11:10 | Label controller set to frame 9
+2023/03/19 | 17:11:11 | Main controller recieved up
+2023/03/19 | 17:11:11 | Label controller recieved up
+2023/03/19 | 17:11:11 | Label controller set to frame 9
+2023/03/19 | 17:11:11 | Main controller recieved up
+2023/03/19 | 17:11:11 | Label controller recieved up
+2023/03/19 | 17:11:11 | Label controller set to frame 9
+2023/03/19 | 17:11:11 | Main controller recieved down
+2023/03/19 | 17:11:11 | Label controller recieved down
+2023/03/19 | 17:11:11 | Label controller set to frame 8
+2023/03/19 | 17:11:11 | Main controller recieved down
+2023/03/19 | 17:11:11 | Label controller recieved down
+2023/03/19 | 17:11:11 | Label controller set to frame 7
+2023/03/19 | 17:11:11 | Main controller recieved down
+2023/03/19 | 17:11:11 | Label controller recieved down
+2023/03/19 | 17:11:11 | Label controller set to frame 6
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 5
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 4
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 3
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 2
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 1
+2023/03/19 | 17:11:12 | Main controller recieved down
+2023/03/19 | 17:11:12 | Label controller recieved down
+2023/03/19 | 17:11:12 | Label controller set to frame 0
+2023/03/19 | 17:11:13 | Main controller recieved down
+2023/03/19 | 17:11:13 | Label controller recieved down
+2023/03/19 | 17:11:13 | Label controller set to frame 0
+2023/03/19 | 17:11:13 | Main controller recieved down
+2023/03/19 | 17:11:13 | Label controller recieved down
+2023/03/19 | 17:11:13 | Label controller set to frame 0
+2023/03/19 | 17:11:13 | Main controller recieved down
+2023/03/19 | 17:11:13 | Label controller recieved down
+2023/03/19 | 17:11:13 | Label controller set to frame 0
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 1
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 2
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 3
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 4
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 5
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 6
+2023/03/19 | 17:11:14 | Main controller recieved up
+2023/03/19 | 17:11:14 | Label controller recieved up
+2023/03/19 | 17:11:14 | Label controller set to frame 7
+2023/03/19 | 17:11:16 | Main controller recieved next
+2023/03/19 | 17:11:16 | Label controller recieved next
+2023/03/19 | 17:11:16 | Label stack0 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack1 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack2 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack3 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack4 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack5 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack6 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack7 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack8 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label stack9 is full [11/11 points]
+2023/03/19 | 17:11:16 | Label is complete
+2023/03/19 | 17:11:16 | Label encoded as byte sequence
+2023/03/19 | 17:11:16 | Encoding exported to label.mvdl
