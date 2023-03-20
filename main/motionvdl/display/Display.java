@@ -44,8 +44,7 @@ public class Display {
 	private final List<Line> connectors;
 	private final RadioButton toggleAutoBut;
 	private final Rectangle opaqueSquare;
-	private final TextField widthTextField;
-	private final TextField heightTextField;
+	private final TextField resTextField;
 
 	/**
 	 * Display constructor.
@@ -90,9 +89,6 @@ public class Display {
 		this.toggleAutoBut.setLayoutX(500);
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
-		/*this.toggleAutoBut.setOnAction(
-				event ->    // Controller reference here (if needed?)
-		);*/
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
@@ -106,6 +102,7 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
+		// Button for undoing an incorrect point placement
 		this.undoBut = new Button("Undo");
 		this.undoBut.setId("buttonID");
 		this.undoBut.setLayoutX(475);
@@ -138,23 +135,14 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
-		// TextField for specifying resolution width
-		this.widthTextField = new TextField();
-		this.widthTextField.setId("textFieldID");
-		this.widthTextField.setLayoutX(475);
-		this.widthTextField.setLayoutY(270);
-		this.widthTextField.setMinSize(5, 5);
-		this.widthTextField.setMaxWidth(78);
-		this.primaryPane.getChildren().add(this.widthTextField);
-
-		// TextField for specifying resolution height
-		this.heightTextField = new TextField();
-		this.heightTextField.setId("textFieldID");
-		this.heightTextField.setLayoutX(557);
-		this.heightTextField.setLayoutY(270);
-		this.heightTextField.setMinSize(5, 5);
-		this.heightTextField.setMaxWidth(78);
-		this.primaryPane.getChildren().add(this.heightTextField);
+		// TextField for specifying target resolution
+		this.resTextField = new TextField();
+		this.resTextField.setId("textFieldID");
+		this.resTextField.setLayoutX(520);
+		this.resTextField.setLayoutY(270);
+		this.resTextField.setMinSize(5, 5);
+		this.resTextField.setMaxWidth(70);
+		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
 		this.messageLab = new Label("Message area");
@@ -267,9 +255,9 @@ public class Display {
 		this.points.get(pointNum).setRadius(7);
 		this.points.get(pointNum).setCenterX(x);
 		this.points.get(pointNum).setCenterY(y);
-		if (pointNum > 0) {     //
-			drawConnector();    // Ideally should be moved to LabelController
-		}                       //
+		if (pointNum > 0) {             //
+			drawConnector();            // Ideally should be moved to LabelController
+		}                               //
 		this.primaryPane.getChildren().add(this.points.get(pointNum));
 	}
 
@@ -379,16 +367,13 @@ public class Display {
 
 	/**
 	 * Process a user's input for target resolution, and return only if valid.
-	 * @return A Point containing the x and y properties for the resolution
+	 * @return An int specifying the target resolution
 	 */
-	public Point getTarget() {
+	public int getTarget() {
 		try {
-			int widthInt = Integer.parseInt(this.widthTextField.getText());
-			int heightInt = Integer.parseInt(this.heightTextField.getText());
-			System.out.println(widthInt + ", " + heightInt);
-			return (new Point(widthInt, heightInt));
+			return Integer.parseInt(this.resTextField.getText());
 		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
+			throw new NumberFormatException(e + "");
 		}
 	}
 
