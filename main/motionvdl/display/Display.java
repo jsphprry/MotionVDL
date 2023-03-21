@@ -100,6 +100,7 @@ public class Display {
 		this.sliderY = new Slider();
 		this.sliderY.setId("sliderID");
 		this.sliderY.setOrientation(Orientation.VERTICAL);
+		this.sliderY.setRotate(180);
 		this.sliderY.setLayoutX(455);
 		this.sliderY.setLayoutY(40);
 		this.sliderY.setMinHeight(400);
@@ -348,6 +349,13 @@ public class Display {
 		// TODO: This is called anytime there is a value change with any Slider, so
 		// here, need to send controller current details on the ViewPort's current
 		// x and y co-ordinates, and width and height, relative to the original image
+
+		// Normalised points
+		double x = imageView.getViewport().getMinX() / imageView.getImage().getWidth();
+		double y = imageView.getViewport().getMinY() / imageView.getImage().getHeight();
+
+		double width = imageView.getViewport().getWidth();
+		double height = imageView.getViewport().getHeight();
 	}
 
 	/**
