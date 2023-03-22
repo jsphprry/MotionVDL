@@ -6,6 +6,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -85,6 +87,7 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
+		// X-axis directional crop Slider
 		this.sliderX = new Slider();
 		this.sliderX.setId("sliderID");
 		this.sliderX.setLayoutX(40);
@@ -97,6 +100,7 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(sliderX);
 
+		// Y-axis directional crop Slider
 		this.sliderY = new Slider();
 		this.sliderY.setId("sliderID");
 		this.sliderY.setOrientation(Orientation.VERTICAL);
@@ -112,6 +116,7 @@ public class Display {
 		this.primaryPane.getChildren().add(this.sliderY);
 		System.out.println(this.sliderY.getMinWidth());
 
+		// Slider for changing zoom of cropping ViewPort
 		this.sliderZoom = new Slider();
 		this.sliderZoom.setId("sliderID");
 		this.sliderZoom.setOrientation(Orientation.VERTICAL);
@@ -184,6 +189,11 @@ public class Display {
 		this.resTextField.setLayoutY(270);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
+		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				resTextField.setText(newValue.replaceAll("\\D", ""));
+			}
+		});
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
@@ -282,7 +292,7 @@ public class Display {
 	}
 
 	/**
-	 * TODO: Write JavaDoc comment
+	 * Sets the initial ViewPort based on the resolution of the Image
 	 */
 	public void setViewPort() {
 		// Handle a landscape Image
@@ -320,8 +330,8 @@ public class Display {
 	}
 
 	/**
-	 * TODO: Write JavaDoc comment
-	 * @param slider
+	 * Changes the current state of the ViewPort based on a Slider's movement.
+	 * @param slider Which slider's value has changed
 	 */
 	public void sliderChange(String slider) {
 		switch (slider) {
@@ -485,15 +495,11 @@ public class Display {
 	}
 
 	/**
-	 * Process a user's input for target resolution, and return only if valid.
+	 * Process a user's input for target resolution.
 	 * @return An int specifying the target resolution
 	 */
 	public int getTarget() {
-		try {
-			return Integer.parseInt(this.resTextField.getText());
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException(e + "");
-		}
+		return Integer.parseInt(this.resTextField.getText());
 	}
 
 	/**
@@ -510,8 +516,8 @@ public class Display {
 	}
 	
 	/**
-	 * TODO: Write JavaDoc comment
-	 * @return
+	 * If the radio button is selected, returns true. If not, returns false.
+	 * @return Current state of auto radio button
 	 */
 	public boolean getRadio() {
 		return this.toggleAutoBut.isSelected();
