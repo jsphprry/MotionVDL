@@ -522,4 +522,9 @@ public class Display {
 	public boolean getRadio() {
 		return this.toggleAutoBut.isSelected();
 	}
+
+	public int[] getCropFrame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -10,12 +10,6 @@ import motionvdl.model.Video;
  */
 public class VideoController extends Controller {
 	
-	// variables
-	private double ax;  // top-left norm x axis
-	private double ay;  // top-left norm y axis
-	private double cfs; // square crop frame edge size
-	private int click;  // click counter
-	
 	/**
 	 * Construct crop controller
 	 * @param mainController The main controller
@@ -32,9 +26,6 @@ public class VideoController extends Controller {
 		linkedController = mainController;
 		display = mainDisplay;
 		
-		// setup variables
-		click = 0;
-		
 		// debug trace
 		Debug.trace(String.format("Created CropController '%s'", debugTitle));
 	}
@@ -45,7 +36,7 @@ public class VideoController extends Controller {
 	 * @param x The normalised x axis of the click event
 	 * @param y The normalised y axis of the click event
 	 */
-	public void click(double x, double y) {
+	/*public void click(double x, double y) {
 		
 		// increment click counter
 		click += 1;
@@ -94,7 +85,7 @@ public class VideoController extends Controller {
 			click = 0;
 			display.clearGeometry();
 		}
-	}
+	}*/
 	
 	
 	/**
@@ -106,15 +97,15 @@ public class VideoController extends Controller {
 		Debug.trace(debugTitle+" recieved next");
 		
 		// get target res and scale crop frame
-		int targetRes = 50;//display.getTarget();
-		int cropX = (int) (ax * video.width);
-		int cropY = (int) (ay * video.height);
-		int cropRes = (int) (cfs * Math.min(video.height, video.width));
+		int targetRes = display.getTarget();
+		int[] cfd = display.getCropFrame();
+		int cropX = cfd[0];
+		int cropY = cfd[1];
+		int cropRes = cfd[2];
 		
 		// proceed if crop frame and target resolution are valid
-		boolean validCF = (0 < click && click <= 2);
 		boolean validTR = (0 < targetRes && targetRes <= cropRes);
-		if (validCF && validTR) {
+		if (validTR) {
 			
 			// crop scale and color video
 			video = video.squareCrop(cropX, cropY, cropRes).downScale(targetRes, targetRes).greyScale();
@@ -130,15 +121,9 @@ public class VideoController extends Controller {
 			linkedController.pass(temp);
 			//// end of duplicate
 		
-		// skip and warn if invalid target resolution
-		} else if (validCF && !validTR) {
-			String message = String.format("Invalid target resolution [targetRes=%d, cropRes=%d]", targetRes, cropRes);
-			Debug.trace(debugTitle+" ignored next: "+message);
-			display.setMessage(message);
-		
-		// skip and warn if invalid crop frame
+		// skip and warn invalid target resolution
 		} else {
-			String message = String.format("Undefined crop frame [click=%d]", click);
+			String message = String.format("Invalid target resolution [targetRes=%d, cropRes=%d]", targetRes, cropRes);
 			Debug.trace(debugTitle+" ignored next: "+message);
 			display.setMessage(message);
 		}

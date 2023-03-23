@@ -39,6 +39,10 @@
     -fx-font: 10pt "Arial"
 }
 
+#sliderID {
+
+}
+
 #textFieldID {
     -fx-font: 12pt "Arial";
     -fx-cursor: text;
