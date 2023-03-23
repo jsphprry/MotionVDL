@@ -149,7 +149,7 @@ public class LabelController extends Controller {
 		
 		// setup label
 		label = new Label(tempVideo.length, MAX_POINTS);
-		display.hideSliders();
+		//display.hideSliders();
 		
 		// pass control
 		super.pass(tempVideo);

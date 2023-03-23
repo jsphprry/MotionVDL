@@ -112,7 +112,7 @@ public class Video extends Encoding {
 		// throw invalid parameters
 		if (0 > x || x >= width) throw new IllegalArgumentException("Invalid x coord");
 		if (0 > y || y >= height) throw new IllegalArgumentException("Invalid y coord");
-		if (0 > size || size >= Math.min(height,width)) throw new IllegalArgumentException("Invalid size");
+		if (0 > size || size >= Math.min(height-y,width-x)) throw new IllegalArgumentException("Invalid size");
 		
 		// setup work-buffer
 		Color[][][] workBuffer = new Color[length][size][size];
