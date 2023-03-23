@@ -6,11 +6,12 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Orientation;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -44,8 +45,10 @@ public class Display {
 	private final List<Line> connectors;
 	private final RadioButton toggleAutoBut;
 	private final Rectangle opaqueSquare;
-	private final TextField widthTextField;
-	private final TextField heightTextField;
+	private final Slider sliderX;
+	private final Slider sliderY;
+	private final Slider sliderZoom;
+	private final TextField resTextField;
 
 	/**
 	 * Display constructor.
@@ -73,10 +76,10 @@ public class Display {
 		// ImageView to show current frame
 		this.imageView = new ImageView();
 		this.imageView.setId("imageViewID");
-		this.imageView.setLayoutX(15);
+		this.imageView.setLayoutX(40);
 		this.imageView.setLayoutY(40);
-		this.imageView.setFitHeight(420);
-		this.imageView.setFitWidth(420);
+		this.imageView.setFitHeight(400);
+		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
 				event -> receiver.click(event.getX() / this.imageView.getFitWidth(),
@@ -84,21 +87,61 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.imageView);
 
+		// X-axis directional crop Slider
+		this.sliderX = new Slider();
+		this.sliderX.setId("sliderID");
+		this.sliderX.setLayoutX(40);
+		this.sliderX.setLayoutY(450);
+		this.sliderX.setMinWidth(400);
+		this.sliderX.setMin(0);
+		this.sliderX.setMax(0);
+		this.sliderX.valueProperty().addListener(
+				event -> sliderChange("Horizontal")
+		);
+		this.primaryPane.getChildren().add(sliderX);
+
+		// Y-axis directional crop Slider
+		this.sliderY = new Slider();
+		this.sliderY.setId("sliderID");
+		this.sliderY.setOrientation(Orientation.VERTICAL);
+		this.sliderY.setRotate(180);
+		this.sliderY.setLayoutX(455);
+		this.sliderY.setLayoutY(40);
+		this.sliderY.setMinHeight(400);
+		this.sliderY.setMin(0);
+		this.sliderY.setMax(0);
+		this.sliderY.valueProperty().addListener(
+				event -> sliderChange("Vertical")
+		);
+		this.primaryPane.getChildren().add(this.sliderY);
+		System.out.println(this.sliderY.getMinWidth());
+
+		// Slider for changing zoom of cropping ViewPort
+		this.sliderZoom = new Slider();
+		this.sliderZoom.setId("sliderID");
+		this.sliderZoom.setOrientation(Orientation.VERTICAL);
+		this.sliderZoom.setLayoutX(15);
+		this.sliderZoom.setLayoutY(40);
+		this.sliderZoom.setMinHeight(400);
+		this.sliderZoom.setMin(0);
+		this.sliderZoom.setMax(0);
+		this.sliderZoom.valueProperty().addListener(
+				event -> sliderChange("Zoom")
+		);
+		this.primaryPane.getChildren().add(sliderZoom);
+
 		// Radio button to toggle automatic mode
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
 		this.toggleAutoBut.setId("radioID");
 		this.toggleAutoBut.setLayoutX(500);
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
-		/*this.toggleAutoBut.setOnAction(
-				event ->    // Controller reference here (if needed?)
-		);*/
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
 		this.processBut = new Button("Next stage");
 		this.processBut.setId("buttonID");
-		this.processBut.setLayoutX(475);
+		this.processBut.setLayoutX(480);
 		this.processBut.setLayoutY(90);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
@@ -106,9 +149,10 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
+		// Button for undoing an incorrect point placement
 		this.undoBut = new Button("Undo");
 		this.undoBut.setId("buttonID");
-		this.undoBut.setLayoutX(475);
+		this.undoBut.setLayoutX(480);
 		this.undoBut.setLayoutY(150);
 		this.undoBut.setMinSize(160, 50);
 		this.undoBut.setOnAction(
@@ -119,7 +163,7 @@ public class Display {
 		// Button for switching to previous frame
 		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
-		this.prevBut.setLayoutX(475);
+		this.prevBut.setLayoutX(480);
 		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
@@ -130,7 +174,7 @@ public class Display {
 		// Button for switching to next frame
 		this.nextBut = new Button("->");
 		this.nextBut.setId("buttonID");
-		this.nextBut.setLayoutX(557);
+		this.nextBut.setLayoutX(562);
 		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
@@ -138,28 +182,24 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
-		// TextField for specifying resolution width
-		this.widthTextField = new TextField();
-		this.widthTextField.setId("textFieldID");
-		this.widthTextField.setLayoutX(475);
-		this.widthTextField.setLayoutY(270);
-		this.widthTextField.setMinSize(5, 5);
-		this.widthTextField.setMaxWidth(78);
-		this.primaryPane.getChildren().add(this.widthTextField);
-
-		// TextField for specifying resolution height
-		this.heightTextField = new TextField();
-		this.heightTextField.setId("textFieldID");
-		this.heightTextField.setLayoutX(557);
-		this.heightTextField.setLayoutY(270);
-		this.heightTextField.setMinSize(5, 5);
-		this.heightTextField.setMaxWidth(78);
-		this.primaryPane.getChildren().add(this.heightTextField);
+		// TextField for specifying target resolution
+		this.resTextField = new TextField();
+		this.resTextField.setId("textFieldID");
+		this.resTextField.setLayoutX(525);
+		this.resTextField.setLayoutY(270);
+		this.resTextField.setMinSize(5, 5);
+		this.resTextField.setMaxWidth(70);
+		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				resTextField.setText(newValue.replaceAll("\\D", ""));
+			}
+		});
+		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
 		this.messageLab = new Label("Message area");
 		this.messageLab.setId("messageLabID");
-		this.messageLab.setLayoutX(475);
+		this.messageLab.setLayoutX(480);
 		this.messageLab.setLayoutY(310);
 		this.messageLab.setMaxWidth(160);
 		this.messageLab.setWrapText(true);
@@ -240,6 +280,7 @@ public class Display {
 		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
 
 		this.imageView.setImage(wImage);
+		setViewPort();                  // TODO: Should ideally be in controller and only occur during cropping stage
 	}
 
 	/**
@@ -250,6 +291,82 @@ public class Display {
 		this.messageLab.setText(string);
 	}
 
+	/**
+	 * Sets the initial ViewPort based on the resolution of the Image
+	 */
+	public void setViewPort() {
+		// Handle a landscape Image
+		if (this.imageView.getImage().getWidth() > this.imageView.getImage().getHeight()) {
+			this.imageView.setViewport(new Rectangle2D(
+					(this.imageView.getImage().getWidth() / 2) - (this.imageView.getImage().getHeight() / 2), 0,
+					this.imageView.getImage().getHeight(), this.imageView.getImage().getHeight()));
+			this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
+			this.sliderX.setValue(this.sliderX.getMax() / 2);
+			this.sliderY.setValue(this.sliderY.getMax() / 2);
+			this.sliderZoom.setMin(this.imageView.getImage().getHeight() * 0.2);
+			this.sliderZoom.setMax(this.imageView.getImage().getHeight());
+			this.sliderZoom.setValue(sliderZoom.getMax());
+
+		// Handle a portrait Image
+		} else if (this.imageView.getImage().getWidth() < this.imageView.getImage().getHeight()) {
+			this.imageView.setViewport(new Rectangle2D(
+					(this.imageView.getImage().getHeight() / 2) - (this.imageView.getImage().getWidth() / 2), 0,
+					this.imageView.getImage().getWidth(), this.imageView.getImage().getWidth()));
+			this.sliderX.setValue(this.sliderX.getMax() / 2);
+			this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
+			this.sliderY.setValue(this.sliderY.getMax() / 2);
+			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.2);
+			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
+			this.sliderZoom.setValue(sliderZoom.getMax());
+
+		// Handle a square Image
+		} else {
+			this.imageView.setViewport(new Rectangle2D(
+					0, 0, this.imageView.getImage().getWidth(), this.imageView.getImage().getHeight()));
+			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.2);
+			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
+			this.sliderZoom.setValue(sliderZoom.getMax());
+		}
+	}
+
+	/**
+	 * Changes the current state of the ViewPort based on a Slider's movement.
+	 * @param slider Which slider's value has changed
+	 */
+	public void sliderChange(String slider) {
+		switch (slider) {
+			case "Horizontal" -> imageView.setViewport(
+					new Rectangle2D(sliderX.getValue(),
+							imageView.getViewport().getMinY(),
+							imageView.getViewport().getWidth(),
+							imageView.getViewport().getHeight()));
+
+			case "Vertical" -> imageView.setViewport(
+					new Rectangle2D(imageView.getViewport().getMinX(),
+							sliderY.getValue(),
+							imageView.getViewport().getWidth(),
+							imageView.getViewport().getHeight()));
+
+			case "Zoom" -> { imageView.setViewport(
+					new Rectangle2D(sliderX.getValue(),
+							sliderY.getValue(),
+							sliderZoom.getValue(),
+							sliderZoom.getValue()));
+				sliderX.setMax(imageView.getImage().getWidth() - imageView.getViewport().getWidth());
+				sliderY.setMax(imageView.getImage().getHeight() - imageView.getViewport().getHeight());
+			}
+		}
+		// TODO: This is called anytime there is a value change with any Slider, so
+		// here, need to send controller current details on the ViewPort's current
+		// x and y co-ordinates, and width and height, relative to the original image
+
+		// Normalised points
+		double x = imageView.getViewport().getMinX() / imageView.getImage().getWidth();
+		double y = imageView.getViewport().getMinY() / imageView.getImage().getHeight();
+
+		double width = imageView.getViewport().getWidth();
+		double height = imageView.getViewport().getHeight();
+	}
 
 	/**
 	 * Draw a point on the ImageView, using a Circle object.
@@ -268,7 +385,7 @@ public class Display {
 		this.points.get(pointNum).setCenterX(x);
 		this.points.get(pointNum).setCenterY(y);
 		if (pointNum > 0) {     //
-			drawConnector();    // Ideally should be moved to LabelController
+			drawConnector();    // TODO: Ideally should be moved to LabelController so only draws during labelling stage
 		}                       //
 		this.primaryPane.getChildren().add(this.points.get(pointNum));
 	}
@@ -378,18 +495,11 @@ public class Display {
 	}
 
 	/**
-	 * Process a user's input for target resolution, and return only if valid.
-	 * @return A Point containing the x and y properties for the resolution
+	 * Process a user's input for target resolution.
+	 * @return An int specifying the target resolution
 	 */
-	public Point getTarget() {
-		try {
-			int widthInt = Integer.parseInt(this.widthTextField.getText());
-			int heightInt = Integer.parseInt(this.heightTextField.getText());
-			System.out.println(widthInt + ", " + heightInt);
-			return (new Point(widthInt, heightInt));
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public int getTarget() {
+		return Integer.parseInt(this.resTextField.getText());
 	}
 
 	/**
@@ -406,8 +516,8 @@ public class Display {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * If the radio button is selected, returns true. If not, returns false.
+	 * @return Current state of auto radio button
 	 */
 	public boolean getRadio() {
 		return this.toggleAutoBut.isSelected();
