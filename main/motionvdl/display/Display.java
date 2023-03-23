@@ -368,6 +368,13 @@ public class Display {
 		double height = imageView.getViewport().getHeight();
 	}
 
+	public int[] getCropFrame() {
+		int x = (int) (imageView.getViewport().getMinX());
+		int y = (int) (imageView.getViewport().getMinY());
+		int z = (int) (imageView.getViewport().getWidth());
+		return new int[]{x, y, z};
+	}
+
 	/**
 	 * Draw a point on the ImageView, using a Circle object.
 	 * @param x Normalised x co-ordinate of the user's click on the ImageView
@@ -521,10 +528,5 @@ public class Display {
 	 */
 	public boolean getRadio() {
 		return this.toggleAutoBut.isSelected();
-	}
-
-	public int[] getCropFrame() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
