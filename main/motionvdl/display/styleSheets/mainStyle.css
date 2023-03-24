@@ -2,7 +2,7 @@
 
 #buttonID {
     -fx-cursor: hand;
-    -fx-background-radius: 15px;
+    -fx-background-radius: 15pt;
 }
 
 #cropLineID {
@@ -36,10 +36,14 @@
 }
 
 #radioID {
-    -fx-font: 10pt "Arial"
+    -fx-font: 10pt "Arial";
 }
 
-#sliderID {
+#sliderID .thumb {
+
+}
+
+#sliderID .track {
 
 }
 
