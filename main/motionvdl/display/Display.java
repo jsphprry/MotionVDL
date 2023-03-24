@@ -5,9 +5,8 @@ import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -114,7 +113,6 @@ public class Display {
 				event -> sliderChange("Vertical")
 		);
 		this.primaryPane.getChildren().add(this.sliderY);
-		System.out.println(this.sliderY.getMinWidth());
 
 		// Slider for changing zoom of cropping ViewPort
 		this.sliderZoom = new Slider();
@@ -191,7 +189,11 @@ public class Display {
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\d*")) {
-				resTextField.setText(newValue.replaceAll("\\D", ""));
+				this.resTextField.setText(newValue.replaceAll("\\D", ""));
+			}
+			if (!Objects.equals(this.resTextField.getText(), "") &&
+					this.sliderZoom.getValue() == Math.floor(this.sliderZoom.getValue())) {
+				this.sliderZoom.setValue(getTarget());
 			}
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
@@ -250,12 +252,12 @@ public class Display {
 	 */
 	public void setFrame(Color[][] colorArray) {
 		// Convert color array to awt.BufferedImage
-		int width = colorArray.length;
-		int height = colorArray[0].length;
+		int height = colorArray.length;
+		int width = colorArray[0].length;
 		BufferedImage bImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				Color color = colorArray[x][y];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				Color color = colorArray[y][x];
 				int rgb = color.getRGB();
 				bImage.setRGB(x, y, rgb);
 			}
@@ -280,7 +282,6 @@ public class Display {
 		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
 
 		this.imageView.setImage(wImage);
-		setViewPort();                  // TODO: Should ideally be in controller and only occur during cropping stage
 	}
 
 	/**
@@ -295,6 +296,13 @@ public class Display {
 	 * Sets the initial ViewPort based on the resolution of the Image
 	 */
 	public void setViewPort() {
+		this.sliderX.setMin(0);
+		this.sliderX.setMax(0);
+		this.sliderY.setMin(0);
+		this.sliderY.setMax(0);
+		this.sliderZoom.setMin(0);
+		this.sliderZoom.setMax(0);
+
 		// Handle a landscape Image
 		if (this.imageView.getImage().getWidth() > this.imageView.getImage().getHeight()) {
 			this.imageView.setViewport(new Rectangle2D(
@@ -303,7 +311,7 @@ public class Display {
 			this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 			this.sliderX.setValue(this.sliderX.getMax() / 2);
 			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getHeight() * 0.2);
+			this.sliderZoom.setMin(this.imageView.getImage().getHeight() * 0.01);
 			this.sliderZoom.setMax(this.imageView.getImage().getHeight());
 			this.sliderZoom.setValue(sliderZoom.getMax());
 
@@ -315,7 +323,7 @@ public class Display {
 			this.sliderX.setValue(this.sliderX.getMax() / 2);
 			this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
 			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.2);
+			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
 			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
 			this.sliderZoom.setValue(sliderZoom.getMax());
 
@@ -323,7 +331,7 @@ public class Display {
 		} else {
 			this.imageView.setViewport(new Rectangle2D(
 					0, 0, this.imageView.getImage().getWidth(), this.imageView.getImage().getHeight()));
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.2);
+			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
 			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
 			this.sliderZoom.setValue(sliderZoom.getMax());
 		}
@@ -335,44 +343,28 @@ public class Display {
 	 */
 	public void sliderChange(String slider) {
 		switch (slider) {
-			case "Horizontal" -> imageView.setViewport(
-					new Rectangle2D(sliderX.getValue(),
-							imageView.getViewport().getMinY(),
-							imageView.getViewport().getWidth(),
-							imageView.getViewport().getHeight()));
+			case "Horizontal" -> this.imageView.setViewport(
+					new Rectangle2D(this.sliderX.getValue(),
+							this.imageView.getViewport().getMinY(),
+							this.imageView.getViewport().getWidth(),
+							this.imageView.getViewport().getHeight()));
 
-			case "Vertical" -> imageView.setViewport(
-					new Rectangle2D(imageView.getViewport().getMinX(),
-							sliderY.getValue(),
-							imageView.getViewport().getWidth(),
-							imageView.getViewport().getHeight()));
+			case "Vertical" -> this.imageView.setViewport(
+					new Rectangle2D(this.imageView.getViewport().getMinX(),
+							this.sliderY.getValue(),
+							this.imageView.getViewport().getWidth(),
+							this.imageView.getViewport().getHeight()));
 
-			case "Zoom" -> { imageView.setViewport(
-					new Rectangle2D(sliderX.getValue(),
-							sliderY.getValue(),
-							sliderZoom.getValue(),
-							sliderZoom.getValue()));
-				sliderX.setMax(imageView.getImage().getWidth() - imageView.getViewport().getWidth());
-				sliderY.setMax(imageView.getImage().getHeight() - imageView.getViewport().getHeight());
+			case "Zoom" -> { this.imageView.setViewport(
+					new Rectangle2D(this.sliderX.getValue(),
+							this.sliderY.getValue(),
+							this.sliderZoom.getValue(),
+							this.sliderZoom.getValue()));
+				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
+				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
+				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
 			}
 		}
-		// TODO: This is called anytime there is a value change with any Slider, so
-		// here, need to send controller current details on the ViewPort's current
-		// x and y co-ordinates, and width and height, relative to the original image
-
-		// Normalised points
-		double x = imageView.getViewport().getMinX() / imageView.getImage().getWidth();
-		double y = imageView.getViewport().getMinY() / imageView.getImage().getHeight();
-
-		double width = imageView.getViewport().getWidth();
-		double height = imageView.getViewport().getHeight();
-	}
-
-	public int[] getCropFrame() {
-		int x = (int) (imageView.getViewport().getMinX());
-		int y = (int) (imageView.getViewport().getMinY());
-		int z = (int) (imageView.getViewport().getWidth());
-		return new int[]{x, y, z};
 	}
 
 	/**
@@ -391,9 +383,7 @@ public class Display {
 		this.points.get(pointNum).setRadius(7);
 		this.points.get(pointNum).setCenterX(x);
 		this.points.get(pointNum).setCenterY(y);
-		if (pointNum > 0) {     //
-			drawConnector();    // TODO: Ideally should be moved to LabelController so only draws during labelling stage
-		}                       //
+		if (pointNum > 0) drawConnector();
 		this.primaryPane.getChildren().add(this.points.get(pointNum));
 	}
 
@@ -439,56 +429,56 @@ public class Display {
 		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
 
-	/**
-	 * Draw a diagonal Line object to visualise cropping process.
-	 * @param ax x co-ordinate of the user's click on the ImageView
-	 * @param ay y co-ordinate of the user's click on the ImageView
-	 */
-	public void drawDiagonal(double ax, double ay) {
-		// Convert normalised co-ordinates to relative
-		ax = ax * this.imageView.getFitWidth();
-		ay = ay * this.imageView.getFitHeight();
+//	/**
+//	 * Draw a diagonal Line object to visualise cropping process.
+//	 * @param ax x co-ordinate of the user's click on the ImageView
+//	 * @param ay y co-ordinate of the user's click on the ImageView
+//	 */
+//	public void drawDiagonal(double ax, double ay) {
+//		// Convert normalised co-ordinates to relative
+//		ax = ax * this.imageView.getFitWidth();
+//		ay = ay * this.imageView.getFitHeight();
+//
+//		double c = ay - ax;
+//		if (ax > ay) {
+//			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
+//			this.cropLine.setStartY(this.imageView.getLayoutY());
+//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
+//		} else if (ax < ay) {
+//			this.cropLine.setStartX(this.imageView.getLayoutX());
+//			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
+//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
+//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
+//		} else {
+//			this.cropLine.setStartX(this.imageView.getLayoutX());
+//			this.cropLine.setStartY(this.imageView.getLayoutY());
+//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
+//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
+//		}
+//		this.primaryPane.getChildren().add(this.cropLine);
+//	}
 
-		double c = ay - ax;
-		if (ax > ay) {
-			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
-			this.cropLine.setStartY(this.imageView.getLayoutY());
-			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
-		} else if (ax < ay) {
-			this.cropLine.setStartX(this.imageView.getLayoutX());
-			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
-			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
-			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-		} else {
-			this.cropLine.setStartX(this.imageView.getLayoutX());
-			this.cropLine.setStartY(this.imageView.getLayoutY());
-			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-		}
-		this.primaryPane.getChildren().add(this.cropLine);
-	}
-
-	/**
-	 * Draw an opaque Rectangle object to visualise cropping process.
-	 * @param ax x co-ordinate of the top-left corner of the rectangle
-	 * @param ay y co-ordinate of the top-left corner of the rectangle
-	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
-	 * @param by y co-ordinate of the bottom-right corner of the rectangle
-	 */
-	public void drawRectangle(double ax, double ay, double bx, double by) {
-		// Convert normalised co-ordinates to relative
-		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-
-		this.opaqueSquare.setLayoutX(ax);
-		this.opaqueSquare.setLayoutY(ay);
-		this.opaqueSquare.setWidth(bx - ax);
-		this.opaqueSquare.setHeight(by - ay);
-		this.primaryPane.getChildren().add(opaqueSquare);
-	}
+//	/**
+//	 * Draw an opaque Rectangle object to visualise cropping process.
+//	 * @param ax x co-ordinate of the top-left corner of the rectangle
+//	 * @param ay y co-ordinate of the top-left corner of the rectangle
+//	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
+//	 * @param by y co-ordinate of the bottom-right corner of the rectangle
+//	 */
+//	public void drawRectangle(double ax, double ay, double bx, double by) {
+//		// Convert normalised co-ordinates to relative
+//		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
+//		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
+//		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
+//		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
+//
+//		this.opaqueSquare.setLayoutX(ax);
+//		this.opaqueSquare.setLayoutY(ay);
+//		this.opaqueSquare.setWidth(bx - ax);
+//		this.opaqueSquare.setHeight(by - ay);
+//		this.primaryPane.getChildren().add(opaqueSquare);
+//	}
 
 	/**
 	 * Clear all Lines, Circles, and Rectangle objects from the Pane.
@@ -499,6 +489,11 @@ public class Display {
 		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
+	}
+
+	public void alterForLabelling() {
+		this.primaryPane.getChildren().removeAll(sliderX, sliderY, sliderZoom);
+		this.imageView.setViewport(null);
 	}
 
 	/**
@@ -528,5 +523,12 @@ public class Display {
 	 */
 	public boolean getRadio() {
 		return this.toggleAutoBut.isSelected();
+	}
+
+	public int[] getCropFrame() {
+		int x = (int) (this.imageView.getViewport().getMinX());
+		int y = (int) (this.imageView.getViewport().getMinY());
+		int z = (int) (this.imageView.getViewport().getWidth());
+		return new int[]{x, y, z};
 	}
 }
