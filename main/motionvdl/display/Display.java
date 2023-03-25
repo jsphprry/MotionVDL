@@ -103,7 +103,7 @@ public class Display {
 		this.sliderX.valueProperty().addListener(
 				event -> sliderChange("Horizontal")
 		);
-		this.primaryPane.getChildren().add(sliderX);
+		this.primaryPane.getChildren().add(this.sliderX);
 
 		// Y-axis directional crop Slider
 		this.sliderY = new Slider();
@@ -132,7 +132,7 @@ public class Display {
 		this.sliderZoom.valueProperty().addListener(
 				event -> sliderChange("Zoom")
 		);
-		this.primaryPane.getChildren().add(sliderZoom);
+		this.primaryPane.getChildren().add(this.sliderZoom);
 
 		// Radio button to toggle automatic mode
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
@@ -140,6 +140,9 @@ public class Display {
 		this.toggleAutoBut.setLayoutX(500);
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
+		this.toggleAutoBut.setTooltip(
+				new Tooltip("Enable to automatically move to next\nframe when all labels are placed.")
+		);
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
@@ -259,7 +262,6 @@ public class Display {
 	public void setMessage(String string) {
 		this.messageLab.setText(string);
 	}
-
 
 	/**
 	 * Send the user a warning, using an Alert.
