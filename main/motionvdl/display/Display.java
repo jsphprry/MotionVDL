@@ -191,9 +191,8 @@ public class Display {
 			if (!newValue.matches("\\d*")) {
 				this.resTextField.setText(newValue.replaceAll("\\D", ""));
 			}
-			if (!Objects.equals(this.resTextField.getText(), "") &&
-					this.sliderZoom.getValue() == Math.floor(this.sliderZoom.getValue())) {
-				this.sliderZoom.setValue(getTarget());
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
+				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
 			}
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
@@ -246,6 +245,20 @@ public class Display {
 	}
 
 	/**
+	 * Send the user a message, using a Label.
+	 * @param string Text to show the user
+	 */
+	public void sendAlert(String string) {
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(null);
+		alert.setContentText(string);
+		alert.setResizable(true);
+		alert.getDialogPane().setPrefSize(250, 100);
+		alert.showAndWait();
+	}
+
+	/**
 	 * Convert an array of AWT Colors to JavaFX Image, then set
 	 * the ImageView's Image property to display this frame.
 	 * @param colorArray Array of colors, containing the current frame
@@ -282,14 +295,6 @@ public class Display {
 		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
 
 		this.imageView.setImage(wImage);
-	}
-
-	/**
-	 * Send the user a message, using a Label.
-	 * @param string Text to show the user
-	 */
-	public void setMessage(String string) {
-		this.messageLab.setText(string);
 	}
 
 	/**
@@ -335,6 +340,7 @@ public class Display {
 			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
 			this.sliderZoom.setValue(sliderZoom.getMax());
 		}
+		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
 	}
 
 	/**

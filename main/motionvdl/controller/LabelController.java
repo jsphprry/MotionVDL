@@ -63,7 +63,7 @@ public class LabelController extends Controller {
 		} else {
 			String message = String.format("Label stack%d is full", frameIndex);
 			Debug.trace(debugTitle+" ignored next: "+message);
-			display.setMessage(message);
+			display.sendAlert(message);
 		}
 	}
 	
@@ -137,7 +137,7 @@ public class LabelController extends Controller {
 		} else {
 			String message = "Incomplete label";
 			Debug.trace(debugTitle+" ignored next: "+message);
-			display.setMessage(message);
+			display.sendAlert(message);
 		}
 	}
 	
