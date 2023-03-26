@@ -125,7 +125,7 @@ public class VideoController extends Controller {
 		} else {
 			String message = String.format("Invalid target resolution [targetRes=%d, cropRes=%d]", targetRes, cropRes);
 			Debug.trace(debugTitle+" ignored next: "+message);
-			display.setMessage(message);
+			display.sendAlert(message);
 		}
 	}
 }

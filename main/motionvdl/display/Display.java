@@ -12,6 +12,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -81,9 +82,14 @@ public class Display {
 		this.imageView.setFitWidth(400);
 		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
-				event -> receiver.click(event.getX() / this.imageView.getFitWidth(),
-										event.getY() / this.imageView.getFitHeight())
-		);
+				event -> {
+					if (event.getButton() == MouseButton.PRIMARY) {
+						receiver.click(event.getX() / this.imageView.getFitWidth(),
+										event.getY() / this.imageView.getFitHeight());
+					} else if (event.getButton() == MouseButton.SECONDARY) {
+						System.out.println("UNDO FUNCTION");
+					}
+				});
 		this.primaryPane.getChildren().add(this.imageView);
 
 		// X-axis directional crop Slider
@@ -97,7 +103,7 @@ public class Display {
 		this.sliderX.valueProperty().addListener(
 				event -> sliderChange("Horizontal")
 		);
-		this.primaryPane.getChildren().add(sliderX);
+		this.primaryPane.getChildren().add(this.sliderX);
 
 		// Y-axis directional crop Slider
 		this.sliderY = new Slider();
@@ -126,7 +132,7 @@ public class Display {
 		this.sliderZoom.valueProperty().addListener(
 				event -> sliderChange("Zoom")
 		);
-		this.primaryPane.getChildren().add(sliderZoom);
+		this.primaryPane.getChildren().add(this.sliderZoom);
 
 		// Radio button to toggle automatic mode
 		this.toggleAutoBut = new RadioButton("Toggle Auto");
@@ -134,6 +140,9 @@ public class Display {
 		this.toggleAutoBut.setLayoutX(500);
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
+		this.toggleAutoBut.setTooltip(
+				new Tooltip("Enable to automatically move to next\nframe when all labels are placed.")
+		);
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
 		// Button for processing
@@ -187,15 +196,15 @@ public class Display {
 		this.resTextField.setLayoutY(270);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
-		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.matches("\\d*")) {
-				this.resTextField.setText(newValue.replaceAll("\\D", ""));
-			}
-			if (!Objects.equals(this.resTextField.getText(), "") &&
-					this.sliderZoom.getValue() == Math.floor(this.sliderZoom.getValue())) {
-				this.sliderZoom.setValue(getTarget());
-			}
-		});
+		this.resTextField.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					if (!newValue.matches("\\d*")) {
+						this.resTextField.setText(newValue.replaceAll("\\D", ""));
+					}
+					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
+						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					}
+				});
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
@@ -224,6 +233,7 @@ public class Display {
 		// Details relating to window itself
 		this.primaryStage.setTitle("MotionVDL");
 		this.primaryStage.getIcons().add(new Image("motionvdl/display/images/javaIcon.png"));
+		this.primaryStage.setResizable(false);
 		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
 		this.primaryStage.show();
@@ -243,6 +253,27 @@ public class Display {
 	 */
 	public void setTitle(String string) {
 		this.titleLab.setText(string);
+	}
+
+	/**
+	 * Send the user a message, using a Label.
+	 * @param string Text to show the user
+	 */
+	public void setMessage(String string) {
+		this.messageLab.setText(string);
+	}
+
+	/**
+	 * Send the user a warning, using an Alert.
+	 * @param string Text to show the user
+	 */
+	public void sendAlert(String string) {
+		Alert alert = new Alert(Alert.AlertType.WARNING, string, ButtonType.OK);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(null);
+		alert.setResizable(true);
+		alert.getDialogPane().setPrefSize(250, 100);
+		alert.showAndWait();
 	}
 
 	/**
@@ -282,14 +313,6 @@ public class Display {
 		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
 
 		this.imageView.setImage(wImage);
-	}
-
-	/**
-	 * Send the user a message, using a Label.
-	 * @param string Text to show the user
-	 */
-	public void setMessage(String string) {
-		this.messageLab.setText(string);
 	}
 
 	/**
@@ -335,6 +358,7 @@ public class Display {
 			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
 			this.sliderZoom.setValue(sliderZoom.getMax());
 		}
+		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
 	}
 
 	/**
