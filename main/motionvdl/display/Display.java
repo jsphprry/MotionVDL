@@ -1,15 +1,16 @@
 package motionvdl.display;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
@@ -80,7 +81,6 @@ public class Display {
 		this.imageView.setLayoutY(40);
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
-		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
 				event -> {
 					if (event.getButton() == MouseButton.PRIMARY) {
@@ -196,15 +196,14 @@ public class Display {
 		this.resTextField.setLayoutY(270);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
-		this.resTextField.textProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					if (!newValue.matches("\\d*")) {
-						this.resTextField.setText(newValue.replaceAll("\\D", ""));
-					}
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
-						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
-					}
-				});
+		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				this.resTextField.setText(newValue.replaceAll("\\D", ""));
+			}
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
+				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+			}
+		});
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
@@ -282,37 +281,52 @@ public class Display {
 	 * @param colorArray Array of colors, containing the current frame
 	 */
 	public void setFrame(Color[][] colorArray) {
-		// Convert color array to awt.BufferedImage
+		Function<Color, javafx.scene.paint.Color> convertColor = color ->
+				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue());
+
 		int height = colorArray.length;
 		int width = colorArray[0].length;
-		BufferedImage bImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				Color color = colorArray[y][x];
-				int rgb = color.getRGB();
-				bImage.setRGB(x, y, rgb);
-			}
-		}
-
-		// Copy pixel data from BufferedImage to byte array
-		width = bImage.getWidth();
-		height = bImage.getHeight();
-		byte[] buffer = new byte[width * height * 4];
-		int[] pixels = bImage.getRGB(0, 0, width, height, null, 0, width);
-		for (int i = 0; i < pixels.length; i++) {
-			buffer[i * 4 + 3] = (byte) ((pixels[i] >> 24) & 0xFF);
-			buffer[i * 4 + 2] = (byte) ((pixels[i] >> 16) & 0xFF);
-			buffer[i * 4 + 1] = (byte) ((pixels[i] >> 8) & 0xFF);
-			buffer[i * 4] = (byte) ((pixels[i]) & 0xFF);
-		}
 
 		// Create JavaFX WritableImage and write pixel data
 		WritableImage wImage = new WritableImage(width, height);
 		PixelWriter pixelWriter = wImage.getPixelWriter();
-		PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
-		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
-
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				Color color = colorArray[y][x];
+				pixelWriter.setColor(x, y, convertColor.apply(color));
+			}
+		}
 		this.imageView.setImage(wImage);
+
+		// Might need to be used - don't know yet
+
+//		double scaleFactor;
+//		if (wImage.getHeight() < imageView.getFitHeight() && wImage.getWidth() < imageView.getFitWidth()) {
+//			// Upscale Image
+//			scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
+//			width = (int) wImage.getWidth();
+//			height = (int) wImage.getHeight();
+//			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+//			PixelReader reader = wImage.getPixelReader();
+//			PixelWriter writer = scaledWImage.getPixelWriter();
+//
+//			for (int y = 0; y < height; y++) {
+//				for (int x = 0; x < width; x++) {
+//					int argb = reader.getArgb(x, y);
+//					for (int dy = 0; dy < scaleFactor; dy++) {
+//						for (int dx = 0; dx < scaleFactor; dx++) {
+//							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+//						}
+//					}
+//				}
+//			}
+//			this.imageView.setImage(scaledWImage);}
+//		} else if (wImage.getHeight() > imageView.getFitHeight() && wImage.getWidth() > imageView.getFitWidth()) {
+//			// Downscale image
+//			this.imageView.setImage(wImage);
+//		} else {
+//			this.imageView.setImage(wImage);
+//		}
 	}
 
 	/**
@@ -326,36 +340,33 @@ public class Display {
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
 
-		// Handle a landscape Image
-		if (this.imageView.getImage().getWidth() > this.imageView.getImage().getHeight()) {
-			this.imageView.setViewport(new Rectangle2D(
-					(this.imageView.getImage().getWidth() / 2) - (this.imageView.getImage().getHeight() / 2), 0,
-					this.imageView.getImage().getHeight(), this.imageView.getImage().getHeight()));
-			this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
+		double imgWidth = this.imageView.getImage().getWidth();
+		double imgHeight = this.imageView.getImage().getHeight();
+
+		// Set the viewport of the image based on its orientation
+		if (imgWidth > imgHeight) {
+			// Landscape Image
+			this.imageView.setViewport(new Rectangle2D((imgWidth / 2) - (imgHeight / 2), 0, imgHeight, imgHeight));
+			this.sliderX.setMax(imgWidth - this.imageView.getViewport().getWidth());
 			this.sliderX.setValue(this.sliderX.getMax() / 2);
 			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getHeight() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getHeight());
+			this.sliderZoom.setMin(imgHeight * 0.01);
+			this.sliderZoom.setMax(imgHeight);
 			this.sliderZoom.setValue(sliderZoom.getMax());
-
-		// Handle a portrait Image
-		} else if (this.imageView.getImage().getWidth() < this.imageView.getImage().getHeight()) {
-			this.imageView.setViewport(new Rectangle2D(
-					(this.imageView.getImage().getHeight() / 2) - (this.imageView.getImage().getWidth() / 2), 0,
-					this.imageView.getImage().getWidth(), this.imageView.getImage().getWidth()));
+		} else if (imgWidth < imgHeight) {
+			// Portrait Image
+			this.imageView.setViewport(new Rectangle2D(0, (imgHeight / 2) - (imgWidth / 2), imgWidth, imgWidth));
 			this.sliderX.setValue(this.sliderX.getMax() / 2);
-			this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
+			this.sliderY.setMax(imgHeight - this.imageView.getViewport().getHeight());
 			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
+			this.sliderZoom.setMin(imgWidth * 0.01);
+			this.sliderZoom.setMax(imgWidth);
 			this.sliderZoom.setValue(sliderZoom.getMax());
-
-		// Handle a square Image
 		} else {
-			this.imageView.setViewport(new Rectangle2D(
-					0, 0, this.imageView.getImage().getWidth(), this.imageView.getImage().getHeight()));
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
+			// Square Image
+			this.imageView.setViewport(new Rectangle2D(0, 0, imgWidth, imgHeight));
+			this.sliderZoom.setMin(imgWidth * 0.01);
+			this.sliderZoom.setMax(imgWidth);
 			this.sliderZoom.setValue(sliderZoom.getMax());
 		}
 		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
@@ -386,7 +397,9 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+				//if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+					this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+				//}
 			}
 		}
 	}
@@ -428,27 +441,16 @@ public class Display {
 		int pointNum = getPointNum() - 1;
 		this.connectors.add(new Line());
 		this.connectors.get(pointNum).setId("lineID");
+		BiConsumer<Integer, Integer> setPoints = (start, end) -> {
+			this.connectors.get(pointNum).setStartX(this.points.get(start).getCenterX());
+			this.connectors.get(pointNum).setStartY(this.points.get(start).getCenterY());
+			this.connectors.get(pointNum).setEndX(this.points.get(end).getCenterX());
+			this.connectors.get(pointNum).setEndY(this.points.get(end).getCenterY());
+		};
 		switch (pointNum) {
-			default -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(pointNum).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(pointNum).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
-
-			// Special cases for points not connected to previous point
-			case 3, 5 -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(1).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(1).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
-			case 8 -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(6).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(6).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
+			default -> setPoints.accept(pointNum, pointNum + 1);
+			case 3, 5 -> setPoints.accept(1, pointNum + 1);
+			case 8 -> setPoints.accept(6, pointNum + 1);
 		}
 		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
@@ -509,8 +511,8 @@ public class Display {
 	 */
 	public void clearGeometry() {
 		// Even if these nodes haven't yet been added to the Pane, this will still work
-		this.primaryPane.getChildren().remove(this.cropLine);
-		this.primaryPane.getChildren().remove(this.opaqueSquare);
+//		this.primaryPane.getChildren().remove(this.cropLine);
+//		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
