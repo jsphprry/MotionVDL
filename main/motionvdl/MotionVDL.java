@@ -17,8 +17,7 @@ public class MotionVDL extends Application {
 	/**
 	 * MotionVDL starter program
 	 * defines the program arguments
-	 * @param args[0] Video location on filesystem
-	 * @param args[1] Debug setup flag
+	 * @param args [0] - Video location on filesystem [1] - Debug setup flag
 	 */
 	public static void main(String[] args) {
 		launch(args);

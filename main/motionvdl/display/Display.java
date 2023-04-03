@@ -10,14 +10,12 @@ import java.util.function.Function;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 import motionvdl.model.Point;
@@ -41,11 +39,9 @@ public class Display {
 	private final ImageView imageView;
 	private final Label titleLab;
 	private final Label messageLab;
-	private final Line cropLine;
 	private final List<Circle> points;
 	private final List<Line> connectors;
 	private final RadioButton toggleAutoBut;
-	private final Rectangle opaqueSquare;
 	private final Slider sliderX;
 	private final Slider sliderY;
 	private final Slider sliderZoom;
@@ -141,7 +137,8 @@ public class Display {
 		this.toggleAutoBut.setLayoutY(40);
 		this.toggleAutoBut.setMinSize(160, 50);
 		this.toggleAutoBut.setTooltip(
-				new Tooltip("Enable to automatically move to next\nframe when all labels are placed.")
+				new Tooltip("Enable to automatically move to next\n" +
+							"frame when all labels are placed.")
 		);
 		this.primaryPane.getChildren().add(this.toggleAutoBut);
 
@@ -220,14 +217,6 @@ public class Display {
 
 		// Lines to connect points during the labelling stage
 		this.connectors = new ArrayList<>();
-
-		// Line to visualise crop after first click during cropping stage
-		this.cropLine = new Line();
-		this.cropLine.setId("cropLineID");
-
-		// Square to visualise crop after second click during cropping stage
-		this.opaqueSquare = new Rectangle();
-		this.opaqueSquare.setId("opaqueSquareID");
 
 		// Details relating to window itself
 		this.primaryStage.setTitle("MotionVDL");
@@ -342,34 +331,38 @@ public class Display {
 
 		double imgWidth = this.imageView.getImage().getWidth();
 		double imgHeight = this.imageView.getImage().getHeight();
+		double maxSliderZoom;
+		double sliderXMaxValue = 0.0;
+		double sliderYMaxValue = 0.0;
 
 		// Set the viewport of the image based on its orientation
 		if (imgWidth > imgHeight) {
 			// Landscape Image
 			this.imageView.setViewport(new Rectangle2D((imgWidth / 2) - (imgHeight / 2), 0, imgHeight, imgHeight));
-			this.sliderX.setMax(imgWidth - this.imageView.getViewport().getWidth());
-			this.sliderX.setValue(this.sliderX.getMax() / 2);
-			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(imgHeight * 0.01);
-			this.sliderZoom.setMax(imgHeight);
-			this.sliderZoom.setValue(sliderZoom.getMax());
+			sliderXMaxValue = imgWidth - this.imageView.getViewport().getWidth();
+			sliderYMaxValue = 0.0;
+			maxSliderZoom = imgHeight;
 		} else if (imgWidth < imgHeight) {
 			// Portrait Image
 			this.imageView.setViewport(new Rectangle2D(0, (imgHeight / 2) - (imgWidth / 2), imgWidth, imgWidth));
-			this.sliderX.setValue(this.sliderX.getMax() / 2);
-			this.sliderY.setMax(imgHeight - this.imageView.getViewport().getHeight());
-			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(imgWidth * 0.01);
-			this.sliderZoom.setMax(imgWidth);
-			this.sliderZoom.setValue(sliderZoom.getMax());
+			sliderXMaxValue = 0.0;
+			sliderYMaxValue = imgHeight - this.imageView.getViewport().getHeight();
+			maxSliderZoom = imgWidth;
 		} else {
 			// Square Image
 			this.imageView.setViewport(new Rectangle2D(0, 0, imgWidth, imgHeight));
-			this.sliderZoom.setMin(imgWidth * 0.01);
-			this.sliderZoom.setMax(imgWidth);
-			this.sliderZoom.setValue(sliderZoom.getMax());
+			maxSliderZoom = imgWidth;
 		}
+		this.sliderX.setMax(sliderXMaxValue);
+		this.sliderX.setValue(this.sliderX.getMax() / 2);
+		this.sliderY.setMax(sliderYMaxValue);
+		this.sliderY.setValue(this.sliderY.getMax() / 2);
+		this.sliderZoom.setMin(imgWidth * 0.1);
+		this.sliderZoom.setMax(maxSliderZoom);
+		this.sliderZoom.setValue(maxSliderZoom);
+
 		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+
 	}
 
 	/**
@@ -397,9 +390,9 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				//if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+				if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
 					this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
-				//}
+				}
 			}
 		}
 	}
@@ -455,68 +448,18 @@ public class Display {
 		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
 
-//	/**
-//	 * Draw a diagonal Line object to visualise cropping process.
-//	 * @param ax x co-ordinate of the user's click on the ImageView
-//	 * @param ay y co-ordinate of the user's click on the ImageView
-//	 */
-//	public void drawDiagonal(double ax, double ay) {
-//		// Convert normalised co-ordinates to relative
-//		ax = ax * this.imageView.getFitWidth();
-//		ay = ay * this.imageView.getFitHeight();
-//
-//		double c = ay - ax;
-//		if (ax > ay) {
-//			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
-//			this.cropLine.setStartY(this.imageView.getLayoutY());
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
-//		} else if (ax < ay) {
-//			this.cropLine.setStartX(this.imageView.getLayoutX());
-//			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-//		} else {
-//			this.cropLine.setStartX(this.imageView.getLayoutX());
-//			this.cropLine.setStartY(this.imageView.getLayoutY());
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-//		}
-//		this.primaryPane.getChildren().add(this.cropLine);
-//	}
-
-//	/**
-//	 * Draw an opaque Rectangle object to visualise cropping process.
-//	 * @param ax x co-ordinate of the top-left corner of the rectangle
-//	 * @param ay y co-ordinate of the top-left corner of the rectangle
-//	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
-//	 * @param by y co-ordinate of the bottom-right corner of the rectangle
-//	 */
-//	public void drawRectangle(double ax, double ay, double bx, double by) {
-//		// Convert normalised co-ordinates to relative
-//		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-//		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-//		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-//		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-//
-//		this.opaqueSquare.setLayoutX(ax);
-//		this.opaqueSquare.setLayoutY(ay);
-//		this.opaqueSquare.setWidth(bx - ax);
-//		this.opaqueSquare.setHeight(by - ay);
-//		this.primaryPane.getChildren().add(opaqueSquare);
-//	}
-
 	/**
 	 * Clear all Lines, Circles, and Rectangle objects from the Pane.
 	 */
 	public void clearGeometry() {
 		// Even if these nodes haven't yet been added to the Pane, this will still work
-//		this.primaryPane.getChildren().remove(this.cropLine);
-//		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
 
+	/**
+	 * Change scene layout for labelling stage.
+	 */
 	public void alterForLabelling() {
 		this.primaryPane.getChildren().removeAll(sliderX, sliderY, sliderZoom);
 		this.imageView.setViewport(null);
@@ -551,6 +494,11 @@ public class Display {
 		return this.toggleAutoBut.isSelected();
 	}
 
+	/**
+	 * Returns the top-left x and y co-ordinates of the crop frame,
+	 * as well as the width of crop frame.
+	 * @return Current crop frame co-ordinates
+	 */
 	public int[] getCropFrame() {
 		int x = (int) (this.imageView.getViewport().getMinX());
 		int y = (int) (this.imageView.getViewport().getMinY());

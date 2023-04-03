@@ -40,13 +40,13 @@ public class LabelController extends Controller {
 	
 	/**
 	 * Record a point on the current video frame
-	 * @param x The normalised x axis of the click event
-	 * @param y The normalised y axis of the click event
+	 * @param x The normalised x-axis of the click event
+	 * @param y The normalised y-axis of the click event
 	 */
 	public void click(double x, double y) {
 		
 		// debug trace
-		Debug.trace(String.format("%s recieved click (%.2f,%.2f)", debugTitle, x, y));
+		Debug.trace(String.format("%s received click (%.2f,%.2f)", debugTitle, x, y));
 
 		// if the current frame label is incomplete
 		if (!label.checkStackFull(frameIndex)) {
@@ -62,7 +62,7 @@ public class LabelController extends Controller {
 		// else warn that the frame is complete
 		} else {
 			String message = String.format("Label stack%d is full", frameIndex);
-			Debug.trace(debugTitle+" ignored next: "+message);
+			Debug.trace(debugTitle + " ignored next: " + message);
 			display.sendAlert(message);
 		}
 	}
@@ -102,7 +102,7 @@ public class LabelController extends Controller {
 	public void undo() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved undo");
+		Debug.trace(debugTitle + " received undo");
 
 		// non-empty label
 		if (!label.checkStackEmpty(frameIndex)) {
@@ -127,7 +127,7 @@ public class LabelController extends Controller {
 	public void next() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved next");
+		Debug.trace(debugTitle + " received next");
 		
 		// export the label if complete
 		if (label.checkComplete()) {
@@ -136,7 +136,7 @@ public class LabelController extends Controller {
 		// else warn
 		} else {
 			String message = "Incomplete label";
-			Debug.trace(debugTitle+" ignored next: "+message);
+			Debug.trace(debugTitle + " ignored next: " + message);
 			display.sendAlert(message);
 		}
 	}

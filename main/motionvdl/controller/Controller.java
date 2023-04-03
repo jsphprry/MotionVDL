@@ -27,13 +27,13 @@ public abstract class Controller {
 	/**
 	 * Respond to click event
 	 * default: Do nothing
-	 * @param x The normalised x axis of the click event
-	 * @param y The normalised y axis of the click event
+	 * @param x The normalised x-axis of the click event
+	 * @param y The normalised y-axis of the click event
 	 */
 	public void click(double x, double y) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" skipped click: no action");
+		Debug.trace(debugTitle + " skipped click: no action");
 	}
 	
 	
@@ -44,28 +44,28 @@ public abstract class Controller {
 	public void up() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved up");
+		Debug.trace(debugTitle + " received up");
 		
 		// display next frame
 		frameIndex = Math.min(video.length - 1, frameIndex + 1);
 		display.setFrame(video.getFrame(frameIndex));
-		Debug.trace(debugTitle+" set to frame "+frameIndex);
+		Debug.trace(debugTitle + " set to frame " + frameIndex);
 	}
 	
 	
 	/**
-	 * Display previous video frame
-	 * default: Display previous possible frame
+	 * Display previous video frame.
+	 * Default: Display previous possible frame
 	 */
 	public void down() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved down");
+		Debug.trace(debugTitle + " received down");
 		
 		// display previous frame
 		frameIndex = Math.max(0, frameIndex - 1);
 		display.setFrame(video.getFrame(frameIndex));
-		Debug.trace(debugTitle+" set to frame "+frameIndex);
+		Debug.trace(debugTitle + " set to frame " + frameIndex);
 	}
 	
 	
@@ -76,7 +76,7 @@ public abstract class Controller {
 	public void undo() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved undo");
+		Debug.trace(debugTitle+" received undo");
 		
 		// update display
 		display.clearGeometry();
@@ -90,7 +90,7 @@ public abstract class Controller {
 	public void next() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved next");
+		Debug.trace(debugTitle+" received next");
 		
 		// export and free video buffer
 		video.export(outputTitle);
@@ -109,7 +109,7 @@ public abstract class Controller {
 	public void pass(Video tempVideo) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved pass");
+		Debug.trace(debugTitle+" received pass");
 		
 		// setup video
 		video = tempVideo;

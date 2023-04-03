@@ -22,7 +22,7 @@ public class Point {
 	
 	/**
 	 * Get x axis value
-	 * @return The x axis value
+	 * @return The x-axis value
 	 */
 	public double getX() {
 		
@@ -66,7 +66,7 @@ public class Point {
 	public double getAxis(int index) {
 		
 		// throw no-such-axis
-		if (index >= this.point.length) throw new ArrayIndexOutOfBoundsException("Point has no axis "+index);
+		if (index >= this.point.length) throw new ArrayIndexOutOfBoundsException("Point has no axis " + index);
 		
 		// return indexed element
 		return this.point[index];

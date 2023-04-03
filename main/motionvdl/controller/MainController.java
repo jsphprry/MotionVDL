@@ -43,16 +43,16 @@ public class MainController extends Controller {
 	
 	/**
 	 * Pass instruction to subcontroller
-	 * @param x The normalised x axis of the click event
-	 * @param y The normalised y axis of the click event
+	 * @param x The normalised x-axis of the click event
+	 * @param y The normalised y-axis of the click event
 	 */
 	public void click(double x, double y) {
 		
 		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle + " has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(String.format("%s recieved click (%.2f,%.2f)",debugTitle, x, y));
+		Debug.trace(String.format("%s received click (%.2f,%.2f)", debugTitle, x, y));
 		
 		// call subcontroller
 		linkedController.click(x, y);
@@ -65,10 +65,10 @@ public class MainController extends Controller {
 	public void up() {
 		
 		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle + " has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved up");
+		Debug.trace(debugTitle + " received up");
 		
 		// call subcontroller
 		linkedController.up();
@@ -81,10 +81,10 @@ public class MainController extends Controller {
 	public void down() {
 		
 		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle + " has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved down");
+		Debug.trace(debugTitle+" received down");
 		
 		// call subcontroller
 		linkedController.down();
@@ -97,10 +97,10 @@ public class MainController extends Controller {
 	public void undo() {
 		
 		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle + " has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved undo");
+		Debug.trace(debugTitle+" received undo");
 		
 		// call subcontroller
 		linkedController.undo();
@@ -113,10 +113,10 @@ public class MainController extends Controller {
 	public void next() {
 		
 		// throw control-not-passed case
-		if (stage == -1) throw new IllegalStateException(debugTitle+" has not been passed control yet");
+		if (stage == -1) throw new IllegalStateException(debugTitle + " has not been passed control yet");
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved next");
+		Debug.trace(debugTitle + " received next");
 		
 		// call subcontroller
 		linkedController.next();
@@ -129,7 +129,7 @@ public class MainController extends Controller {
 	public void pass(Video tempVideo) {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved pass");
+		Debug.trace(debugTitle + " received pass");
 
 		// pass control to next subcontroller
 		stage += 1;

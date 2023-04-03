@@ -84,7 +84,7 @@ public class Video extends Encoding {
 	public static Video fromFile(String file) {
 		
 		// debug trace
-		Debug.trace("Loaded video from "+file);
+		Debug.trace("Loaded video from " + file);
 		
 		throw new UnsupportedOperationException("fromFile is unimplemented");
 	}
@@ -110,8 +110,8 @@ public class Video extends Encoding {
 	public Video squareCrop(int x, int y, int size) {
 		
 		// throw invalid parameters
-		if (0 > x || x >= width) throw new IllegalArgumentException("Invalid x coord");
-		if (0 > y || y >= height) throw new IllegalArgumentException("Invalid y coord");
+		if (0 > x || x >= width) throw new IllegalArgumentException("Invalid x co-ord");
+		if (0 > y || y >= height) throw new IllegalArgumentException("Invalid y co-ord");
 		if (0 > size || size >= Math.min(height, width)) throw new IllegalArgumentException("Invalid size");
 		
 		// setup work-buffer

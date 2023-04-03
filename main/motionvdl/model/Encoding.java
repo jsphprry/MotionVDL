@@ -31,17 +31,17 @@ public abstract class Encoding {
 
 		// try to write encoding to filesystem location
 		try {
-			String filename = location+".mvdl";
+			String filename = location + ".mvdl";
 			FileOutputStream stream = new FileOutputStream(filename);
 			stream.write(encoding);
 			stream.close();
 			
 			// debug trace
-			Debug.trace("Encoding exported to "+filename);
+			Debug.trace("Encoding exported to " + filename);
 		
 		// catch and trace error
 		} catch (Exception e) {
-			Debug.trace("Error writing to file! "+e.getMessage());
+			Debug.trace("Error writing to file! " + e.getMessage());
 		}
 	}
 }
