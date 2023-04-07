@@ -41,7 +41,7 @@ public class Display {
 	private final Label messageLab;
 	private final List<Circle> points;
 	private final List<Line> connectors;
-	private final RadioButton toggleAutoBut;
+	private final RadioButton radioBut;
 	private final Slider sliderX;
 	private final Slider sliderY;
 	private final Slider sliderZoom;
@@ -56,7 +56,6 @@ public class Display {
 	public Display(int w, int h, Stage stage) {
 		this.WIDTH = w;
 		this.HEIGHT = h;
-
 		this.primaryStage = stage;
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
@@ -131,16 +130,15 @@ public class Display {
 		this.primaryPane.getChildren().add(this.sliderZoom);
 
 		// Radio button to toggle automatic mode
-		this.toggleAutoBut = new RadioButton("Toggle Auto");
-		this.toggleAutoBut.setId("radioID");
-		this.toggleAutoBut.setLayoutX(500);
-		this.toggleAutoBut.setLayoutY(40);
-		this.toggleAutoBut.setMinSize(160, 50);
-		this.toggleAutoBut.setTooltip(
-				new Tooltip("Enable to automatically move to next\n" +
-							"frame when all labels are placed.")
+		this.radioBut = new RadioButton("Lock Res");
+		this.radioBut.setId("radioID");
+		this.radioBut.setLayoutX(500);
+		this.radioBut.setLayoutY(40);
+		this.radioBut.setMinSize(160, 50);
+		this.radioBut.setTooltip(
+				new Tooltip("Lock currently minimum specified res.")
 		);
-		this.primaryPane.getChildren().add(this.toggleAutoBut);
+		this.primaryPane.getChildren().add(this.radioBut);
 
 		// Button for processing
 		this.processBut = new Button("Next stage");
@@ -224,6 +222,7 @@ public class Display {
 		this.primaryStage.setResizable(false);
 		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
+		this.primaryPane.requestFocus();
 		this.primaryStage.show();
 	}
 
@@ -362,7 +361,6 @@ public class Display {
 		this.sliderZoom.setValue(maxSliderZoom);
 
 		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
-
 	}
 
 	/**
@@ -390,8 +388,14 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
-					this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+				if (!getRadio()) {
+					if (!Objects.equals(this.resTextField.getText(), "")) {
+						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					}
+				} else {
+					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					}
 				}
 			}
 		}
@@ -461,8 +465,15 @@ public class Display {
 	 * Change scene layout for labelling stage.
 	 */
 	public void alterForLabelling() {
-		this.primaryPane.getChildren().removeAll(sliderX, sliderY, sliderZoom);
+		this.primaryPane.getChildren().removeAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setViewport(null);
+		this.radioBut.setText("Toggle Auto");
+		this.radioBut.setTooltip(
+				new Tooltip("Enable to automatically move to next\n" +
+							"frame when all labels are placed.")
+		);
+		this.radioBut.setSelected(false);
+		primaryPane.requestFocus();
 	}
 
 	/**
@@ -491,7 +502,7 @@ public class Display {
 	 * @return Current state of auto radio button
 	 */
 	public boolean getRadio() {
-		return this.toggleAutoBut.isSelected();
+		return this.radioBut.isSelected();
 	}
 
 	/**
