@@ -473,7 +473,7 @@ public class Display {
 							"frame when all labels are placed.")
 		);
 		this.radioBut.setSelected(false);
-		primaryPane.requestFocus();
+		this.primaryPane.requestFocus();
 	}
 
 	/**
