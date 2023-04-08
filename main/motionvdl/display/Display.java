@@ -1,6 +1,7 @@
 package motionvdl.display;
 
 import java.awt.Color;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
@@ -286,35 +288,27 @@ public class Display {
 		}
 		this.imageView.setImage(wImage);
 
-		// Might need to be used - don't know yet
+//		// Upscale Image if required
+		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
+			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
+			width = (int) wImage.getWidth();
+			height = (int) wImage.getHeight();
+			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+			PixelReader reader = wImage.getPixelReader();
+			PixelWriter writer = scaledWImage.getPixelWriter();
 
-//		double scaleFactor;
-//		if (wImage.getHeight() < imageView.getFitHeight() && wImage.getWidth() < imageView.getFitWidth()) {
-//			// Upscale Image
-//			scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
-//			width = (int) wImage.getWidth();
-//			height = (int) wImage.getHeight();
-//			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
-//			PixelReader reader = wImage.getPixelReader();
-//			PixelWriter writer = scaledWImage.getPixelWriter();
-//
-//			for (int y = 0; y < height; y++) {
-//				for (int x = 0; x < width; x++) {
-//					int argb = reader.getArgb(x, y);
-//					for (int dy = 0; dy < scaleFactor; dy++) {
-//						for (int dx = 0; dx < scaleFactor; dx++) {
-//							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
-//						}
-//					}
-//				}
-//			}
-//			this.imageView.setImage(scaledWImage);}
-//		} else if (wImage.getHeight() > imageView.getFitHeight() && wImage.getWidth() > imageView.getFitWidth()) {
-//			// Downscale image
-//			this.imageView.setImage(wImage);
-//		} else {
-//			this.imageView.setImage(wImage);
-//		}
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
+					int argb = reader.getArgb(x, y);
+					for (int dy = 0; dy < scaleFactor; dy++) {
+						for (int dx = 0; dx < scaleFactor; dx++) {
+							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+						}
+					}
+				}
+			}
+			this.imageView.setImage(scaledWImage);
+		}
 	}
 
 	/**
