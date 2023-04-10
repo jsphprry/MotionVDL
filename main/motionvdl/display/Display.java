@@ -1,6 +1,7 @@
 package motionvdl.display;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +81,7 @@ public class Display {
 				event -> {
 					if (event.getButton() == MouseButton.PRIMARY) {
 						receiver.click(event.getX() / this.imageView.getFitWidth(),
-										event.getY() / this.imageView.getFitHeight());
+								event.getY() / this.imageView.getFitHeight());
 					} else if (event.getButton() == MouseButton.SECONDARY) {
 						System.out.println("UNDO FUNCTION");
 					}
@@ -268,19 +269,35 @@ public class Display {
 	 * the ImageView's Image property to display this frame.
 	 * @param colorArray Array of colors, containing the current frame
 	 */
-	
-	
+
 	// 230410 Joseph. So in order to reduce the memory consumption of the model component, I converted the 3d Color array into a 1d array of awt BufferedImage,
 	// because of this the getFrame method of the Video class returns type awt Image and so this method now has to be adapted to take awt Image
 	// as argument.
 	
-	
-	public void setFrame(Color[][] colorArray) {
-		Function<Color, javafx.scene.paint.Color> convertColor = color ->
-				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue());
 
-		int height = colorArray.length;
-		int width = colorArray[0].length;
+	// 230410 Henri. I've changed it from Color[][] to java.awt.Image.
+	// This might work but unable to test at this point - unable to run as I don't know how to fix line 46 in MotionVDL class.
+
+	// 230410 Henri. This method is also probably not the most efficient, but is a temporary solution
+
+	public void setFrame(java.awt.Image image) {
+		BufferedImage bImage = (BufferedImage) image;
+		int height = bImage.getHeight();
+		int width = bImage.getWidth();
+
+		// Convert BufferedImage to Color[][]
+		Color[][] colorArray = new Color[height][width];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int rgb = bImage.getRGB(x, y);
+				colorArray[y][x] = new Color(rgb);
+			}
+		}
+
+		// Function for converting AWT color to JavaFX color
+		Function<Color, javafx.scene.paint.Color> convertColor = color ->
+				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue(),
+												(double) color.getAlpha() / 255);
 
 		// Create JavaFX WritableImage and write pixel data
 		WritableImage wImage = new WritableImage(width, height);
@@ -293,27 +310,30 @@ public class Display {
 		}
 		this.imageView.setImage(wImage);
 
-//		// Upscale Image if required
-		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
-			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
-			width = (int) wImage.getWidth();
-			height = (int) wImage.getHeight();
-			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
-			PixelReader reader = wImage.getPixelReader();
-			PixelWriter writer = scaledWImage.getPixelWriter();
+		// 230410 Henri. Will uncomment once confirmed the above code works correctly
 
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-					int argb = reader.getArgb(x, y);
-					for (int dy = 0; dy < scaleFactor; dy++) {
-						for (int dx = 0; dx < scaleFactor; dx++) {
-							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
-						}
-					}
-				}
-			}
-			this.imageView.setImage(scaledWImage);
-		}
+//		// Upscale Image if required and past cropping stage
+//		if (!this.primaryPane.getChildren().contains(this.sliderZoom)) {
+//			if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
+//				double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
+//				width = (int) wImage.getWidth();
+//				height = (int) wImage.getHeight();
+//				WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+//				PixelReader reader = wImage.getPixelReader();
+//				PixelWriter writer = scaledWImage.getPixelWriter();
+//				for (int y = 0; y < height; y++) {
+//					for (int x = 0; x < width; x++) {
+//						int argb = reader.getArgb(x, y);
+//						for (int dy = 0; dy < scaleFactor; dy++) {
+//							for (int dx = 0; dx < scaleFactor; dx++) {
+//								writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+//							}
+//						}
+//					}
+//				}
+//				this.imageView.setImage(scaledWImage);
+//			}
+//		}
 	}
 
 	/**
@@ -452,7 +472,7 @@ public class Display {
 	}
 
 	/**
-	 * Clear all Lines, Circles, and Rectangle objects from the Pane.
+	 * Clear all Line and Circle objects from the Pane.
 	 */
 	public void clearGeometry() {
 		// Even if these nodes haven't yet been added to the Pane, this will still work
@@ -469,7 +489,7 @@ public class Display {
 		this.radioBut.setText("Toggle Auto");
 		this.radioBut.setTooltip(
 				new Tooltip("Enable to automatically move to next\n" +
-							"frame when all labels are placed.")
+						"frame when all labels are placed.")
 		);
 		this.radioBut.setSelected(false);
 		this.primaryPane.requestFocus();
@@ -495,7 +515,7 @@ public class Display {
 				.filter(node -> node instanceof Circle)
 				.count();
 	}
-	
+
 	/**
 	 * If the radio button is selected, returns true. If not, returns false.
 	 * @return Current state of auto radio button
@@ -517,46 +537,48 @@ public class Display {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
 	
 	public void clearFrame() {
 		// TODO Auto-generated method stub
-		
+
 		// 230410 Joseph. this method is used in the file opening system, so that when for example a rectangular video
 		// is loaded over a square video, the square video is cleared beforehand.
+
+		// 230410 Henri. Sets the ImageView's contents to null so no frame contained. Am I interpreting this correctly?
+		this.imageView.setImage(null);
 		
 	}
 
 	public void setTarget(int value) {
 		// TODO Auto-generated method stub
 		
-		// 230410 Joseph. I believe this function is already implemented but I will let you decide wether to remove this stub or not
-		
+		// 230410 Joseph. I believe this function is already implemented, but I will let you decide whether to remove this stub or not
+
+		// 230410 Henri. Sets the contents of TextField to given value. Am I interpreting this correctly?
+		this.resTextField.setText(String.valueOf(value));
+
 	}
 
 	public void showTarget() {
 		// TODO Auto-generated method stub
-		
+
 		// 230410 Joseph. not essential to implement these but if you get a chance go for it
+
+		// 230410 Henri. Do you mean show and hide the TextField itself? Like in this line:
+		// this.primaryPane.getChildren().add(resTextField);
+		// Or show and hide the current target res shown in the TextField?
+
 	}
 
 	public void hideTarget() {
 		// TODO Auto-generated method stub
 		
 		// 230410 Joseph. same comment as with showTarget
+		// this.primaryPane.getChildren().remove(resTextField);
 	}
 
 	public void drawBody(Point[] points, int[] connectorSequence) {
@@ -565,16 +587,21 @@ public class Display {
 		// 230410 Joseph. This is the method that the label controller uses to draw the body label onto the 
 		// display, should be quite easy to adapt this to this code - just call drawPoint iteratively over the 
 		// points array. This class handles the connector sequence internally so just don't use the 
-		// connectorSequence parameter and we can remove it later.
+		// connectorSequence parameter, and we can remove it later.
+
+		// 230410 Henri. So could it not just directly call drawPoints() instead of this method? Or are extra steps needed other than this line:
+		drawPoints(points);
 	}
 	
 	
-	
-	
-	
-	
+
 	// 230410 Joseph. Also another thing to note are the open, save and saveAs methods in the mainController. If you bind 
 	// these to menu buttons that trigger a file chooser then they should be relatively easy to add to this interface.
-	
+
+	// 230410 Henri. Do you mean this kind of menu buttons?
+	// https://www.tutorialspoint.com/how-to-create-a-menubutton-in-javafx
+
+	// Or like this?
+	// https://jenkov.com/tutorials/javafx/menubar.html
 	
 }
