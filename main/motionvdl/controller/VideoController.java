@@ -1,97 +1,47 @@
 package motionvdl.controller;
 
 import motionvdl.Debug;
-import motionvdl.display.Display;
-import motionvdl.model.Video;
+import motionvdl.model.data.LabeledVideo;
 
 /**
- * MotionVDL cropping subcontroller
+ * MotionVDL video subcontroller
  * @author Joseph
  */
 public class VideoController extends Controller {
 	
 	/**
 	 * Construct crop controller
-	 * @param mainController The main controller
-	 * @param mainDisplay The main display
+	 * @param mc Pointer to main controller
 	 */
-	public VideoController(MainController mainController, Display mainDisplay) {
+	public VideoController(MainController mc) {
 		
 		// setup titles
-		displayTitle = "Video preprocessing";
-		debugTitle = "Video controller";
-		outputTitle = "video";
+		displayTitle = "Video processing";
+		debugTitle = "VSC";
 		
 		// setup components
-		linkedController = mainController;
-		display = mainDisplay;
+		linkedController = mc;
+		display = linkedController.display;
 		
 		// debug trace
-		Debug.trace(String.format("Created CropController '%s'", debugTitle));
+		Debug.trace(String.format("Created VideoController '%s'", debugTitle));
 	}
 	
 	
 	/**
-	 * Define the crop frame
-	 * @param x The normalised x-axis of the click event
-	 * @param y The normalised y-axis of the click event
+	 * Default behaviour then show target input
 	 */
-	/*public void click(double x, double y) {
-		
-		// increment click counter
-		click += 1;
-		
-		// debug trace
-		Debug.trace(String.format("%s received click%d (%.2f,%.2f)",debugTitle, click, x, y));
-		
-		// first click suggests frame
-		if (click == 1) {
-			
-			// use crop frame suggestion function
-			ax = x;
-			ay = y;
-			cfs = Math.min(Math.min(0.2, 1.0-x), Math.min(0.2, 1.0-y));
-			
-			// draw crop frame
-			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
-			display.drawDiagonal(ax, ay);
-			display.drawPoint(ax, ay);
-			
-		
-		// second click adjusts frame
-		} else if (click == 2) {
-			
-			// use crop frame adjustment function
-			if (ay < y) {
-				cfs = Math.min(y-ay, 1.0-ax);
-				//ax = ax;
-				//ay = ay;
-			} else {
-				cfs = Math.min(ay-y, ax);
-				ax -= cfs;
-				ay -= cfs;
-			}
-			
-			// draw crop frame
-			display.clearGeometry();
-			display.drawDiagonal(ax, ay);
-			display.drawPoint(ax, ay);
-			display.drawPoint(ax+cfs, ay+cfs);
-			display.drawRectangle(ax, ay, ax+cfs, ay+cfs);
-			
-			
-		// third click resets frame
-		} else {
-			click = 0;
-			display.clearGeometry();
-		}
-	}*/
+	public void pass(LabeledVideo temp) {
+		super.pass(temp);
+		display.showTarget();
+	}
 	
 	
 	/**
-	 * Crop scale and color the video data then switch stage
+	 * Export processed video and switch to next stage
 	 */
-	public void next() {
+	@Override
+	public void complete() {
 		
 		// debug trace
 		Debug.trace(debugTitle + " received next");
@@ -108,18 +58,10 @@ public class VideoController extends Controller {
 		if (validTR) {
 			
 			// crop scale and color video
-			video = video.squareCrop(cropX, cropY, cropRes).downScale(targetRes, targetRes).greyScale();
+			data = data.getProcessed(cropX, cropY, cropRes, targetRes);
 			
-			// duplicate code rather than super call. Done so that debug
-			// trace is correctly ordered ('received next' before 'crop video')
-			// export and free video buffer
-			video.export(outputTitle);
-			Video temp = video;
-			video = null;
-			
-			// pass temporary video to the linked controller
-			linkedController.pass(temp);
-			//// end of duplicate
+			// next stage
+			super.complete();
 		
 		// skip and warn invalid target resolution
 		} else {

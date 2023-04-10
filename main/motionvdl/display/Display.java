@@ -1,7 +1,6 @@
 package motionvdl.display;
 
 import java.awt.Color;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +11,6 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
@@ -20,7 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
-import motionvdl.model.Point;
+import motionvdl.model.data.Point;
 
 /**
  * MotionVDL display component
@@ -149,7 +147,7 @@ public class Display {
 		this.processBut.setLayoutY(90);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
-				event -> receiver.next()
+				event -> receiver.complete()
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
@@ -171,7 +169,7 @@ public class Display {
 		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
-				event -> receiver.down()
+				event -> receiver.setPrevFrame()
 		);
 		this.primaryPane.getChildren().add(this.prevBut);
 
@@ -182,7 +180,7 @@ public class Display {
 		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
-				event -> receiver.up()
+				event -> receiver.setNextFrame()
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
@@ -270,6 +268,13 @@ public class Display {
 	 * the ImageView's Image property to display this frame.
 	 * @param colorArray Array of colors, containing the current frame
 	 */
+	
+	
+	// 230410 Joseph. So in order to reduce the memory consumption of the model component, I converted the 3d Color array into a 1d array of awt BufferedImage,
+	// because of this the getFrame method of the Video class returns type awt Image and so this method now has to be adapted to take awt Image
+	// as argument.
+	
+	
 	public void setFrame(Color[][] colorArray) {
 		Function<Color, javafx.scene.paint.Color> convertColor = color ->
 				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue());
@@ -510,4 +515,66 @@ public class Display {
 		int z = (int) (this.imageView.getViewport().getWidth());
 		return new int[]{x, y, z};
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void clearFrame() {
+		// TODO Auto-generated method stub
+		
+		// 230410 Joseph. this method is used in the file opening system, so that when for example a rectangular video
+		// is loaded over a square video, the square video is cleared beforehand.
+		
+	}
+
+	public void setTarget(int value) {
+		// TODO Auto-generated method stub
+		
+		// 230410 Joseph. I believe this function is already implemented but I will let you decide wether to remove this stub or not
+		
+	}
+
+	public void showTarget() {
+		// TODO Auto-generated method stub
+		
+		// 230410 Joseph. not essential to implement these but if you get a chance go for it
+	}
+
+	public void hideTarget() {
+		// TODO Auto-generated method stub
+		
+		// 230410 Joseph. same comment as with showTarget
+	}
+
+	public void drawBody(Point[] points, int[] connectorSequence) {
+		// TODO Auto-generated method stub
+		
+		// 230410 Joseph. This is the method that the label controller uses to draw the body label onto the 
+		// display, should be quite easy to adapt this to this code - just call drawPoint iteratively over the 
+		// points array. This class handles the connector sequence internally so just don't use the 
+		// connectorSequence parameter and we can remove it later.
+	}
+	
+	
+	
+	
+	
+	
+	// 230410 Joseph. Also another thing to note are the open, save and saveAs methods in the mainController. If you bind 
+	// these to menu buttons that trigger a file chooser then they should be relatively easy to add to this interface.
+	
+	
 }

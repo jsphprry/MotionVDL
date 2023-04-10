@@ -2,121 +2,132 @@ package motionvdl.controller;
 
 import motionvdl.Debug;
 import motionvdl.display.Display;
-import motionvdl.model.Video;
+import motionvdl.model.data.LabeledVideo;
 
 /**
  * MotionVDL controller superclass
  * @author Joseph
  */
 public abstract class Controller {
-	
+
 	// titles
-	protected String displayTitle = "MotionVDL";  // controller title on display
-	protected String debugTitle = "[controller]"; // controller title in debug output
-	protected String outputTitle = "video";       // filesystem location for exported encodings, appends .mvdl
-	
+	protected String displayTitle = "MotionVDL";        // title on display
+	protected String debugTitle = "[controller]";       // title in debug trace
+	protected static String outputFile = "output.mvdl"; // filesystem location for exported data
+
 	// components
-	protected Controller linkedController;
-	protected Display display;
-	protected Video video;
-	
+	protected Controller linkedController; // pointer to the linked controller
+	protected Display display;             // pointer to the display
+	protected LabeledVideo data;          // pointer to the labelled video data
+
 	// variables
-	protected int frameIndex;
+	protected int frameIndex; // index of current frame
 	
 	
 	/**
-	 * Respond to click event
-	 * default: Do nothing
-	 * @param x The normalised x-axis of the click event
-	 * @param y The normalised y-axis of the click event
+	 * Default pass action, setup data pointer and display properties
+	 * @param video Reference to the video
+	 */
+	public void pass(LabeledVideo temp) {
+
+		// debug trace
+		Debug.trace(debugTitle+" pass");
+
+		// setup controller
+		data = temp;
+		frameIndex = 0;
+
+		// setup display
+		display.clearFrame();
+		display.clearGeometry();
+		display.setTitle(displayTitle);
+		display.setFrame(data.video.getFrame(frameIndex));
+		display.setTarget(data.video.width);
+	}
+
+
+	/**
+	 * Default click action, do nothing
+	 * @param x Normalised x coordinate
+	 * @param y Normalised y coordinate
 	 */
 	public void click(double x, double y) {
-		
+
 		// debug trace
-		Debug.trace(debugTitle + " skipped click: no action");
+		Debug.trace(debugTitle+" ignored click: no action");
 	}
-	
-	
+
+
 	/**
-	 * Display next video frame
-	 * default: Display next possible frame
-	 */
-	public void up() {
-		
-		// debug trace
-		Debug.trace(debugTitle + " received up");
-		
-		// display next frame
-		frameIndex = Math.min(video.length - 1, frameIndex + 1);
-		display.setFrame(video.getFrame(frameIndex));
-		Debug.trace(debugTitle + " set to frame " + frameIndex);
-	}
-	
-	
-	/**
-	 * Display previous video frame.
-	 * Default: Display previous possible frame
-	 */
-	public void down() {
-		
-		// debug trace
-		Debug.trace(debugTitle + " received down");
-		
-		// display previous frame
-		frameIndex = Math.max(0, frameIndex - 1);
-		display.setFrame(video.getFrame(frameIndex));
-		Debug.trace(debugTitle + " set to frame " + frameIndex);
-	}
-	
-	
-	/**
-	 * Undo the most recent change to the data
-	 * default: Clear display geometry.
+	 * Default undo action, do nothing
 	 */
 	public void undo() {
-		
+
 		// debug trace
-		Debug.trace(debugTitle+" received undo");
-		
-		// update display
-		display.clearGeometry();
+		Debug.trace(String.format("%s ignored undo: no action",debugTitle));
 	}
 	
 	
 	/**
-	 * Switch to the next controller stage
-	 * default: Export video data and pass control to the linked controller
+	 * Default calibrate action, do nothing
+	 * @param x Normalised x coordinate
+	 * @param y Normalised y coordinate
 	 */
-	public void next() {
-		
+	public void calibrate(double x, double y) {
+
 		// debug trace
-		Debug.trace(debugTitle+" received next");
-		
-		// export and free video buffer
-		video.export(outputTitle);
-		Video temp = video;
-		video = null;
-		
-		// pass temporary video to the linked controller
+		Debug.trace(debugTitle+" ignored calibrate: no action");
+	}
+	
+	
+	/**
+	 * Default complete action, export data and pass to the linked controller
+	 */
+	public void complete() {
+
+		// debug trace
+		Debug.trace(debugTitle+" complete");
+
+		// pass temporary pointer to the linked controller
+		LabeledVideo temp = data;
+		data = null;
 		linkedController.pass(temp);
 	}
 	
 	
 	/**
-	 * Pass control to this controller
-	 * default: Setup display and video
+	 * Set the current video frame
+	 * @param index Index of video frame to set
 	 */
-	public void pass(Video tempVideo) {
-		
+	public void setFrame(int index) {
+
+		// display next frame
+		int last = frameIndex;
+		frameIndex = Math.min(Math.max(index,0),data.video.length-1);
+		display.setFrame(data.video.getFrame(frameIndex));
+
 		// debug trace
-		Debug.trace(debugTitle+" received pass");
+		Debug.trace(String.format("%s setFrame: %d -> %d",debugTitle,last,frameIndex));
 		
-		// setup video
-		video = tempVideo;
-		
-		// update display
-		display.clearGeometry();
-		display.setTitle(displayTitle);
-		display.setFrame(video.getFrame(frameIndex));
+	}
+	
+	
+	public void setNextFrame() {
+		setFrame(frameIndex+1);
+	}
+	
+	
+	public void setPrevFrame() {
+		setFrame(frameIndex-1);
+	}
+	
+	
+	public void setMinFrame() {
+		setFrame(0);
+	}
+	
+	
+	public void setMaxFrame() {
+		setFrame(data.video.length-1);
 	}
 }
