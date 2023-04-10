@@ -33,8 +33,8 @@ public class VideoController extends Controller {
 	
 	/**
 	 * Define the crop frame
-	 * @param x The normalised x axis of the click event
-	 * @param y The normalised y axis of the click event
+	 * @param x The normalised x-axis of the click event
+	 * @param y The normalised y-axis of the click event
 	 */
 	/*public void click(double x, double y) {
 		
@@ -42,7 +42,7 @@ public class VideoController extends Controller {
 		click += 1;
 		
 		// debug trace
-		Debug.trace(String.format("%s recieved click%d (%.2f,%.2f)",debugTitle, click, x, y));
+		Debug.trace(String.format("%s received click%d (%.2f,%.2f)",debugTitle, click, x, y));
 		
 		// first click suggests frame
 		if (click == 1) {
@@ -94,7 +94,7 @@ public class VideoController extends Controller {
 	public void next() {
 		
 		// debug trace
-		Debug.trace(debugTitle+" recieved next");
+		Debug.trace(debugTitle + " received next");
 		
 		// get target res and scale crop frame
 		int targetRes = display.getTarget();
@@ -110,8 +110,8 @@ public class VideoController extends Controller {
 			// crop scale and color video
 			video = video.squareCrop(cropX, cropY, cropRes).downScale(targetRes, targetRes).greyScale();
 			
-			//// duplicate code rather than super call. Done so that debug 
-			//// trace is correctly ordered ('recieved next' before 'crop video')
+			// duplicate code rather than super call. Done so that debug
+			// trace is correctly ordered ('received next' before 'crop video')
 			// export and free video buffer
 			video.export(outputTitle);
 			Video temp = video;

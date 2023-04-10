@@ -10,7 +10,7 @@
 }
 
 #imageViewID {
-    -fx-cursor: crosshair;
+    /*-fx-cursor: crosshair;*/
 }
 
 #lineID {

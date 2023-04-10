@@ -23,7 +23,7 @@ public final class Debug {
 		// set flag
 		enabled = verbose;
 		
-		// if the debug trace is enabled try to setup
+		// if the debug trace is enabled try to set up
 		if (enabled) {
 			try {
 				timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
@@ -34,7 +34,7 @@ public final class Debug {
 			} catch (IOException e) {
 				enabled = false;
 				System.out.println("Warning! Problem setting up file writer");
-				System.out.println("Caught message: "+e.getMessage());
+				System.out.println("Caught message: " + e.getMessage());
 			}
 		
 		// otherwise free resources
@@ -55,7 +55,7 @@ public final class Debug {
 		if (enabled) {
 			
 			// reformat message with time stamp
-			message = timeStamp.format(LocalDateTime.now())+" | "+message;
+			message = timeStamp.format(LocalDateTime.now()) + " | " + message;
 			
 			// record message to terminal and log file
 			System.out.println(message);

@@ -1,22 +1,23 @@
 package motionvdl.display;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.nio.ByteBuffer;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 import motionvdl.model.Point;
@@ -40,11 +41,9 @@ public class Display {
 	private final ImageView imageView;
 	private final Label titleLab;
 	private final Label messageLab;
-	private final Line cropLine;
 	private final List<Circle> points;
 	private final List<Line> connectors;
-	private final RadioButton toggleAutoBut;
-	private final Rectangle opaqueSquare;
+	private final RadioButton radioBut;
 	private final Slider sliderX;
 	private final Slider sliderY;
 	private final Slider sliderZoom;
@@ -59,7 +58,6 @@ public class Display {
 	public Display(int w, int h, Stage stage) {
 		this.WIDTH = w;
 		this.HEIGHT = h;
-
 		this.primaryStage = stage;
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
@@ -80,7 +78,6 @@ public class Display {
 		this.imageView.setLayoutY(40);
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
-		this.imageView.setPreserveRatio(false);
 		this.imageView.setOnMouseClicked(
 				event -> {
 					if (event.getButton() == MouseButton.PRIMARY) {
@@ -135,15 +132,15 @@ public class Display {
 		this.primaryPane.getChildren().add(this.sliderZoom);
 
 		// Radio button to toggle automatic mode
-		this.toggleAutoBut = new RadioButton("Toggle Auto");
-		this.toggleAutoBut.setId("radioID");
-		this.toggleAutoBut.setLayoutX(500);
-		this.toggleAutoBut.setLayoutY(40);
-		this.toggleAutoBut.setMinSize(160, 50);
-		this.toggleAutoBut.setTooltip(
-				new Tooltip("Enable to automatically move to next\nframe when all labels are placed.")
+		this.radioBut = new RadioButton("Lock Res");
+		this.radioBut.setId("radioID");
+		this.radioBut.setLayoutX(500);
+		this.radioBut.setLayoutY(40);
+		this.radioBut.setMinSize(160, 50);
+		this.radioBut.setTooltip(
+				new Tooltip("Lock currently minimum specified res.")
 		);
-		this.primaryPane.getChildren().add(this.toggleAutoBut);
+		this.primaryPane.getChildren().add(this.radioBut);
 
 		// Button for processing
 		this.processBut = new Button("Next stage");
@@ -196,15 +193,14 @@ public class Display {
 		this.resTextField.setLayoutY(270);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
-		this.resTextField.textProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					if (!newValue.matches("\\d*")) {
-						this.resTextField.setText(newValue.replaceAll("\\D", ""));
-					}
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
-						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
-					}
-				});
+		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				this.resTextField.setText(newValue.replaceAll("\\D", ""));
+			}
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
+				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+			}
+		});
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
@@ -222,20 +218,13 @@ public class Display {
 		// Lines to connect points during the labelling stage
 		this.connectors = new ArrayList<>();
 
-		// Line to visualise crop after first click during cropping stage
-		this.cropLine = new Line();
-		this.cropLine.setId("cropLineID");
-
-		// Square to visualise crop after second click during cropping stage
-		this.opaqueSquare = new Rectangle();
-		this.opaqueSquare.setId("opaqueSquareID");
-
 		// Details relating to window itself
 		this.primaryStage.setTitle("MotionVDL");
 		this.primaryStage.getIcons().add(new Image("motionvdl/display/images/javaIcon.png"));
 		this.primaryStage.setResizable(false);
 		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
+		this.primaryPane.requestFocus();
 		this.primaryStage.show();
 	}
 
@@ -282,37 +271,44 @@ public class Display {
 	 * @param colorArray Array of colors, containing the current frame
 	 */
 	public void setFrame(Color[][] colorArray) {
-		// Convert color array to awt.BufferedImage
+		Function<Color, javafx.scene.paint.Color> convertColor = color ->
+				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue());
+
 		int height = colorArray.length;
 		int width = colorArray[0].length;
-		BufferedImage bImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				Color color = colorArray[y][x];
-				int rgb = color.getRGB();
-				bImage.setRGB(x, y, rgb);
-			}
-		}
-
-		// Copy pixel data from BufferedImage to byte array
-		width = bImage.getWidth();
-		height = bImage.getHeight();
-		byte[] buffer = new byte[width * height * 4];
-		int[] pixels = bImage.getRGB(0, 0, width, height, null, 0, width);
-		for (int i = 0; i < pixels.length; i++) {
-			buffer[i * 4 + 3] = (byte) ((pixels[i] >> 24) & 0xFF);
-			buffer[i * 4 + 2] = (byte) ((pixels[i] >> 16) & 0xFF);
-			buffer[i * 4 + 1] = (byte) ((pixels[i] >> 8) & 0xFF);
-			buffer[i * 4] = (byte) ((pixels[i]) & 0xFF);
-		}
 
 		// Create JavaFX WritableImage and write pixel data
 		WritableImage wImage = new WritableImage(width, height);
 		PixelWriter pixelWriter = wImage.getPixelWriter();
-		PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
-		pixelWriter.setPixels(0, 0, width, height, pixelFormat, buffer, 0, width * 4);
-
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				Color color = colorArray[y][x];
+				pixelWriter.setColor(x, y, convertColor.apply(color));
+			}
+		}
 		this.imageView.setImage(wImage);
+
+//		// Upscale Image if required
+		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
+			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
+			width = (int) wImage.getWidth();
+			height = (int) wImage.getHeight();
+			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+			PixelReader reader = wImage.getPixelReader();
+			PixelWriter writer = scaledWImage.getPixelWriter();
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
+					int argb = reader.getArgb(x, y);
+					for (int dy = 0; dy < scaleFactor; dy++) {
+						for (int dx = 0; dx < scaleFactor; dx++) {
+							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+						}
+					}
+				}
+			}
+			this.imageView.setImage(scaledWImage);
+		}
 	}
 
 	/**
@@ -326,38 +322,38 @@ public class Display {
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
 
-		// Handle a landscape Image
-		if (this.imageView.getImage().getWidth() > this.imageView.getImage().getHeight()) {
-			this.imageView.setViewport(new Rectangle2D(
-					(this.imageView.getImage().getWidth() / 2) - (this.imageView.getImage().getHeight() / 2), 0,
-					this.imageView.getImage().getHeight(), this.imageView.getImage().getHeight()));
-			this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
-			this.sliderX.setValue(this.sliderX.getMax() / 2);
-			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getHeight() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getHeight());
-			this.sliderZoom.setValue(sliderZoom.getMax());
+		double imgWidth = this.imageView.getImage().getWidth();
+		double imgHeight = this.imageView.getImage().getHeight();
+		double maxSliderZoom;
+		double sliderXMaxValue = 0.0;
+		double sliderYMaxValue = 0.0;
 
-		// Handle a portrait Image
-		} else if (this.imageView.getImage().getWidth() < this.imageView.getImage().getHeight()) {
-			this.imageView.setViewport(new Rectangle2D(
-					(this.imageView.getImage().getHeight() / 2) - (this.imageView.getImage().getWidth() / 2), 0,
-					this.imageView.getImage().getWidth(), this.imageView.getImage().getWidth()));
-			this.sliderX.setValue(this.sliderX.getMax() / 2);
-			this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-			this.sliderY.setValue(this.sliderY.getMax() / 2);
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
-			this.sliderZoom.setValue(sliderZoom.getMax());
-
-		// Handle a square Image
+		// Set the viewport of the image based on its orientation
+		if (imgWidth > imgHeight) {
+			// Landscape Image
+			this.imageView.setViewport(new Rectangle2D((imgWidth / 2) - (imgHeight / 2), 0, imgHeight, imgHeight));
+			sliderXMaxValue = imgWidth - this.imageView.getViewport().getWidth();
+			sliderYMaxValue = 0.0;
+			maxSliderZoom = imgHeight;
+		} else if (imgWidth < imgHeight) {
+			// Portrait Image
+			this.imageView.setViewport(new Rectangle2D(0, (imgHeight / 2) - (imgWidth / 2), imgWidth, imgWidth));
+			sliderXMaxValue = 0.0;
+			sliderYMaxValue = imgHeight - this.imageView.getViewport().getHeight();
+			maxSliderZoom = imgWidth;
 		} else {
-			this.imageView.setViewport(new Rectangle2D(
-					0, 0, this.imageView.getImage().getWidth(), this.imageView.getImage().getHeight()));
-			this.sliderZoom.setMin(this.imageView.getImage().getWidth() * 0.01);
-			this.sliderZoom.setMax(this.imageView.getImage().getWidth());
-			this.sliderZoom.setValue(sliderZoom.getMax());
+			// Square Image
+			this.imageView.setViewport(new Rectangle2D(0, 0, imgWidth, imgHeight));
+			maxSliderZoom = imgWidth;
 		}
+		this.sliderX.setMax(sliderXMaxValue);
+		this.sliderX.setValue(this.sliderX.getMax() / 2);
+		this.sliderY.setMax(sliderYMaxValue);
+		this.sliderY.setValue(this.sliderY.getMax() / 2);
+		this.sliderZoom.setMin(imgWidth * 0.1);
+		this.sliderZoom.setMax(maxSliderZoom);
+		this.sliderZoom.setValue(maxSliderZoom);
+
 		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
 	}
 
@@ -386,7 +382,15 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+				if (!getRadio()) {
+					if (!Objects.equals(this.resTextField.getText(), "")) {
+						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					}
+				} else {
+					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					}
+				}
 			}
 		}
 	}
@@ -428,96 +432,42 @@ public class Display {
 		int pointNum = getPointNum() - 1;
 		this.connectors.add(new Line());
 		this.connectors.get(pointNum).setId("lineID");
+		BiConsumer<Integer, Integer> setPoints = (start, end) -> {
+			this.connectors.get(pointNum).setStartX(this.points.get(start).getCenterX());
+			this.connectors.get(pointNum).setStartY(this.points.get(start).getCenterY());
+			this.connectors.get(pointNum).setEndX(this.points.get(end).getCenterX());
+			this.connectors.get(pointNum).setEndY(this.points.get(end).getCenterY());
+		};
 		switch (pointNum) {
-			default -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(pointNum).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(pointNum).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
-
-			// Special cases for points not connected to previous point
-			case 3, 5 -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(1).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(1).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
-			case 8 -> {
-				this.connectors.get(pointNum).setStartX(this.points.get(6).getCenterX());
-				this.connectors.get(pointNum).setStartY(this.points.get(6).getCenterY());
-				this.connectors.get(pointNum).setEndX(this.points.get(pointNum + 1).getCenterX());
-				this.connectors.get(pointNum).setEndY(this.points.get(pointNum + 1).getCenterY());
-			}
+			default -> setPoints.accept(pointNum, pointNum + 1);
+			case 3, 5 -> setPoints.accept(1, pointNum + 1);
+			case 8 -> setPoints.accept(6, pointNum + 1);
 		}
 		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
 	}
-
-//	/**
-//	 * Draw a diagonal Line object to visualise cropping process.
-//	 * @param ax x co-ordinate of the user's click on the ImageView
-//	 * @param ay y co-ordinate of the user's click on the ImageView
-//	 */
-//	public void drawDiagonal(double ax, double ay) {
-//		// Convert normalised co-ordinates to relative
-//		ax = ax * this.imageView.getFitWidth();
-//		ay = ay * this.imageView.getFitHeight();
-//
-//		double c = ay - ax;
-//		if (ax > ay) {
-//			this.cropLine.setStartX(this.imageView.getLayoutX() - c);
-//			this.cropLine.setStartY(this.imageView.getLayoutY());
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight() + c);
-//		} else if (ax < ay) {
-//			this.cropLine.setStartX(this.imageView.getLayoutX());
-//			this.cropLine.setStartY(this.imageView.getLayoutY() + c);
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth() - c);
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-//		} else {
-//			this.cropLine.setStartX(this.imageView.getLayoutX());
-//			this.cropLine.setStartY(this.imageView.getLayoutY());
-//			this.cropLine.setEndX(this.imageView.getLayoutX() + this.imageView.getFitWidth());
-//			this.cropLine.setEndY(this.imageView.getLayoutY() + this.imageView.getFitHeight());
-//		}
-//		this.primaryPane.getChildren().add(this.cropLine);
-//	}
-
-//	/**
-//	 * Draw an opaque Rectangle object to visualise cropping process.
-//	 * @param ax x co-ordinate of the top-left corner of the rectangle
-//	 * @param ay y co-ordinate of the top-left corner of the rectangle
-//	 * @param bx x co-ordinate of the bottom-right corner of the rectangle
-//	 * @param by y co-ordinate of the bottom-right corner of the rectangle
-//	 */
-//	public void drawRectangle(double ax, double ay, double bx, double by) {
-//		// Convert normalised co-ordinates to relative
-//		ax = ax * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-//		ay = ay * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-//		bx = bx * this.imageView.getFitWidth() + this.imageView.getLayoutX();
-//		by = by * this.imageView.getFitHeight() + this.imageView.getLayoutY();
-//
-//		this.opaqueSquare.setLayoutX(ax);
-//		this.opaqueSquare.setLayoutY(ay);
-//		this.opaqueSquare.setWidth(bx - ax);
-//		this.opaqueSquare.setHeight(by - ay);
-//		this.primaryPane.getChildren().add(opaqueSquare);
-//	}
 
 	/**
 	 * Clear all Lines, Circles, and Rectangle objects from the Pane.
 	 */
 	public void clearGeometry() {
 		// Even if these nodes haven't yet been added to the Pane, this will still work
-		this.primaryPane.getChildren().remove(this.cropLine);
-		this.primaryPane.getChildren().remove(this.opaqueSquare);
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
 
+	/**
+	 * Change scene layout for labelling stage.
+	 */
 	public void alterForLabelling() {
-		this.primaryPane.getChildren().removeAll(sliderX, sliderY, sliderZoom);
+		this.primaryPane.getChildren().removeAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setViewport(null);
+		this.radioBut.setText("Toggle Auto");
+		this.radioBut.setTooltip(
+				new Tooltip("Enable to automatically move to next\n" +
+							"frame when all labels are placed.")
+		);
+		this.radioBut.setSelected(false);
+		this.primaryPane.requestFocus();
 	}
 
 	/**
@@ -546,9 +496,14 @@ public class Display {
 	 * @return Current state of auto radio button
 	 */
 	public boolean getRadio() {
-		return this.toggleAutoBut.isSelected();
+		return this.radioBut.isSelected();
 	}
 
+	/**
+	 * Returns the top-left x and y co-ordinates of the crop frame,
+	 * as well as the width of crop frame.
+	 * @return Current crop frame co-ordinates
+	 */
 	public int[] getCropFrame() {
 		int x = (int) (this.imageView.getViewport().getMinX());
 		int y = (int) (this.imageView.getViewport().getMinY());

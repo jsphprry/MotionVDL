@@ -37,8 +37,8 @@ public class Label extends Encoding {
 	/**
 	 * Push to a stack
 	 * @param stack The stack index
-	 * @param x The normalised x axis of the point
-	 * @param y The normalised y axis of the point
+	 * @param x The normalised x-axis of the point
+	 * @param y The normalised y-axis of the point
 	 */
 	public void push(int stack, double x, double y) {
 		
@@ -109,9 +109,7 @@ public class Label extends Encoding {
 		
 		// setup array of points
 		Point[] framePoints = new Point[size];
-		for (int i=0; i < size; i++) {
-			framePoints[i] = buffer[stack][i];
-		}
+		System.arraycopy(buffer[stack], 0, framePoints, 0, size);
 		
 		return framePoints;
 	}

@@ -17,8 +17,7 @@ public class MotionVDL extends Application {
 	/**
 	 * MotionVDL starter program
 	 * defines the program arguments
-	 * @param args[0] Video location on filesystem
-	 * @param args[1] Debug setup flag
+	 * @param args [0] - Video location on filesystem, [1] - Debug setup flag
 	 */
 	public static void main(String[] args) {
 		launch(args);
@@ -44,7 +43,7 @@ public class MotionVDL extends Application {
 
 		// start main controller with video file
 		//controller.pass(Video.fromFile(args.get(0)));
-		controller.pass(Video.noise(200, 100, 10));
+		controller.pass(Video.noise(1920, 1080, 5));
 		display.setViewPort();
 	}
 }
