@@ -263,23 +263,24 @@ public class Display {
 		alert.getDialogPane().setPrefSize(250, 100);
 		alert.showAndWait();
 	}
-
+	
 	/**
 	 * Convert an array of AWT Colors to JavaFX Image, then set
 	 * the ImageView's Image property to display this frame.
 	 * @param colorArray Array of colors, containing the current frame
 	 */
-
+	
 	// 230410 Joseph. So in order to reduce the memory consumption of the model component, I converted the 3d Color array into a 1d array of awt BufferedImage,
 	// because of this the getFrame method of the Video class returns type awt Image and so this method now has to be adapted to take awt Image
 	// as argument.
 	
-
 	// 230410 Henri. I've changed it from Color[][] to java.awt.Image.
 	// This might work but unable to test at this point - unable to run as I don't know how to fix line 46 in MotionVDL class.
-
+	
 	// 230410 Henri. This method is also probably not the most efficient, but is a temporary solution
-
+	
+	// 230411 Joseph. So I've fixed the MotionVDL starter and this method seems to work well, only issue I can see is the pixel smoothing that was an issue before
+	
 	public void setFrame(java.awt.Image image) {
 		BufferedImage bImage = (BufferedImage) image;
 		int height = bImage.getHeight();
@@ -479,7 +480,15 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
-
+	
+	
+	// 230411 Joseph. Becuase of the open method of the main controller, it is possible to switch back from label controller 
+	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
+	public void alterForVideo() {
+		// TODO restore sliders and target field if they are hidden
+	}
+	
+	
 	/**
 	 * Change scene layout for labelling stage.
 	 */
@@ -543,46 +552,54 @@ public class Display {
 
 	
 	public void clearFrame() {
-		// TODO Auto-generated method stub
 
 		// 230410 Joseph. this method is used in the file opening system, so that when for example a rectangular video
 		// is loaded over a square video, the square video is cleared beforehand.
 
 		// 230410 Henri. Sets the ImageView's contents to null so no frame contained. Am I interpreting this correctly?
+		
+		// 230411 Joseph. yeah perfect, you could also set it to some default image or pattern
 		this.imageView.setImage(null);
 		
 	}
-
+	
+	@Deprecated
 	public void setTarget(int value) {
-		// TODO Auto-generated method stub
 		
 		// 230410 Joseph. I believe this function is already implemented, but I will let you decide whether to remove this stub or not
 
 		// 230410 Henri. Sets the contents of TextField to given value. Am I interpreting this correctly?
+		
+		// 230411 Joseph. Yeah this is the correct interpretation, it's used by the controllers to get the field to respond to changes in size
+		//                However I think the viewport handles that in this implementation so we probably wont need to call this method
 		this.resTextField.setText(String.valueOf(value));
 
 	}
 
+	@Deprecated
 	public void showTarget() {
-		// TODO Auto-generated method stub
 
 		// 230410 Joseph. not essential to implement these but if you get a chance go for it
 
 		// 230410 Henri. Do you mean show and hide the TextField itself? Like in this line:
 		// this.primaryPane.getChildren().add(resTextField);
 		// Or show and hide the current target res shown in the TextField?
-
+		
+		// 230411 Joseph. So i mean to hide the TextField itself. alterForLabelling might be a better place for this 
+		//                function though since there are multiple other components that need to change between the two
+		//                stages. For now I will remove all calls to this and its hide equivelant from the controllers and 
+		//                insert a call to alterForLabelling to the label controller pass method.
 	}
-
+	
+	@Deprecated
 	public void hideTarget() {
-		// TODO Auto-generated method stub
 		
 		// 230410 Joseph. same comment as with showTarget
 		// this.primaryPane.getChildren().remove(resTextField);
 	}
 
+	@Deprecated
 	public void drawBody(Point[] points, int[] connectorSequence) {
-		// TODO Auto-generated method stub
 		
 		// 230410 Joseph. This is the method that the label controller uses to draw the body label onto the 
 		// display, should be quite easy to adapt this to this code - just call drawPoint iteratively over the 
@@ -591,6 +608,8 @@ public class Display {
 
 		// 230410 Henri. So could it not just directly call drawPoints() instead of this method? Or are extra steps needed other than this line:
 		drawPoints(points);
+		
+		// 230411 Joseph. You're right, i will replace calls to drawBody with drawPoints in the controllers.
 	}
 	
 	
@@ -603,5 +622,7 @@ public class Display {
 
 	// Or like this?
 	// https://jenkov.com/tutorials/javafx/menubar.html
+	
+	// 230411 Joseph. The second "https://jenkov.com/tutorials/javafx/menubar.html" is what I mean, 
 	
 }

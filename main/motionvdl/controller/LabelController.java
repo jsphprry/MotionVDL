@@ -45,9 +45,10 @@ public class LabelController extends Controller {
 			frameIndex += 1;
 		}
 		
-		// draw current frame
+		// setup display
 		display.setFrame(data.video.getFrame(frameIndex));
-		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+		display.drawPoints(data.label.getPoints(frameIndex));
+		display.alterForLabelling();
 	}
 
 
@@ -70,7 +71,7 @@ public class LabelController extends Controller {
 			
 			// draw frame label
 			display.clearGeometry();
-			display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+			display.drawPoints(data.label.getPoints(frameIndex));
 			
 			// go to next frame if current frame label is full when radio is true
 			if (display.getRadio()) if (data.label.checkFull(frameIndex)) setNextFrame();
@@ -99,7 +100,7 @@ public class LabelController extends Controller {
 			
 			// draw frame label
 			display.clearGeometry();
-			display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+			display.drawPoints(data.label.getPoints(frameIndex));
 			
 		// go to previous frame if empty label
 		} else {
@@ -127,7 +128,7 @@ public class LabelController extends Controller {
 		
 		// redraw frame label
 		display.clearGeometry();
-		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+		display.drawPoints(data.label.getPoints(frameIndex));
 	}
 
 
@@ -170,6 +171,6 @@ public class LabelController extends Controller {
 		
 		// draw frame label
 		display.clearGeometry();
-		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+		display.drawPoints(data.label.getPoints(frameIndex));
 	}
 }

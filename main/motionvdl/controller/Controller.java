@@ -26,7 +26,7 @@ public abstract class Controller {
 	
 	/**
 	 * Default pass action, setup data pointer and display properties
-	 * @param video Reference to the video
+	 * @param temp Reference to the labeled video
 	 */
 	public void pass(LabeledVideo temp) {
 
@@ -42,7 +42,6 @@ public abstract class Controller {
 		display.clearGeometry();
 		display.setTitle(displayTitle);
 		display.setFrame(data.video.getFrame(frameIndex));
-		display.setTarget(data.video.width);
 	}
 
 

@@ -29,11 +29,12 @@ public class VideoController extends Controller {
 	
 	
 	/**
-	 * Default behaviour then show target input
+	 * Default pass behaviour then setup display
+	 * @param temp Reference to the labeled video
 	 */
 	public void pass(LabeledVideo temp) {
 		super.pass(temp);
-		display.showTarget();
+		display.alterForVideo();
 	}
 	
 	

@@ -42,5 +42,13 @@ public class MotionVDL extends Application {
 		// start main controller with mvdl file
 		controller.open("output.mvdl");
 		display.setViewPort();
+		
+		// bypass open method to load encoded data into initial controller state
+//		try {
+//			controller.pass(new LabeledVideo(new Video(FileSystem.readBytes("output.mvdl"))));
+//			display.setViewPort();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
