@@ -29,15 +29,15 @@ public class MotionVDL extends Application {
 		Parameters params = getParameters();
 		List<String> args = params.getRaw();
 		
-		// throw insufficient arguments
-		if (args.size() == 0) throw new IllegalArgumentException("Insufficient arguments");
-		
 		// setup debug
-		if (args.size() >= 2) Debug.setup(Boolean.parseBoolean(args.get(1)));
+		Debug.setup(true);
 		
 		// setup display and controller
 		Display display = new Display(675, 475, stage);
 		MainController controller = new MainController(display);
+		
+		// start with file if given
+		if (args.size() > 0) controller.open(args.get(0));
 		
 		// start main controller with mvdl file
 		controller.open("output.mvdl");
