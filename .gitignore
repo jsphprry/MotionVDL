@@ -1,1 +1,9 @@
-/bin/
+/labellers/MotionVDL\ group/bin/
+/labellers/MotionVDL\ personal/bin/
+/labellers/MotionVDL\ personal/data/frames/*
+/labellers/MotionVDL\ personal/data/downscale.mp4
+/labellers/MotionVDL\ personal/data/input.mp4
+/labellers/MotionVDL\ personal/versions/1/data/frames/*
+/modelling/lstm_practice/
+/screenshots/
+/video_data/
