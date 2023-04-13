@@ -78,7 +78,7 @@ public class Video extends Encoding {
 			}
 			
 			// debug trace
-			Debug.trace(String.format("Created (%d,%d,%d) video from byte sequence",width,height,length));
+			Debug.trace(String.format("Created (%d,%d,%d) video from byte sequence",length,height,width));
 
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Video error: problem decoding bytes "+e.getMessage());
@@ -95,7 +95,7 @@ public class Video extends Encoding {
 	public static Video noise(int width, int height, int length) {
 		
 		// debug trace
-		Debug.trace(String.format("Created (%d,%d,%d) noise buffer",width,height,length));
+		Debug.trace(String.format("Created (%d,%d,%d) noise buffer",length,height,width));
 		
 		// initialise workBuffer
 		BufferedImage[] workBuffer = new BufferedImage[length];

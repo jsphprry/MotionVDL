@@ -26,27 +26,20 @@ public class MotionVDL extends Application {
 	public void start(Stage stage) {
 		
 		// need to use Parameters to get args[], and then save in List
-		Parameters params = getParameters();
-		List<String> args = params.getRaw();
+		List<String> args = getParameters().getRaw();
 		
 		// setup debug
 		Debug.setup(true);
 		
-		// setup display and controller
-		Display display = new Display(675, 475, stage);
-		MainController controller = new MainController(display);
+		// initialise main controller with display
+		MainController controller = new MainController(new Display(675, 475, stage));
 		
 		// start with file if given
 		if (args.size() > 0) controller.open(args.get(0));
 		
-		// start main controller with mvdl file
-		controller.open("output.mvdl");
-		display.setViewPort();
-		
-		// bypass open method to load encoded data into initial controller state
+//		// bypass open method to load encoded data into initial controller state
 //		try {
 //			controller.pass(new LabeledVideo(new Video(FileSystem.readBytes("output.mvdl"))));
-//			display.setViewPort();
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}

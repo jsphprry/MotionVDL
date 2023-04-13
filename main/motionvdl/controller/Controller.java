@@ -42,6 +42,7 @@ public abstract class Controller {
 		display.clearGeometry();
 		display.setTitle(displayTitle);
 		display.setFrame(data.video.getFrame(frameIndex));
+		display.setViewPort();
 	}
 
 
