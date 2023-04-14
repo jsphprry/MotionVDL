@@ -35,6 +35,8 @@ public class Display {
 
 	public final int WIDTH;
 	public final int HEIGHT;
+	private double widthScaleFactor;
+	private double heightScaleFactor;
 	private Controller receiver;
 	private final Stage primaryStage;
 	private final Scene primaryScene;
@@ -64,6 +66,8 @@ public class Display {
 	public Display(Stage stage) {
 		this.WIDTH = 675;
 		this.HEIGHT = 500;
+		this.widthScaleFactor = 1;
+		this.heightScaleFactor = 1;
 		this.primaryStage = stage;
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
@@ -324,7 +328,7 @@ public class Display {
 		}
 		this.imageView.setImage(wImage);
 
-		// Upscale Image if required and past cropping stage
+		// Upscale Image if required
 		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
 			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
 			width = (int) wImage.getWidth();
@@ -342,7 +346,12 @@ public class Display {
 					}
 				}
 			}
+			this.widthScaleFactor = (double) width / scaledWImage.getWidth();
+			this.heightScaleFactor = (double) height / scaledWImage.getHeight();
 			this.imageView.setImage(scaledWImage);
+		} else {
+			this.widthScaleFactor = 1;
+			this.heightScaleFactor = 1;
 		}
 	}
 
@@ -389,7 +398,7 @@ public class Display {
 		this.sliderZoom.setMax(maxSliderZoom);
 		this.sliderZoom.setValue(maxSliderZoom);
 
-		this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 	}
 
 	/**
@@ -417,13 +426,13 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				if (!getRadio()) {
-					if (!Objects.equals(this.resTextField.getText(), "")) {
-						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+				if (getRadio()) {
+					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 					}
 				} else {
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
-						this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+					if (!Objects.equals(this.resTextField.getText(), "")) {
+						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 					}
 				}
 			}
@@ -502,8 +511,7 @@ public class Display {
 		this.radioBut.setSelected(false);
 		this.primaryPane.requestFocus();
 	}
-	
-	
+
 	/**
 	 * Change scene layout for labelling stage.
 	 */
@@ -554,9 +562,9 @@ public class Display {
 	 * @return Current crop frame co-ordinates
 	 */
 	public int[] getCropFrame() {
-		int x = (int) (this.imageView.getViewport().getMinX());
-		int y = (int) (this.imageView.getViewport().getMinY());
-		int z = (int) (this.imageView.getViewport().getWidth());
+		int x = (int) (this.imageView.getViewport().getMinX() * widthScaleFactor);
+		int y = (int) (this.imageView.getViewport().getMinY() * heightScaleFactor);
+		int z = (int) (this.imageView.getViewport().getWidth() * widthScaleFactor);
 		return new int[]{x, y, z};
 	}
 
