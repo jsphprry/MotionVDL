@@ -48,6 +48,7 @@ public class Display {
 	private final Label messageLab;
 	private final List<Circle> points;
 	private final List<Line> connectors;
+	private final MenuBar menuBar;
 	private final RadioButton radioBut;
 	private final Slider sliderX;
 	private final Slider sliderY;
@@ -60,9 +61,9 @@ public class Display {
 	 * @param h      Height of the window
 	 * @param stage  Default Stage to be used by the Application
 	 */
-	public Display(int w, int h, Stage stage) {
-		this.WIDTH = w;
-		this.HEIGHT = h;
+	public Display(Stage stage) {
+		this.WIDTH = 675;
+		this.HEIGHT = 500;
 		this.primaryStage = stage;
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
@@ -73,14 +74,14 @@ public class Display {
 		this.titleLab = new Label("Title");
 		this.titleLab.setId("titleLabID");
 		this.titleLab.setLayoutX(6);
-		this.titleLab.setLayoutY(6);
+		this.titleLab.setLayoutY(32);
 		this.primaryPane.getChildren().add(this.titleLab);
 
 		// ImageView to show current frame
 		this.imageView = new ImageView();
 		this.imageView.setId("imageViewID");
 		this.imageView.setLayoutX(40);
-		this.imageView.setLayoutY(40);
+		this.imageView.setLayoutY(65);
 		this.imageView.setFitHeight(400);
 		this.imageView.setFitWidth(400);
 		this.imageView.setOnMouseClicked(
@@ -98,7 +99,7 @@ public class Display {
 		this.sliderX = new Slider();
 		this.sliderX.setId("sliderID");
 		this.sliderX.setLayoutX(40);
-		this.sliderX.setLayoutY(450);
+		this.sliderX.setLayoutY(475);
 		this.sliderX.setMinWidth(400);
 		this.sliderX.setMin(0);
 		this.sliderX.setMax(0);
@@ -112,7 +113,7 @@ public class Display {
 		this.sliderY.setOrientation(Orientation.VERTICAL);
 		this.sliderY.setRotate(180);
 		this.sliderY.setLayoutX(455);
-		this.sliderY.setLayoutY(40);
+		this.sliderY.setLayoutY(65);
 		this.sliderY.setMinHeight(400);
 		this.sliderY.setMin(0);
 		this.sliderY.setMax(0);
@@ -125,7 +126,7 @@ public class Display {
 		this.sliderZoom.setId("sliderID");
 		this.sliderZoom.setOrientation(Orientation.VERTICAL);
 		this.sliderZoom.setLayoutX(15);
-		this.sliderZoom.setLayoutY(40);
+		this.sliderZoom.setLayoutY(65);
 		this.sliderZoom.setMinHeight(400);
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
@@ -137,7 +138,7 @@ public class Display {
 		this.radioBut = new RadioButton("Lock Res");
 		this.radioBut.setId("radioID");
 		this.radioBut.setLayoutX(500);
-		this.radioBut.setLayoutY(40);
+		this.radioBut.setLayoutY(65);
 		this.radioBut.setMinSize(160, 50);
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
@@ -148,7 +149,7 @@ public class Display {
 		this.processBut = new Button("Next stage");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(480);
-		this.processBut.setLayoutY(90);
+		this.processBut.setLayoutY(115);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setOnAction(
 				event -> receiver.complete()
@@ -159,7 +160,7 @@ public class Display {
 		this.undoBut = new Button("Undo");
 		this.undoBut.setId("buttonID");
 		this.undoBut.setLayoutX(480);
-		this.undoBut.setLayoutY(150);
+		this.undoBut.setLayoutY(175);
 		this.undoBut.setMinSize(160, 50);
 		this.undoBut.setOnAction(
 				event -> receiver.undo()
@@ -170,7 +171,7 @@ public class Display {
 		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(480);
-		this.prevBut.setLayoutY(210);
+		this.prevBut.setLayoutY(235);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setOnAction(
 				event -> receiver.setPrevFrame()
@@ -181,7 +182,7 @@ public class Display {
 		this.nextBut = new Button("->");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(562);
-		this.nextBut.setLayoutY(210);
+		this.nextBut.setLayoutY(235);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setOnAction(
 				event -> receiver.setNextFrame()
@@ -192,7 +193,7 @@ public class Display {
 		this.resTextField = new TextField();
 		this.resTextField.setId("textFieldID");
 		this.resTextField.setLayoutX(525);
-		this.resTextField.setLayoutY(270);
+		this.resTextField.setLayoutY(295);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -209,10 +210,19 @@ public class Display {
 		this.messageLab = new Label("Message area");
 		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(480);
-		this.messageLab.setLayoutY(310);
+		this.messageLab.setLayoutY(335);
 		this.messageLab.setMaxWidth(160);
 		this.messageLab.setWrapText(true);
 		this.primaryPane.getChildren().add(this.messageLab);
+
+		this.menuBar = new MenuBar();
+		this.menuBar.setId("menuBarID");
+		Menu menu = new Menu("Open");
+		Menu menu1 = new Menu("Save");
+		Menu menu2 = new Menu("Save As");
+		this.menuBar.getMenus().addAll(menu, menu1, menu2);
+		this.menuBar.setMinWidth(WIDTH);
+		this.primaryPane.getChildren().add(menuBar);
 
 		// Points to be placed on the ImageView to visualise a click
 		this.points = new ArrayList<>();
@@ -220,7 +230,7 @@ public class Display {
 		// Lines to connect points during the labelling stage
 		this.connectors = new ArrayList<>();
 
-		// Details relating to window itself
+		// Details relating to the window itself
 		this.primaryStage.setTitle("MotionVDL");
 		this.primaryStage.getIcons().add(new Image("motionvdl/display/images/javaIcon.png"));
 		this.primaryStage.setResizable(false);
@@ -313,8 +323,6 @@ public class Display {
 			}
 		}
 		this.imageView.setImage(wImage);
-
-		// 230410 Henri. Will uncomment once confirmed the above code works correctly
 
 		// Upscale Image if required and past cropping stage
 		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
@@ -483,8 +491,8 @@ public class Display {
 	}
 	
 	
-	// 230411 Joseph. Becuase of the open method of the main controller, it is possible to switch back from label controller 
-	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
+	// 230411 Joseph. Because of the open method of the main controller, it is possible to switch back from label controller
+	//                to video controller and because of this alterForLabelling must have an equivalent method alterForVideo
 	public void alterForVideo() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.radioBut.setText("Lock Res");
@@ -577,8 +585,8 @@ public class Display {
 
 		// 230410 Henri. Sets the contents of TextField to given value. Am I interpreting this correctly?
 		
-		// 230411 Joseph. Yeah this is the correct interpretation, it's used by the controllers to get the field to respond to changes in size
-		//                However I think the viewport handles that in this implementation so we probably wont need to call this method
+		// 230411 Joseph. Yeah, this is the correct interpretation, it's used by the controllers to get the field to respond to changes in size
+		//                However I think the viewport handles that in this implementation so we probably won't need to call this method
 		this.resTextField.setText(String.valueOf(value));
 
 	}
@@ -592,9 +600,9 @@ public class Display {
 		// this.primaryPane.getChildren().add(resTextField);
 		// Or show and hide the current target res shown in the TextField?
 		
-		// 230411 Joseph. So i mean to hide the TextField itself. alterForLabelling might be a better place for this 
+		// 230411 Joseph. So I mean to hide the TextField itself. alterForLabelling might be a better place for this
 		//                function though since there are multiple other components that need to change between the two
-		//                stages. For now I will remove all calls to this and its hide equivelant from the controllers and 
+		//                stages. For now, I will remove all calls to this and its hide equivalent from the controllers and
 		//                insert a call to alterForLabelling to the label controller pass method.
 	}
 	
@@ -630,6 +638,6 @@ public class Display {
 	// Or like this?
 	// https://jenkov.com/tutorials/javafx/menubar.html
 	
-	// 230411 Joseph. The second "https://jenkov.com/tutorials/javafx/menubar.html" is what I mean, 
-	
+	// 230411 Joseph. The second "https://jenkov.com/tutorials/javafx/menubar.html" is what I mean,
+
 }

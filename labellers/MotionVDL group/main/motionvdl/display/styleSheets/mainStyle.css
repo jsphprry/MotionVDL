@@ -5,10 +5,6 @@
     -fx-background-radius: 15pt;
 }
 
-#cropLineID {
-    -fx-stroke-width: 2pt;
-}
-
 #imageViewID {
     /*-fx-cursor: crosshair;*/
 }
@@ -17,15 +13,14 @@
     -fx-stroke-width: 4pt;
 }
 
+#menuBarID {
+    -fx-font: 10pt "Arial";
+}
+
 #messageLabID {
     -fx-font: 14pt "Arial";
 }
 
-#opaqueSquareID {
-    -fx-fill: WHITE;
-    -fx-stroke: BLACK;
-    -fx-opacity: 0.2;
-}
 
 #paneID {
     -fx-background-color: #ffe6ef;
