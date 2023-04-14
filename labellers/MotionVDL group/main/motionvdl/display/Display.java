@@ -2,16 +2,15 @@ package motionvdl.display;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import com.sun.javafx.image.impl.IntArgbPre;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -24,8 +23,6 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 import motionvdl.model.data.Point;
-
-import javax.imageio.ImageIO;
 
 /**
  * MotionVDL display component
@@ -221,10 +218,21 @@ public class Display {
 
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
-		Menu menu = new Menu("Open");
-		Menu menu1 = new Menu("Save");
-		Menu menu2 = new Menu("Save As");
-		this.menuBar.getMenus().addAll(menu, menu1, menu2);
+		Menu file = new Menu("File");
+		MenuItem open = new MenuItem("Open");
+		open.setOnAction(event ->
+			System.out.println("Open")
+		);
+		MenuItem save = new MenuItem("Save");
+		save.setOnAction(event ->
+				System.out.println("Save")
+		);
+		MenuItem saveAs = new MenuItem("Save As");
+		saveAs.setOnAction(event ->
+				System.out.println("Save As")
+		);
+		file.getItems().addAll(open, save, saveAs);
+		this.menuBar.getMenus().add(file);
 		this.menuBar.setMinWidth(WIDTH);
 		this.primaryPane.getChildren().add(menuBar);
 
