@@ -1,0 +1,2 @@
+This directory should contain _only_ the processed video frames as pngs, any
+non-image files in this directory will cause an exception in the file loader
