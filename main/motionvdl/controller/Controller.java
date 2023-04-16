@@ -2,7 +2,7 @@ package motionvdl.controller;
 
 import motionvdl.Debug;
 import motionvdl.display.Display;
-import motionvdl.model.LabelledVideo;
+import motionvdl.model.data.LabeledVideo;
 
 /**
  * MotionVDL controller superclass
@@ -18,10 +18,32 @@ public abstract class Controller {
 	// components
 	protected Controller linkedController; // pointer to the linked controller
 	protected Display display;             // pointer to the display
-	protected LabelledVideo data;          // pointer to the labelled video data
+	protected LabeledVideo data;          // pointer to the labelled video data
 
 	// variables
 	protected int frameIndex; // index of current frame
+	
+	
+	/**
+	 * Default pass action, setup data pointer and display properties
+	 * @param video Reference to the video
+	 */
+	public void pass(LabeledVideo temp) {
+
+		// debug trace
+		Debug.trace(debugTitle+" pass");
+
+		// setup controller
+		data = temp;
+		frameIndex = 0;
+
+		// setup display
+		display.clearFrame();
+		display.clearGeometry();
+		display.setTitle(displayTitle);
+		display.setFrame(data.video.getFrame(frameIndex));
+		display.setTarget(data.video.width);
+	}
 
 
 	/**
@@ -44,36 +66,20 @@ public abstract class Controller {
 		// debug trace
 		Debug.trace(String.format("%s ignored undo: no action",debugTitle));
 	}
-
-
+	
+	
 	/**
-	 * Default nextFrame action, display next possible frame
+	 * Default calibrate action, do nothing
+	 * @param x Normalised x coordinate
+	 * @param y Normalised y coordinate
 	 */
-	public void nextFrame() {
-
-		// display next frame
-		frameIndex = Math.min(data.video.length - 1, frameIndex + 1);
-		display.setFrame(data.video.getFrame(frameIndex));
+	public void calibrate(double x, double y) {
 
 		// debug trace
-		Debug.trace(String.format("%s nextFrame: frame %d",debugTitle,frameIndex));
+		Debug.trace(debugTitle+" ignored calibrate: no action");
 	}
-
-
-	/**
-	 * Default prevFrame action, display previous possible frame
-	 */
-	public void prevFrame() {
-
-		// display previous frame
-		frameIndex = Math.max(0, frameIndex - 1);
-		display.setFrame(data.video.getFrame(frameIndex));
-
-		// debug trace
-		Debug.trace(String.format("%s prevFrame: frame %d",debugTitle,frameIndex));
-	}
-
-
+	
+	
 	/**
 	 * Default complete action, export data and pass to the linked controller
 	 */
@@ -83,29 +89,45 @@ public abstract class Controller {
 		Debug.trace(debugTitle+" complete");
 
 		// pass temporary pointer to the linked controller
-		LabelledVideo temp = data;
+		LabeledVideo temp = data;
 		data = null;
 		linkedController.pass(temp);
 	}
-
-
+	
+	
 	/**
-	 * Default pass action, setup data pointer and display properties
-	 * @param video Reference to the video
+	 * Set the current video frame
+	 * @param index Index of video frame to set
 	 */
-	public void pass(LabelledVideo temp) {
+	public void setFrame(int index) {
+
+		// display next frame
+		int last = frameIndex;
+		frameIndex = Math.min(Math.max(index,0),data.video.length-1);
+		display.setFrame(data.video.getFrame(frameIndex));
 
 		// debug trace
-		Debug.trace(debugTitle+" pass");
-
-		// setup controller
-		data = temp;
-		frameIndex = 0;
-
-		// setup display
-		display.clearFrame();
-		display.clearGeometry();
-		display.setTitle(displayTitle);
-		display.setFrame(data.video.getFrame(frameIndex));
+		Debug.trace(String.format("%s setFrame: %d -> %d",debugTitle,last,frameIndex));
+		
+	}
+	
+	
+	public void setNextFrame() {
+		setFrame(frameIndex+1);
+	}
+	
+	
+	public void setPrevFrame() {
+		setFrame(frameIndex-1);
+	}
+	
+	
+	public void setMinFrame() {
+		setFrame(0);
+	}
+	
+	
+	public void setMaxFrame() {
+		setFrame(data.video.length-1);
 	}
 }

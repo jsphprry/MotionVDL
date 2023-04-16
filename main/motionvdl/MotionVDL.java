@@ -10,18 +10,17 @@ public final class MotionVDL {
 	
 	/**
 	 * MotionVDL starter program
-	 * @param args[0] Video location on filesystem
-	 * @param args[1] Debug setup flag
+	 * @param args Pass input filesystem location to program as parameter
 	 */
 	public static void main(String[] args) {
-
+		
 		// setup debug
 		Debug.setup(true);
-
+		
 		// initialise main controller with display
 		MainController controller = new MainController(new Display(800,400));
-
-		// start with given file
+		
+		// start with file if given
 		if (args.length > 0) controller.open(args[0]);
 	}
 }

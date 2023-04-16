@@ -1,4 +1,4 @@
-package motionvdl.display.component;
+package motionvdl.display;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -8,8 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import javax.swing.JPanel;
+
+import motionvdl.Debug;
 
 @SuppressWarnings("serial")
 public class Canvas extends JPanel {
@@ -50,9 +53,7 @@ public class Canvas extends JPanel {
 	}
 
 
-	/**
-	 * Set default canvas image
-	 */
+	// set default canvas image
 	public void setDefault() {
 		int c0 = Color.gray.getRGB();
 		int c1 = Color.darkGray.getRGB();
@@ -65,29 +66,17 @@ public class Canvas extends JPanel {
 	}
 
 
-	/**
-	 * Set the canvas image
-	 * @param frame Video frame as 2d Color array
-	 */
-	public void set(Color[][] frame) {
-
-		// convert Color[][] to BufferedImage
-		BufferedImage bufferedImage = new BufferedImage(frame[0].length,frame.length,BufferedImage.TYPE_INT_ARGB);
-		for (int i=0; i < bufferedImage.getHeight(); i++){
-			for (int j=0; j < bufferedImage.getWidth(); j++){
-				bufferedImage.setRGB(j,i,frame[i][j].getRGB());
-			}
-		}
-
+	// set the canvas image
+	public void set(Image frame) {
+		
 		// draw scaled Image onto the canvas BufferedImage
-		Image scaledImage = bufferedImage.getScaledInstance(width, -1, Image.SCALE_FAST);
+		Image scaledImage = frame.getScaledInstance(width, -1, Image.SCALE_FAST);
 		image.getGraphics().drawImage(scaledImage,0,0,null);
 		repaint();
 	}
-
-
-
-
+	
+	
+	// draw a 2d point on the canvas using a normalised coordinate
 	public void drawPoint(double x, double y) {
 		points.add(new int[] {
 			(int) (x*width - 0.5*POINT_DIAMETER),
@@ -96,7 +85,9 @@ public class Canvas extends JPanel {
 		});
 		repaint();
 	}
+	
 
+	// draw a [bx,by] rectangle from (ax,ay) on the canvas using normalised coordinates
 	public void drawRectangle(double ax, double ay, double bx, double by) {
 		rectangles.add(new int[] {
 			(int) (ax*width),
@@ -106,7 +97,9 @@ public class Canvas extends JPanel {
 		});
 		repaint();
 	}
+	
 
+	// draw a line from (ax,ay) to (bx,by) on the canvas using normalised coordinates
 	public void drawLine(double ax, double ay, double bx, double by) {
 		lines.add(new int[] {
 			(int) (ax*width),
@@ -116,49 +109,60 @@ public class Canvas extends JPanel {
 		});
 		repaint();
 	}
-
+	
+	
+	// clear all points, rectangles and lines
 	public void clearGeometry() {
 		points.clear();
 		rectangles.clear();
 		lines.clear();
 		repaint();
 	}
-
-
-
-
+	
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(width, height);
 	}
-
-
+	
+	
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		BasicStroke lineBrush = new BasicStroke(LINE_WIDTH);
-		BasicStroke rectBrush = new BasicStroke(RECTANGLE_WIDTH);
-
-		g2.drawImage(image, null, null);
-
-		g2.setColor(Color.red);
-		g2.setStroke(lineBrush);
-		for (int[] l : lines) {
-			g2.drawLine(l[0],l[1],l[2],l[3]);
+		try {
+			
+			super.paintComponent(g);
+			Graphics2D g2 = (Graphics2D) g;
+			
+			BasicStroke lineBrush = new BasicStroke(LINE_WIDTH);
+			BasicStroke rectBrush = new BasicStroke(RECTANGLE_WIDTH);
+			Color red = Color.red;
+			Color black = Color.black;
+			
+			g2.drawImage(image, null, null);
+			
+			g2.setColor(red);
+			g2.setStroke(lineBrush);
+			for (int[] l : lines) {
+				g2.drawLine(l[0],l[1],l[2],l[3]);
+			}
+			
+			g2.setColor(black);
+			g2.setStroke(rectBrush);
+			for (int[] r : rectangles) {
+				g2.drawRect(r[0],r[1],r[2],r[3]);
+			}
+			
+			g2.setColor(black);
+			for (int[] p : points) {
+				g2.fillOval(p[0],p[1],p[2],p[2]);
+			}
+			
+			g2.dispose();
+			
+		} catch (ConcurrentModificationException e) {
+			Debug.trace("Display error: concurrent modification");
 		}
-
-		g2.setColor(Color.black);
-		g2.setStroke(rectBrush);
-		for (int[] r : rectangles) {
-			g2.drawRect(r[0],r[1],r[2],r[3]);
-		}
-
-		g2.setColor(Color.black);
-		for (int[] p : points) {
-			g2.fillOval(p[0],p[1],p[2],p[2]);
-		}
-
-		g2.dispose();
 	}
+	
+	
 }

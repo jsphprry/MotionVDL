@@ -3,7 +3,7 @@ package motionvdl.controller;
 import java.io.IOException;
 
 import motionvdl.Debug;
-import motionvdl.model.LabelledVideo;
+import motionvdl.model.data.LabeledVideo;
 
 /**
  * MotionVDL labelling subcontroller
@@ -28,6 +28,27 @@ public class LabelController extends Controller {
 		// debug trace
 		Debug.trace(String.format("Created LabelController '%s'", debugTitle));
 	}
+	
+	
+	/**
+	 * Setup frame label in addition to default behaviour
+	 * @param temp Temporary pointer to labelled video data
+	 */
+	@Override
+	public void pass(LabeledVideo temp) {
+		
+		// default behaviour
+		super.pass(temp);
+		
+		// go to first incomplete frame label
+		while (data.label.checkFull(frameIndex) && frameIndex < data.video.length-1) {
+			frameIndex += 1;
+		}
+		
+		// draw current frame
+		display.setFrame(data.video.getFrame(frameIndex));
+		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
+	}
 
 
 	/**
@@ -49,10 +70,10 @@ public class LabelController extends Controller {
 			
 			// draw frame label
 			display.clearGeometry();
-			display.drawBody(data.label.getPoints(frameIndex), LabelledVideo.CONNECTOR_SEQUENCE);
+			display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
 			
 			// go to next frame if current frame label is full when radio is true
-			if (display.getAuto()) if (data.label.checkFull(frameIndex)) nextFrame();
+			if (display.getAuto()) if (data.label.checkFull(frameIndex)) setNextFrame();
 			
 		// warn if the current frame label is incomplete
 		} else {
@@ -78,12 +99,35 @@ public class LabelController extends Controller {
 			
 			// draw frame label
 			display.clearGeometry();
-			display.drawBody(data.label.getPoints(frameIndex), LabelledVideo.CONNECTOR_SEQUENCE);
+			display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
 			
 		// go to previous frame if empty label
 		} else {
-			prevFrame();
+			setPrevFrame();
 		}
+	}
+	
+	
+	/**
+	 * Calibrate the label
+	 * @param x Normalised x coordinate
+	 * @param y Normalised y coordinate
+	 */
+	public void calibrate(double x, double y) {
+
+		// debug trace
+		Debug.trace(debugTitle+" calibrate");
+		
+		// try label calibration
+		try {
+			data.label.calibrate(frameIndex, x, y);
+		} catch (IllegalStateException e) {
+			Debug.trace(e.getMessage());
+		}
+		
+		// redraw frame label
+		display.clearGeometry();
+		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
 	}
 
 
@@ -118,49 +162,13 @@ public class LabelController extends Controller {
 	 * Display next frame and frame-label
 	 */
 	@Override
-	public void nextFrame() {
+	public void setFrame(int index) {
 		
 		// default behaviour
-		super.nextFrame();
+		super.setFrame(index);
 		
 		// draw frame label
 		display.clearGeometry();
-		display.drawBody(data.label.getPoints(frameIndex), LabelledVideo.CONNECTOR_SEQUENCE);
-	}
-
-
-	/**
-	 * Display previous frame and frame-label
-	 */
-	@Override
-	public void prevFrame() {
-		
-		// default behaviour
-		super.prevFrame();
-		
-		// draw frame label
-		display.clearGeometry();
-		display.drawBody(data.label.getPoints(frameIndex), LabelledVideo.CONNECTOR_SEQUENCE);
-	}
-	
-	
-	/**
-	 * Setup frame label in addition to default behaviour
-	 * @param temp Temporary pointer to labelled video data
-	 */
-	@Override
-	public void pass(LabelledVideo temp) {
-		
-		// default behaviour
-		super.pass(temp);
-		
-		// go to first incomplete frame label
-		while (data.label.checkFull(frameIndex) && frameIndex < data.video.length-1) {
-			frameIndex += 1;
-		}
-		
-		// draw current frame
-		display.setFrame(data.video.getFrame(frameIndex));
-		display.drawBody(data.label.getPoints(frameIndex), LabelledVideo.CONNECTOR_SEQUENCE);
+		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
 	}
 }

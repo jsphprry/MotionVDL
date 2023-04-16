@@ -1,7 +1,6 @@
-package motionvdl.model.util;
+package motionvdl.model.data;
 
 import motionvdl.Debug;
-import motionvdl.model.Encoding;
 
 /**
  * Array of limited capacity stacks of
@@ -25,9 +24,6 @@ public class Label extends Encoding {
 	 */
 	public Label(int length, int capacity) {
 
-		// debug trace
-		Debug.trace("Created empty label");
-
 		// setup metadata
 		this.length = length;
 		this.capacity = capacity;
@@ -35,6 +31,9 @@ public class Label extends Encoding {
 
 		// setup buffer
 		buffer = new Point[length][capacity];
+
+		// debug trace
+		Debug.trace(String.format("Created empty (%d,%d) label",length,capacity));
 	}
 
 	/**
@@ -43,44 +42,43 @@ public class Label extends Encoding {
 	 * @throws IllegalArgumentException Malformed byte sequence
 	 */
 	public Label(byte[] encoding) throws IllegalArgumentException {
-
-		// debug trace
-		Debug.trace("Created Label from byte sequence");
-
 		try {
-
+			
 			// read metadata
-			int l = encoding[0] & 0xFF;
-			int c = encoding[1] & 0xFF;
-			int[] s = new int[l];
-			for (int i=0; i < l; i++) {
-				s[i] = encoding[2+i] & 0xFF;
+			int b0 = encoding[0] & 0xFF;
+			int b1 = encoding[1] & 0xFF;
+			int b2 = encoding[2] & 0xFF;
+			
+			// decode metadata
+			length   = b0*256+b1;
+			capacity = b2;
+			sizes    = new int[length];
+			for (int i=0; i < length; i++) {
+				sizes[i] = encoding[3+i] & 0xFF;
 			}
-			int msize = 2+l;
-
-			// setup label
-			length = l;
-			capacity = c;
-			sizes = s;
-			buffer = new Point[l][c];
-
-			// decode into buffer
-			int offset = 0;
-			for (int i=0; i < l; i++) {
-				for (int j=0; j < s[i]; j++) {
-					double x = (encoding[msize + offset + 0] & 0xFF) / 255.0;
-					double y = (encoding[msize + offset + 1] & 0xFF) / 255.0;
-					offset += 2;
+			
+			// decode buffer
+			buffer = new Point[length][capacity];
+			int offset = 3+length;
+			for (int i=0; i < length; i++) {
+				for (int j=0; j < sizes[i]; j++) {
+					double x = (encoding[offset + 0] & 0xFF) / 255.0;
+					double y = (encoding[offset + 1] & 0xFF) / 255.0;
 					buffer[i][j] = new Point(x,y);
+					offset += 2;
 				}
 			}
-
+			
+			// debug trace
+			Debug.trace(String.format("Created (%d,%d) label from byte sequence", length, capacity));
+			
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Label error: problem decoding bytes");
+			e.printStackTrace();
+			throw new IllegalArgumentException("Label error: problem decoding bytes. "+e.getMessage());
 		}
 	}
-
-
+	
+	
 	/**
 	 * Get the size of a stack
 	 * @param stack Stack index
@@ -218,40 +216,86 @@ public class Label extends Encoding {
 	 * @return Byte sequence
 	 */
 	@Override
-	public byte[] encode() {
-
+	public byte[] getEncoding() {
+		
 		// debug trace
 		Debug.trace("Label: encoded as byte sequence");
-
-		// setup metadata
-		int l = length;
-		int c = capacity;
-		int msize = 2+l; // metadata volume
-		int lsize = 0;   // label volume
-		for (int i=0; i < l; i++) {lsize += sizes[i]*2;}
-
+		
 		// throw invalid shape
-		if (l > MAX_DIMENSION || c > MAX_DIMENSION) throw new ArrayIndexOutOfBoundsException("Label error: buffer dimensions are too large to export");
-
-		// encode metadata
-		byte[] encoding = new byte[msize+lsize];
-		encoding[0] = (byte) l;
-		encoding[1] = (byte) c;
-		for (int i=0; i < l; i++) {
-			encoding[2+i] = (byte) sizes[i];
+		if (length   > SIXTEEN_BIT_LIMIT || 
+			capacity > EIGHT_BIT_LIMIT
+		) throw new ArrayIndexOutOfBoundsException("Label error: buffer dimensions exceed value limits");
+		
+		// determine volume
+		int m0size = 3;                  // shape metadata volume
+		int m1size = length;             // stack metadata volume
+		int bsize = 0;                   // buffer volume
+		for (int i=0; i < length; i++) {
+			bsize += sizes[i]*2;
 		}
-
-		// encode label buffer
-		int offset = 0;
-		for (int i=0; i < l; i++) {
+		byte[] encoding = new byte[m0size+m1size+bsize]; // total volume
+		
+		// encode metadata
+		encoding[0] = (byte) Math.floor(length / 256);
+		encoding[1] = (byte) (length % 256);
+		encoding[2] = (byte) capacity;
+		for (int i=0; i < length; i++) {
+			encoding[m0size+i] = (byte) sizes[i];
+		}
+		
+		// encode buffer
+		int offset = m0size+m1size;
+		for (int i=0; i < length; i++) {
 			for (int j=0; j < sizes[i]; j++) {
-				encoding[msize + offset + 0] = (byte) (buffer[i][j].getX() * 255);
-				encoding[msize + offset + 1] = (byte) (buffer[i][j].getY() * 255);
+				encoding[offset + 0] = (byte) (buffer[i][j].getX() * 255);
+				encoding[offset + 1] = (byte) (buffer[i][j].getY() * 255);
 				offset += 2;
 			}
 		}
-
+		
 		// return byte encoding
 		return encoding;
+	}
+	
+	
+	/**
+	 * Translate all points in the label by the difference between the given point and the first point on the given stack
+	 * @param stack Stack index
+	 * @param x Normalised x coordinate of point
+	 * @param y Normalised y coordinate of point
+	 * @throws IllegalStateException Given stack contains no points or resulting translation puts any point outside bounds
+	 */
+	public void calibrate(int stack, double x, double y) throws IllegalStateException {
+		
+		// if the stack has no first point throw an error
+		if (sizes[stack] == 0) throw new IllegalStateException("Label error: no points on stack, cannot calibrate");
+		
+		// calculate the translation vector based on the difference
+		// between the provided (x,y) coord and the coord of the first
+		// point on the stack. will throw error if the stack has no points
+		Point anchor = buffer[stack][0];
+		double tx = x - anchor.getX();
+		double ty = y - anchor.getY();
+		
+		// debug trace
+		Debug.trace(String.format("Label: calibrating (%.2f,%.2f)",tx,ty));
+		
+		// translate each point
+		Point[][] workBuffer = new Point[length][capacity];
+		for (int i=0; i < length; i++) {
+			for (int j=0; j < sizes[i]; j++) {
+				double px = buffer[i][j].getX() + tx;
+				double py = buffer[i][j].getY() + ty;
+				workBuffer[i][j] = new Point(px,py);
+				
+				// if the translated point is out of bounds throw an error
+				if (px < 0 || px > 1 || 
+					py < 0 || py > 1
+				) throw new IllegalStateException("Label error: calibration puts point outside bounds, aborting");
+			}
+		}
+		
+		// overwrite buffer
+		buffer = workBuffer;
 	}
 }

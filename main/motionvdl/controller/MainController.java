@@ -3,8 +3,8 @@ package motionvdl.controller;
 import motionvdl.Debug;
 import motionvdl.display.Display;
 import motionvdl.model.FileSystem;
-import motionvdl.model.LabelledVideo;
-import motionvdl.model.util.Video;
+import motionvdl.model.data.LabeledVideo;
+import motionvdl.model.data.Video;
 
 /**
  * MotionVDL main controller
@@ -42,6 +42,93 @@ public class MainController extends Controller {
 
 
 	/**
+	 * Pass video loaded from file system location to relevant subcontroller
+	 * @param location Filesystem location
+	 */
+	public void open(String location) {
+		
+		// debug trace
+		Debug.trace(String.format("%s open ->", debugTitle));
+		
+		try {
+			
+			// get file extension
+			String[] pattern = location.split("\\.");
+			String extension = (pattern.length > 0) ? pattern[pattern.length-1] : "";
+			
+			// decode mvdl files
+			if (extension.equals("mvdl")) {
+				
+				// pass to label controller
+				controllerIndex = 1;
+				linkedController = subcontroller[controllerIndex];
+				linkedController.pass(new LabeledVideo(FileSystem.readBytes(location)));
+			
+			// otherwise open as image directory
+			} else {
+				
+				// pass to video controller
+				controllerIndex = 0;
+				linkedController = subcontroller[controllerIndex];
+				linkedController.pass(new LabeledVideo(new Video(FileSystem.readImages(location))));
+			}
+			
+		// trace error and pass noise to video controller
+		} catch (Exception  e) {
+			e.printStackTrace();
+			Debug.trace(e.getMessage());
+			controllerIndex = 0;
+			linkedController = subcontroller[controllerIndex];
+			linkedController.pass(new LabeledVideo(Video.noise(100, 100, 10)));
+		}
+	}
+	
+	
+	/**
+	 * Save data to default filesystem location
+	 */
+	public void save() {
+		saveAs(outputFile);
+	}
+	
+	
+	/**
+	 * Save data to given filesystem location
+	 * @param location Filesystem location
+	 */
+	public void saveAs(String location) {
+		
+		// debug trace
+		Debug.trace(String.format("%s save ->", debugTitle));
+		
+		// export data
+		try {
+			if (controllerIndex > -1) linkedController.data.export(location);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Debug.trace(e.getMessage());
+		}
+	}
+
+
+	/**
+	 * Switch to next subcontroller
+	 * @param temp Temporary pointer to labelled video data
+	 */
+	@Override
+	public void pass(LabeledVideo temp) {
+
+		// debug trace
+		Debug.trace(String.format("%s pass ->", debugTitle));
+
+		// switch to next subcontroller
+		controllerIndex += 1;
+		linkedController = subcontroller[controllerIndex];
+		linkedController.pass(temp);
+	}
+
+
+	/**
 	 * Pass instruction to subcontroller
 	 * @param x Normalised x coordinate
 	 * @param y Normalised y coordinate
@@ -69,33 +156,20 @@ public class MainController extends Controller {
 		// call subcontroller
 		if (controllerIndex > -1) linkedController.undo();
 	}
-
-
+	
+	
 	/**
 	 * Pass instruction to subcontroller
+	 * @param x Normalised x coordinate
+	 * @param y Normalised y coordinate
 	 */
-	@Override
-	public void nextFrame() {
+	public void calibrate(double x, double y) {
 
 		// debug trace
-		Debug.trace(String.format("%s nextFrame ->", debugTitle));
+		Debug.trace(String.format("%s calibrate ->", debugTitle));
 
 		// call subcontroller
-		if (controllerIndex > -1) linkedController.nextFrame();
-	}
-
-
-	/**
-	 * Pass instruction to subcontroller
-	 */
-	@Override
-	public void prevFrame() {
-
-		// debug trace
-		Debug.trace(String.format("%s prevFrame ->", debugTitle));
-
-		// call subcontroller
-		if (controllerIndex > -1) linkedController.prevFrame();
+		if (controllerIndex > -1) linkedController.calibrate(x,y);
 	}
 
 
@@ -114,86 +188,71 @@ public class MainController extends Controller {
 
 
 	/**
-	 * Switch to next subcontroller
-	 * @param temp Temporary pointer to labelled video data
+	 * Pass instruction to subcontroller
 	 */
 	@Override
-	public void pass(LabelledVideo temp) {
-
+	public void setFrame(int index) {
+		
 		// debug trace
-		Debug.trace(String.format("%s pass ->", debugTitle));
-
-		// switch to next subcontroller
-		controllerIndex += 1;
-		linkedController = subcontroller[controllerIndex];
-		linkedController.pass(temp);
+		Debug.trace(String.format("%s setFrame ->", debugTitle));
+		
+		// call subcontroller
+		if (controllerIndex > -1) linkedController.setFrame(index);
 	}
 
 
 	/**
-	 * Pass video loaded from file system location to relevant subcontroller
-	 * @param location Filesystem location
+	 * Pass instruction to subcontroller
 	 */
-	public void open(String location) {
-		
+	@Override
+	public void setNextFrame() {
+
 		// debug trace
-		Debug.trace(String.format("%s open ->", debugTitle));
-		
-		try {
-			
-			// get file extension
-			String[] pattern = location.split("\\.");
-			String extension = (pattern.length > 0) ? pattern[pattern.length-1] : "";
-			
-			// decode mvdl files
-			if (extension.equals("mvdl")) {
-				
-				// pass to label controller
-				controllerIndex = 1;
-				linkedController = subcontroller[controllerIndex];
-				linkedController.pass(new LabelledVideo(FileSystem.readBytes(location)));
-			
-			// otherwise open as image directory
-			} else {
-				
-				// pass to video controller
-				controllerIndex = 0;
-				linkedController = subcontroller[controllerIndex];
-				linkedController.pass(new LabelledVideo(FileSystem.readImages(location)));
-			}
-			
-		// trace error and pass noise to video controller
-		} catch (Exception  e) {
-			Debug.trace(e.getMessage());
-			controllerIndex = 0;
-			linkedController = subcontroller[controllerIndex];
-			linkedController.pass(new LabelledVideo(Video.noise(100, 100, 10)));
-		}
+		Debug.trace(String.format("%s setNextFrame ->", debugTitle));
+
+		// call subcontroller
+		if (controllerIndex > -1) linkedController.setNextFrame();
 	}
-	
-	
+
+
 	/**
-	 * Save data to default filesystem location
+	 * Pass instruction to subcontroller
 	 */
-	public void save() {
-		saveAs(outputFile);
-	}
-	
-	
-	/**
-	 * Save data to given filesystem location
-	 * @param location Filesystem location
-	 */
-	public void saveAs(String location) {
-		
+	@Override
+	public void setPrevFrame() {
+
 		// debug trace
-		Debug.trace(String.format("%s save ->", debugTitle));
-		
-		// export data
-		try {
-			if (controllerIndex > -1) linkedController.data.export(location);
-		} catch (Exception e) {
-			Debug.trace(e.getMessage());
-		}
+		Debug.trace(String.format("%s setPrevFrame ->", debugTitle));
+
+		// call subcontroller
+		if (controllerIndex > -1) linkedController.setPrevFrame();
+	}
+
+
+	/**
+	 * Pass instruction to subcontroller
+	 */
+	@Override
+	public void setMinFrame() {
+
+		// debug trace
+		Debug.trace(String.format("%s setMinFrame ->", debugTitle));
+
+		// call subcontroller
+		if (controllerIndex > -1) linkedController.setMinFrame();
+	}
+
+
+	/**
+	 * Pass instruction to subcontroller
+	 */
+	@Override
+	public void setMaxFrame() {
+
+		// debug trace
+		Debug.trace(String.format("%s prevFrame ->", debugTitle));
+
+		// call subcontroller
+		if (controllerIndex > -1) linkedController.setMaxFrame();
 	}
 }

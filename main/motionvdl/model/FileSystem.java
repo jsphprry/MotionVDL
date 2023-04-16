@@ -11,15 +11,9 @@ import java.util.Comparator;
 import javax.imageio.ImageIO;
 
 import motionvdl.Debug;
+import motionvdl.model.data.Encoding;
 
-/**
- * Collection of static utility methods for accessing the filesystem
- * @author Joseph
- */
 public final class FileSystem {
-	
-	// constants
-	public static final int IMPORT_LIMIT = Encoding.MAX_DIMENSION;
 	
 	// uninstantiable object
 	private FileSystem() {}
@@ -27,7 +21,7 @@ public final class FileSystem {
 	
 	/**
 	 * Write encoded instance to filesystem location
-	 * @param data The Encoding object
+	 * @param data The FileSystem object
 	 * @param location The filesystem location
 	 * @throws IOException Problem accessing filesystem
 	 */
@@ -107,8 +101,11 @@ public final class FileSystem {
 				}
 			});
 			
+			// debug trace
+			Debug.trace(String.format("FileSystem: found %d files",files.length));
+			
 			// read each file into BufferedImage array
-			BufferedImage[] frames = new BufferedImage[Math.min(IMPORT_LIMIT,files.length)];
+			BufferedImage[] frames = new BufferedImage[Math.min(Encoding.SIXTEEN_BIT_LIMIT,files.length)];
 			for (int i=0; i < frames.length; i++) {
 				frames[i] = ImageIO.read(files[i]);
 			}
@@ -120,40 +117,4 @@ public final class FileSystem {
 			throw new IOException("FileSystem error: "+e.getMessage());
 		}
 	}
-
-
-//	/**
-//	 * Load up to 255 frames from a video file
-//	 * @param location Filesystem video location
-//	 * @return BufferedImage array
-//	 * @throws IOException Problem accessing filesystem
-//	 */
-//	public static BufferedImage[] readFrames(String location) throws IOException {
-//
-//		// debug trace
-//		Debug.trace(String.format("FileSystem: read video '%s'",location));
-//
-//		try {
-//
-//			// setup
-//			FFmpegFrameGrabber player = new FFmpegFrameGrabber(location);
-//			Java2DFrameConverter converter = new Java2DFrameConverter();
-//			BufferedImage[] frames = new BufferedImage[IMPORT_LIMIT];
-//
-//			// convert video frames into BufferedImage array
-//			player.start();
-//			for (int i=0; i < frames.length; i++) {
-//				frames[i] = converter.convert(player.grabImage());
-//			}
-//			player.stop();
-//
-//			// close resources and return
-//			player.close();
-//			converter.close();
-//			return frames;
-//
-//		} catch (Exception e) {
-//			throw new IOException("FileSystem error: "+e.getMessage());
-//		}
-//	}
 }

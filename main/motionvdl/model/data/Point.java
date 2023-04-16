@@ -1,4 +1,4 @@
-package motionvdl.model.util;
+package motionvdl.model.data;
 
 /**
  * Immutable n-dimensional point with double precision
