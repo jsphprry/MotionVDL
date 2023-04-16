@@ -55,6 +55,7 @@ public class Display extends JFrame {
 	private JRadioButtonMenuItem menuOptionsCali;
 	private JMenu menuDebug;
 	private JRadioButtonMenuItem menuDebugTrace;
+	private JRadioButtonMenuItem menuDebugAnnotation;
 	private JLabel titleLabel;
 	private JButton completeButton;
 	private JPanel framePanel;
@@ -375,9 +376,11 @@ public class Display extends JFrame {
 		
 		// 4
 		menuDebugTrace = new JRadioButtonMenuItem("Trace",true);
+		menuDebugAnnotation = new JRadioButtonMenuItem("Annotations",false);
 		
 		// 3
 		menuDebug.add(menuDebugTrace);
+		menuDebug.add(menuDebugAnnotation);
 		
 		// 2
 		menu.add(menuFile);
@@ -483,6 +486,18 @@ public class Display extends JFrame {
 					Debug.setup(true);
 				} else if (e.getStateChange() == ItemEvent.DESELECTED) {
 					Debug.setup(false);
+				}
+			}
+		});
+		
+		// menu > debug > annotations
+		menuDebugAnnotation.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					canvas.drawAnnotations(true);
+				} else if (e.getStateChange() == ItemEvent.DESELECTED) {
+					canvas.drawAnnotations(false);
 				}
 			}
 		});

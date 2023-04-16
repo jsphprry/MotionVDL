@@ -25,6 +25,9 @@ public class Canvas extends JPanel {
 	// properties
 	public final int width;
 	public final int height;
+	
+	// flags
+	private boolean annotate;
 
 	// components
 	private BufferedImage image;         // canvas image
@@ -41,6 +44,9 @@ public class Canvas extends JPanel {
 		// setup properties
 		this.width = width;
 		this.height = height;
+		
+		// setup flags
+		this.annotate = false;
 
 		// initialise components
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -72,6 +78,13 @@ public class Canvas extends JPanel {
 		// draw scaled Image onto the canvas BufferedImage
 		Image scaledImage = frame.getScaledInstance(width, -1, Image.SCALE_FAST);
 		image.getGraphics().drawImage(scaledImage,0,0,null);
+		repaint();
+	}
+	
+	
+	// enable or disable geometry annotations
+	public void drawAnnotations(boolean value) {
+		annotate = value;
 		repaint();
 	}
 	
@@ -155,6 +168,21 @@ public class Canvas extends JPanel {
 			g2.setColor(black);
 			for (int[] p : points) {
 				g2.fillOval(p[0],p[1],p[2],p[2]);
+			}
+			
+			if (annotate) {
+				g2.setColor(red);
+				
+				int count = 0;
+				for (int[] p : points) {
+					g2.drawString(Integer.toString(count),p[0],p[1]);
+					count++;
+				}
+				
+				for (int[] r : rectangles) {
+					g2.drawString(Integer.toString(r[2]), r[0] + (int) (0.5*r[2]), r[1] + r[2]);
+					g2.drawString(Integer.toString(r[3]), r[0] + r[3], r[1] + (int) (0.5*r[3]));
+				}
 			}
 			
 			g2.dispose();
