@@ -99,7 +99,6 @@ public class Display {
 		this.sliderX.valueProperty().addListener(
 				event -> sliderChange("Horizontal")
 		);
-		this.primaryPane.getChildren().add(this.sliderX);
 
 		// Y-axis directional crop Slider
 		this.sliderY = new Slider();
@@ -114,7 +113,6 @@ public class Display {
 		this.sliderY.valueProperty().addListener(
 				event -> sliderChange("Vertical")
 		);
-		this.primaryPane.getChildren().add(this.sliderY);
 
 		// Slider for changing zoom of cropping ViewPort
 		this.sliderZoom = new Slider();
@@ -128,7 +126,6 @@ public class Display {
 		this.sliderZoom.valueProperty().addListener(
 				event -> sliderChange("Zoom")
 		);
-		this.primaryPane.getChildren().add(this.sliderZoom);
 
 		// Radio button to toggle automatic mode
 		this.radioBut = new RadioButton("Lock Res");
@@ -313,28 +310,28 @@ public class Display {
 
 		// 230410 Henri. Will uncomment once confirmed the above code works correctly
 
-//		// Upscale Image if required and past cropping stage
-//		if (!this.primaryPane.getChildren().contains(this.sliderZoom)) {
-//			if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
-//				double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
-//				width = (int) wImage.getWidth();
-//				height = (int) wImage.getHeight();
-//				WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
-//				PixelReader reader = wImage.getPixelReader();
-//				PixelWriter writer = scaledWImage.getPixelWriter();
-//				for (int y = 0; y < height; y++) {
-//					for (int x = 0; x < width; x++) {
-//						int argb = reader.getArgb(x, y);
-//						for (int dy = 0; dy < scaleFactor; dy++) {
-//							for (int dx = 0; dx < scaleFactor; dx++) {
-//								writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
-//							}
-//						}
-//					}
-//				}
-//				this.imageView.setImage(scaledWImage);
-//			}
-//		}
+		// Upscale Image if required and past cropping stage
+		if (!this.primaryPane.getChildren().contains(this.sliderZoom)) {
+			if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
+				double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
+				width = (int) wImage.getWidth();
+				height = (int) wImage.getHeight();
+				WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+				PixelReader reader = wImage.getPixelReader();
+				PixelWriter writer = scaledWImage.getPixelWriter();
+				for (int y = 0; y < height; y++) {
+					for (int x = 0; x < width; x++) {
+						int argb = reader.getArgb(x, y);
+						for (int dy = 0; dy < scaleFactor; dy++) {
+							for (int dx = 0; dx < scaleFactor; dx++) {
+								writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+							}
+						}
+					}
+				}
+				this.imageView.setImage(scaledWImage);
+			}
+		}
 	}
 
 	/**
