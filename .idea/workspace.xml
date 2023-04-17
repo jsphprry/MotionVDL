@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added MenuBar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
     </list>
@@ -29,6 +32,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/henri/MotionVDL",
     "project.structure.last.edited": "Libraries",
@@ -92,6 +96,35 @@
       <option name="presentableId" value="Default" />
       <updated>1677176344853</updated>
     </task>
+    <task id="LOCAL-00001" summary="Configuration files">
+      <created>1681730982364</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681730982364</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added code for alterForVideo() method">
+      <created>1681731001966</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681731001966</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Upscale code added">
+      <created>1681731214393</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681731214393</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added MenuBar">
+      <created>1681731619091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681731619091</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,5 +137,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Configuration files" />
+    <MESSAGE value="Added code for alterForVideo() method" />
+    <MESSAGE value="Upscale code added" />
+    <MESSAGE value="Added MenuBar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added MenuBar" />
   </component>
 </project>
