@@ -485,7 +485,13 @@ public class Display {
 	// 230411 Joseph. Becuase of the open method of the main controller, it is possible to switch back from label controller 
 	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
 	public void alterForVideo() {
-		// TODO restore sliders and target field if they are hidden
+		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
+		this.radioBut.setText("Lock Res");
+		this.radioBut.setTooltip(
+				new Tooltip("Lock currently minimum specified res.")
+		);
+		this.radioBut.setSelected(false);
+		this.primaryPane.requestFocus();
 	}
 	
 	
