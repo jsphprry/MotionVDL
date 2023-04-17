@@ -1,0 +1,39 @@
+<component name="libraryTable">
+  <library name="bio.singa.javafx" type="repository">
+    <properties maven-id="bio.singa:singa-javafx:0.7.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-javafx/0.7.0/singa-javafx-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/11/javafx-controls-11.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/11/javafx-controls-11-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/11/javafx-graphics-11.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/11/javafx-graphics-11-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11/javafx-base-11.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11/javafx-base-11-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-chemistry/0.7.0/singa-chemistry-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-features/0.7.0/singa-features-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/tech/units/indriya/1.2/indriya-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/measure/unit-api/1.0/unit-api-1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/tech/uom/lib/uom-lib-common/1.1/uom-lib-common-1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-mathematics/0.7.0/singa-mathematics-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-core/0.7.0/singa-core-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/uk/ac/ebi/beam/beam-core/1.2.1/beam-core-1.2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/uk/ac/ebi/beam/beam-func/1.2.1/beam-func-1.2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-sequence/0.7.0/singa-sequence-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/bio/singa/singa-structure/0.7.0/singa-structure-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/rcsb/mmtf-codec/1.0.8/mmtf-codec-1.0.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/rcsb/mmtf-serialization/1.0.8/mmtf-serialization-1.0.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/jackson-dataformat-msgpack/0.7.1/jackson-dataformat-msgpack-0.7.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/msgpack-core/0.7.1/msgpack-core-0.7.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.6.3/jackson-databind-2.6.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.6.3/jackson-core-2.6.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.6.2/log4j-api-2.6.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/rcsb/mmtf-api/1.0.8/mmtf-api-1.0.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jfree/jfreesvg/3.3/jfreesvg-3.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
