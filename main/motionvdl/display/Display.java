@@ -53,13 +53,11 @@ public class Display {
 
 	/**
 	 * Display constructor.
-	 * @param w      Width of the window
-	 * @param h      Height of the window
 	 * @param stage  Default Stage to be used by the Application
 	 */
-	public Display(int w, int h, Stage stage) {
-		this.WIDTH = w;
-		this.HEIGHT = h;
+	public Display(Stage stage) {
+		this.WIDTH = 675;
+		this.HEIGHT = 500;
 		this.widthScaleFactor = 1;
 		this.heightScaleFactor = 1;
 		this.primaryStage = stage;
