@@ -32,7 +32,7 @@ public class MotionVDL extends Application {
 		Debug.setup(true);
 		
 		// initialise main controller with display
-		MainController controller = new MainController(new Display(675, 475, stage));
+		MainController controller = new MainController(new Display(675, 500, stage));
 		
 		// start with file if given
 		if (args.size() > 0) controller.open(args.get(0));
