@@ -216,10 +216,21 @@ public class Display {
 		// Menu to allow for opening and saving current labelling
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
-		Menu menu = new Menu("Open");
-		Menu menu1 = new Menu("Save");
-		Menu menu2 = new Menu("Save As");
-		this.menuBar.getMenus().addAll(menu, menu1, menu2);
+		Menu file = new Menu("File");
+		MenuItem open = new MenuItem("Open");
+		open.setOnAction(event ->
+				System.out.println("Open")
+		);
+		MenuItem save = new MenuItem("Save");
+		save.setOnAction(event ->
+				System.out.println("Save")
+		);
+		MenuItem saveAs = new MenuItem("Save As");
+		saveAs.setOnAction(event ->
+				System.out.println("Save As")
+		);
+		file.getItems().addAll(open, save, saveAs);
+		this.menuBar.getMenus().add(file);
 		this.menuBar.setMinWidth(WIDTH);
 		this.primaryPane.getChildren().add(menuBar);
 
