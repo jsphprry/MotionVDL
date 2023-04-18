@@ -20,7 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import motionvdl.controller.Controller;
+import motionvdl.controller.MainController;
 import motionvdl.model.data.Point;
 
 /**
@@ -33,7 +33,7 @@ public class Display {
 	public final int HEIGHT;
 	private double widthScaleFactor;
 	private double heightScaleFactor;
-	private Controller receiver;
+	private MainController receiver;
 	private final Stage primaryStage;
 	private final Scene primaryScene;
 	private final Pane primaryPane;
@@ -229,7 +229,8 @@ public class Display {
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
-				// TODO: Do something
+				String location = fileChoice.getPath();
+				receiver.open(location);
 			}
 		});
 		MenuItem save = new MenuItem("Save");
@@ -267,7 +268,7 @@ public class Display {
 	 * Store a reference to the receiving controller.
 	 * @param controller The controller reference
 	 */
-	public void sendTo(Controller controller) {
+	public void sendTo(MainController controller) {
 		this.receiver = controller;
 	}
 
