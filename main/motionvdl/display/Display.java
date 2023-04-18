@@ -2,6 +2,7 @@ package motionvdl.display;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 import motionvdl.model.data.Point;
@@ -216,9 +218,14 @@ public class Display {
 		this.menuBar.setId("menuBarID");
 		Menu file = new Menu("File");
 		MenuItem open = new MenuItem("Open");
-		open.setOnAction(event ->
-				System.out.println("Open")
-		);
+		open.setOnAction(event -> {
+			System.out.println("Open");
+			FileChooser fileChooser = new FileChooser();
+			File file1 = fileChooser.showOpenDialog(this.primaryStage);
+			if (file1 != null) {
+				// TODO: Do something
+			}
+		});
 		MenuItem save = new MenuItem("Save");
 		save.setOnAction(event ->
 				System.out.println("Save")
