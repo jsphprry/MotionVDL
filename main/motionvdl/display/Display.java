@@ -171,6 +171,9 @@ public class Display {
 		this.prevBut.setLayoutX(480);
 		this.prevBut.setLayoutY(235);
 		this.prevBut.setMinSize(78,50);
+		this.prevBut.setTooltip(
+				new Tooltip("Previous frame.")
+		);
 		this.prevBut.setOnAction(
 				event -> receiver.setPrevFrame()
 		);
@@ -182,6 +185,9 @@ public class Display {
 		this.nextBut.setLayoutX(562);
 		this.nextBut.setLayoutY(235);
 		this.nextBut.setMinSize(78,50);
+		this.nextBut.setTooltip(
+				new Tooltip("Next frame.")
+		);
 		this.nextBut.setOnAction(
 				event -> receiver.setNextFrame()
 		);
@@ -216,26 +222,28 @@ public class Display {
 		// Menu to allow for opening and saving current labelling
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
-		Menu file = new Menu("File");
+		Menu fileMenu = new Menu("File");
 		MenuItem open = new MenuItem("Open");
 		open.setOnAction(event -> {
 			System.out.println("Open");
 			FileChooser fileChooser = new FileChooser();
-			File file1 = fileChooser.showOpenDialog(this.primaryStage);
-			if (file1 != null) {
+			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
+			if (fileChoice != null) {
 				// TODO: Do something
 			}
 		});
 		MenuItem save = new MenuItem("Save");
 		save.setOnAction(event ->
 				System.out.println("Save")
+				// TODO: Save
 		);
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event ->
 				System.out.println("Save As")
+				// TODO: Save As
 		);
-		file.getItems().addAll(open, save, saveAs);
-		this.menuBar.getMenus().add(file);
+		fileMenu.getItems().addAll(open, save, saveAs);
+		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(WIDTH);
 		this.primaryPane.getChildren().add(menuBar);
 
