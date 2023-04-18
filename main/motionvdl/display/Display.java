@@ -2,6 +2,7 @@ package motionvdl.display;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import motionvdl.controller.Controller;
 import motionvdl.model.data.Point;
@@ -64,7 +66,7 @@ public class Display {
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
 		this.primaryScene = new Scene(this.primaryPane, this.WIDTH, this.HEIGHT);
-		this.primaryScene.getStylesheets().add("motionvdl/display/styleSheets/mainStyle.css");
+		this.primaryScene.getStylesheets().add("motionvdl/display/res/mainStyle.css");
 
 		// Title Label
 		this.titleLab = new Label("Title");
@@ -169,6 +171,9 @@ public class Display {
 		this.prevBut.setLayoutX(480);
 		this.prevBut.setLayoutY(235);
 		this.prevBut.setMinSize(78,50);
+		this.prevBut.setTooltip(
+				new Tooltip("Previous frame.")
+		);
 		this.prevBut.setOnAction(
 				event -> receiver.setPrevFrame()
 		);
@@ -180,6 +185,9 @@ public class Display {
 		this.nextBut.setLayoutX(562);
 		this.nextBut.setLayoutY(235);
 		this.nextBut.setMinSize(78,50);
+		this.nextBut.setTooltip(
+				new Tooltip("Next frame.")
+		);
 		this.nextBut.setOnAction(
 				event -> receiver.setNextFrame()
 		);
@@ -214,21 +222,28 @@ public class Display {
 		// Menu to allow for opening and saving current labelling
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
-		Menu file = new Menu("File");
+		Menu fileMenu = new Menu("File");
 		MenuItem open = new MenuItem("Open");
-		open.setOnAction(event ->
-				System.out.println("Open")
-		);
+		open.setOnAction(event -> {
+			System.out.println("Open");
+			FileChooser fileChooser = new FileChooser();
+			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
+			if (fileChoice != null) {
+				// TODO: Do something
+			}
+		});
 		MenuItem save = new MenuItem("Save");
 		save.setOnAction(event ->
 				System.out.println("Save")
+				// TODO: Save
 		);
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event ->
 				System.out.println("Save As")
+				// TODO: Save As
 		);
-		file.getItems().addAll(open, save, saveAs);
-		this.menuBar.getMenus().add(file);
+		fileMenu.getItems().addAll(open, save, saveAs);
+		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(WIDTH);
 		this.primaryPane.getChildren().add(menuBar);
 
@@ -240,7 +255,7 @@ public class Display {
 
 		// Details relating to the window itself
 		this.primaryStage.setTitle("MotionVDL");
-		this.primaryStage.getIcons().add(new Image("motionvdl/display/images/javaIcon.png"));
+		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png"));
 		this.primaryStage.setResizable(false);
 		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
