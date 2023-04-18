@@ -64,7 +64,7 @@ public class Display {
 		this.primaryPane = new Pane();
 		this.primaryPane.setId("paneID");
 		this.primaryScene = new Scene(this.primaryPane, this.WIDTH, this.HEIGHT);
-		this.primaryScene.getStylesheets().add("motionvdl/display/styleSheets/mainStyle.css");
+		this.primaryScene.getStylesheets().add("motionvdl/display/res/mainStyle.css");
 
 		// Title Label
 		this.titleLab = new Label("Title");
@@ -240,7 +240,7 @@ public class Display {
 
 		// Details relating to the window itself
 		this.primaryStage.setTitle("MotionVDL");
-		this.primaryStage.getIcons().add(new Image("motionvdl/display/images/javaIcon.png"));
+		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png"));
 		this.primaryStage.setResizable(false);
 		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
