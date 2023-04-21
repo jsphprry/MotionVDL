@@ -1,12 +1,12 @@
-2023/04/21 | 16:38:05 | Created log file 'MVDL.log'
-2023/04/21 | 16:38:05 | Created VideoController 'VSC'
-2023/04/21 | 16:38:05 | Created LabelController 'LSC'
-2023/04/21 | 16:38:05 | Created MainController 'MC'
-2023/04/21 | 16:38:05 | MC open ->
-2023/04/21 | 16:38:05 | FileSystem: read images 'a'
-2023/04/21 | 16:38:05 | FileSystem error: not a directory
-2023/04/21 | 16:38:05 | Created (10,100,100) noise buffer
-2023/04/21 | 16:38:05 | Created (10,100,100) video from buffer
-2023/04/21 | 16:38:05 | Created empty (10,11) label
-2023/04/21 | 16:38:05 | Created LabelledVideo
-2023/04/21 | 16:38:05 | VSC pass
+2023/04/21 | 17:10:33 | Created log file 'MVDL.log'
+2023/04/21 | 17:10:33 | Created VideoController 'VSC'
+2023/04/21 | 17:10:33 | Created LabelController 'LSC'
+2023/04/21 | 17:10:33 | Created MainController 'MC'
+2023/04/21 | 17:10:33 | MC open ->
+2023/04/21 | 17:10:33 | FileSystem: read images 'a'
+2023/04/21 | 17:10:33 | FileSystem error: not a directory
+2023/04/21 | 17:10:33 | Created (10,100,100) noise buffer
+2023/04/21 | 17:10:33 | Created (10,100,100) video from buffer
+2023/04/21 | 17:10:33 | Created empty (10,11) label
+2023/04/21 | 17:10:33 | Created LabelledVideo
+2023/04/21 | 17:10:33 | VSC pass

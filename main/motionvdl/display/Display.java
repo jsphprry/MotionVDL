@@ -203,8 +203,8 @@ public class Display {
 			if (!newValue.matches("\\d*")) {
 				this.resTextField.setText(newValue.replaceAll("\\D", ""));
 			}
-			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
-				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue() * widthScaleFactor) {
+				this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 			}
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
@@ -245,7 +245,7 @@ public class Display {
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(this.WIDTH);
-		this.primaryPane.getChildren().add(new Line(0, 30, this.WIDTH, 30));
+		this.primaryPane.getChildren().add(new Line(0, 29, this.WIDTH, 29));
 		this.primaryPane.getChildren().add(this.menuBar);
 
 		// Points to be placed on the ImageView to visualise a click

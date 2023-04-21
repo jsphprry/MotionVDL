@@ -6,9 +6,16 @@
     -fx-background-color:
                 linear-gradient(#2e9ab4, #22a4d2),
                 linear-gradient(#9ddbf1 0%, #7ac4de 50%, #93d2e8 100%),
-                linear-gradient(from 0% 0% to 50% 80%, rgba(255,255,255,0.7), rgba(255,255,255,0));
+                linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
     -fx-font: 11pt "";
-    -fx-background-insets: 0,1,2,3,0;
+    -fx-background-insets: 0, 1, 1, 0, 0;
+}
+
+#buttonID:hover{
+    -fx-background-color:
+                    linear-gradient(#49b5d0, #50bbe2),
+                    linear-gradient(#bde6f5 0%, #99d1e6 50%, #c0e4f2 100%),
+                    linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
 }
 
 #imageViewID {
@@ -31,7 +38,7 @@
 }
 
 #paneID {
-    -fx-background-color: #ffe6ef;
+    -fx-background-color: #ffe5f2;
 }
 
 #pointID {
@@ -40,6 +47,7 @@
 
 #radioID {
     -fx-font: 11pt "";
+    -fx-cursor: hand;
 
 }
 
@@ -48,12 +56,21 @@
 }
 
 #sliderID .track {
-
+    -fx-background-color:
+                    linear-gradient(#63caee 0%, #63b9d8 50%, #75c7e4 100%),
+                    linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 }
 
 #textFieldID {
     -fx-font: 12pt "Arial";
+    -fx-alignment: center;
     -fx-cursor: text;
+    -fx-background-radius: 10pt;
+    -fx-border-radius: 10pt;
+    -fx-border-width: 1.5pt;
+    -fx-border-color:
+                linear-gradient(#63caee 0%, #63b9d8 50%, #75c7e4 100%),
+                linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 }
 
 #titleLabID {
