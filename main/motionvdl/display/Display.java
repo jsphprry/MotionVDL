@@ -133,7 +133,7 @@ public class Display {
 		);
 
 		// Radio button to toggle automatic mode
-		this.radioBut = new RadioButton("Lock Res");
+		this.radioBut = new RadioButton("Lock Min Res");
 		this.radioBut.setId("radioID");
 		this.radioBut.setLayoutX(500);
 		this.radioBut.setLayoutY(65);
@@ -246,6 +246,7 @@ public class Display {
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(WIDTH);
+		this.primaryPane.getChildren().add(new Line(0, 30, WIDTH, 30));
 		this.primaryPane.getChildren().add(menuBar);
 
 		// Points to be placed on the ImageView to visualise a click
@@ -304,20 +305,8 @@ public class Display {
 	/**
 	 * Convert an array of AWT Colors to JavaFX Image, then set
 	 * the ImageView's Image property to display this frame.
-	 * @param colorArray Array of colors, containing the current frame
+	 * @param image AWT Image containing the current frame
 	 */
-	
-	// 230410 Joseph. So in order to reduce the memory consumption of the model component, I converted the 3d Color array into a 1d array of awt BufferedImage,
-	// because of this the getFrame method of the Video class returns type awt Image and so this method now has to be adapted to take awt Image
-	// as argument.
-	
-	// 230410 Henri. I've changed it from Color[][] to java.awt.Image.
-	// This might work but unable to test at this point - unable to run as I don't know how to fix line 46 in MotionVDL class.
-	
-	// 230410 Henri. This method is also probably not the most efficient, but is a temporary solution
-	
-	// 230411 Joseph. So I've fixed the MotionVDL starter and this method seems to work well, only issue I can see is the pixel smoothing that was an issue before
-	
 	public void setFrame(java.awt.Image image) {
 		BufferedImage bImage = (BufferedImage) image;
 		int height = bImage.getHeight();
@@ -447,7 +436,7 @@ public class Display {
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
 				if (getRadio()) {
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
+					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue() * widthScaleFactor) {
 						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 					}
 				} else {
@@ -524,7 +513,7 @@ public class Display {
 	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
 	public void alterForVideo() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
-		this.radioBut.setText("Lock Res");
+		this.radioBut.setText("Lock Min Res");
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
 		);

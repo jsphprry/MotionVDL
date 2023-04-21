@@ -2,11 +2,17 @@
 
 #buttonID {
     -fx-cursor: hand;
-    -fx-background-radius: 15pt;
+    -fx-background-radius: 20pt;
+    -fx-background-color:
+                linear-gradient(#2e9ab4, #22a4d2),
+                linear-gradient(#9ddbf1 0%, #7ac4de 50%, #93d2e8 100%),
+                linear-gradient(from 0% 0% to 50% 80%, rgba(255,255,255,0.7), rgba(255,255,255,0));
+    -fx-font: 11pt "";
+    -fx-background-insets: 0,1,2,3,0;
 }
 
 #imageViewID {
-    /*-fx-cursor: crosshair;*/
+    -fx-cursor: hand;
 }
 
 #lineID {
@@ -15,6 +21,9 @@
 
 #menuBarID {
     -fx-font: 10pt "Arial";
+    -fx-background-color:
+                    linear-gradient(#82ccde, #94daf1),
+                    linear-gradient(#9ddbf1 0%, #Acdff1 50%, #93d2e8 100%);
 }
 
 #messageLabID {
@@ -30,7 +39,8 @@
 }
 
 #radioID {
-    -fx-font: 10pt "Arial";
+    -fx-font: 11pt "";
+
 }
 
 #sliderID .thumb {
@@ -48,4 +58,5 @@
 
 #titleLabID {
     -fx-font: 16pt "Arial";
+    -fx-font-weight: bold;
 }
