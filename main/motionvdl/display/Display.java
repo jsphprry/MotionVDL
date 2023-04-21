@@ -100,6 +100,9 @@ public class Display {
 		this.sliderX.setMinWidth(400);
 		this.sliderX.setMin(0);
 		this.sliderX.setMax(0);
+		this.sliderX.setTooltip(
+				new Tooltip("Move X-Axis in frame.")
+		);
 		this.sliderX.valueProperty().addListener(
 				event -> sliderChange("Horizontal")
 		);
@@ -114,6 +117,9 @@ public class Display {
 		this.sliderY.setMinHeight(400);
 		this.sliderY.setMin(0);
 		this.sliderY.setMax(0);
+		this.sliderY.setTooltip(
+				new Tooltip("Move Y-Axis in frame.")
+		);
 		this.sliderY.valueProperty().addListener(
 				event -> sliderChange("Vertical")
 		);
@@ -127,6 +133,9 @@ public class Display {
 		this.sliderZoom.setMinHeight(400);
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
+		this.sliderZoom.setTooltip(
+				new Tooltip("Zoom into frame.")
+		);
 		this.sliderZoom.valueProperty().addListener(
 				event -> sliderChange("Zoom")
 		);
@@ -148,6 +157,9 @@ public class Display {
 		this.processBut.setLayoutX(480);
 		this.processBut.setLayoutY(115);
 		this.processBut.setMinSize(160,50);
+		this.processBut.setTooltip(
+				new Tooltip("Finished with this stage?")
+		);
 		this.processBut.setOnAction(
 				event -> receiver.complete()
 		);
