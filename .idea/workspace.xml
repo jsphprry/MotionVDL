@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Display class layout changes">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added new Tooltips">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682103439542</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added new Tooltips">
+      <created>1682103770757</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682103770757</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,6 +244,7 @@
     <MESSAGE value="Improved setFrame() method" />
     <MESSAGE value="Display style changes" />
     <MESSAGE value="Display class layout changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Display class layout changes" />
+    <MESSAGE value="Added new Tooltips" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new Tooltips" />
   </component>
 </project>

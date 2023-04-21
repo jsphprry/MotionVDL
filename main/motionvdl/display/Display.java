@@ -70,13 +70,13 @@ public class Display {
 		// Title Label
 		this.titleLab = new Label("Title");
 		this.titleLab.setId("titleLabID");
-		this.titleLab.setLayoutX(6);
+		this.titleLab.setLayoutX(145);
 		this.titleLab.setLayoutY(32);
 		this.primaryPane.getChildren().add(this.titleLab);
 
 		// ImageView to show current frame
 		this.imageView = new ImageView();
-		this.imageView.setId("imageViewID");
+		this.imageView.setId("cropImageViewID");
 		this.imageView.setLayoutX(40);
 		this.imageView.setLayoutY(65);
 		this.imageView.setFitHeight(400);
@@ -257,7 +257,6 @@ public class Display {
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(this.WIDTH);
-		this.primaryPane.getChildren().add(new Line(0, 29, this.WIDTH, 29));
 		this.primaryPane.getChildren().add(this.menuBar);
 
 		// Points to be placed on the ImageView to visualise a click
@@ -510,6 +509,7 @@ public class Display {
 	 */
 	public void alterForPreprocessing() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
+		this.imageView.setId("cropImageViewID");
 		this.radioBut.setText("Lock Min Res");
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
@@ -524,6 +524,7 @@ public class Display {
 	public void alterForLabelling() {
 		this.primaryPane.getChildren().removeAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setViewport(null);
+		this.imageView.setId("labelImageViewID");
 		this.radioBut.setText("Toggle Auto");
 		this.radioBut.setTooltip(
 				new Tooltip("Enable to automatically move to next\n" +
