@@ -210,7 +210,7 @@ public class Display {
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label("Message area");
+		this.messageLab = new Label();
 		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(480);
 		this.messageLab.setLayoutY(335);
@@ -347,6 +347,13 @@ public class Display {
 	}
 
 	/**
+	 * Clear the ImageView.
+	 */
+	public void clearFrame() {
+		this.imageView.setImage(null);
+	}
+
+	/**
 	 * Sets the initial ViewPort based on the resolution of the Image.
 	 */
 	public void setViewPort() {
@@ -389,7 +396,7 @@ public class Display {
 		this.sliderZoom.setMax(maxSliderZoom);
 		this.sliderZoom.setValue(maxSliderZoom);
 
-		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
+		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 	}
 
 	/**
@@ -417,13 +424,9 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				if (getRadio()) {
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue() * widthScaleFactor) {
-						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
-					}
-				} else {
-					if (!Objects.equals(this.resTextField.getText(), "")) {
-						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
+				if (!this.resTextField.getText().equals("")) {
+					if (!getRadio() || getTarget() >= this.sliderZoom.getValue() * this.widthScaleFactor) {
+						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 					}
 				}
 			}
@@ -489,11 +492,11 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
-	
-	
-	// 230411 Joseph. Becuase of the open method of the main controller, it is possible to switch back from label controller 
-	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
-	public void alterForVideo() {
+
+	/**
+	 * Change scene layout for preprocessing stage.
+	 */
+	public void alterForPreprocessing() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.radioBut.setText("Lock Min Res");
 		this.radioBut.setTooltip(
@@ -502,8 +505,7 @@ public class Display {
 		this.radioBut.setSelected(false);
 		this.primaryPane.requestFocus();
 	}
-	
-	
+
 	/**
 	 * Change scene layout for labelling stage.
 	 */
@@ -565,18 +567,6 @@ public class Display {
 
 
 
-	
-	public void clearFrame() {
-
-		// 230410 Joseph. this method is used in the file opening system, so that when for example a rectangular video
-		// is loaded over a square video, the square video is cleared beforehand.
-
-		// 230410 Henri. Sets the ImageView's contents to null so no frame contained. Am I interpreting this correctly?
-		
-		// 230411 Joseph. yeah perfect, you could also set it to some default image or pattern
-		this.imageView.setImage(null);
-		
-	}
 	
 	@Deprecated
 	public void setTarget(int value) {

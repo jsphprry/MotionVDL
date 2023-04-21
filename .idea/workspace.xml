@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Improved setFrame() method">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Display style changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/controller/VideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682091552767</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Display style changes">
+      <created>1682093477726</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682093477726</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,8 +226,8 @@
     <MESSAGE value="Refactored display directory structure" />
     <MESSAGE value="Created FileChooser" />
     <MESSAGE value="Added more Tooltips" />
-    <MESSAGE value="Display style changes" />
     <MESSAGE value="Improved setFrame() method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved setFrame() method" />
+    <MESSAGE value="Display style changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Display style changes" />
   </component>
 </project>
