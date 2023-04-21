@@ -87,7 +87,7 @@ public class Display {
 						receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
 					} else if (event.getButton() == MouseButton.SECONDARY) {
-						System.out.println("UNDO FUNCTION");
+						receiver.undo();
 					}
 				});
 		this.primaryPane.getChildren().add(this.imageView);

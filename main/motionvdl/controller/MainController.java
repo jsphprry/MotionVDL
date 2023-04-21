@@ -80,7 +80,7 @@ public class MainController extends Controller {
 			Debug.trace(e.getMessage());
 			controllerIndex = 0;
 			linkedController = subcontroller[controllerIndex];
-			linkedController.pass(new LabeledVideo(Video.noise(10, 10, 10)));
+			linkedController.pass(new LabeledVideo(Video.noise(100, 100, 10)));
 		}
 	}
 	
