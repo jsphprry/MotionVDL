@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="openjfx.javafx.swing" type="repository">
+    <properties maven-id="org.openjfx:javafx-swing:16" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/16/javafx-swing-16.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/16/javafx-swing-16-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/16/javafx-graphics-16.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/16/javafx-graphics-16-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/16/javafx-base-16.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/16/javafx-base-16-win.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

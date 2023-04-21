@@ -1,14 +1,13 @@
 package motionvdl.display;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -245,9 +244,9 @@ public class Display {
 		);
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
-		this.menuBar.setMinWidth(WIDTH);
-		this.primaryPane.getChildren().add(new Line(0, 30, WIDTH, 30));
-		this.primaryPane.getChildren().add(menuBar);
+		this.menuBar.setMinWidth(this.WIDTH);
+		this.primaryPane.getChildren().add(new Line(0, 30, this.WIDTH, 30));
+		this.primaryPane.getChildren().add(this.menuBar);
 
 		// Points to be placed on the ImageView to visualise a click
 		this.points = new ArrayList<>();
@@ -303,61 +302,17 @@ public class Display {
 	}
 	
 	/**
-	 * Convert an array of AWT Colors to JavaFX Image, then set
+	 * Converts an array of AWT Colors to JavaFX Image, then sets
 	 * the ImageView's Image property to display this frame.
 	 * @param image AWT Image containing the current frame
 	 */
 	public void setFrame(java.awt.Image image) {
-		BufferedImage bImage = (BufferedImage) image;
-		int height = bImage.getHeight();
-		int width = bImage.getWidth();
-
-		// Convert BufferedImage to Color[][]
-		Color[][] colorArray = new Color[height][width];
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				int rgb = bImage.getRGB(x, y);
-				colorArray[y][x] = new Color(rgb);
-			}
-		}
-
-		// Function for converting AWT color to JavaFX color
-		Function<Color, javafx.scene.paint.Color> convertColor = color ->
-				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue(),
-												(double) color.getAlpha() / 255);
-
-		// Create JavaFX WritableImage and write pixel data
-		WritableImage wImage = new WritableImage(width, height);
-		PixelWriter pixelWriter = wImage.getPixelWriter();
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				Color color = colorArray[y][x];
-				pixelWriter.setColor(x, y, convertColor.apply(color));
-			}
-		}
-		this.imageView.setImage(wImage);
+		Image FXImage = SwingFXUtils.toFXImage((BufferedImage) image, null);
+		this.imageView.setImage(FXImage);
 
 		// Upscale Image if required
-		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
-			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
-			width = (int) wImage.getWidth();
-			height = (int) wImage.getHeight();
-			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
-			PixelReader reader = wImage.getPixelReader();
-			PixelWriter writer = scaledWImage.getPixelWriter();
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-					int argb = reader.getArgb(x, y);
-					for (int dy = 0; dy < scaleFactor; dy++) {
-						for (int dx = 0; dx < scaleFactor; dx++) {
-							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
-						}
-					}
-				}
-			}
-			this.widthScaleFactor = (double) width / scaledWImage.getWidth();
-			this.heightScaleFactor = (double) height / scaledWImage.getHeight();
-			this.imageView.setImage(scaledWImage);
+		if (FXImage.getHeight() < this.imageView.getFitHeight() && FXImage.getWidth() < this.imageView.getFitWidth()) {
+			this.imageView.setImage(upscaleFrame(FXImage));
 		} else {
 			this.widthScaleFactor = 1;
 			this.heightScaleFactor = 1;
@@ -365,7 +320,34 @@ public class Display {
 	}
 
 	/**
-	 * Sets the initial ViewPort based on the resolution of the Image
+	 * Upscale a given Image when it is a lower base resolution than the ImageView.
+	 * @param image Base Image to upscale
+	 * @return An upscaled version of the same Image
+	 */
+	public Image upscaleFrame(Image image) {
+		double scaleFactor = this.imageView.getFitHeight() / image.getHeight();
+		int width = (int) image.getWidth();
+		int height = (int) image.getHeight();
+		WritableImage scaledImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+		PixelReader reader = image.getPixelReader();
+		PixelWriter writer = scaledImage.getPixelWriter();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int argb = reader.getArgb(x, y);
+				for (int dy = 0; dy < scaleFactor; dy++) {
+					for (int dx = 0; dx < scaleFactor; dx++) {
+						writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+					}
+				}
+			}
+		}
+		this.widthScaleFactor = (double) width / scaledImage.getWidth();
+		this.heightScaleFactor = (double) height / scaledImage.getHeight();
+		return scaledImage;
+	}
+
+	/**
+	 * Sets the initial ViewPort based on the resolution of the Image.
 	 */
 	public void setViewPort() {
 		this.sliderX.setMin(0);
