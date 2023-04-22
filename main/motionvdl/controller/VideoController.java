@@ -34,7 +34,7 @@ public class VideoController extends Controller {
 	 */
 	public void pass(LabeledVideo temp) {
 		super.pass(temp);
-		display.alterForVideo();
+		display.alterForPreprocessing();
 	}
 	
 	

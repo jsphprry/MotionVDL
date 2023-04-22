@@ -1,14 +1,13 @@
 package motionvdl.display;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -71,13 +70,13 @@ public class Display {
 		// Title Label
 		this.titleLab = new Label("Title");
 		this.titleLab.setId("titleLabID");
-		this.titleLab.setLayoutX(6);
+		this.titleLab.setLayoutX(145);
 		this.titleLab.setLayoutY(32);
 		this.primaryPane.getChildren().add(this.titleLab);
 
 		// ImageView to show current frame
 		this.imageView = new ImageView();
-		this.imageView.setId("imageViewID");
+		this.imageView.setId("cropImageViewID");
 		this.imageView.setLayoutX(40);
 		this.imageView.setLayoutY(65);
 		this.imageView.setFitHeight(400);
@@ -88,7 +87,7 @@ public class Display {
 						receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
 					} else if (event.getButton() == MouseButton.SECONDARY) {
-						System.out.println("UNDO FUNCTION");
+						receiver.undo();
 					}
 				});
 		this.primaryPane.getChildren().add(this.imageView);
@@ -101,6 +100,9 @@ public class Display {
 		this.sliderX.setMinWidth(400);
 		this.sliderX.setMin(0);
 		this.sliderX.setMax(0);
+		this.sliderX.setTooltip(
+				new Tooltip("Move X-Axis in frame.")
+		);
 		this.sliderX.valueProperty().addListener(
 				event -> sliderChange("Horizontal")
 		);
@@ -115,6 +117,9 @@ public class Display {
 		this.sliderY.setMinHeight(400);
 		this.sliderY.setMin(0);
 		this.sliderY.setMax(0);
+		this.sliderY.setTooltip(
+				new Tooltip("Move Y-Axis in frame.")
+		);
 		this.sliderY.valueProperty().addListener(
 				event -> sliderChange("Vertical")
 		);
@@ -128,12 +133,15 @@ public class Display {
 		this.sliderZoom.setMinHeight(400);
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
+		this.sliderZoom.setTooltip(
+				new Tooltip("Zoom into frame.")
+		);
 		this.sliderZoom.valueProperty().addListener(
 				event -> sliderChange("Zoom")
 		);
 
 		// Radio button to toggle automatic mode
-		this.radioBut = new RadioButton("Lock Res");
+		this.radioBut = new RadioButton("Lock Min Res");
 		this.radioBut.setId("radioID");
 		this.radioBut.setLayoutX(500);
 		this.radioBut.setLayoutY(65);
@@ -149,6 +157,9 @@ public class Display {
 		this.processBut.setLayoutX(480);
 		this.processBut.setLayoutY(115);
 		this.processBut.setMinSize(160,50);
+		this.processBut.setTooltip(
+				new Tooltip("Finished with this stage?")
+		);
 		this.processBut.setOnAction(
 				event -> receiver.complete()
 		);
@@ -204,14 +215,14 @@ public class Display {
 			if (!newValue.matches("\\d*")) {
 				this.resTextField.setText(newValue.replaceAll("\\D", ""));
 			}
-			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue()) {
-				this.resTextField.setText(Integer.toString((int) this.sliderZoom.getValue()));
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue() * widthScaleFactor) {
+				this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 			}
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label("Message area");
+		this.messageLab = new Label();
 		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(480);
 		this.messageLab.setLayoutY(335);
@@ -245,8 +256,8 @@ public class Display {
 		);
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
-		this.menuBar.setMinWidth(WIDTH);
-		this.primaryPane.getChildren().add(menuBar);
+		this.menuBar.setMinWidth(this.WIDTH);
+		this.primaryPane.getChildren().add(this.menuBar);
 
 		// Points to be placed on the ImageView to visualise a click
 		this.points = new ArrayList<>();
@@ -302,73 +313,17 @@ public class Display {
 	}
 	
 	/**
-	 * Convert an array of AWT Colors to JavaFX Image, then set
+	 * Converts an array of AWT Colors to JavaFX Image, then sets
 	 * the ImageView's Image property to display this frame.
-	 * @param colorArray Array of colors, containing the current frame
+	 * @param image AWT Image containing the current frame
 	 */
-	
-	// 230410 Joseph. So in order to reduce the memory consumption of the model component, I converted the 3d Color array into a 1d array of awt BufferedImage,
-	// because of this the getFrame method of the Video class returns type awt Image and so this method now has to be adapted to take awt Image
-	// as argument.
-	
-	// 230410 Henri. I've changed it from Color[][] to java.awt.Image.
-	// This might work but unable to test at this point - unable to run as I don't know how to fix line 46 in MotionVDL class.
-	
-	// 230410 Henri. This method is also probably not the most efficient, but is a temporary solution
-	
-	// 230411 Joseph. So I've fixed the MotionVDL starter and this method seems to work well, only issue I can see is the pixel smoothing that was an issue before
-	
 	public void setFrame(java.awt.Image image) {
-		BufferedImage bImage = (BufferedImage) image;
-		int height = bImage.getHeight();
-		int width = bImage.getWidth();
-
-		// Convert BufferedImage to Color[][]
-		Color[][] colorArray = new Color[height][width];
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				int rgb = bImage.getRGB(x, y);
-				colorArray[y][x] = new Color(rgb);
-			}
-		}
-
-		// Function for converting AWT color to JavaFX color
-		Function<Color, javafx.scene.paint.Color> convertColor = color ->
-				javafx.scene.paint.Color.rgb(color.getRed(), color.getGreen(), color.getBlue(),
-												(double) color.getAlpha() / 255);
-
-		// Create JavaFX WritableImage and write pixel data
-		WritableImage wImage = new WritableImage(width, height);
-		PixelWriter pixelWriter = wImage.getPixelWriter();
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				Color color = colorArray[y][x];
-				pixelWriter.setColor(x, y, convertColor.apply(color));
-			}
-		}
-		this.imageView.setImage(wImage);
+		Image FXImage = SwingFXUtils.toFXImage((BufferedImage) image, null);
+		this.imageView.setImage(FXImage);
 
 		// Upscale Image if required
-		if (wImage.getHeight() < this.imageView.getFitHeight() && wImage.getWidth() < this.imageView.getFitWidth()) {
-			double scaleFactor = this.imageView.getFitHeight() / wImage.getHeight();
-			width = (int) wImage.getWidth();
-			height = (int) wImage.getHeight();
-			WritableImage scaledWImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
-			PixelReader reader = wImage.getPixelReader();
-			PixelWriter writer = scaledWImage.getPixelWriter();
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-					int argb = reader.getArgb(x, y);
-					for (int dy = 0; dy < scaleFactor; dy++) {
-						for (int dx = 0; dx < scaleFactor; dx++) {
-							writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
-						}
-					}
-				}
-			}
-			this.widthScaleFactor = (double) width / scaledWImage.getWidth();
-			this.heightScaleFactor = (double) height / scaledWImage.getHeight();
-			this.imageView.setImage(scaledWImage);
+		if (FXImage.getHeight() < this.imageView.getFitHeight() && FXImage.getWidth() < this.imageView.getFitWidth()) {
+			this.imageView.setImage(upscaleFrame(FXImage));
 		} else {
 			this.widthScaleFactor = 1;
 			this.heightScaleFactor = 1;
@@ -376,7 +331,41 @@ public class Display {
 	}
 
 	/**
-	 * Sets the initial ViewPort based on the resolution of the Image
+	 * Upscale a given Image when it is a lower base resolution than the ImageView.
+	 * @param image Base Image to upscale
+	 * @return An upscaled version of the same Image
+	 */
+	public Image upscaleFrame(Image image) {
+		double scaleFactor = this.imageView.getFitHeight() / image.getHeight();
+		int width = (int) image.getWidth();
+		int height = (int) image.getHeight();
+		WritableImage scaledImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
+		PixelReader reader = image.getPixelReader();
+		PixelWriter writer = scaledImage.getPixelWriter();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int argb = reader.getArgb(x, y);
+				for (int dy = 0; dy < scaleFactor; dy++) {
+					for (int dx = 0; dx < scaleFactor; dx++) {
+						writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
+					}
+				}
+			}
+		}
+		this.widthScaleFactor = (double) width / scaledImage.getWidth();
+		this.heightScaleFactor = (double) height / scaledImage.getHeight();
+		return scaledImage;
+	}
+
+	/**
+	 * Clear the ImageView.
+	 */
+	public void clearFrame() {
+		this.imageView.setImage(null);
+	}
+
+	/**
+	 * Sets the initial ViewPort based on the resolution of the Image.
 	 */
 	public void setViewPort() {
 		this.sliderX.setMin(0);
@@ -418,7 +407,7 @@ public class Display {
 		this.sliderZoom.setMax(maxSliderZoom);
 		this.sliderZoom.setValue(maxSliderZoom);
 
-		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
+		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 	}
 
 	/**
@@ -446,13 +435,9 @@ public class Display {
 							this.sliderZoom.getValue()));
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
-				if (getRadio()) {
-					if (!Objects.equals(this.resTextField.getText(), "") && getTarget() >= sliderZoom.getValue()) {
-						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
-					}
-				} else {
-					if (!Objects.equals(this.resTextField.getText(), "")) {
-						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
+				if (!this.resTextField.getText().equals("")) {
+					if (!getRadio() || getTarget() >= this.sliderZoom.getValue() * this.widthScaleFactor) {
+						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 					}
 				}
 			}
@@ -518,27 +503,28 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
-	
-	
-	// 230411 Joseph. Becuase of the open method of the main controller, it is possible to switch back from label controller 
-	//                to video controller and because of this alterForLabelling must have an equivelant method alterForVideo
-	public void alterForVideo() {
+
+	/**
+	 * Change scene layout for preprocessing stage.
+	 */
+	public void alterForPreprocessing() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
-		this.radioBut.setText("Lock Res");
+		this.imageView.setId("cropImageViewID");
+		this.radioBut.setText("Lock Min Res");
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
 		);
 		this.radioBut.setSelected(false);
 		this.primaryPane.requestFocus();
 	}
-	
-	
+
 	/**
 	 * Change scene layout for labelling stage.
 	 */
 	public void alterForLabelling() {
 		this.primaryPane.getChildren().removeAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setViewport(null);
+		this.imageView.setId("labelImageViewID");
 		this.radioBut.setText("Toggle Auto");
 		this.radioBut.setTooltip(
 				new Tooltip("Enable to automatically move to next\n" +
@@ -594,18 +580,6 @@ public class Display {
 
 
 
-	
-	public void clearFrame() {
-
-		// 230410 Joseph. this method is used in the file opening system, so that when for example a rectangular video
-		// is loaded over a square video, the square video is cleared beforehand.
-
-		// 230410 Henri. Sets the ImageView's contents to null so no frame contained. Am I interpreting this correctly?
-		
-		// 230411 Joseph. yeah perfect, you could also set it to some default image or pattern
-		this.imageView.setImage(null);
-		
-	}
 	
 	@Deprecated
 	public void setTarget(int value) {

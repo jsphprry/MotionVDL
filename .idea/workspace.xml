@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Created FileChooser">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added new Tooltips">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +42,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/henri/MotionVDL&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.37241378&quot;
   }
 }</component>
@@ -169,7 +172,49 @@
       <option name="project" value="LOCAL" />
       <updated>1681840451628</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added more Tooltips">
+      <created>1681840777815</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1681840777815</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Display style changes">
+      <created>1682089557740</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682089557740</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Improved setFrame() method">
+      <created>1682091552767</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682091552767</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Display style changes">
+      <created>1682093477726</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682093477726</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Display class layout changes">
+      <created>1682103439542</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682103439542</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added new Tooltips">
+      <created>1682103770757</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682103770757</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,6 +240,11 @@
     <MESSAGE value="Changed Display arguments" />
     <MESSAGE value="Refactored display directory structure" />
     <MESSAGE value="Created FileChooser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created FileChooser" />
+    <MESSAGE value="Added more Tooltips" />
+    <MESSAGE value="Improved setFrame() method" />
+    <MESSAGE value="Display style changes" />
+    <MESSAGE value="Display class layout changes" />
+    <MESSAGE value="Added new Tooltips" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new Tooltips" />
   </component>
 </project>
