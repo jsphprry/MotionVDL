@@ -83,9 +83,11 @@ public class Display {
 		this.imageView.setFitWidth(400);
 		this.imageView.setOnMouseClicked(
 				event -> {
+					// Left click - Pass to controller as point placement
 					if (event.getButton() == MouseButton.PRIMARY) {
 						receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
+					// Right click - Pass to controller as undo function
 					} else if (event.getButton() == MouseButton.SECONDARY) {
 						receiver.undo();
 					}
@@ -212,9 +214,11 @@ public class Display {
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			// Check content of TextField is digits only, if not, disallow given input
 			if (!newValue.matches("\\d*")) {
 				this.resTextField.setText(newValue.replaceAll("\\D", ""));
 			}
+			// Make sure min res in TextField is kept in sync with crop frame
 			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue() * widthScaleFactor) {
 				this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
 			}
@@ -230,13 +234,13 @@ public class Display {
 		this.messageLab.setWrapText(true);
 		this.primaryPane.getChildren().add(this.messageLab);
 
-		// Menu to allow for opening and saving current labelling
+		// Menu to allow for opening a file, and saving current labelling
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
 		Menu fileMenu = new Menu("File");
 		MenuItem open = new MenuItem("Open");
 		open.setOnAction(event -> {
-			System.out.println("Open");
+			// Show user their file system to allow file choice
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
@@ -245,15 +249,13 @@ public class Display {
 			}
 		});
 		MenuItem save = new MenuItem("Save");
-		save.setOnAction(event ->
-				System.out.println("Save")
+		save.setOnAction(event -> {
 				// TODO: Save
-		);
+		});
 		MenuItem saveAs = new MenuItem("Save As");
-		saveAs.setOnAction(event ->
-				System.out.println("Save As")
+		saveAs.setOnAction(event -> {
 				// TODO: Save As
-		);
+		});
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(this.WIDTH);
@@ -267,9 +269,9 @@ public class Display {
 
 		// Details relating to the window itself
 		this.primaryStage.setTitle("MotionVDL");
-		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png"));
-		this.primaryStage.setResizable(false);
-		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
+		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png")); // Set custom icon
+		this.primaryStage.setResizable(false); // Disallow resizing of Stage window
+		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0)); // When X is pressed, terminate all processes
 		this.primaryStage.setScene(this.primaryScene);
 		this.primaryPane.requestFocus();
 		this.primaryStage.show();
@@ -342,9 +344,12 @@ public class Display {
 		WritableImage scaledImage = new WritableImage((int) (width * scaleFactor), (int) (height * scaleFactor));
 		PixelReader reader = image.getPixelReader();
 		PixelWriter writer = scaledImage.getPixelWriter();
+
+		// Loop through each pixel in the original image
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				int argb = reader.getArgb(x, y);
+				// Loop through each scaled image pixel that corresponds to current original pixel
 				for (int dy = 0; dy < scaleFactor; dy++) {
 					for (int dx = 0; dx < scaleFactor; dx++) {
 						writer.setArgb((int) (x * scaleFactor + dx), (int) (y * scaleFactor + dy), argb);
@@ -352,6 +357,7 @@ public class Display {
 				}
 			}
 		}
+
 		this.widthScaleFactor = (double) width / scaledImage.getWidth();
 		this.heightScaleFactor = (double) height / scaledImage.getHeight();
 		return scaledImage;
@@ -368,6 +374,7 @@ public class Display {
 	 * Sets the initial ViewPort based on the resolution of the Image.
 	 */
 	public void setViewPort() {
+		// Set slider properties to default
 		this.sliderX.setMin(0);
 		this.sliderX.setMax(0);
 		this.sliderY.setMin(0);
@@ -375,13 +382,14 @@ public class Display {
 		this.sliderZoom.setMin(0);
 		this.sliderZoom.setMax(0);
 
+		// Set initial required properties
 		double imgWidth = this.imageView.getImage().getWidth();
 		double imgHeight = this.imageView.getImage().getHeight();
-		double maxSliderZoom;
+		double maxSliderZoom = imgWidth;
 		double sliderXMaxValue = 0.0;
 		double sliderYMaxValue = 0.0;
 
-		// Set the viewport of the image based on its orientation
+		// Set required values with handling based on its orientation
 		if (imgWidth > imgHeight) {
 			// Landscape Image
 			this.imageView.setViewport(new Rectangle2D((imgWidth / 2) - (imgHeight / 2), 0, imgHeight, imgHeight));
@@ -393,12 +401,12 @@ public class Display {
 			this.imageView.setViewport(new Rectangle2D(0, (imgHeight / 2) - (imgWidth / 2), imgWidth, imgWidth));
 			sliderXMaxValue = 0.0;
 			sliderYMaxValue = imgHeight - this.imageView.getViewport().getHeight();
-			maxSliderZoom = imgWidth;
 		} else {
 			// Square Image
 			this.imageView.setViewport(new Rectangle2D(0, 0, imgWidth, imgHeight));
-			maxSliderZoom = imgWidth;
 		}
+
+		// Set common values
 		this.sliderX.setMax(sliderXMaxValue);
 		this.sliderX.setValue(this.sliderX.getMax() / 2);
 		this.sliderY.setMax(sliderYMaxValue);
@@ -407,6 +415,7 @@ public class Display {
 		this.sliderZoom.setMax(maxSliderZoom);
 		this.sliderZoom.setValue(maxSliderZoom);
 
+		// Set TextField value to be initially max possible res
 		this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 	}
 
@@ -433,8 +442,12 @@ public class Display {
 							this.sliderY.getValue(),
 							this.sliderZoom.getValue(),
 							this.sliderZoom.getValue()));
+
+				// Update the maximum values of the horizontal and vertical sliders
 				this.sliderX.setMax(this.imageView.getImage().getWidth() - this.imageView.getViewport().getWidth());
 				this.sliderY.setMax(this.imageView.getImage().getHeight() - this.imageView.getViewport().getHeight());
+
+				// Adjust content of TextField accordingly to reflect zoom level change
 				if (!this.resTextField.getText().equals("")) {
 					if (!getRadio() || getTarget() >= this.sliderZoom.getValue() * this.widthScaleFactor) {
 						this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
@@ -454,14 +467,18 @@ public class Display {
 		x = x * this.imageView.getFitWidth() + this.imageView.getLayoutX();
 		y = y * this.imageView.getFitHeight() + this.imageView.getLayoutY();
 
-		int pointNum = getPointNum();
+		// Create new point and add it to point ArrayList
 		this.points.add(new Circle());
-		this.points.get(pointNum).setId("pointID");
-		this.points.get(pointNum).setRadius(7);
-		this.points.get(pointNum).setCenterX(x);
-		this.points.get(pointNum).setCenterY(y);
-		if (pointNum > 0) drawConnector();
-		this.primaryPane.getChildren().add(this.points.get(pointNum));
+		this.points.get(getPointNum()).setId("pointID");
+		this.points.get(getPointNum()).setRadius(7);
+		this.points.get(getPointNum()).setCenterX(x);
+		this.points.get(getPointNum()).setCenterY(y);
+
+		// Begin drawing connectors between points after second point is added
+		if (getPointNum() > 0) drawConnector();
+
+		// Add newly created point to ImageView
+		this.primaryPane.getChildren().add(this.points.get(getPointNum()));
 	}
 
 	/**
@@ -478,28 +495,33 @@ public class Display {
 	 * Draw a Line object which connects two points.
 	 */
 	public void drawConnector() {
-		int pointNum = getPointNum() - 1;
+		int drawnPointNum = getPointNum() - 1;
 		this.connectors.add(new Line());
-		this.connectors.get(pointNum).setId("lineID");
+		this.connectors.get(drawnPointNum).setId("lineID");
+
+		// Set the start and end points of the Line
 		BiConsumer<Integer, Integer> setPoints = (start, end) -> {
-			this.connectors.get(pointNum).setStartX(this.points.get(start).getCenterX());
-			this.connectors.get(pointNum).setStartY(this.points.get(start).getCenterY());
-			this.connectors.get(pointNum).setEndX(this.points.get(end).getCenterX());
-			this.connectors.get(pointNum).setEndY(this.points.get(end).getCenterY());
+			this.connectors.get(drawnPointNum).setStartX(this.points.get(start).getCenterX());
+			this.connectors.get(drawnPointNum).setStartY(this.points.get(start).getCenterY());
+			this.connectors.get(drawnPointNum).setEndX(this.points.get(end).getCenterX());
+			this.connectors.get(drawnPointNum).setEndY(this.points.get(end).getCenterY());
 		};
-		switch (pointNum) {
-			default -> setPoints.accept(pointNum, pointNum + 1);
-			case 3, 5 -> setPoints.accept(1, pointNum + 1);
-			case 8 -> setPoints.accept(6, pointNum + 1);
+
+		// Draw the Line based on which point is being placed
+		switch (drawnPointNum) {
+			default -> setPoints.accept(drawnPointNum, drawnPointNum + 1);
+
+			// Special cases for points which don't originate from previous point
+			case 3, 5 -> setPoints.accept(1, drawnPointNum + 1);
+			case 8 -> setPoints.accept(6, drawnPointNum + 1);
 		}
-		this.primaryPane.getChildren().add(this.connectors.get(pointNum));
+		this.primaryPane.getChildren().add(this.connectors.get(drawnPointNum));
 	}
 
 	/**
-	 * Clear all Line and Circle objects from the Pane.
+	 * Clear any Line and Circle objects currently on the Pane.
 	 */
 	public void clearGeometry() {
-		// Even if these nodes haven't yet been added to the Pane, this will still work
 		this.primaryPane.getChildren().removeAll(this.points);
 		this.primaryPane.getChildren().removeAll(this.connectors);
 	}
