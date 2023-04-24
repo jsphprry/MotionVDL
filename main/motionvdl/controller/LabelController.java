@@ -10,21 +10,35 @@ import motionvdl.model.data.LabeledVideo;
  * @author Joseph
  */
 public class LabelController extends Controller {
-
+	
+	// constants
+	private static final String[] NODE_TITLES = new String[] {
+			"head",
+			"collarbone",
+			"left elbow",
+			"left hand",
+			"right elbow",
+			"right hand",
+			"pelvis",
+			"left knee",
+			"left foot",
+			"right knee",
+			"right foot"};
+	
 	/**
 	 * Construct label controller
 	 * @param mc Pointer to main controller
 	 */
 	public LabelController(MainController mc) {
-
+		
 		// setup titles
 		displayTitle = "Frame labelling";
 		debugTitle = "LSC";
-
+		
 		// setup components
 		linkedController = mc;
 		display = linkedController.display;
-
+		
 		// debug trace
 		Debug.trace(String.format("Created LabelController '%s'", debugTitle));
 	}
@@ -48,10 +62,11 @@ public class LabelController extends Controller {
 		// setup display
 		display.setFrame(data.video.getFrame(frameIndex));
 		display.drawPoints(data.label.getPoints(frameIndex));
+		display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
 		display.alterForLabelling();
 	}
-
-
+	
+	
 	/**
 	 * Record point on current frame label
 	 * @param x Normalised x coordinate
@@ -69,9 +84,10 @@ public class LabelController extends Controller {
 			// record point
 			data.label.push(frameIndex, x, y);
 			
-			// draw frame label
+			// update display
 			display.clearGeometry();
 			display.drawPoints(data.label.getPoints(frameIndex));
+			display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
 			
 			// go to next frame if current frame label is full when radio is true
 			if (display.getRadio()) if (data.label.checkFull(frameIndex)) setNextFrame();
@@ -98,9 +114,10 @@ public class LabelController extends Controller {
 			// remove point
 			data.label.pop(frameIndex);
 			
-			// draw frame label
+			// update display
 			display.clearGeometry();
 			display.drawPoints(data.label.getPoints(frameIndex));
+			display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
 			
 		// go to previous frame if empty label
 		} else {
@@ -145,11 +162,9 @@ public class LabelController extends Controller {
 			
 			// export data
 			data.export(outputFile);
-
-			// 230410 Joseph. Needs equivelant JavaFX instructions
+			
 			// close display
-			//display.setVisible(false);
-			//display.dispose();
+			display.exit();
 			
 			// debug trace
 			Debug.trace("Exit program");
@@ -158,8 +173,8 @@ public class LabelController extends Controller {
 			Debug.trace(e.getMessage());
 		}
 	}
-
-
+	
+	
 	/**
 	 * Display next frame and frame-label
 	 */
@@ -169,8 +184,9 @@ public class LabelController extends Controller {
 		// default behaviour
 		super.setFrame(index);
 		
-		// draw frame label
+		// update display
 		display.clearGeometry();
 		display.drawPoints(data.label.getPoints(frameIndex));
+		display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
 	}
 }
