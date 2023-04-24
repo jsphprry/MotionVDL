@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Bound undo to right-click">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Improved comments and optimised code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682105253384</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Improved comments and optimised code">
+      <created>1682285439261</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1682285439261</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,6 +266,7 @@
     <MESSAGE value="Added new Tooltips" />
     <MESSAGE value="Display style changes" />
     <MESSAGE value="Bound undo to right-click" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bound undo to right-click" />
+    <MESSAGE value="Improved comments and optimised code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved comments and optimised code" />
   </component>
 </project>

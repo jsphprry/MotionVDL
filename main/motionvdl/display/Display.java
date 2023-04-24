@@ -244,17 +244,20 @@ public class Display {
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
-				String location = fileChoice.getPath();
-				receiver.open(location);
+				receiver.open(fileChoice.getPath());
 			}
 		});
 		MenuItem save = new MenuItem("Save");
-		save.setOnAction(event -> {
-				// TODO: Save
-		});
+		save.setOnAction(event ->
+				receiver.save()
+		);
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event -> {
-				// TODO: Save As
+			FileChooser fileChooser = new FileChooser();
+			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
+			if (fileChoice != null) {
+				receiver.saveAs(fileChoice.getPath());
+			}
 		});
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
