@@ -142,8 +142,8 @@ public class Video extends Encoding {
 		Debug.trace(String.format("Video: buffer resolution cropped from %sx%s to %sx%s from (%s,%s)",width,height,w,h,x,y));
 		
 		// throw invalid parameters
-		if (0 > x || x >= width   || 0 > y || y >= height)   throw new IllegalArgumentException(String.format("Video error: invalid crop coordinate '(%d,%d)'",x,y));
-		if (0 > w || w >= width-x || 0 > h || h >= height-y) throw new IllegalArgumentException(String.format("Video error: invalid crop resolution '%dx%d'",w,h));
+		if (0 > x || x >= width   || 0 > y || y >= height) throw new IllegalArgumentException(String.format("Video error: invalid crop coordinate '(%d,%d)'",x,y));
+		if (0 > w || w > width-x || 0 > h || h > height-y) throw new IllegalArgumentException(String.format("Video error: invalid crop resolution '%dx%d'",w,h));
 		
 		// initialise workBuffer
 		BufferedImage[] workBuffer = new BufferedImage[length];
