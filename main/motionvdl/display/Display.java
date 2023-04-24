@@ -595,4 +595,12 @@ public class Display {
 		int z = (int) (this.imageView.getViewport().getWidth() * widthScaleFactor);
 		return new int[]{x, y, z};
 	}
+
+	/**
+	 * Close the currently open application instance.
+	 */
+	public void exit() {
+		this.primaryStage.close();
+	}
 }
+
