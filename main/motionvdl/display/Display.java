@@ -296,8 +296,8 @@ public class Display {
 	 * Send the user a message, using a Label.
 	 * @param string Text to show the user
 	 */
-	public void setMessage(String string) {
-		this.messageLab.setText(string);
+	public void setMessage(String nextNode) {
+		this.messageLab.setText("Next node:\n" + nextNode);
 	}
 
 	/**
