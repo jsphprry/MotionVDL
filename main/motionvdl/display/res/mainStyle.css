@@ -7,7 +7,7 @@
                 linear-gradient(#2e9ab4, #22a4d2),
                 linear-gradient(#9ddbf1 0%, #7ac4de 50%, #93d2e8 100%),
                 linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
-    -fx-font: 11pt "";
+    -fx-font: 11.5pt "";
     -fx-background-insets: 0, 1, 1, 0, 0;
 }
 
@@ -40,11 +40,15 @@
 }
 
 #messageLabID {
-    -fx-font: 14pt "Arial";
+    -fx-font: 12pt "Calibri";
+    -fx-border-width: 0.5pt;
 }
 
 #paneID {
-    -fx-background-color: #fff7d0;
+    -fx-background-color:
+                    linear-gradient(#Fdf4c6, #Fff6ce),
+                    linear-gradient(#Fdf0ac 0%, #F7edbc 50%, #Fdf1b2 100%),
+                    linear-gradient(from 0% 0% to 30% 70%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4));
 }
 
 #pointID {
@@ -52,13 +56,26 @@
 }
 
 #radioID {
-    -fx-font: 11pt "";
+    -fx-font: 11.5pt "";
     -fx-cursor: hand;
+}
 
+#radioID .radio {
+    -fx-background-color:
+                    linear-gradient(#99d2e0, #A5e1f5);
+    -fx-background-insets: 0;
+    -fx-border-radius: 10pt;
+    -fx-border-width: 0.5pt;
+    -fx-border-color: #578692;
+}
+
+#radioID:selected .dot {
+    -fx-background-color: BLACK;
+    -fx-background-insets: 0;
 }
 
 #sliderID .thumb {
-
+    -fx-background-color: BLACK;
 }
 
 #sliderID .track {
@@ -77,6 +94,10 @@
     -fx-border-color:
                 linear-gradient(#63caee 0%, #63b9d8 50%, #75c7e4 100%),
                 linear-gradient(from 0% 0% to 50% 80%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+#targetResLabID {
+    -fx-font: 11.5pt "";
 }
 
 #titleLabID {
