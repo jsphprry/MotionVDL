@@ -37,12 +37,12 @@ public class Display {
 	private final Scene primaryScene;
 	private final Pane primaryPane;
 	private final Button processBut;
-	private final Button undoBut;
 	private final Button nextBut;
 	private final Button prevBut;
 	private final ImageView imageView;
-	private final Label titleLab;
 	private final Label messageLab;
+	private final Label targetResLab;
+	private final Label titleLab;
 	private final List<Circle> points;
 	private final List<Line> connectors;
 	private final MenuBar menuBar;
@@ -167,17 +167,6 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
-		// Button for undoing an incorrect point placement
-		this.undoBut = new Button("Undo");
-		this.undoBut.setId("buttonID");
-		this.undoBut.setLayoutX(480);
-		this.undoBut.setLayoutY(175);
-		this.undoBut.setMinSize(160, 50);
-		this.undoBut.setOnAction(
-				event -> receiver.undo()
-		);
-		this.primaryPane.getChildren().add(this.undoBut);
-
 		// Button for switching to previous frame
 		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
@@ -206,11 +195,18 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
+		// Label to tell user what resTextField is for
+		this.targetResLab = new Label("Target res:");
+		this.targetResLab.setId("targetResLabID");
+		this.targetResLab.setLayoutX(480);
+		this.targetResLab.setLayoutY(295);
+		this.primaryPane.getChildren().add(targetResLab);
+
 		// TextField for specifying target resolution
 		this.resTextField = new TextField();
 		this.resTextField.setId("textFieldID");
 		this.resTextField.setLayoutX(525);
-		this.resTextField.setLayoutY(295);
+		this.resTextField.setLayoutY(320);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -226,10 +222,10 @@ public class Display {
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label();
+		this.messageLab = new Label("MESSAGE TEST");
 		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(480);
-		this.messageLab.setLayoutY(335);
+		this.messageLab.setLayoutY(360);
 		this.messageLab.setMaxWidth(160);
 		this.messageLab.setWrapText(true);
 		this.primaryPane.getChildren().add(this.messageLab);
@@ -244,17 +240,20 @@ public class Display {
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
-				String location = fileChoice.getPath();
-				receiver.open(location);
+				receiver.open(fileChoice.getPath());
 			}
 		});
 		MenuItem save = new MenuItem("Save");
-		save.setOnAction(event -> {
-				// TODO: Save
-		});
+		save.setOnAction(event ->
+				receiver.save()
+		);
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event -> {
-				// TODO: Save As
+			FileChooser fileChooser = new FileChooser();
+			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
+			if (fileChoice != null) {
+				receiver.saveAs(fileChoice.getPath());
+			}
 		});
 		fileMenu.getItems().addAll(open, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
@@ -313,7 +312,7 @@ public class Display {
 		alert.getDialogPane().setPrefSize(250, 100);
 		alert.showAndWait();
 	}
-	
+
 	/**
 	 * Converts an array of AWT Colors to JavaFX Image, then sets
 	 * the ImageView's Image property to display this frame.
@@ -597,72 +596,11 @@ public class Display {
 		return new int[]{x, y, z};
 	}
 
-	
-
-
-
-
-	
-	@Deprecated
-	public void setTarget(int value) {
-		
-		// 230410 Joseph. I believe this function is already implemented, but I will let you decide whether to remove this stub or not
-
-		// 230410 Henri. Sets the contents of TextField to given value. Am I interpreting this correctly?
-		
-		// 230411 Joseph. Yeah this is the correct interpretation, it's used by the controllers to get the field to respond to changes in size
-		//                However I think the viewport handles that in this implementation so we probably wont need to call this method
-		this.resTextField.setText(String.valueOf(value));
-
+	/**
+	 * Close the currently open application instance.
+	 */
+	public void exit() {
+		this.primaryStage.close();
 	}
-
-	@Deprecated
-	public void showTarget() {
-
-		// 230410 Joseph. not essential to implement these but if you get a chance go for it
-
-		// 230410 Henri. Do you mean show and hide the TextField itself? Like in this line:
-		// this.primaryPane.getChildren().add(resTextField);
-		// Or show and hide the current target res shown in the TextField?
-		
-		// 230411 Joseph. So i mean to hide the TextField itself. alterForLabelling might be a better place for this 
-		//                function though since there are multiple other components that need to change between the two
-		//                stages. For now I will remove all calls to this and its hide equivelant from the controllers and 
-		//                insert a call to alterForLabelling to the label controller pass method.
-	}
-	
-	@Deprecated
-	public void hideTarget() {
-		
-		// 230410 Joseph. same comment as with showTarget
-		// this.primaryPane.getChildren().remove(resTextField);
-	}
-
-	@Deprecated
-	public void drawBody(Point[] points, int[] connectorSequence) {
-		
-		// 230410 Joseph. This is the method that the label controller uses to draw the body label onto the 
-		// display, should be quite easy to adapt this to this code - just call drawPoint iteratively over the 
-		// points array. This class handles the connector sequence internally so just don't use the 
-		// connectorSequence parameter, and we can remove it later.
-
-		// 230410 Henri. So could it not just directly call drawPoints() instead of this method? Or are extra steps needed other than this line:
-		drawPoints(points);
-		
-		// 230411 Joseph. You're right, i will replace calls to drawBody with drawPoints in the controllers.
-	}
-	
-	
-
-	// 230410 Joseph. Also another thing to note are the open, save and saveAs methods in the mainController. If you bind 
-	// these to menu buttons that trigger a file chooser then they should be relatively easy to add to this interface.
-
-	// 230410 Henri. Do you mean this kind of menu buttons?
-	// https://www.tutorialspoint.com/how-to-create-a-menubutton-in-javafx
-
-	// Or like this?
-	// https://jenkov.com/tutorials/javafx/menubar.html
-	
-	// 230411 Joseph. The second "https://jenkov.com/tutorials/javafx/menubar.html" is what I mean, 
-	
 }
+
