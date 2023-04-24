@@ -40,7 +40,7 @@ public class Display {
 	private final Button nextBut;
 	private final Button prevBut;
 	private final ImageView imageView;
-	private final Label messageLab;
+	private final Label nodeMessageLab;
 	private final Label targetResLab;
 	private final Label titleLab;
 	private final List<Circle> points;
@@ -222,13 +222,13 @@ public class Display {
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label();
-		this.messageLab.setId("messageLabID");
-		this.messageLab.setLayoutX(480);
-		this.messageLab.setLayoutY(335);
-		this.messageLab.setMaxWidth(160);
-		this.messageLab.setWrapText(true);
-		this.primaryPane.getChildren().add(this.messageLab);
+		this.nodeMessageLab = new Label();
+		this.nodeMessageLab.setId("messageLabID");
+		this.nodeMessageLab.setLayoutX(480);
+		this.nodeMessageLab.setLayoutY(335);
+		this.nodeMessageLab.setMaxWidth(160);
+		this.nodeMessageLab.setWrapText(true);
+		this.primaryPane.getChildren().add(this.nodeMessageLab);
 
 		// Menu to allow for opening a file, and saving current labelling
 		this.menuBar = new MenuBar();
@@ -296,9 +296,9 @@ public class Display {
 	 * Send the user a message, using a Label.
 	 * @param nextNode Text to show the user
 	 */
-	public void setMessage(String nextNode) {
+	public void setNodeMessage(String nextNode) {
 		//TODO: Style this better
-		this.messageLab.setText("Next node:\n" +  nextNode);
+		this.nodeMessageLab.setText("Next node:\n" +  nextNode);
 	}
 
 	/**
