@@ -294,10 +294,11 @@ public class Display {
 
 	/**
 	 * Send the user a message, using a Label.
-	 * @param string Text to show the user
+	 * @param nextNode Text to show the user
 	 */
 	public void setMessage(String nextNode) {
-		this.messageLab.setText("Next node:\n" + nextNode);
+		//TODO: Style this better
+		this.messageLab.setText("Next node:\n" +  nextNode);
 	}
 
 	/**
@@ -454,6 +455,10 @@ public class Display {
 				}
 			}
 		}
+	}
+
+	public void setSliderValues(int x, int y, int z) {
+		// TODO: Write this method to take ints between 0 and 1 and set current slider position based on this
 	}
 
 	/**

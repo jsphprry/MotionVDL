@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added exit() method">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Altered setMessage() to allow for more display control">
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/motionvdl/controller/LabelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/controller/LabelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -264,7 +261,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682334684166</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Minor display layout alterations">
+      <created>1682363688069</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1682363688069</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Altered setMessage() to allow for more display control">
+      <created>1682363821653</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1682363821653</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -301,6 +312,8 @@
     <MESSAGE value="Removed deprecated methods" />
     <MESSAGE value="Added new label for resTextField" />
     <MESSAGE value="Added exit() method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added exit() method" />
+    <MESSAGE value="Minor display layout alterations" />
+    <MESSAGE value="Altered setMessage() to allow for more display control" />
+    <option name="LAST_COMMIT_MESSAGE" value="Altered setMessage() to allow for more display control" />
   </component>
 </project>
