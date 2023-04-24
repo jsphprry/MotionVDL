@@ -37,12 +37,12 @@ public class Display {
 	private final Scene primaryScene;
 	private final Pane primaryPane;
 	private final Button processBut;
-	private final Button undoBut;
 	private final Button nextBut;
 	private final Button prevBut;
 	private final ImageView imageView;
-	private final Label titleLab;
 	private final Label messageLab;
+	private final Label targetResLab;
+	private final Label titleLab;
 	private final List<Circle> points;
 	private final List<Line> connectors;
 	private final MenuBar menuBar;
@@ -167,17 +167,6 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
-		// Button for undoing an incorrect point placement
-		this.undoBut = new Button("Undo");
-		this.undoBut.setId("buttonID");
-		this.undoBut.setLayoutX(480);
-		this.undoBut.setLayoutY(175);
-		this.undoBut.setMinSize(160, 50);
-		this.undoBut.setOnAction(
-				event -> receiver.undo()
-		);
-		this.primaryPane.getChildren().add(this.undoBut);
-
 		// Button for switching to previous frame
 		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
@@ -206,11 +195,18 @@ public class Display {
 		);
 		this.primaryPane.getChildren().add(this.nextBut);
 
+		// Label to tell user what resTextField is for
+		this.targetResLab = new Label("Target res:");
+		this.targetResLab.setId("targetResLabID");
+		this.targetResLab.setLayoutX(480);
+		this.targetResLab.setLayoutY(295);
+		this.primaryPane.getChildren().add(targetResLab);
+
 		// TextField for specifying target resolution
 		this.resTextField = new TextField();
 		this.resTextField.setId("textFieldID");
 		this.resTextField.setLayoutX(525);
-		this.resTextField.setLayoutY(295);
+		this.resTextField.setLayoutY(320);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -226,10 +222,10 @@ public class Display {
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label();
+		this.messageLab = new Label("MESSAGE TEST");
 		this.messageLab.setId("messageLabID");
 		this.messageLab.setLayoutX(480);
-		this.messageLab.setLayoutY(335);
+		this.messageLab.setLayoutY(360);
 		this.messageLab.setMaxWidth(160);
 		this.messageLab.setWrapText(true);
 		this.primaryPane.getChildren().add(this.messageLab);
@@ -316,7 +312,7 @@ public class Display {
 		alert.getDialogPane().setPrefSize(250, 100);
 		alert.showAndWait();
 	}
-	
+
 	/**
 	 * Converts an array of AWT Colors to JavaFX Image, then sets
 	 * the ImageView's Image property to display this frame.
