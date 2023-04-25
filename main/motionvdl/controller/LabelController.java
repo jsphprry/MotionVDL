@@ -56,13 +56,12 @@ public class LabelController extends Controller {
 		// default behaviour
 		super.pass(temp);
 		
-		// go to first incomplete frame label
-		while (data.label.checkFull(frameIndex) && frameIndex < data.video.length-1) {
-			frameIndex += 1;
-		}
+		// go to first frame with incomplete label
+		int index = 0;
+		while (data.label.getSize(index) == data.label.capacity && index < data.video.length-1) index += 1;
+		setFrame(index);
 		
-		// setup display
-		display.setFrame(data.video.getFrame(frameIndex));
+		// draw label
 		display.drawPoints(data.label.getPoints(frameIndex));
 		display.setNodeMessage(NODE_TITLES[data.label.getSize(frameIndex)]);
 		display.alterForLabelling();

@@ -1,124 +1,23 @@
-2023/04/25 | 12:24:40 | Created log file 'MVDL.log'
-2023/04/25 | 12:24:41 | Created VideoController 'VSC'
-2023/04/25 | 12:24:41 | Created LabelController 'LSC'
-2023/04/25 | 12:24:41 | Created MainController 'MC'
-2023/04/25 | 12:24:41 | Created (10,100,100) noise buffer
-2023/04/25 | 12:24:41 | Created (10,100,100) video from buffer
-2023/04/25 | 12:24:41 | Created empty (10,11) label
-2023/04/25 | 12:24:41 | Created LabelledVideo
-2023/04/25 | 12:24:41 | MC pass ->
-2023/04/25 | 12:24:41 | VSC pass
-2023/04/25 | 12:24:43 | MC complete ->
-2023/04/25 | 12:24:43 | VSC received next
-2023/04/25 | 12:24:43 | Video: buffer resolution cropped from 100x100 to 100x100 from (0,0)
-2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
-2023/04/25 | 12:24:44 | Video: buffer resolution scaled from 100x100 to 100x100
-2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
-2023/04/25 | 12:24:44 | Video: buffer converted to greyscale
-2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
-2023/04/25 | 12:24:44 | Created empty (10,11) label
-2023/04/25 | 12:24:44 | Created LabelledVideo
-2023/04/25 | 12:24:44 | VSC complete
-2023/04/25 | 12:24:44 | MC pass ->
-2023/04/25 | 12:24:44 | LSC pass
-2023/04/25 | 12:24:44 | Label: stack 0 is not full 0/11
-2023/04/25 | 12:24:44 | MC click ->
-2023/04/25 | 12:24:44 | LSC click (0.20,0.34)
-2023/04/25 | 12:24:44 | Label: stack 0 is not full 0/11
-2023/04/25 | 12:24:44 | Label: pushed point (0.20, 0.34) to stack 0
-2023/04/25 | 12:24:44 | MC click ->
-2023/04/25 | 12:24:44 | LSC click (0.40,0.60)
-2023/04/25 | 12:24:44 | Label: stack 0 is not full 1/11
-2023/04/25 | 12:24:44 | Label: pushed point (0.40, 0.60) to stack 0
-2023/04/25 | 12:24:45 | MC click ->
-2023/04/25 | 12:24:45 | LSC click (0.60,0.37)
-2023/04/25 | 12:24:45 | Label: stack 0 is not full 2/11
-2023/04/25 | 12:24:45 | Label: pushed point (0.60, 0.37) to stack 0
-2023/04/25 | 12:24:45 | MC click ->
-2023/04/25 | 12:24:45 | LSC click (0.58,0.35)
-2023/04/25 | 12:24:45 | Label: stack 0 is not full 3/11
-2023/04/25 | 12:24:45 | Label: pushed point (0.58, 0.35) to stack 0
-2023/04/25 | 12:24:45 | MC click ->
-2023/04/25 | 12:24:45 | LSC click (0.46,0.80)
-2023/04/25 | 12:24:45 | Label: stack 0 is not full 4/11
-2023/04/25 | 12:24:45 | Label: pushed point (0.46, 0.80) to stack 0
-2023/04/25 | 12:24:46 | MC click ->
-2023/04/25 | 12:24:46 | LSC click (0.10,0.64)
-2023/04/25 | 12:24:46 | Label: stack 0 is not full 5/11
-2023/04/25 | 12:24:46 | Label: pushed point (0.10, 0.64) to stack 0
-2023/04/25 | 12:24:46 | MC click ->
-2023/04/25 | 12:24:46 | LSC click (0.28,0.38)
-2023/04/25 | 12:24:46 | Label: stack 0 is not full 6/11
-2023/04/25 | 12:24:46 | Label: pushed point (0.28, 0.38) to stack 0
-2023/04/25 | 12:24:46 | MC click ->
-2023/04/25 | 12:24:46 | LSC click (0.80,0.74)
-2023/04/25 | 12:24:46 | Label: stack 0 is not full 7/11
-2023/04/25 | 12:24:46 | Label: pushed point (0.80, 0.74) to stack 0
-2023/04/25 | 12:24:47 | MC click ->
-2023/04/25 | 12:24:47 | LSC click (0.59,0.88)
-2023/04/25 | 12:24:47 | Label: stack 0 is not full 8/11
-2023/04/25 | 12:24:47 | Label: pushed point (0.59, 0.88) to stack 0
-2023/04/25 | 12:24:47 | MC click ->
-2023/04/25 | 12:24:47 | LSC click (0.68,0.44)
-2023/04/25 | 12:24:47 | Label: stack 0 is not full 9/11
-2023/04/25 | 12:24:47 | Label: pushed point (0.68, 0.44) to stack 0
-2023/04/25 | 12:24:48 | MC click ->
-2023/04/25 | 12:24:48 | LSC click (0.63,0.18)
-2023/04/25 | 12:24:48 | Label: stack 0 is not full 10/11
-2023/04/25 | 12:24:48 | Label: pushed point (0.63, 0.18) to stack 0
-2023/04/25 | 12:24:48 | MC click ->
-2023/04/25 | 12:24:48 | LSC click (0.35,0.16)
-2023/04/25 | 12:24:48 | Label: stack 0 is full 11/11
-2023/04/25 | 12:24:48 | LSC ignored click: frame full
-2023/04/25 | 12:24:49 | MC click ->
-2023/04/25 | 12:24:49 | LSC click (0.52,0.58)
-2023/04/25 | 12:24:49 | Label: stack 0 is full 11/11
-2023/04/25 | 12:24:49 | LSC ignored click: frame full
-2023/04/25 | 12:24:49 | MC click ->
-2023/04/25 | 12:24:49 | LSC click (0.78,0.38)
-2023/04/25 | 12:24:49 | Label: stack 0 is full 11/11
-2023/04/25 | 12:24:49 | LSC ignored click: frame full
-2023/04/25 | 12:24:50 | MC undo ->
-2023/04/25 | 12:24:50 | LSC undo
-2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 11/11
-2023/04/25 | 12:24:50 | Label: popped point (0.63, 0.18) from stack 0
-2023/04/25 | 12:24:50 | MC undo ->
-2023/04/25 | 12:24:50 | LSC undo
-2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 10/11
-2023/04/25 | 12:24:50 | Label: popped point (0.68, 0.44) from stack 0
-2023/04/25 | 12:24:50 | MC undo ->
-2023/04/25 | 12:24:50 | LSC undo
-2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 9/11
-2023/04/25 | 12:24:50 | Label: popped point (0.59, 0.88) from stack 0
-2023/04/25 | 12:24:50 | MC undo ->
-2023/04/25 | 12:24:50 | LSC undo
-2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 8/11
-2023/04/25 | 12:24:50 | Label: popped point (0.80, 0.74) from stack 0
-2023/04/25 | 12:24:50 | MC undo ->
-2023/04/25 | 12:24:50 | LSC undo
-2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 7/11
-2023/04/25 | 12:24:50 | Label: popped point (0.28, 0.38) from stack 0
-2023/04/25 | 12:24:50 | MC click ->
-2023/04/25 | 12:24:50 | LSC click (0.49,0.40)
-2023/04/25 | 12:24:50 | Label: stack 0 is not full 6/11
-2023/04/25 | 12:24:50 | Label: pushed point (0.49, 0.40) to stack 0
-2023/04/25 | 12:24:51 | MC click ->
-2023/04/25 | 12:24:51 | LSC click (0.57,0.74)
-2023/04/25 | 12:24:51 | Label: stack 0 is not full 7/11
-2023/04/25 | 12:24:51 | Label: pushed point (0.57, 0.74) to stack 0
-2023/04/25 | 12:24:51 | MC click ->
-2023/04/25 | 12:24:51 | LSC click (0.66,0.51)
-2023/04/25 | 12:24:51 | Label: stack 0 is not full 8/11
-2023/04/25 | 12:24:51 | Label: pushed point (0.66, 0.51) to stack 0
-2023/04/25 | 12:24:51 | MC click ->
-2023/04/25 | 12:24:51 | LSC click (0.71,0.25)
-2023/04/25 | 12:24:51 | Label: stack 0 is not full 9/11
-2023/04/25 | 12:24:51 | Label: pushed point (0.71, 0.25) to stack 0
-2023/04/25 | 12:24:51 | MC click ->
-2023/04/25 | 12:24:51 | LSC click (0.76,0.06)
-2023/04/25 | 12:24:51 | Label: stack 0 is not full 10/11
-2023/04/25 | 12:24:51 | Label: pushed point (0.76, 0.06) to stack 0
-2023/04/25 | 12:24:52 | MC setNextFrame ->
-2023/04/25 | 12:24:52 | LSC setFrame: 0 -> 1
-2023/04/25 | 12:24:53 | MC setPrevFrame ->
-2023/04/25 | 12:24:53 | LSC setFrame: 1 -> 0
+2023/04/25 | 12:32:01 | Created log file 'MVDL.log'
+2023/04/25 | 12:32:02 | Created VideoController 'VSC'
+2023/04/25 | 12:32:02 | Created LabelController 'LSC'
+2023/04/25 | 12:32:02 | Created MainController 'MC'
+2023/04/25 | 12:32:02 | Created (10,100,100) noise buffer
+2023/04/25 | 12:32:02 | Created (10,100,100) video from buffer
+2023/04/25 | 12:32:02 | Created empty (10,11) label
+2023/04/25 | 12:32:02 | Created LabelledVideo
+2023/04/25 | 12:32:02 | MC pass ->
+2023/04/25 | 12:32:02 | VSC pass
+2023/04/25 | 12:32:08 | MC open ->
+2023/04/25 | 12:32:08 | FileSystem: read bytes '/home/joseph/Desktop/MotionVDL/repository/output.mvdl'
+2023/04/25 | 12:32:08 | Created (1344,50,50) video from byte sequence
+2023/04/25 | 12:32:08 | Created (1344,11) label from byte sequence
+2023/04/25 | 12:32:08 | Created LabelledVideo
+2023/04/25 | 12:32:08 | LSC pass
+2023/04/25 | 12:32:08 | LSC setFrame: 0 -> 318
+2023/04/25 | 12:32:11 | MC setPrevFrame ->
+2023/04/25 | 12:32:11 | LSC setPrevFrame ->
+2023/04/25 | 12:32:11 | LSC setFrame: 318 -> 317
+2023/04/25 | 12:32:12 | MC setNextFrame ->
+2023/04/25 | 12:32:12 | LSC setNextFrame ->
+2023/04/25 | 12:32:12 | LSC setFrame: 317 -> 318
