@@ -1,23 +1,92 @@
-2023/04/25 | 12:32:01 | Created log file 'MVDL.log'
-2023/04/25 | 12:32:02 | Created VideoController 'VSC'
-2023/04/25 | 12:32:02 | Created LabelController 'LSC'
-2023/04/25 | 12:32:02 | Created MainController 'MC'
-2023/04/25 | 12:32:02 | Created (10,100,100) noise buffer
-2023/04/25 | 12:32:02 | Created (10,100,100) video from buffer
-2023/04/25 | 12:32:02 | Created empty (10,11) label
-2023/04/25 | 12:32:02 | Created LabelledVideo
-2023/04/25 | 12:32:02 | MC pass ->
-2023/04/25 | 12:32:02 | VSC pass
-2023/04/25 | 12:32:08 | MC open ->
-2023/04/25 | 12:32:08 | FileSystem: read bytes '/home/joseph/Desktop/MotionVDL/repository/output.mvdl'
-2023/04/25 | 12:32:08 | Created (1344,50,50) video from byte sequence
-2023/04/25 | 12:32:08 | Created (1344,11) label from byte sequence
-2023/04/25 | 12:32:08 | Created LabelledVideo
-2023/04/25 | 12:32:08 | LSC pass
-2023/04/25 | 12:32:08 | LSC setFrame: 0 -> 318
-2023/04/25 | 12:32:11 | MC setPrevFrame ->
-2023/04/25 | 12:32:11 | LSC setPrevFrame ->
-2023/04/25 | 12:32:11 | LSC setFrame: 318 -> 317
-2023/04/25 | 12:32:12 | MC setNextFrame ->
-2023/04/25 | 12:32:12 | LSC setNextFrame ->
-2023/04/25 | 12:32:12 | LSC setFrame: 317 -> 318
+2023/04/25 | 12:34:53 | Created log file 'MVDL.log'
+2023/04/25 | 12:34:54 | Created VideoController 'VSC'
+2023/04/25 | 12:34:54 | Created LabelController 'LSC'
+2023/04/25 | 12:34:54 | Created MainController 'MC'
+2023/04/25 | 12:34:54 | Created (10,100,100) noise buffer
+2023/04/25 | 12:34:54 | Created (10,100,100) video from buffer
+2023/04/25 | 12:34:54 | Created empty (10,11) label
+2023/04/25 | 12:34:54 | Created LabelledVideo
+2023/04/25 | 12:34:54 | MC pass ->
+2023/04/25 | 12:34:54 | VSC pass
+2023/04/25 | 12:35:00 | MC open ->
+2023/04/25 | 12:35:00 | FileSystem: read bytes '/home/joseph/Desktop/MotionVDL/repository/output.mvdl'
+2023/04/25 | 12:35:00 | Created (1344,50,50) video from byte sequence
+2023/04/25 | 12:35:00 | Created (1344,11) label from byte sequence
+2023/04/25 | 12:35:00 | Created LabelledVideo
+2023/04/25 | 12:35:00 | LSC pass
+2023/04/25 | 12:35:00 | LSC setFrame: 0 -> 318
+2023/04/25 | 12:35:01 | MC setPrevFrame ->
+2023/04/25 | 12:35:01 | LSC setPrevFrame ->
+2023/04/25 | 12:35:01 | LSC setFrame: 318 -> 317
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 317 -> 316
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 316 -> 315
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 315 -> 314
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 314 -> 313
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 313 -> 312
+2023/04/25 | 12:35:02 | MC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setPrevFrame ->
+2023/04/25 | 12:35:02 | LSC setFrame: 312 -> 311
+2023/04/25 | 12:35:03 | MC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setFrame: 311 -> 310
+2023/04/25 | 12:35:03 | MC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setFrame: 310 -> 309
+2023/04/25 | 12:35:03 | MC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setPrevFrame ->
+2023/04/25 | 12:35:03 | LSC setFrame: 309 -> 308
+2023/04/25 | 12:35:03 | MC setNextFrame ->
+2023/04/25 | 12:35:03 | LSC setNextFrame ->
+2023/04/25 | 12:35:03 | LSC setFrame: 308 -> 309
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 309 -> 310
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 310 -> 311
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 311 -> 312
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 312 -> 313
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 313 -> 314
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setFrame: 314 -> 315
+2023/04/25 | 12:35:04 | MC setNextFrame ->
+2023/04/25 | 12:35:04 | LSC setNextFrame ->
+2023/04/25 | 12:35:05 | LSC setFrame: 315 -> 316
+2023/04/25 | 12:35:05 | MC setNextFrame ->
+2023/04/25 | 12:35:05 | LSC setNextFrame ->
+2023/04/25 | 12:35:05 | LSC setFrame: 316 -> 317
+2023/04/25 | 12:35:05 | MC setNextFrame ->
+2023/04/25 | 12:35:05 | LSC setNextFrame ->
+2023/04/25 | 12:35:05 | LSC setFrame: 317 -> 318
+2023/04/25 | 12:35:07 | MC setPrevFrame ->
+2023/04/25 | 12:35:07 | LSC setPrevFrame ->
+2023/04/25 | 12:35:07 | LSC setFrame: 318 -> 317
+2023/04/25 | 12:35:33 | MC setNextFrame ->
+2023/04/25 | 12:35:33 | LSC setNextFrame ->
+2023/04/25 | 12:35:33 | LSC setFrame: 317 -> 318
+2023/04/25 | 12:35:34 | MC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setFrame: 318 -> 319
+2023/04/25 | 12:35:34 | MC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setFrame: 319 -> 320
+2023/04/25 | 12:35:34 | MC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setNextFrame ->
+2023/04/25 | 12:35:34 | LSC setFrame: 320 -> 321
