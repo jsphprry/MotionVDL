@@ -40,7 +40,7 @@ public class Display {
 	private final Button nextBut;
 	private final Button prevBut;
 	private final ImageView imageView;
-	private final Label messageLab;
+	private final Label nodeMessageLab;
 	private final Label targetResLab;
 	private final Label titleLab;
 	private final List<Circle> points;
@@ -146,7 +146,7 @@ public class Display {
 		this.radioBut = new RadioButton("Lock Min Res");
 		this.radioBut.setId("radioID");
 		this.radioBut.setLayoutX(500);
-		this.radioBut.setLayoutY(65);
+		this.radioBut.setLayoutY(100);
 		this.radioBut.setMinSize(160, 50);
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
@@ -157,10 +157,10 @@ public class Display {
 		this.processBut = new Button("Next stage");
 		this.processBut.setId("buttonID");
 		this.processBut.setLayoutX(480);
-		this.processBut.setLayoutY(115);
+		this.processBut.setLayoutY(150);
 		this.processBut.setMinSize(160,50);
 		this.processBut.setTooltip(
-				new Tooltip("Finished with this stage?")
+				new Tooltip("Process and go to next stage?")
 		);
 		this.processBut.setOnAction(
 				event -> receiver.complete()
@@ -171,7 +171,7 @@ public class Display {
 		this.prevBut = new Button("<-");
 		this.prevBut.setId("buttonID");
 		this.prevBut.setLayoutX(480);
-		this.prevBut.setLayoutY(235);
+		this.prevBut.setLayoutY(210);
 		this.prevBut.setMinSize(78,50);
 		this.prevBut.setTooltip(
 				new Tooltip("Previous frame.")
@@ -185,7 +185,7 @@ public class Display {
 		this.nextBut = new Button("->");
 		this.nextBut.setId("buttonID");
 		this.nextBut.setLayoutX(562);
-		this.nextBut.setLayoutY(235);
+		this.nextBut.setLayoutY(210);
 		this.nextBut.setMinSize(78,50);
 		this.nextBut.setTooltip(
 				new Tooltip("Next frame.")
@@ -198,15 +198,15 @@ public class Display {
 		// Label to tell user what resTextField is for
 		this.targetResLab = new Label("Target res:");
 		this.targetResLab.setId("targetResLabID");
-		this.targetResLab.setLayoutX(480);
-		this.targetResLab.setLayoutY(295);
+		this.targetResLab.setLayoutX(485);
+		this.targetResLab.setLayoutY(275);
 		this.primaryPane.getChildren().add(targetResLab);
 
 		// TextField for specifying target resolution
 		this.resTextField = new TextField();
 		this.resTextField.setId("textFieldID");
-		this.resTextField.setLayoutX(525);
-		this.resTextField.setLayoutY(320);
+		this.resTextField.setLayoutX(565);
+		this.resTextField.setLayoutY(270);
 		this.resTextField.setMinSize(5, 5);
 		this.resTextField.setMaxWidth(70);
 		this.resTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -222,13 +222,13 @@ public class Display {
 		this.primaryPane.getChildren().add(this.resTextField);
 
 		// Message area Label
-		this.messageLab = new Label("MESSAGE TEST");
-		this.messageLab.setId("messageLabID");
-		this.messageLab.setLayoutX(480);
-		this.messageLab.setLayoutY(360);
-		this.messageLab.setMaxWidth(160);
-		this.messageLab.setWrapText(true);
-		this.primaryPane.getChildren().add(this.messageLab);
+		this.nodeMessageLab = new Label();
+		this.nodeMessageLab.setId("messageLabID");
+		this.nodeMessageLab.setLayoutX(480);
+		this.nodeMessageLab.setLayoutY(335);
+		this.nodeMessageLab.setMaxWidth(160);
+		this.nodeMessageLab.setWrapText(true);
+		this.primaryPane.getChildren().add(this.nodeMessageLab);
 
 		// Menu to allow for opening a file, and saving current labelling
 		this.menuBar = new MenuBar();
@@ -268,9 +268,9 @@ public class Display {
 
 		// Details relating to the window itself
 		this.primaryStage.setTitle("MotionVDL");
-		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png")); // Set custom icon
-		this.primaryStage.setResizable(false); // Disallow resizing of Stage window
-		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0)); // When X is pressed, terminate all processes
+		this.primaryStage.getIcons().add(new Image("motionvdl/display/res/javaIcon.png"));
+		this.primaryStage.setResizable(false);
+		this.primaryStage.setOnCloseRequest(windowEvent -> System.exit(0));
 		this.primaryStage.setScene(this.primaryScene);
 		this.primaryPane.requestFocus();
 		this.primaryStage.show();
@@ -294,10 +294,11 @@ public class Display {
 
 	/**
 	 * Send the user a message, using a Label.
-	 * @param string Text to show the user
+	 * @param nextNode Text to show the user
 	 */
-	public void setMessage(String string) {
-		this.messageLab.setText(string);
+	public void setNodeMessage(String nextNode) {
+		//TODO: Style this better
+		this.nodeMessageLab.setText("Next node:\n" +  nextNode);
 	}
 
 	/**
@@ -456,6 +457,10 @@ public class Display {
 		}
 	}
 
+	public void setSliderValues(int x, int y, int z) {
+		// TODO: Write this method to take ints between 0 and 1 and set current slider position based on this
+	}
+
 	/**
 	 * Draw a point on the ImageView, using a Circle object.
 	 * @param x Normalised x co-ordinate of the user's click on the ImageView
@@ -603,4 +608,3 @@ public class Display {
 		this.primaryStage.close();
 	}
 }
-

@@ -13,17 +13,18 @@ public class LabelController extends Controller {
 	
 	// constants
 	private static final String[] NODE_TITLES = new String[] {
-			"head",
-			"collarbone",
-			"left elbow",
-			"left hand",
-			"right elbow",
-			"right hand",
-			"pelvis",
-			"left knee",
-			"left foot",
-			"right knee",
-			"right foot"};
+			"Head",
+			"Collarbone",
+			"Left elbow",
+			"Left hand",
+			"Right elbow",
+			"Right hand",
+			"Pelvis",
+			"Left knee",
+			"Left foot",
+			"Right knee",
+			"Right foot"
+	};
 	
 	/**
 	 * Construct label controller
@@ -62,7 +63,7 @@ public class LabelController extends Controller {
 		// setup display
 		display.setFrame(data.video.getFrame(frameIndex));
 		display.drawPoints(data.label.getPoints(frameIndex));
-		display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
+		display.setNodeMessage((data.label.getSize(frameIndex) < data.label.capacity) ? NODE_TITLES[data.label.getSize(frameIndex)] : "Label complete");
 		display.alterForLabelling();
 	}
 	
@@ -87,7 +88,7 @@ public class LabelController extends Controller {
 			// update display
 			display.clearGeometry();
 			display.drawPoints(data.label.getPoints(frameIndex));
-			display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
+			display.setNodeMessage((data.label.getSize(frameIndex) < data.label.capacity) ? NODE_TITLES[data.label.getSize(frameIndex)] : "Label complete");
 			
 			// go to next frame if current frame label is full when radio is true
 			if (display.getRadio()) if (data.label.checkFull(frameIndex)) setNextFrame();
@@ -117,7 +118,7 @@ public class LabelController extends Controller {
 			// update display
 			display.clearGeometry();
 			display.drawPoints(data.label.getPoints(frameIndex));
-			display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
+			display.setNodeMessage((data.label.getSize(frameIndex) < data.label.capacity) ? NODE_TITLES[data.label.getSize(frameIndex)] : "Label complete");
 			
 		// go to previous frame if empty label
 		} else {
@@ -187,6 +188,6 @@ public class LabelController extends Controller {
 		// update display
 		display.clearGeometry();
 		display.drawPoints(data.label.getPoints(frameIndex));
-		display.setMessage((data.label.getSize(frameIndex) < data.label.capacity) ? "Place "+NODE_TITLES[data.label.getSize(frameIndex)]+" node next" : "Label complete");
+		display.setNodeMessage((data.label.getSize(frameIndex) < data.label.capacity) ? NODE_TITLES[data.label.getSize(frameIndex)] : "Label complete");
 	}
 }
