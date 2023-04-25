@@ -97,13 +97,15 @@ public abstract class Controller {
 	
 	/**
 	 * Set the current video frame
-	 * @param index Index of video frame to set
+	 * @param index Index of video frame
 	 */
 	public void setFrame(int index) {
 
-		// display next frame
+		// set frame index
 		int last = frameIndex;
-		frameIndex = Math.min(Math.max(index,0),data.video.length-1);
+		frameIndex = Math.min(Math.max(index, 0), data.video.length-1);
+		
+		// update display
 		display.setFrame(data.video.getFrame(frameIndex));
 
 		// debug trace
@@ -112,22 +114,54 @@ public abstract class Controller {
 	}
 	
 	
+	/**
+	 * Set next video frame
+	 */
 	public void setNextFrame() {
+		
+		// debug trace
+		Debug.trace(String.format("%s setNextFrame ->",debugTitle));
+		
+		// set frame
 		setFrame(frameIndex+1);
 	}
 	
 	
+	/**
+	 * Set previous video frame
+	 */
 	public void setPrevFrame() {
+		
+		// debug trace
+		Debug.trace(String.format("%s setPrevFrame ->",debugTitle));
+		
+		// set frame
 		setFrame(frameIndex-1);
 	}
 	
 	
+	/**
+	 * Set the minimum video frame
+	 */
 	public void setMinFrame() {
+		
+		// debug trace
+		Debug.trace(String.format("%s setMinFrame ->",debugTitle));
+		
+		// set frame
 		setFrame(0);
 	}
 	
 	
+	/**
+	 * Set the maximum video frame
+	 */
 	public void setMaxFrame() {
+		
+		// debug trace
+		Debug.trace(String.format("%s setMaxFrame ->",debugTitle));
+		
+		// set frame
 		setFrame(data.video.length-1);
 	}
 }
