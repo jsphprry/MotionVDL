@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import motionvdl.controller.MainController;
 import motionvdl.display.Display;
-import motionvdl.model.FileSystem;
 import motionvdl.model.data.LabeledVideo;
 import motionvdl.model.data.Video;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

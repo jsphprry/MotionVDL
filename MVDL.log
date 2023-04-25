@@ -1,599 +1,124 @@
-2023/04/24 | 12:05:54 | Created log file 'MVDL.log'
-2023/04/24 | 12:05:55 | Created VideoController 'VSC'
-2023/04/24 | 12:05:55 | Created LabelController 'LSC'
-2023/04/24 | 12:05:55 | Created MainController 'MC'
-2023/04/24 | 12:05:55 | Created (10,100,100) noise buffer
-2023/04/24 | 12:05:55 | Created (10,100,100) video from buffer
-2023/04/24 | 12:05:55 | Created empty (10,11) label
-2023/04/24 | 12:05:55 | Created LabelledVideo
-2023/04/24 | 12:05:55 | MC pass ->
-2023/04/24 | 12:05:55 | VSC pass
-2023/04/24 | 12:05:57 | MC complete ->
-2023/04/24 | 12:05:57 | VSC received next
-2023/04/24 | 12:05:57 | Video: buffer resolution cropped from 100x100 to 100x100 from (0,0)
-2023/04/24 | 12:05:57 | Created (10,100,100) video from buffer
-2023/04/24 | 12:05:57 | Video: buffer resolution scaled from 100x100 to 100x100
-2023/04/24 | 12:05:57 | Created (10,100,100) video from buffer
-2023/04/24 | 12:05:57 | Video: buffer converted to greyscale
-2023/04/24 | 12:05:57 | Created (10,100,100) video from buffer
-2023/04/24 | 12:05:57 | Created empty (10,11) label
-2023/04/24 | 12:05:57 | Created LabelledVideo
-2023/04/24 | 12:05:57 | VSC complete
-2023/04/24 | 12:05:57 | MC pass ->
-2023/04/24 | 12:05:57 | LSC pass
-2023/04/24 | 12:05:57 | Label: stack 0 is not full 0/11
-2023/04/24 | 12:06:02 | MC click ->
-2023/04/24 | 12:06:02 | LSC click (0.44,0.19)
-2023/04/24 | 12:06:02 | Label: stack 0 is not full 0/11
-2023/04/24 | 12:06:02 | Label: pushed point (0.44, 0.19) to stack 0
-2023/04/24 | 12:06:02 | MC click ->
-2023/04/24 | 12:06:02 | LSC click (0.45,0.32)
-2023/04/24 | 12:06:02 | Label: stack 0 is not full 1/11
-2023/04/24 | 12:06:02 | Label: pushed point (0.45, 0.32) to stack 0
-2023/04/24 | 12:06:04 | MC click ->
-2023/04/24 | 12:06:04 | LSC click (0.57,0.43)
-2023/04/24 | 12:06:04 | Label: stack 0 is not full 2/11
-2023/04/24 | 12:06:04 | Label: pushed point (0.57, 0.43) to stack 0
-2023/04/24 | 12:06:05 | MC click ->
-2023/04/24 | 12:06:05 | LSC click (0.61,0.53)
-2023/04/24 | 12:06:05 | Label: stack 0 is not full 3/11
-2023/04/24 | 12:06:05 | Label: pushed point (0.61, 0.53) to stack 0
-2023/04/24 | 12:06:05 | MC click ->
-2023/04/24 | 12:06:05 | LSC click (0.32,0.41)
-2023/04/24 | 12:06:05 | Label: stack 0 is not full 4/11
-2023/04/24 | 12:06:05 | Label: pushed point (0.32, 0.41) to stack 0
-2023/04/24 | 12:06:06 | MC click ->
-2023/04/24 | 12:06:06 | LSC click (0.30,0.52)
-2023/04/24 | 12:06:06 | Label: stack 0 is not full 5/11
-2023/04/24 | 12:06:06 | Label: pushed point (0.30, 0.52) to stack 0
-2023/04/24 | 12:06:06 | MC click ->
-2023/04/24 | 12:06:06 | LSC click (0.46,0.58)
-2023/04/24 | 12:06:06 | Label: stack 0 is not full 6/11
-2023/04/24 | 12:06:06 | Label: pushed point (0.46, 0.58) to stack 0
-2023/04/24 | 12:06:07 | MC click ->
-2023/04/24 | 12:06:07 | LSC click (0.53,0.68)
-2023/04/24 | 12:06:07 | Label: stack 0 is not full 7/11
-2023/04/24 | 12:06:07 | Label: pushed point (0.53, 0.68) to stack 0
-2023/04/24 | 12:06:08 | MC click ->
-2023/04/24 | 12:06:08 | LSC click (0.54,0.79)
-2023/04/24 | 12:06:08 | Label: stack 0 is not full 8/11
-2023/04/24 | 12:06:08 | Label: pushed point (0.54, 0.79) to stack 0
-2023/04/24 | 12:06:08 | MC click ->
-2023/04/24 | 12:06:08 | LSC click (0.41,0.70)
-2023/04/24 | 12:06:08 | Label: stack 0 is not full 9/11
-2023/04/24 | 12:06:08 | Label: pushed point (0.41, 0.70) to stack 0
-2023/04/24 | 12:06:09 | MC click ->
-2023/04/24 | 12:06:09 | LSC click (0.41,0.82)
-2023/04/24 | 12:06:09 | Label: stack 0 is not full 10/11
-2023/04/24 | 12:06:09 | Label: pushed point (0.41, 0.82) to stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 11/11
-2023/04/24 | 12:06:13 | Label: popped point (0.41, 0.82) from stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 10/11
-2023/04/24 | 12:06:13 | Label: popped point (0.41, 0.70) from stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 9/11
-2023/04/24 | 12:06:13 | Label: popped point (0.54, 0.79) from stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 8/11
-2023/04/24 | 12:06:13 | Label: popped point (0.53, 0.68) from stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 7/11
-2023/04/24 | 12:06:13 | Label: popped point (0.46, 0.58) from stack 0
-2023/04/24 | 12:06:13 | MC undo ->
-2023/04/24 | 12:06:13 | LSC undo
-2023/04/24 | 12:06:13 | Label: frame label 0 is not empty 6/11
-2023/04/24 | 12:06:13 | Label: popped point (0.30, 0.52) from stack 0
-2023/04/24 | 12:06:14 | MC undo ->
-2023/04/24 | 12:06:14 | LSC undo
-2023/04/24 | 12:06:14 | Label: frame label 0 is not empty 5/11
-2023/04/24 | 12:06:14 | Label: popped point (0.32, 0.41) from stack 0
-2023/04/24 | 12:06:14 | MC undo ->
-2023/04/24 | 12:06:14 | LSC undo
-2023/04/24 | 12:06:14 | Label: frame label 0 is not empty 4/11
-2023/04/24 | 12:06:14 | Label: popped point (0.61, 0.53) from stack 0
-2023/04/24 | 12:06:14 | MC undo ->
-2023/04/24 | 12:06:14 | LSC undo
-2023/04/24 | 12:06:14 | Label: frame label 0 is not empty 3/11
-2023/04/24 | 12:06:14 | Label: popped point (0.57, 0.43) from stack 0
-2023/04/24 | 12:06:14 | MC undo ->
-2023/04/24 | 12:06:14 | LSC undo
-2023/04/24 | 12:06:14 | Label: frame label 0 is not empty 2/11
-2023/04/24 | 12:06:14 | Label: popped point (0.45, 0.32) from stack 0
-2023/04/24 | 12:06:14 | MC undo ->
-2023/04/24 | 12:06:14 | LSC undo
-2023/04/24 | 12:06:14 | Label: frame label 0 is not empty 1/11
-2023/04/24 | 12:06:14 | Label: popped point (0.44, 0.19) from stack 0
-2023/04/24 | 12:06:16 | MC click ->
-2023/04/24 | 12:06:16 | LSC click (0.46,0.19)
-2023/04/24 | 12:06:16 | Label: stack 0 is not full 0/11
-2023/04/24 | 12:06:16 | Label: pushed point (0.46, 0.19) to stack 0
-2023/04/24 | 12:06:17 | MC click ->
-2023/04/24 | 12:06:17 | LSC click (0.46,0.35)
-2023/04/24 | 12:06:17 | Label: stack 0 is not full 1/11
-2023/04/24 | 12:06:17 | Label: pushed point (0.46, 0.35) to stack 0
-2023/04/24 | 12:06:18 | MC click ->
-2023/04/24 | 12:06:18 | LSC click (0.63,0.38)
-2023/04/24 | 12:06:18 | Label: stack 0 is not full 2/11
-2023/04/24 | 12:06:18 | Label: pushed point (0.63, 0.38) to stack 0
-2023/04/24 | 12:06:18 | MC click ->
-2023/04/24 | 12:06:18 | LSC click (0.76,0.54)
-2023/04/24 | 12:06:18 | Label: stack 0 is not full 3/11
-2023/04/24 | 12:06:18 | Label: pushed point (0.76, 0.54) to stack 0
-2023/04/24 | 12:06:19 | MC click ->
-2023/04/24 | 12:06:19 | LSC click (0.34,0.44)
-2023/04/24 | 12:06:19 | Label: stack 0 is not full 4/11
-2023/04/24 | 12:06:19 | Label: pushed point (0.34, 0.44) to stack 0
-2023/04/24 | 12:06:20 | MC click ->
-2023/04/24 | 12:06:20 | LSC click (0.17,0.67)
-2023/04/24 | 12:06:20 | Label: stack 0 is not full 5/11
-2023/04/24 | 12:06:20 | Label: pushed point (0.17, 0.67) to stack 0
-2023/04/24 | 12:06:21 | MC click ->
-2023/04/24 | 12:06:21 | LSC click (0.48,0.59)
-2023/04/24 | 12:06:21 | Label: stack 0 is not full 6/11
-2023/04/24 | 12:06:21 | Label: pushed point (0.48, 0.59) to stack 0
-2023/04/24 | 12:06:22 | MC undo ->
-2023/04/24 | 12:06:22 | LSC undo
-2023/04/24 | 12:06:22 | Label: frame label 0 is not empty 7/11
-2023/04/24 | 12:06:22 | Label: popped point (0.48, 0.59) from stack 0
-2023/04/24 | 12:06:22 | MC undo ->
-2023/04/24 | 12:06:22 | LSC undo
-2023/04/24 | 12:06:22 | Label: frame label 0 is not empty 6/11
-2023/04/24 | 12:06:22 | Label: popped point (0.17, 0.67) from stack 0
-2023/04/24 | 12:06:22 | MC undo ->
-2023/04/24 | 12:06:22 | LSC undo
-2023/04/24 | 12:06:22 | Label: frame label 0 is not empty 5/11
-2023/04/24 | 12:06:22 | Label: popped point (0.34, 0.44) from stack 0
-2023/04/24 | 12:06:22 | MC undo ->
-2023/04/24 | 12:06:22 | LSC undo
-2023/04/24 | 12:06:22 | Label: frame label 0 is not empty 4/11
-2023/04/24 | 12:06:22 | Label: popped point (0.76, 0.54) from stack 0
-2023/04/24 | 12:06:23 | MC undo ->
-2023/04/24 | 12:06:23 | LSC undo
-2023/04/24 | 12:06:23 | Label: frame label 0 is not empty 3/11
-2023/04/24 | 12:06:23 | Label: popped point (0.63, 0.38) from stack 0
-2023/04/24 | 12:06:23 | MC undo ->
-2023/04/24 | 12:06:23 | LSC undo
-2023/04/24 | 12:06:23 | Label: frame label 0 is not empty 2/11
-2023/04/24 | 12:06:23 | Label: popped point (0.46, 0.35) from stack 0
-2023/04/24 | 12:06:24 | MC undo ->
-2023/04/24 | 12:06:24 | LSC undo
-2023/04/24 | 12:06:24 | Label: frame label 0 is not empty 1/11
-2023/04/24 | 12:06:24 | Label: popped point (0.46, 0.19) from stack 0
-2023/04/24 | 12:06:27 | MC click ->
-2023/04/24 | 12:06:27 | LSC click (0.45,0.26)
-2023/04/24 | 12:06:27 | Label: stack 0 is not full 0/11
-2023/04/24 | 12:06:27 | Label: pushed point (0.45, 0.26) to stack 0
-2023/04/24 | 12:06:28 | MC click ->
-2023/04/24 | 12:06:28 | LSC click (0.46,0.44)
-2023/04/24 | 12:06:28 | Label: stack 0 is not full 1/11
-2023/04/24 | 12:06:28 | Label: pushed point (0.46, 0.44) to stack 0
-2023/04/24 | 12:06:28 | MC click ->
-2023/04/24 | 12:06:28 | LSC click (0.61,0.39)
-2023/04/24 | 12:06:28 | Label: stack 0 is not full 2/11
-2023/04/24 | 12:06:28 | Label: pushed point (0.61, 0.39) to stack 0
-2023/04/24 | 12:06:28 | MC click ->
-2023/04/24 | 12:06:28 | LSC click (0.71,0.26)
-2023/04/24 | 12:06:28 | Label: stack 0 is not full 3/11
-2023/04/24 | 12:06:28 | Label: pushed point (0.71, 0.26) to stack 0
-2023/04/24 | 12:06:29 | MC click ->
-2023/04/24 | 12:06:29 | LSC click (0.32,0.43)
-2023/04/24 | 12:06:29 | Label: stack 0 is not full 4/11
-2023/04/24 | 12:06:29 | Label: pushed point (0.32, 0.43) to stack 0
-2023/04/24 | 12:06:29 | MC click ->
-2023/04/24 | 12:06:29 | LSC click (0.08,0.23)
-2023/04/24 | 12:06:29 | Label: stack 0 is not full 5/11
-2023/04/24 | 12:06:29 | Label: pushed point (0.08, 0.23) to stack 0
-2023/04/24 | 12:06:30 | MC click ->
-2023/04/24 | 12:06:30 | LSC click (0.51,0.62)
-2023/04/24 | 12:06:30 | Label: stack 0 is not full 6/11
-2023/04/24 | 12:06:30 | Label: pushed point (0.51, 0.62) to stack 0
-2023/04/24 | 12:06:30 | MC click ->
-2023/04/24 | 12:06:30 | LSC click (0.64,0.81)
-2023/04/24 | 12:06:30 | Label: stack 0 is not full 7/11
-2023/04/24 | 12:06:30 | Label: pushed point (0.64, 0.81) to stack 0
-2023/04/24 | 12:06:31 | MC click ->
-2023/04/24 | 12:06:31 | LSC click (0.74,0.94)
-2023/04/24 | 12:06:31 | Label: stack 0 is not full 8/11
-2023/04/24 | 12:06:31 | Label: pushed point (0.74, 0.94) to stack 0
-2023/04/24 | 12:06:32 | MC click ->
-2023/04/24 | 12:06:32 | LSC click (0.40,0.70)
-2023/04/24 | 12:06:32 | Label: stack 0 is not full 9/11
-2023/04/24 | 12:06:32 | Label: pushed point (0.40, 0.70) to stack 0
-2023/04/24 | 12:06:32 | MC click ->
-2023/04/24 | 12:06:32 | LSC click (0.29,0.86)
-2023/04/24 | 12:06:32 | Label: stack 0 is not full 10/11
-2023/04/24 | 12:06:32 | Label: pushed point (0.29, 0.86) to stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 11/11
-2023/04/24 | 12:06:34 | Label: popped point (0.29, 0.86) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 10/11
-2023/04/24 | 12:06:34 | Label: popped point (0.40, 0.70) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 9/11
-2023/04/24 | 12:06:34 | Label: popped point (0.74, 0.94) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 8/11
-2023/04/24 | 12:06:34 | Label: popped point (0.64, 0.81) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 7/11
-2023/04/24 | 12:06:34 | Label: popped point (0.51, 0.62) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 6/11
-2023/04/24 | 12:06:34 | Label: popped point (0.08, 0.23) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 5/11
-2023/04/24 | 12:06:34 | Label: popped point (0.32, 0.43) from stack 0
-2023/04/24 | 12:06:34 | MC undo ->
-2023/04/24 | 12:06:34 | LSC undo
-2023/04/24 | 12:06:34 | Label: frame label 0 is not empty 4/11
-2023/04/24 | 12:06:34 | Label: popped point (0.71, 0.26) from stack 0
-2023/04/24 | 12:06:35 | MC undo ->
-2023/04/24 | 12:06:35 | LSC undo
-2023/04/24 | 12:06:35 | Label: frame label 0 is not empty 3/11
-2023/04/24 | 12:06:35 | Label: popped point (0.61, 0.39) from stack 0
-2023/04/24 | 12:06:35 | MC undo ->
-2023/04/24 | 12:06:35 | LSC undo
-2023/04/24 | 12:06:35 | Label: frame label 0 is not empty 2/11
-2023/04/24 | 12:06:35 | Label: popped point (0.46, 0.44) from stack 0
-2023/04/24 | 12:06:35 | MC undo ->
-2023/04/24 | 12:06:35 | LSC undo
-2023/04/24 | 12:06:35 | Label: frame label 0 is not empty 1/11
-2023/04/24 | 12:06:35 | Label: popped point (0.45, 0.26) from stack 0
-2023/04/24 | 12:06:35 | MC undo ->
-2023/04/24 | 12:06:35 | LSC undo
-2023/04/24 | 12:06:35 | Label: frame label 0 is empty 0/11
-2023/04/24 | 12:06:35 | LSC setFrame: 0 -> 0
-2023/04/24 | 12:06:42 | MC open ->
-2023/04/24 | 12:06:42 | FileSystem: read bytes '/home/joseph/Desktop/MotionVDL/repository/output.mvdl'
-2023/04/24 | 12:06:42 | Created (1344,50,50) video from byte sequence
-2023/04/24 | 12:06:42 | Created (1344,11) label from byte sequence
-2023/04/24 | 12:06:42 | Created LabelledVideo
-2023/04/24 | 12:06:42 | LSC pass
-2023/04/24 | 12:06:42 | Label: stack 0 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 1 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 2 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 3 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 4 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 5 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 6 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 7 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 8 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 9 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 10 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 11 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 12 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 13 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 14 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 15 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 16 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 17 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 18 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 19 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 20 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 21 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 22 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 23 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 24 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 25 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 26 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 27 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 28 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 29 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 30 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 31 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 32 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 33 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 34 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 35 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 36 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 37 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 38 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 39 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 40 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 41 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 42 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 43 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 44 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 45 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 46 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 47 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 48 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 49 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 50 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 51 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 52 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 53 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 54 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 55 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 56 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 57 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 58 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 59 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 60 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 61 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 62 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 63 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 64 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 65 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 66 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 67 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 68 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 69 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 70 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 71 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 72 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 73 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 74 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 75 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 76 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 77 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 78 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 79 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 80 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 81 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 82 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 83 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 84 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 85 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 86 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 87 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 88 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 89 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 90 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 91 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 92 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 93 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 94 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 95 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 96 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 97 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 98 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 99 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 100 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 101 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 102 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 103 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 104 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 105 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 106 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 107 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 108 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 109 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 110 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 111 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 112 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 113 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 114 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 115 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 116 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 117 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 118 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 119 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 120 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 121 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 122 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 123 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 124 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 125 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 126 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 127 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 128 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 129 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 130 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 131 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 132 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 133 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 134 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 135 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 136 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 137 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 138 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 139 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 140 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 141 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 142 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 143 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 144 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 145 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 146 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 147 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 148 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 149 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 150 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 151 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 152 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 153 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 154 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 155 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 156 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 157 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 158 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 159 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 160 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 161 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 162 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 163 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 164 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 165 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 166 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 167 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 168 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 169 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 170 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 171 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 172 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 173 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 174 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 175 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 176 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 177 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 178 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 179 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 180 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 181 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 182 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 183 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 184 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 185 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 186 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 187 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 188 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 189 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 190 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 191 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 192 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 193 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 194 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 195 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 196 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 197 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 198 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 199 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 200 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 201 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 202 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 203 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 204 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 205 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 206 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 207 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 208 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 209 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 210 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 211 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 212 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 213 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 214 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 215 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 216 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 217 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 218 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 219 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 220 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 221 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 222 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 223 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 224 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 225 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 226 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 227 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 228 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 229 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 230 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 231 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 232 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 233 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 234 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 235 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 236 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 237 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 238 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 239 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 240 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 241 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 242 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 243 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 244 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 245 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 246 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 247 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 248 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 249 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 250 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 251 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 252 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 253 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 254 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 255 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 256 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 257 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 258 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 259 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 260 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 261 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 262 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 263 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 264 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 265 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 266 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 267 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 268 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 269 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 270 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 271 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 272 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 273 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 274 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 275 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 276 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 277 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 278 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 279 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 280 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 281 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 282 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 283 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 284 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 285 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 286 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 287 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 288 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 289 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 290 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 291 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 292 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 293 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 294 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 295 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 296 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 297 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 298 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 299 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 300 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 301 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 302 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 303 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 304 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 305 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 306 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 307 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 308 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 309 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 310 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 311 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 312 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 313 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 314 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 315 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 316 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 317 is full 11/11
-2023/04/24 | 12:06:42 | Label: stack 318 is not full 0/11
-2023/04/24 | 12:06:43 | MC setPrevFrame ->
-2023/04/24 | 12:06:43 | LSC setFrame: 318 -> 317
-2023/04/24 | 12:06:44 | MC setPrevFrame ->
-2023/04/24 | 12:06:44 | LSC setFrame: 317 -> 316
-2023/04/24 | 12:06:45 | MC setNextFrame ->
-2023/04/24 | 12:06:45 | LSC setFrame: 316 -> 317
-2023/04/24 | 12:06:45 | MC setNextFrame ->
-2023/04/24 | 12:06:45 | LSC setFrame: 317 -> 318
-2023/04/24 | 12:06:46 | MC setPrevFrame ->
-2023/04/24 | 12:06:46 | LSC setFrame: 318 -> 317
-2023/04/24 | 12:06:46 | MC setPrevFrame ->
-2023/04/24 | 12:06:46 | LSC setFrame: 317 -> 316
-2023/04/24 | 12:06:46 | MC setPrevFrame ->
-2023/04/24 | 12:06:46 | LSC setFrame: 316 -> 315
+2023/04/25 | 12:24:40 | Created log file 'MVDL.log'
+2023/04/25 | 12:24:41 | Created VideoController 'VSC'
+2023/04/25 | 12:24:41 | Created LabelController 'LSC'
+2023/04/25 | 12:24:41 | Created MainController 'MC'
+2023/04/25 | 12:24:41 | Created (10,100,100) noise buffer
+2023/04/25 | 12:24:41 | Created (10,100,100) video from buffer
+2023/04/25 | 12:24:41 | Created empty (10,11) label
+2023/04/25 | 12:24:41 | Created LabelledVideo
+2023/04/25 | 12:24:41 | MC pass ->
+2023/04/25 | 12:24:41 | VSC pass
+2023/04/25 | 12:24:43 | MC complete ->
+2023/04/25 | 12:24:43 | VSC received next
+2023/04/25 | 12:24:43 | Video: buffer resolution cropped from 100x100 to 100x100 from (0,0)
+2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
+2023/04/25 | 12:24:44 | Video: buffer resolution scaled from 100x100 to 100x100
+2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
+2023/04/25 | 12:24:44 | Video: buffer converted to greyscale
+2023/04/25 | 12:24:44 | Created (10,100,100) video from buffer
+2023/04/25 | 12:24:44 | Created empty (10,11) label
+2023/04/25 | 12:24:44 | Created LabelledVideo
+2023/04/25 | 12:24:44 | VSC complete
+2023/04/25 | 12:24:44 | MC pass ->
+2023/04/25 | 12:24:44 | LSC pass
+2023/04/25 | 12:24:44 | Label: stack 0 is not full 0/11
+2023/04/25 | 12:24:44 | MC click ->
+2023/04/25 | 12:24:44 | LSC click (0.20,0.34)
+2023/04/25 | 12:24:44 | Label: stack 0 is not full 0/11
+2023/04/25 | 12:24:44 | Label: pushed point (0.20, 0.34) to stack 0
+2023/04/25 | 12:24:44 | MC click ->
+2023/04/25 | 12:24:44 | LSC click (0.40,0.60)
+2023/04/25 | 12:24:44 | Label: stack 0 is not full 1/11
+2023/04/25 | 12:24:44 | Label: pushed point (0.40, 0.60) to stack 0
+2023/04/25 | 12:24:45 | MC click ->
+2023/04/25 | 12:24:45 | LSC click (0.60,0.37)
+2023/04/25 | 12:24:45 | Label: stack 0 is not full 2/11
+2023/04/25 | 12:24:45 | Label: pushed point (0.60, 0.37) to stack 0
+2023/04/25 | 12:24:45 | MC click ->
+2023/04/25 | 12:24:45 | LSC click (0.58,0.35)
+2023/04/25 | 12:24:45 | Label: stack 0 is not full 3/11
+2023/04/25 | 12:24:45 | Label: pushed point (0.58, 0.35) to stack 0
+2023/04/25 | 12:24:45 | MC click ->
+2023/04/25 | 12:24:45 | LSC click (0.46,0.80)
+2023/04/25 | 12:24:45 | Label: stack 0 is not full 4/11
+2023/04/25 | 12:24:45 | Label: pushed point (0.46, 0.80) to stack 0
+2023/04/25 | 12:24:46 | MC click ->
+2023/04/25 | 12:24:46 | LSC click (0.10,0.64)
+2023/04/25 | 12:24:46 | Label: stack 0 is not full 5/11
+2023/04/25 | 12:24:46 | Label: pushed point (0.10, 0.64) to stack 0
+2023/04/25 | 12:24:46 | MC click ->
+2023/04/25 | 12:24:46 | LSC click (0.28,0.38)
+2023/04/25 | 12:24:46 | Label: stack 0 is not full 6/11
+2023/04/25 | 12:24:46 | Label: pushed point (0.28, 0.38) to stack 0
+2023/04/25 | 12:24:46 | MC click ->
+2023/04/25 | 12:24:46 | LSC click (0.80,0.74)
+2023/04/25 | 12:24:46 | Label: stack 0 is not full 7/11
+2023/04/25 | 12:24:46 | Label: pushed point (0.80, 0.74) to stack 0
+2023/04/25 | 12:24:47 | MC click ->
+2023/04/25 | 12:24:47 | LSC click (0.59,0.88)
+2023/04/25 | 12:24:47 | Label: stack 0 is not full 8/11
+2023/04/25 | 12:24:47 | Label: pushed point (0.59, 0.88) to stack 0
+2023/04/25 | 12:24:47 | MC click ->
+2023/04/25 | 12:24:47 | LSC click (0.68,0.44)
+2023/04/25 | 12:24:47 | Label: stack 0 is not full 9/11
+2023/04/25 | 12:24:47 | Label: pushed point (0.68, 0.44) to stack 0
+2023/04/25 | 12:24:48 | MC click ->
+2023/04/25 | 12:24:48 | LSC click (0.63,0.18)
+2023/04/25 | 12:24:48 | Label: stack 0 is not full 10/11
+2023/04/25 | 12:24:48 | Label: pushed point (0.63, 0.18) to stack 0
+2023/04/25 | 12:24:48 | MC click ->
+2023/04/25 | 12:24:48 | LSC click (0.35,0.16)
+2023/04/25 | 12:24:48 | Label: stack 0 is full 11/11
+2023/04/25 | 12:24:48 | LSC ignored click: frame full
+2023/04/25 | 12:24:49 | MC click ->
+2023/04/25 | 12:24:49 | LSC click (0.52,0.58)
+2023/04/25 | 12:24:49 | Label: stack 0 is full 11/11
+2023/04/25 | 12:24:49 | LSC ignored click: frame full
+2023/04/25 | 12:24:49 | MC click ->
+2023/04/25 | 12:24:49 | LSC click (0.78,0.38)
+2023/04/25 | 12:24:49 | Label: stack 0 is full 11/11
+2023/04/25 | 12:24:49 | LSC ignored click: frame full
+2023/04/25 | 12:24:50 | MC undo ->
+2023/04/25 | 12:24:50 | LSC undo
+2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 11/11
+2023/04/25 | 12:24:50 | Label: popped point (0.63, 0.18) from stack 0
+2023/04/25 | 12:24:50 | MC undo ->
+2023/04/25 | 12:24:50 | LSC undo
+2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 10/11
+2023/04/25 | 12:24:50 | Label: popped point (0.68, 0.44) from stack 0
+2023/04/25 | 12:24:50 | MC undo ->
+2023/04/25 | 12:24:50 | LSC undo
+2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 9/11
+2023/04/25 | 12:24:50 | Label: popped point (0.59, 0.88) from stack 0
+2023/04/25 | 12:24:50 | MC undo ->
+2023/04/25 | 12:24:50 | LSC undo
+2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 8/11
+2023/04/25 | 12:24:50 | Label: popped point (0.80, 0.74) from stack 0
+2023/04/25 | 12:24:50 | MC undo ->
+2023/04/25 | 12:24:50 | LSC undo
+2023/04/25 | 12:24:50 | Label: frame label 0 is not empty 7/11
+2023/04/25 | 12:24:50 | Label: popped point (0.28, 0.38) from stack 0
+2023/04/25 | 12:24:50 | MC click ->
+2023/04/25 | 12:24:50 | LSC click (0.49,0.40)
+2023/04/25 | 12:24:50 | Label: stack 0 is not full 6/11
+2023/04/25 | 12:24:50 | Label: pushed point (0.49, 0.40) to stack 0
+2023/04/25 | 12:24:51 | MC click ->
+2023/04/25 | 12:24:51 | LSC click (0.57,0.74)
+2023/04/25 | 12:24:51 | Label: stack 0 is not full 7/11
+2023/04/25 | 12:24:51 | Label: pushed point (0.57, 0.74) to stack 0
+2023/04/25 | 12:24:51 | MC click ->
+2023/04/25 | 12:24:51 | LSC click (0.66,0.51)
+2023/04/25 | 12:24:51 | Label: stack 0 is not full 8/11
+2023/04/25 | 12:24:51 | Label: pushed point (0.66, 0.51) to stack 0
+2023/04/25 | 12:24:51 | MC click ->
+2023/04/25 | 12:24:51 | LSC click (0.71,0.25)
+2023/04/25 | 12:24:51 | Label: stack 0 is not full 9/11
+2023/04/25 | 12:24:51 | Label: pushed point (0.71, 0.25) to stack 0
+2023/04/25 | 12:24:51 | MC click ->
+2023/04/25 | 12:24:51 | LSC click (0.76,0.06)
+2023/04/25 | 12:24:51 | Label: stack 0 is not full 10/11
+2023/04/25 | 12:24:51 | Label: pushed point (0.76, 0.06) to stack 0
+2023/04/25 | 12:24:52 | MC setNextFrame ->
+2023/04/25 | 12:24:52 | LSC setFrame: 0 -> 1
+2023/04/25 | 12:24:53 | MC setPrevFrame ->
+2023/04/25 | 12:24:53 | LSC setFrame: 1 -> 0
