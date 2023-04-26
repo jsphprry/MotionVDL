@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Altered setMessage() to allow for more display control">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Renamed messageLab to fit more appropriately">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
@@ -275,7 +276,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682363821653</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added TODO tasks">
+      <created>1682364302373</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1682364302373</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Renamed messageLab to fit more appropriately">
+      <created>1682364382107</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1682364382107</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,7 +305,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Configuration files" />
     <MESSAGE value="Added code for alterForVideo() method" />
     <MESSAGE value="Upscale code added" />
     <MESSAGE value="Added MenuBar" />
@@ -314,6 +328,8 @@
     <MESSAGE value="Added exit() method" />
     <MESSAGE value="Minor display layout alterations" />
     <MESSAGE value="Altered setMessage() to allow for more display control" />
-    <option name="LAST_COMMIT_MESSAGE" value="Altered setMessage() to allow for more display control" />
+    <MESSAGE value="Added TODO tasks" />
+    <MESSAGE value="Renamed messageLab to fit more appropriately" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed messageLab to fit more appropriately" />
   </component>
 </project>

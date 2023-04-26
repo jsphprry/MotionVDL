@@ -457,8 +457,17 @@ public class Display {
 		}
 	}
 
-	public void setSliderValues(int x, int y, int z) {
-		// TODO: Write this method to take ints between 0 and 1 and set current slider position based on this
+	/**
+	 * Take doubles between 0 and 1 and set the slider thumb positions relative to the given values.
+	 * Primarily used for debugging and testing.
+	 * @param x sliderX position
+	 * @param y sliderY position
+	 * @param z sliderZoom position
+	 */
+	public void setSliderValues(double x, double y, double z) {
+		this.sliderZoom.setValue(z * this.sliderZoom.getMax());
+		this.sliderX.setValue(x * this.sliderX.getMax());
+		this.sliderY.setValue(y * this.sliderY.getMax());
 	}
 
 	/**
