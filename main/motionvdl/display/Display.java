@@ -9,11 +9,13 @@ import java.util.function.BiConsumer;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -40,9 +42,11 @@ public class Display {
 	private final Button nextBut;
 	private final Button prevBut;
 	private final ImageView imageView;
-	private final Label nodeMessageLab;
+	private final Label nextNodeLab;
+	private final Label dynamicNodeLab;
 	private final Label targetResLab;
 	private final Label titleLab;
+	private final Line nodeLabSeparator;
 	private final List<Circle> points;
 	private final List<Line> connectors;
 	private final MenuBar menuBar;
@@ -70,9 +74,12 @@ public class Display {
 		// Title Label
 		this.titleLab = new Label("Title");
 		this.titleLab.setId("titleLabID");
-		this.titleLab.setLayoutX(145);
-		this.titleLab.setLayoutY(32);
-		this.primaryPane.getChildren().add(this.titleLab);
+		HBox hBoxTitleLab = new HBox(this.titleLab);
+		hBoxTitleLab.setAlignment(Pos.CENTER);
+		hBoxTitleLab.setLayoutX(40);
+		hBoxTitleLab.setLayoutY(32);
+		hBoxTitleLab.setPrefWidth(400);
+		this.primaryPane.getChildren().add(hBoxTitleLab);
 
 		// ImageView to show current frame
 		this.imageView = new ImageView();
@@ -87,7 +94,7 @@ public class Display {
 					if (event.getButton() == MouseButton.PRIMARY) {
 						receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
-					// Right click - Pass to controller as undo function
+						// Right click - Pass to controller as undo function
 					} else if (event.getButton() == MouseButton.SECONDARY) {
 						receiver.undo();
 					}
@@ -198,7 +205,7 @@ public class Display {
 		// Label to tell user what resTextField is for
 		this.targetResLab = new Label("Target res:");
 		this.targetResLab.setId("targetResLabID");
-		this.targetResLab.setLayoutX(485);
+		this.targetResLab.setLayoutX(483);
 		this.targetResLab.setLayoutY(275);
 		this.primaryPane.getChildren().add(targetResLab);
 
@@ -221,14 +228,28 @@ public class Display {
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
 
-		// Message area Label
-		this.nodeMessageLab = new Label();
-		this.nodeMessageLab.setId("messageLabID");
-		this.nodeMessageLab.setLayoutX(480);
-		this.nodeMessageLab.setLayoutY(335);
-		this.nodeMessageLab.setMaxWidth(160);
-		this.nodeMessageLab.setWrapText(true);
-		this.primaryPane.getChildren().add(this.nodeMessageLab);
+		// Label for displaying text above next node Label
+		this.nextNodeLab = new Label();
+		this.nextNodeLab.setId("messageLabID");
+		HBox hBoxNextNodeLab = new HBox(this.nextNodeLab);
+		hBoxNextNodeLab.setAlignment(Pos.CENTER);
+		hBoxNextNodeLab.setLayoutX(480);
+		hBoxNextNodeLab.setLayoutY(340);
+		hBoxNextNodeLab.setPrefWidth(160);
+		this.primaryPane.getChildren().add(hBoxNextNodeLab);
+
+		// Line to separate nextNodeLab and dynamicNodeLab
+		this.nodeLabSeparator = new Line(480, 365, 640, 365);
+
+		// Label for displaying next node placement
+		this.dynamicNodeLab = new Label();
+		this.dynamicNodeLab.setId("messageLabID");
+		HBox hBoxDynamicNodeLab = new HBox(this.dynamicNodeLab);
+		hBoxDynamicNodeLab.setAlignment(Pos.CENTER);
+		hBoxDynamicNodeLab.setLayoutX(480);
+		hBoxDynamicNodeLab.setLayoutY(370);
+		hBoxDynamicNodeLab.setPrefWidth(160);
+		this.primaryPane.getChildren().add(hBoxDynamicNodeLab);
 
 		// Menu to allow for opening a file, and saving current labelling
 		this.menuBar = new MenuBar();
@@ -297,8 +318,8 @@ public class Display {
 	 * @param nextNode Text to show the user
 	 */
 	public void setNodeMessage(String nextNode) {
-		//TODO: Style this better
-		this.nodeMessageLab.setText("Next node:\n" +  nextNode);
+		this.nextNodeLab.setText("Next node");
+		this.dynamicNodeLab.setText(nextNode);
 	}
 
 	/**
@@ -545,6 +566,9 @@ public class Display {
 	public void alterForPreprocessing() {
 		this.primaryPane.getChildren().addAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setId("cropImageViewID");
+		this.nextNodeLab.setText("");
+		this.primaryPane.getChildren().remove(this.nodeLabSeparator);
+		this.dynamicNodeLab.setText("");
 		this.radioBut.setText("Lock Min Res");
 		this.radioBut.setTooltip(
 				new Tooltip("Lock currently minimum specified res.")
@@ -560,6 +584,7 @@ public class Display {
 		this.primaryPane.getChildren().removeAll(this.sliderX, this.sliderY, this.sliderZoom);
 		this.imageView.setViewport(null);
 		this.imageView.setId("labelImageViewID");
+		this.primaryPane.getChildren().add(this.nodeLabSeparator);
 		this.radioBut.setText("Toggle Auto");
 		this.radioBut.setTooltip(
 				new Tooltip("Enable to automatically move to next\n" +
