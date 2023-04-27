@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="setSliderValues() method written">
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Updated comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/res/mainStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -298,7 +297,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682439235538</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Introduced HBoxes for centering dynamic Labels">
+      <created>1682629668327</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1682629668327</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updated comments">
+      <created>1682629890775</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1682629890775</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,8 +326,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Upscale code added" />
-    <MESSAGE value="Added MenuBar" />
     <MESSAGE value="Added upscale size change handling" />
     <MESSAGE value="Changed MenuBar to add possibility for functionality" />
     <MESSAGE value="CSS changes" />
@@ -338,6 +349,8 @@
     <MESSAGE value="Added TODO tasks" />
     <MESSAGE value="Renamed messageLab to fit more appropriately" />
     <MESSAGE value="setSliderValues() method written" />
-    <option name="LAST_COMMIT_MESSAGE" value="setSliderValues() method written" />
+    <MESSAGE value="Introduced HBoxes for centering dynamic Labels" />
+    <MESSAGE value="Updated comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated comments" />
   </component>
 </project>

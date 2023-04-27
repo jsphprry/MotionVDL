@@ -631,7 +631,12 @@ public class Display {
 	public int[] getCropFrame() {
 		int x = (int) (this.imageView.getViewport().getMinX() * widthScaleFactor);
 		int y = (int) (this.imageView.getViewport().getMinY() * heightScaleFactor);
-		int z = (int) (this.imageView.getViewport().getWidth() * widthScaleFactor);
+		int z;
+		if (this.imageView.getImage().getWidth() >= this.imageView.getImage().getHeight()) {
+			z = (int) (this.imageView.getViewport().getWidth() * widthScaleFactor);
+		} else {
+			z = (int) (this.imageView.getViewport().getWidth() * heightScaleFactor);
+		}
 		return new int[]{x, y, z};
 	}
 
