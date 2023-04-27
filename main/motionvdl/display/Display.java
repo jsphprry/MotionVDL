@@ -74,7 +74,7 @@ public class Display {
 		// Title Label
 		this.titleLab = new Label("Title");
 		this.titleLab.setId("titleLabID");
-		HBox hBoxTitleLab = new HBox(this.titleLab);
+		HBox hBoxTitleLab = new HBox(this.titleLab); // HBox used for centering text
 		hBoxTitleLab.setAlignment(Pos.CENTER);
 		hBoxTitleLab.setLayoutX(40);
 		hBoxTitleLab.setLayoutY(32);
@@ -231,7 +231,7 @@ public class Display {
 		// Label for displaying text above next node Label
 		this.nextNodeLab = new Label();
 		this.nextNodeLab.setId("messageLabID");
-		HBox hBoxNextNodeLab = new HBox(this.nextNodeLab);
+		HBox hBoxNextNodeLab = new HBox(this.nextNodeLab); // HBox used for centering text
 		hBoxNextNodeLab.setAlignment(Pos.CENTER);
 		hBoxNextNodeLab.setLayoutX(480);
 		hBoxNextNodeLab.setLayoutY(340);
@@ -244,7 +244,7 @@ public class Display {
 		// Label for displaying next node placement
 		this.dynamicNodeLab = new Label();
 		this.dynamicNodeLab.setId("messageLabID");
-		HBox hBoxDynamicNodeLab = new HBox(this.dynamicNodeLab);
+		HBox hBoxDynamicNodeLab = new HBox(this.dynamicNodeLab); // HBox used for centering text
 		hBoxDynamicNodeLab.setAlignment(Pos.CENTER);
 		hBoxDynamicNodeLab.setLayoutX(480);
 		hBoxDynamicNodeLab.setLayoutY(370);
