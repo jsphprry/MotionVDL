@@ -94,11 +94,11 @@ public class Display {
 				event -> {
 					// Left click - Pass to controller as point placement
 					if (event.getButton() == MouseButton.PRIMARY) {
-						receiver.click(event.getX() / this.imageView.getFitWidth(),
+						this.receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
 						// Right click - Pass to controller as undo function
 					} else if (event.getButton() == MouseButton.SECONDARY) {
-						receiver.undo();
+						this.receiver.undo();
 					}
 				});
 		this.primaryPane.getChildren().add(this.imageView);
@@ -172,7 +172,7 @@ public class Display {
 				new Tooltip("Process and go to next stage?")
 		);
 		this.processBut.setOnAction(
-				event -> receiver.complete()
+				event -> this.receiver.complete()
 		);
 		this.primaryPane.getChildren().add(this.processBut);
 
@@ -186,7 +186,7 @@ public class Display {
 				new Tooltip("Previous frame.")
 		);
 		this.prevBut.setOnAction(
-				event -> receiver.setPrevFrame()
+				event -> this.receiver.setPrevFrame()
 		);
 		this.primaryScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if (keyEvent.getCode() == KeyCode.LEFT) {
@@ -206,7 +206,7 @@ public class Display {
 				new Tooltip("Next frame.")
 		);
 		this.nextBut.setOnAction(
-				event -> receiver.setNextFrame()
+				event -> this.receiver.setNextFrame()
 		);
 		this.primaryScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if (keyEvent.getCode() == KeyCode.RIGHT) {
@@ -221,7 +221,7 @@ public class Display {
 		this.targetResLab.setId("targetResLabID");
 		this.targetResLab.setLayoutX(483);
 		this.targetResLab.setLayoutY(275);
-		this.primaryPane.getChildren().add(targetResLab);
+		this.primaryPane.getChildren().add(this.targetResLab);
 
 		// TextField for specifying target resolution
 		this.resTextField = new TextField();
@@ -236,8 +236,8 @@ public class Display {
 				this.resTextField.setText(newValue.replaceAll("\\D", ""));
 			}
 			// Make sure min res in TextField is kept in sync with crop frame
-			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue() * widthScaleFactor) {
-				this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * widthScaleFactor)));
+			if (!Objects.equals(this.resTextField.getText(), "") && getTarget() > this.sliderZoom.getValue() * this.widthScaleFactor) {
+				this.resTextField.setText(Integer.toString((int) (this.sliderZoom.getValue() * this.widthScaleFactor)));
 			}
 		});
 		this.primaryPane.getChildren().add(this.resTextField);
@@ -275,19 +275,19 @@ public class Display {
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
-				receiver.open(fileChoice.getPath());
+				this.receiver.open(fileChoice.getPath());
 			}
 		});
 		MenuItem save = new MenuItem("Save");
 		save.setOnAction(event ->
-				receiver.save()
+				this.receiver.save()
 		);
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event -> {
 			FileChooser fileChooser = new FileChooser();
 			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
 			if (fileChoice != null) {
-				receiver.saveAs(fileChoice.getPath());
+				this.receiver.saveAs(fileChoice.getPath());
 			}
 		});
 		fileMenu.getItems().addAll(open, save, saveAs);
@@ -321,14 +321,14 @@ public class Display {
 
 	/**
 	 * Set the title of the Scene.
-	 * @param string Text to be set as title
+	 * @param title Text to be set as title
 	 */
-	public void setTitle(String string) {
-		this.titleLab.setText(string);
+	public void setTitle(String title) {
+		this.titleLab.setText(title);
 	}
 
 	/**
-	 * Send the user a message, using a Label.
+	 * Send the user a message regarding node placement, using a Label.
 	 * @param nextNode Text to show the user
 	 */
 	public void setNodeMessage(String nextNode) {
@@ -338,10 +338,10 @@ public class Display {
 
 	/**
 	 * Send the user a warning, using an Alert.
-	 * @param string Text to show the user
+	 * @param alertMessage Text to show the user
 	 */
-	public void sendAlert(String string) {
-		Alert alert = new Alert(Alert.AlertType.WARNING, string, ButtonType.OK);
+	public void sendAlert(String alertMessage) {
+		Alert alert = new Alert(Alert.AlertType.WARNING, alertMessage, ButtonType.OK);
 		alert.setTitle("Warning!");
 		alert.setHeaderText(null);
 		alert.setResizable(true);
@@ -643,13 +643,13 @@ public class Display {
 	 * @return Current crop frame co-ordinates
 	 */
 	public int[] getCropFrame() {
-		int x = (int) (this.imageView.getViewport().getMinX() * widthScaleFactor);
-		int y = (int) (this.imageView.getViewport().getMinY() * heightScaleFactor);
+		int x = (int) (this.imageView.getViewport().getMinX() * this.widthScaleFactor);
+		int y = (int) (this.imageView.getViewport().getMinY() * this.heightScaleFactor);
 		int z;
 		if (this.imageView.getImage().getWidth() >= this.imageView.getImage().getHeight()) {
-			z = (int) (this.imageView.getViewport().getWidth() * widthScaleFactor);
+			z = (int) (this.imageView.getViewport().getWidth() * this.widthScaleFactor);
 		} else {
-			z = (int) (this.imageView.getViewport().getWidth() * heightScaleFactor);
+			z = (int) (this.imageView.getViewport().getWidth() * this.heightScaleFactor);
 		}
 		return new int[]{x, y, z};
 	}

@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Fixed bug where portrait video broke application due to scaling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added KeyEvents for next and prev using LEFT and RIGHT">
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
@@ -318,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682631054558</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added KeyEvents for next and prev using LEFT and RIGHT">
+      <created>1682631989653</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631989653</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +339,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed MenuBar to add possibility for functionality" />
     <MESSAGE value="CSS changes" />
     <MESSAGE value="Config alteration" />
     <MESSAGE value="Changed Display arguments" />
@@ -358,6 +363,7 @@
     <MESSAGE value="Introduced HBoxes for centering dynamic Labels" />
     <MESSAGE value="Updated comments" />
     <MESSAGE value="Fixed bug where portrait video broke application due to scaling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where portrait video broke application due to scaling" />
+    <MESSAGE value="Added KeyEvents for next and prev using LEFT and RIGHT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added KeyEvents for next and prev using LEFT and RIGHT" />
   </component>
 </project>
