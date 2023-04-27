@@ -14,6 +14,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -186,6 +188,12 @@ public class Display {
 		this.prevBut.setOnAction(
 				event -> receiver.setPrevFrame()
 		);
+		this.primaryScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+			if (keyEvent.getCode() == KeyCode.LEFT) {
+				this.prevBut.fire();
+				keyEvent.consume();
+			}
+		});
 		this.primaryPane.getChildren().add(this.prevBut);
 
 		// Button for switching to next frame
@@ -200,6 +208,12 @@ public class Display {
 		this.nextBut.setOnAction(
 				event -> receiver.setNextFrame()
 		);
+		this.primaryScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+			if (keyEvent.getCode() == KeyCode.RIGHT) {
+				this.nextBut.fire();
+				keyEvent.consume();
+			}
+		});
 		this.primaryPane.getChildren().add(this.nextBut);
 
 		// Label to tell user what resTextField is for
