@@ -16,11 +16,20 @@ print(y)
 im = plt.imshow(x[464])
 plt.show()
 
-# plot label on frame
+# prepare frame and label
 frame = x[89]
 label = y[89]
-lx,ly = np.split(label, [-1], axis=1)
-fw,fh = np.split(frame.shape, [-1], axis=0)
+lx,ly = np.split(label*50, [-1], axis=1)
+
+# plot image
 plt.imshow(frame)
-plt.scatter(lx*fw, ly*fh, color='red', marker='+')
+
+# plot connectors
+for i,c in enumerate([0,0,1,2,1,4,1,6,7,6,9]):
+	line_x = (lx[i], lx[c])
+	line_y = (ly[i], ly[c])
+	plt.plot(line_x, line_y, color='red')
+
+# plot nodes
+plt.scatter(lx, ly, color='black', marker='+')
 plt.show()

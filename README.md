@@ -1,4 +1,4 @@
-<p align="center"><img src="modelling/frame89_label.png"><p>
+<p align="center"><img src="model/figures/test_loadMVDL_frame89_label.png"><p>
 
 MotionVDL 2023
 -
