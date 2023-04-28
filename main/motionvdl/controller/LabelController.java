@@ -40,13 +40,12 @@ public class LabelController extends Controller {
 		// default behaviour
 		super.pass(temp);
 		
-		// go to first incomplete frame label
-		while (data.label.checkFull(frameIndex) && frameIndex < data.video.length-1) {
-			frameIndex += 1;
-		}
+		// go to first frame with incomplete label
+		int index = 0;
+		while (data.label.getSize(index) == data.label.capacity && index < data.video.length-1) index += 1;
+		setFrame(index);
 		
-		// draw current frame
-		display.setFrame(data.video.getFrame(frameIndex));
+		// draw label
 		display.drawBody(data.label.getPoints(frameIndex), LabeledVideo.CONNECTOR_SEQUENCE);
 	}
 
@@ -77,7 +76,7 @@ public class LabelController extends Controller {
 			
 		// warn if the current frame label is incomplete
 		} else {
-			Debug.trace(debugTitle+" ignored click: frame full");
+			Debug.trace(debugTitle+" ignored click: label full");
 		}
 	}
 	
