@@ -1,5 +1,9 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
+
+
+# load byte encoding into tuple of numpy arrays
 def load(location):
 	
 	# open filesystem location
@@ -46,3 +50,45 @@ def load(location):
 	
 	# return as tuple
 	return (video, label)
+
+
+
+# plot a sequence of images and labels
+def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0.5):
+	
+	# empty line for tidy track
+	print()
+	
+	# enumerate x,y pairs
+	for index, (image, label) in enumerate(zip(x,y)):
+		
+		# prepare index, image and label
+		index = index + start
+		image = image.reshape(50,50)
+		lx,ly = np.split(label*50, [-1], axis=1)
+		
+		# create figure
+		fig, ax = plt.subplots()
+		
+		# plot image
+		ax.imshow(image, vmin=vmin, vmax=vmax)
+		
+		# plot connectors
+		for i,c in enumerate([0,0,1,2,1,4,1,6,7,6,9]):
+			line_x = (lx[i], lx[c])
+			line_y = (ly[i], ly[c])
+			ax.plot(line_x, line_y, color='red')
+		
+		# plot nodes
+		ax.scatter(lx, ly, color='black', marker='+')
+		
+		# draw figure title
+		ax.text(49, 1.5, figtitle, color='black', fontfamily='sans-serif', fontsize='small', horizontalalignment='right')
+		
+		# output figure
+		fig.savefig(f"predictions/{filename}{index}.png")
+		plt.close(fig=fig)
+		
+		# track progress
+		print('\033[A                             \033[A') # tidy track, clear last line of output
+		print(f"saved predictions/{filename}{index}.png {index-start+1}/{min(len(x),len(y))}")
