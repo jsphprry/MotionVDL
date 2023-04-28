@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -77,8 +78,9 @@ public class Display extends JFrame {
 	 */
 	public Display(int w, int h){
 		
-		// window title
+		// window title and icon
 		super("MotionVDL");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("icon/icon50.png"));
 		
 		// setup properties
 		width = w;
