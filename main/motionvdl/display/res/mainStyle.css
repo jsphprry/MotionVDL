@@ -40,8 +40,7 @@
 }
 
 #messageLabID {
-    -fx-font: 12pt "Calibri";
-    -fx-border-width: 0.5pt;
+    -fx-font: 15pt "Calibri";
 }
 
 #paneID {

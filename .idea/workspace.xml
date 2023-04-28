@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Renamed messageLab to fit more appropriately">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7f1e0a0e-1f68-4274-b893-21b19954efdd" name="Changes" comment="Added KeyEvents for next and prev using LEFT and RIGHT">
       <change beforePath="$PROJECT_DIR$/MVDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/MVDL.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/motionvdl/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/motionvdl/display/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.mvdl" beforeDir="false" afterPath="$PROJECT_DIR$/output.mvdl" afterDir="false" />
@@ -40,7 +39,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/henri/MotionVDL&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.37241378&quot;
   }
@@ -290,7 +289,42 @@
       <option name="project" value="LOCAL" />
       <updated>1682364382107</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="setSliderValues() method written">
+      <created>1682439235538</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1682439235538</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Introduced HBoxes for centering dynamic Labels">
+      <created>1682629668327</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1682629668327</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updated comments">
+      <created>1682629890775</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1682629890775</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fixed bug where portrait video broke application due to scaling">
+      <created>1682631054558</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631054558</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added KeyEvents for next and prev using LEFT and RIGHT">
+      <created>1682631989653</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631989653</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -305,11 +339,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added code for alterForVideo() method" />
-    <MESSAGE value="Upscale code added" />
-    <MESSAGE value="Added MenuBar" />
-    <MESSAGE value="Added upscale size change handling" />
-    <MESSAGE value="Changed MenuBar to add possibility for functionality" />
     <MESSAGE value="CSS changes" />
     <MESSAGE value="Config alteration" />
     <MESSAGE value="Changed Display arguments" />
@@ -330,6 +359,11 @@
     <MESSAGE value="Altered setMessage() to allow for more display control" />
     <MESSAGE value="Added TODO tasks" />
     <MESSAGE value="Renamed messageLab to fit more appropriately" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed messageLab to fit more appropriately" />
+    <MESSAGE value="setSliderValues() method written" />
+    <MESSAGE value="Introduced HBoxes for centering dynamic Labels" />
+    <MESSAGE value="Updated comments" />
+    <MESSAGE value="Fixed bug where portrait video broke application due to scaling" />
+    <MESSAGE value="Added KeyEvents for next and prev using LEFT and RIGHT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added KeyEvents for next and prev using LEFT and RIGHT" />
   </component>
 </project>
