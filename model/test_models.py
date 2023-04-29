@@ -15,15 +15,13 @@ train_x = x[:430]
 train_y = y[:430]
 test_x = x[430:800]
 test_y = y[430:800]
-#train_x = x[:25]
-#train_y = y[:25]
-#test_x = x[25:50]
-#test_y = y[25:50]
 
 # initialise models
 _models = [] # list of tuples (model, model-name)
 _models.append((models.CNNLSTM(),'CNNLSTM'))
 _models.append((models.ConvLSTM(),'ConvLSTM'))
+_models.append((models.CNN(),'CNN'))
+_models.append((models.Dense(),'Dense'))
 
 # test models
 for model,name in _models:
