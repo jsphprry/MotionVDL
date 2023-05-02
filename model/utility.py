@@ -54,7 +54,8 @@ def load(location):
 
 
 # plot a sequence of images and labels
-def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0.5):
+#@profile
+def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0.5, res=50):
 	
 	# empty line for tidy track
 	print()
@@ -62,32 +63,31 @@ def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0
 	# enumerate x,y pairs
 	for index, (image, label) in enumerate(zip(x,y)):
 		
-		# prepare index, image and label
+		# reformat variables
 		index = index + start
-		image = image.reshape(50,50)
-		lx,ly = np.split(label*50, [-1], axis=1)
+		image = image.reshape(res,res)
+		lx,ly = np.split(label*res, [-1], axis=1)
 		
 		# create figure
-		fig, ax = plt.subplots()
+		f,a = plt.subplots(num=1, clear=True)
 		
 		# plot image
-		ax.imshow(image, vmin=vmin, vmax=vmax)
+		a.imshow(image, vmin=vmin, vmax=vmax)
 		
 		# plot connectors
 		for i,c in enumerate([0,0,1,2,1,4,1,6,7,6,9]):
 			line_x = (lx[i], lx[c])
 			line_y = (ly[i], ly[c])
-			ax.plot(line_x, line_y, color='red')
+			a.plot(line_x, line_y, color='red')
 		
 		# plot nodes
-		ax.scatter(lx, ly, color='black', marker='+')
+		a.scatter(lx, ly, color='black', marker='+')
 		
-		# draw figure title
-		ax.text(49, 1.5, figtitle, color='black', fontfamily='sans-serif', fontsize='small', horizontalalignment='right')
+		# plot figure title
+		a.text(res-1, 1.5, figtitle, color='black', fontfamily='sans-serif', fontsize='small', horizontalalignment='right')
 		
 		# output figure
-		fig.savefig(f"predictions/{filename}{index}.png")
-		plt.close(fig=fig)
+		f.savefig(f"predictions/{filename}{index}.png")
 		
 		# track progress
 		print('\033[A                             \033[A') # tidy track, clear last line of output
