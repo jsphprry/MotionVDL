@@ -588,6 +588,7 @@ public class Display {
 				new Tooltip("Lock currently minimum specified res.")
 		);
 		this.radioBut.setSelected(false);
+		this.resTextField.setEditable(true);
 		this.primaryPane.requestFocus();
 	}
 
@@ -605,6 +606,7 @@ public class Display {
 						"frame when all labels are placed.")
 		);
 		this.radioBut.setSelected(false);
+		this.resTextField.setEditable(false);
 		this.primaryPane.requestFocus();
 	}
 
