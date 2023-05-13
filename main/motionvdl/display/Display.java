@@ -350,8 +350,8 @@ public class Display {
 	}
 
 	/**
-	 * Converts an array of AWT Colors to JavaFX Image, then sets
-	 * the ImageView's Image property to display this frame.
+	 * Converts an AWT Image to JavaFX Image, then sets the
+	 * ImageView's Image property to display this frame.
 	 * @param image AWT Image containing the current frame
 	 */
 	public void setFrame(java.awt.Image image) {
