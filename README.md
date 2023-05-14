@@ -27,7 +27,8 @@ In addition to the implementation of the labelling tool, the second objective of
 
 
 ### IntelliJ
-No additional actions required - root specifications and external libraries included in supplied .idea directory.
+No additional actions required - root specifications and external libraries included in supplied .idea directory.\
+Start application by running main/JavaFXLauncher.
 
 
 ## How To Use
