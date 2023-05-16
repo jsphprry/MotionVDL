@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import motionvdl.controller.MainController;
@@ -269,13 +270,23 @@ public class Display {
 		this.menuBar = new MenuBar();
 		this.menuBar.setId("menuBarID");
 		Menu fileMenu = new Menu("File");
-		MenuItem open = new MenuItem("Open");
-		open.setOnAction(event -> {
+		MenuItem openFolder = new MenuItem("Open folder");
+		openFolder.setOnAction(event -> {
+			DirectoryChooser directoryChooser = new DirectoryChooser();
+			directoryChooser.setInitialDirectory(new File("."));
+			File selectedDirectory = directoryChooser.showDialog(primaryStage);
+			if (selectedDirectory != null) {
+				this.receiver.open(selectedDirectory.getPath());
+			}
+		});
+		MenuItem openFile = new MenuItem("Open file");
+		openFile.setOnAction(event -> {
 			// Show user their file system to allow file choice
 			FileChooser fileChooser = new FileChooser();
-			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
-			if (fileChoice != null) {
-				this.receiver.open(fileChoice.getPath());
+			fileChooser.setInitialDirectory(new File("."));
+			File selectedFile = fileChooser.showOpenDialog(primaryStage);
+			if (selectedFile != null) {
+				this.receiver.open(selectedFile.getPath());
 			}
 		});
 		MenuItem save = new MenuItem("Save");
@@ -290,7 +301,7 @@ public class Display {
 				this.receiver.saveAs(fileChoice.getPath());
 			}
 		});
-		fileMenu.getItems().addAll(open, save, saveAs);
+		fileMenu.getItems().addAll(openFolder, openFile, save, saveAs);
 		this.menuBar.getMenus().add(fileMenu);
 		this.menuBar.setMinWidth(this.WIDTH);
 		this.primaryPane.getChildren().add(this.menuBar);
