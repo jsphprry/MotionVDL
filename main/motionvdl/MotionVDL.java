@@ -37,9 +37,9 @@ public class MotionVDL extends Application {
 		MainController controller = new MainController(new Display(stage));
 		
 		// start with file if given
-//		if (args.size() > 0) controller.open(args.get(0));
+		if (args.size() > 0) controller.open(args.get(0));
 		
 		// bypass open method to load encoded data into initial controller state
-		controller.pass(new LabeledVideo(Video.noise(100, 100, 10)));
+		//controller.pass(new LabeledVideo(Video.noise(100, 100, 10)));
 	}
 }
