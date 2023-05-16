@@ -23,10 +23,12 @@ In addition to the implementation of the labelling tool, the second objective of
 ## How To Run
 > From a fresh download, what steps need to be reproduced to run the application.
 
-#### Eclipse:
+### Eclipse
 
-#### IntelliJ:
 
+### IntelliJ
+No additional actions required - root specifications and external libraries included in supplied .idea directory.\
+Start application by running main/JavaFXLauncher.
 
 
 ## How To Use

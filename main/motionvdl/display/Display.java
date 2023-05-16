@@ -96,7 +96,7 @@ public class Display {
 					if (event.getButton() == MouseButton.PRIMARY) {
 						this.receiver.click(event.getX() / this.imageView.getFitWidth(),
 								event.getY() / this.imageView.getFitHeight());
-						// Right click - Pass to controller as undo function
+					// Right click - Pass to controller as undo function
 					} else if (event.getButton() == MouseButton.SECONDARY) {
 						this.receiver.undo();
 					}
@@ -285,7 +285,7 @@ public class Display {
 		MenuItem saveAs = new MenuItem("Save As");
 		saveAs.setOnAction(event -> {
 			FileChooser fileChooser = new FileChooser();
-			File fileChoice = fileChooser.showOpenDialog(this.primaryStage);
+			File fileChoice = fileChooser.showSaveDialog(this.primaryStage);
 			if (fileChoice != null) {
 				this.receiver.saveAs(fileChoice.getPath());
 			}
@@ -350,8 +350,8 @@ public class Display {
 	}
 
 	/**
-	 * Converts an array of AWT Colors to JavaFX Image, then sets
-	 * the ImageView's Image property to display this frame.
+	 * Converts an AWT Image to JavaFX Image, then sets the
+	 * ImageView's Image property to display this frame.
 	 * @param image AWT Image containing the current frame
 	 */
 	public void setFrame(java.awt.Image image) {
@@ -588,6 +588,7 @@ public class Display {
 				new Tooltip("Lock currently minimum specified res.")
 		);
 		this.radioBut.setSelected(false);
+		this.resTextField.setEditable(true);
 		this.primaryPane.requestFocus();
 	}
 
@@ -605,6 +606,7 @@ public class Display {
 						"frame when all labels are placed.")
 		);
 		this.radioBut.setSelected(false);
+		this.resTextField.setEditable(false);
 		this.primaryPane.requestFocus();
 	}
 
