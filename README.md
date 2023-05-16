@@ -38,5 +38,9 @@ In this repository are 20 example frames which can be opened using File -> Open 
 Using the sliders, the frame must be cropped so the subject is always in frame.\
 Specify the target resolution using the provided TextField.\
 Process the frames to begin labelling, which can be achieved by clicking the frame.\
-Save your progress using either File -> Save As or File -> Save
+Save your progress using either File -> Save As or File -> Save\
+This file can be reopened using File -> Open File -> 'Your .mvdl File'\
+See the video below for a visual demonstration:
+
+https://github.com/H-jj-R/MotionVDL/assets/63592626/434749e7-816f-4177-a0f3-cc56f246e760
 
