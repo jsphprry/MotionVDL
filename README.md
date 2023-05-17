@@ -14,22 +14,33 @@ MotionVDL is a scientific tool providing a graphical interface for the manual la
 In addition to the implementation of the labelling tool, the second objective of this project has been to collect the raw video data that the tool should eventually process. With the help of the university’s television studio equipment and staff and the collaboration of the group members, we have collected around 41 minutes of video data at 25fps equivalent to around 62,500 frames of video data.
 
 
-
 ## Technical Details
+
 > Information such as Java SDK version (JDK 17), JavaFX version (17), etc.
 
 
-
 ## How To Run
+
 > From a fresh download, what steps need to be reproduced to run the application.
 
 ### Eclipse
 
 
 ### IntelliJ
+
 No additional actions required - root specifications and external libraries included in supplied .idea directory.\
 Start application by running main/JavaFXLauncher.
 
 
 ## How To Use
-> Instructions/examples for how to use the project.
+
+In this repository are 20 example frames which can be opened using File -> Open Directory -> frames.\
+Using the sliders, the frame must be cropped so the subject is always in frame.\
+Specify the target resolution using the provided TextField.\
+Process the frames to begin labelling, which can be achieved by clicking the frame.\
+Save your progress using either File -> Save As or File -> Save\
+This file can be reopened using File -> Open File -> 'Your .mvdl File'\
+See the video below for a visual demonstration:
+
+https://github.com/H-jj-R/MotionVDL/assets/63592626/434749e7-816f-4177-a0f3-cc56f246e760
+
