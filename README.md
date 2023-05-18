@@ -43,7 +43,7 @@ Start application by running main/JavaFXLauncher.
 
 ## How To Use
 
-This repository contains 20 example frames which can be opened using File -> Open Directory -> frames.\
+This repository contains 20 example frames which can be opened using File -> Open folder -> data -> frames.\
 Using the sliders, the frame must be cropped so the subject is always in frame in all frames.\
 Specify the target resolution using the provided TextField.\
 Use the process button to process the frames to begin labelling; labelling can be achieved by clicking the frame.\
