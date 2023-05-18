@@ -120,7 +120,7 @@ public class Video extends Encoding {
 	
 	/**
 	 * Get video frame by index
-	 * @param frameIndex Index of the frame
+	 * @param index Index of the frame
 	 * @return Image of frame
 	 */
 	public Image getFrame(int index) {

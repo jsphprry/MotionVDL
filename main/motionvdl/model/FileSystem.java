@@ -21,7 +21,7 @@ public final class FileSystem {
 	
 	/**
 	 * Write encoded instance to filesystem location
-	 * @param data The FileSystem object
+	 * @param encoding The FileSystem object
 	 * @param location The filesystem location
 	 * @throws IOException Problem accessing filesystem
 	 */
