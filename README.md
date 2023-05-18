@@ -15,16 +15,25 @@ In addition to the implementation of the labelling tool, the second objective of
 
 
 ## Technical Details
-
-> Information such as Java SDK version (JDK 17), JavaFX version (17), etc.
-
+This project has been developed using __openjdk version 17.0.5__ and __javafx version 17.0.6__
 
 ## How To Run
 
-> From a fresh download, what steps need to be reproduced to run the application.
-
 ### Eclipse
+Setup JavaFX JRE:  
+1. Download javafx-sdk to __/local/path/to/javafx-sdk__  
+2. Under __Window > Preferences > Java > Installed JREs__ duplicate default jre  
+3. Rename duplicated jre __javafx-jre-17__  
+4. Add __--module-path /local/path/to/javafx-sdk/lib/ --add-modules javafx.controls,javafx.fxml,javafx.swing__ to the jre *Default VM arguments*  
+5. Click *Add External JARs* and select __/local/path/to/javafx-sdk/lib/*__  
+6. Select *Finish* then *Apply and close*
 
+Add JavaFX JRE to project:  
+1. Under __Run > Run Configurations > Java Application > MotionVDL__ select the *JRE* tab  
+2. Select the *Alternate JRE* radio button, then select __javafx-jre-17__ from the corresponding dropdown menu  
+3. Click *Apply*
+
+Start application by running motionvdl.MotionVDL.main()
 
 ### IntelliJ
 
