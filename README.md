@@ -43,10 +43,10 @@ Start application by running main/JavaFXLauncher.
 
 ## How To Use
 
-In this repository are 20 example frames which can be opened using File -> Open Directory -> frames.\
-Using the sliders, the frame must be cropped so the subject is always in frame.\
+This repository contains 20 example frames which can be opened using File -> Open Directory -> frames.\
+Using the sliders, the frame must be cropped so the subject is always in frame in all frames.\
 Specify the target resolution using the provided TextField.\
-Process the frames to begin labelling, which can be achieved by clicking the frame.\
+Use the process button to process the frames to begin labelling; labelling can be achieved by clicking the frame.\
 Save your progress using either File -> Save As or File -> Save\
 This file can be reopened using File -> Open File -> 'Your .mvdl File'\
 See the video below for a visual demonstration:
