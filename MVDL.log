@@ -1,4 +1,31 @@
-2023/05/16 | 14:23:54 | Created log file 'MVDL.log'
-2023/05/16 | 14:23:55 | Created VideoController 'VSC'
-2023/05/16 | 14:23:55 | Created LabelController 'LSC'
-2023/05/16 | 14:23:55 | Created MainController 'MC'
+2023/05/18 | 19:25:57 | Created log file 'MVDL.log'
+2023/05/18 | 19:25:58 | Created VideoController 'VSC'
+2023/05/18 | 19:25:58 | Created LabelController 'LSC'
+2023/05/18 | 19:25:58 | Created MainController 'MC'
+2023/05/18 | 19:26:05 | MC open ->
+2023/05/18 | 19:26:05 | FileSystem: read images 'C:\Users\henri\MotionVDL\data\frames'
+2023/05/18 | 19:26:05 | FileSystem: found 20 files
+2023/05/18 | 19:26:05 | Created (20,406,722) video from buffer
+2023/05/18 | 19:26:05 | Created empty (20,11) label
+2023/05/18 | 19:26:05 | Created LabelledVideo
+2023/05/18 | 19:26:05 | VSC pass
+2023/05/18 | 19:26:12 | MC setNextFrame ->
+2023/05/18 | 19:26:12 | VSC setNextFrame ->
+2023/05/18 | 19:26:12 | VSC setFrame: 0 -> 1
+2023/05/18 | 19:26:13 | MC setPrevFrame ->
+2023/05/18 | 19:26:13 | VSC setPrevFrame ->
+2023/05/18 | 19:26:13 | VSC setFrame: 1 -> 0
+2023/05/18 | 19:26:20 | MC complete ->
+2023/05/18 | 19:26:20 | VSC received next
+2023/05/18 | 19:26:20 | Video: buffer resolution cropped from 722x406 to 284x284 from (218,58)
+2023/05/18 | 19:26:20 | Created (20,284,284) video from buffer
+2023/05/18 | 19:26:20 | Video: buffer resolution scaled from 284x284 to 284x284
+2023/05/18 | 19:26:20 | Created (20,284,284) video from buffer
+2023/05/18 | 19:26:20 | Video: buffer converted to greyscale
+2023/05/18 | 19:26:20 | Created (20,284,284) video from buffer
+2023/05/18 | 19:26:20 | Created empty (20,11) label
+2023/05/18 | 19:26:20 | Created LabelledVideo
+2023/05/18 | 19:26:20 | VSC complete
+2023/05/18 | 19:26:20 | MC pass ->
+2023/05/18 | 19:26:20 | LSC pass
+2023/05/18 | 19:26:20 | LSC setFrame: 0 -> 0
