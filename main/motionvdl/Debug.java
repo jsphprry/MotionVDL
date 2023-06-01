@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public final class Debug {
 
@@ -13,7 +12,6 @@ public final class Debug {
 	private static boolean enabled = false;
 	private static DateTimeFormatter timeStamp;
 	private static PrintWriter printWriter;
-	private static ArrayList<String> messageBuffer;
 
 	// uninstantiable object
 	private Debug() {}
@@ -33,7 +31,6 @@ public final class Debug {
 			try {
 				timeStamp = DateTimeFormatter.ofPattern("yyyy/MM/dd | HH:mm:ss");
 				printWriter = new PrintWriter(new FileWriter("MVDL.log"));
-				messageBuffer = new ArrayList<>();
 				trace("Created log file 'MVDL.log'");
 
 			// disable trace and print warning if IO error
@@ -60,13 +57,8 @@ public final class Debug {
 		// if the debug trace is enabled
 		if (enabled) {
 
-			// concatenate message buffer and clear
-			String buffer = "";
-			for (String m : messageBuffer) buffer = buffer+" "+m;
-			messageBuffer.clear();
-
 			// reformat message with time stamp
-			message = timeStamp.format(LocalDateTime.now())+" | "+buffer+message;
+			message = timeStamp.format(LocalDateTime.now())+" | "+message;
 
 			// record message to terminal and log file
 			System.out.println(message);
