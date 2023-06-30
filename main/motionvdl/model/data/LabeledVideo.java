@@ -33,7 +33,7 @@ public class LabeledVideo extends Encoding {
 		
 		// setup components
 		this.video = video;
-		this.label = new Label(video.length, nodes);
+		this.label = new Label(video.length, sequence);
 		
 		// debug trace
 		Debug.trace("Created LabelledVideo");

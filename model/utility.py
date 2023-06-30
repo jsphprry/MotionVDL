@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 
 # load byte encoding into tuple of numpy arrays
+@profile
 def load(location):
 	
 	# open filesystem location
@@ -53,8 +54,8 @@ def load(location):
 
 
 
-# plot a sequence of images and labels
-#@profile
+# export plotted prediction figures
+@profile
 def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0.5, res=50):
 	
 	# empty line for tidy track
@@ -63,12 +64,12 @@ def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0
 	# enumerate x,y pairs
 	for index, (image, label) in enumerate(zip(x,y)):
 		
-		# reformat variables
+		# reformat values
 		index = index + start
 		image = image.reshape(res,res)
 		lx,ly = np.split(label*res, [-1], axis=1)
 		
-		# create figure
+		# create figure as figure 1
 		f,a = plt.subplots(num=1, clear=True)
 		
 		# plot image
@@ -92,3 +93,21 @@ def plot_export(x, y, start=0, filename='frame', figtitle=None, vmin=0.0, vmax=0
 		# track progress
 		print('\033[A                             \033[A') # tidy track, clear last line of output
 		print(f"saved predictions/{filename}{index}.png {index-start+1}/{min(len(x),len(y))}")
+
+
+
+# plot optimization figure
+def plot_results(result_list, labels, key, fig_num):
+	
+	# create figure as figure 'fig_num'
+	f,a = plt.subplots(num=fig_num, clear=True)
+	
+	# plot labelled loss histories
+	for r,n in zip(result_list,labels):
+		plt.plot(r.history[key], label=n)
+	
+	# output figure
+	a.set_xlabel('epoch')
+	a.set_ylabel(key)
+	a.legend()
+	f.savefig(f"optimization_{key}.png")

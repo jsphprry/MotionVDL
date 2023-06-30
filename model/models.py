@@ -4,44 +4,15 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
 
 
-
-# output layers
-#
-# Dense output   | LSTM output
-# ----------------------------
-# Dense			 | DenseLSTM
-# ConvDense		 | ConvLSTM
-# Conv_LSTMDense | Conv_LSTMLSTM
-
-# input layers
-#
-# Conv input  	 | Dense input
-# ----------------------------
-# ConvLSTM		 | Dense
-# ConvDense		 | DenseLSTM
-# Conv_LSTMDense | 
-# Conv_LSTMLSTM  | 
-
-# memory layers
-# 
-# has memory	 | has no memory
-# ------------------------------
-# DenseLSTM		 | Dense
-# ConvLSTM		 | ConvDense
-# Conv_LSTMDense | 
-# Conv_LSTMLSTM	 | 
-
-
-# f(x) = dense(x)
-class Dense(Sequential):
+# f(x) = dense(dense(x))
+class Dense2(Sequential):
 	def __init__(self):
 		super().__init__()
 		self.add(layers.Flatten(input_shape=(50,50)))
 		self.add(layers.Dense(22, activation='sigmoid'))
 		self.add(layers.Dense(22, activation='sigmoid'))
 		self.add(layers.Reshape((11,2)))
-		self._name = "Dense"
-
+		self._name = "Dense2"
 
 
 # f(x) = dense(conv(x))
@@ -56,7 +27,6 @@ class ConvDense(Sequential):
 		self._name = "ConvDense"
 
 
-
 # f(x) = dense(conv_lstm(x))
 class Conv_LSTMDense(Sequential):
 	def __init__(self):
@@ -67,7 +37,6 @@ class Conv_LSTMDense(Sequential):
 		self.add(layers.Dense(22, activation='sigmoid'))
 		self.add(layers.Reshape((11,2)))
 		self._name = "Conv_LSTMDense"
-
 
 
 # f(x) = lstm(dense(x)) 
@@ -81,7 +50,6 @@ class DenseLSTM(Sequential):
 		self._name = "DenseLSTM"
 
 
-
 # f(x) = lstm(dense(conv(x)))
 class ConvDenseLSTM(Sequential):
 	def __init__(self):
@@ -93,7 +61,6 @@ class ConvDenseLSTM(Sequential):
 		self.add(layers.LSTM(22))
 		self.add(layers.Reshape((11,2)))
 		self._name = "ConvDenseLSTM"
-
 
 
 # f(x) = lstm(dense(conv_lstm(x)))
@@ -110,9 +77,44 @@ class Conv_LSTMDenseLSTM(Sequential):
 
 
 
+
+# Split by output layer
+#
+# Output layer
+# --------------------------------
+# Dense			 | LSTM
+# --------------------------------
+# Dense			 | DenseLSTM
+# ConvDense		 | ConvLSTM
+# Conv_LSTMDense | Conv_LSTMLSTM
+
+# Split by input layer
+#
+# Input layer
+# --------------------------------
+# Conv		  	 | Dense
+# --------------------------------
+# ConvLSTM		 | Dense
+# ConvDense		 | DenseLSTM
+# Conv_LSTMDense | 
+# Conv_LSTMLSTM  | 
+
+# Split by having recurrent layer
+# 
+# Network has recurrent layer 
+# --------------------------------
+# True			 | False
+# --------------------------------
+# DenseLSTM		 | Dense
+# ConvLSTM		 | ConvDense
+# Conv_LSTMDense | 
+# Conv_LSTMLSTM	 | 
+
+
 # export list of model names for video script
 # https://stackoverflow.com/questions/1796180/how-can-i-get-a-list-of-all-classes-within-current-module-in-python
-#import sys, inspect
-#with open("to_video.list", "w") as f:
-#	for name, obj in inspect.getmembers(sys.modules[__name__], inspect.isclass):
-#		f.write(f"{name}\n")
+import sys, inspect
+def write_classnames_to_file():
+	with open("to_video.list", "w") as f:
+		for name, obj in inspect.getmembers(sys.modules[__name__], inspect.isclass):
+			f.write(f"{name}\n")

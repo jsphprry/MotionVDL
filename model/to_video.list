@@ -1,7 +1,3 @@
 ConvDense
-ConvDenseLSTM
 Conv_LSTMDense
-Conv_LSTMDenseLSTM
-Dense
-DenseLSTM
-Sequential
+Dense2
